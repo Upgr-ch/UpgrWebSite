@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { HeroSection } from './components/HeroSection';
 import { PositionSection } from './components/PositionSection';
@@ -13,28 +14,38 @@ import { AcademySection } from './components/AcademySection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
+import { EugeneLanding } from './pages/EugeneLanding';
 import './App.css';
+
+const HomePage = () => (
+  <div className="w-full min-h-screen bg-midnight text-foreground overflow-x-hidden">
+    <Navigation />
+    <main>
+      <HeroSection />
+      <PositionSection />
+      <SolutionsSection />
+      <SourcingDetailSection />
+      <TestimonialsSection />
+      <ValuesSection />
+      <ApproachSection />
+      <ProcessSection />
+      <EugeneSection />
+      <AcademySection />
+      <ContactSection />
+    </main>
+    <Footer />
+    <ScrollToTop />
+  </div>
+);
 
 function App() {
   return (
-    <div className="w-full min-h-screen bg-midnight text-foreground overflow-x-hidden">
-      <Navigation />
-      <main>
-        <HeroSection />
-        <PositionSection />
-        <SolutionsSection />
-        <SourcingDetailSection />
-        <TestimonialsSection />
-        <ValuesSection />
-        <ApproachSection />
-        <ProcessSection />
-        <EugeneSection />
-        <AcademySection />
-        <ContactSection />
-      </main>
-      <Footer />
-      <ScrollToTop />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/eugene" element={<EugeneLanding />} />
+      </Routes>
+    </Router>
   );
 }
 

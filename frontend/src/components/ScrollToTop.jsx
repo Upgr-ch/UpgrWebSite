@@ -22,7 +22,7 @@ export const ScrollToTop = () => {
     <Button
       variant="outline"
       size="icon"
-      className={`fixed bottom-6 right-6 z-50 w-10 h-10 border-gold text-gold hover:bg-gold hover:text-primary-foreground transition-all duration-300 ${
+      className={`fixed bottom-6 right-6 z-[100] w-10 h-10 border-gold text-gold hover:bg-gold hover:text-primary-foreground transition-all duration-300 ${
         isVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
       onClick={scrollToTop}

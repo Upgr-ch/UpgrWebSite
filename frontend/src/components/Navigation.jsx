@@ -86,23 +86,21 @@ export const Navigation = () => {
       </nav>
 
       {/* Mobile Dropdown Menu */}
-      <div
-        className={`fixed top-14 left-0 w-full bg-midnight/98 backdrop-blur-lg border-b border-foreground/10 z-40 md:hidden transition-all duration-300 ${
-          isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
-        }`}
-      >
-        <div className="flex flex-col">
-          {navLinks.map((link) => (
-            <button
-              key={link.href}
-              onClick={() => handleNavClick(link.href)}
-              className="px-6 py-3.5 text-sm font-light text-foreground/75 border-b border-foreground/5 hover:text-gold hover:bg-foreground/5 transition text-left tracking-wider"
-            >
-              {link.label}
-            </button>
-          ))}
+      {isMobileMenuOpen && (
+        <div className="fixed top-14 left-0 w-full bg-midnight/98 backdrop-blur-lg border-b border-foreground/10 z-40 md:hidden animate-in slide-in-from-top-2 duration-300">
+          <div className="flex flex-col">
+            {navLinks.map((link) => (
+              <button
+                key={link.href}
+                onClick={() => handleNavClick(link.href)}
+                className="px-6 py-3.5 text-sm font-light text-foreground/75 border-b border-foreground/5 hover:text-gold hover:bg-foreground/5 transition text-left tracking-wider"
+              >
+                {link.label}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
