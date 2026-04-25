@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Midnight & Gold Design System */
+    --background: 220 43% 5%; /* #080F1E - Deep midnight blue */
+    --foreground: 0 0% 100%; /* White text */
+    
+    --card: 220 43% 7%;
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 220 43% 6%;
+    --popover-foreground: 0 0% 98%;
+    
+    /* Gold as primary */
+    --primary: 45 86% 76%; /* #F5E090 - Luxurious gold */
+    --primary-foreground: 220 43% 5%; /* Dark text on gold */
+    
+    /* Deep gold for accents */
+    --secondary: 43 65% 43%; /* #B48C28 - Rich gold */
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 220 20% 15%;
+    --muted-foreground: 0 0% 65%;
+    
+    --accent: 45 86% 76%;
+    --accent-foreground: 220 43% 5%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 0 0% 100% / 0.1; /* White with 10% opacity */
+    --input: 0 0% 100% / 0.1;
+    --ring: 45 86% 76%;
+    
+    /* Custom gold variants */
+    --gold: 45 86% 76%; /* #F5E090 */
+    --gold-deep: 43 65% 43%; /* #B48C28 */
+    --gold-glow: 45 90% 85%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(45 86% 76% / 0.4) 0%, hsl(43 65% 43% / 0.15) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(45 86% 76% / 0.02) 0%, transparent 100%);
+    --gradient-radial: radial-gradient(ellipse at 30% 20%, hsl(45 86% 76% / 0.04) 0%, transparent 60%);
+    
+    /* Shadows */
+    --shadow-elegant: 0 10px 30px -10px hsl(45 86% 76% / 0.1);
+    --shadow-glow: 0 0 40px hsl(45 86% 76% / 0.08);
+    
+    /* Animations */
+    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-elegant: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    --radius: 0.125rem; /* Minimal rounded corners for elegance */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-raleway;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Gold decorative line */
+  .gold-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--gold)), transparent);
+  }
+  
+  .gold-line-left {
+    height: 1px;
+    background: linear-gradient(90deg, hsl(var(--gold)), transparent);
+  }
+  
+  /* Shimmer text effect for hero */
+  .shimmer-text {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--gold)) 0%,
+      hsl(var(--foreground)) 25%,
+      hsl(var(--gold)) 50%,
+      hsl(var(--gold-deep)) 75%,
+      hsl(var(--gold)) 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 6s linear infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  
+  /* Fade up animation */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Card hover effect */
+  .card-hover {
+    transition: all var(--transition-elegant);
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-6px);
+    border-color: hsl(var(--gold));
+    box-shadow: var(--shadow-elegant);
+  }
+  
+  /* Nav link underline effect */
+  .nav-link {
+    position: relative;
+    transition: color var(--transition-smooth);
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: hsl(var(--gold));
+    transition: width var(--transition-smooth);
+  }
+  
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+  
+  /* SVG icon effects */
+  .svg-icon {
+    filter: drop-shadow(0 12px 24px hsl(45 86% 76% / 0.06));
+  }
+}
+
+@layer utilities {
+  /* Text color utilities */
+  .text-gold {
+    color: hsl(var(--gold));
+  }
+  
+  .text-gold-deep {
+    color: hsl(var(--gold-deep));
+  }
+  
+  .border-gold {
+    border-color: hsl(var(--gold));
+  }
+  
+  /* Background utilities */
+  .bg-midnight {
+    background-color: hsl(var(--background));
+  }
+  
+  .bg-surface {
+    background-color: hsl(0 0% 100% / 0.02);
+  }
+}
