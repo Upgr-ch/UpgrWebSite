@@ -148,7 +148,7 @@ export const EdouardLanding = () => {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             {/* Text */}
-            <div className="flex-1 text-center lg:text-left">
+            <div className="flex-1 text-center lg:text-left animate-fade-up">
               <Badge
                 variant="outline"
                 className="mb-6 border-[#F5E090]/30 text-[#F5E090] px-4 py-1.5 text-xs tracking-wider bg-transparent"
@@ -164,15 +164,13 @@ export const EdouardLanding = () => {
                 Édouard Consultant Viabilité Business
               </h1>
 
-              <p className="text-lg md:text-xl font-light leading-relaxed text-white/75 mb-8 max-w-2xl mx-auto lg:mx-0">
-                Édouard confronte chaque idée aux réalités économiques. Il
-                analyse les données pour évaluer la viabilité d'un projet{' '}
-                <span className="italic" style={{ color: '#F5E090' }}>
-                  avant son déploiement.
-                </span>
+              <p
+                className="font-raleway shimmer-text text-2xl md:text-3xl lg:text-[2rem] font-medium italic leading-snug mb-8 max-w-2xl mx-auto lg:mx-0"
+              >
+                Crash-testez votre projet avant que le marché ne s'en charge.
               </p>
 
-              <p className="text-sm md:text-base font-light text-white/55 mb-10 max-w-2xl mx-auto lg:mx-0">
+              <p className="font-raleway text-sm md:text-base font-light text-white/55 mb-10 max-w-2xl mx-auto lg:mx-0">
                 Conçu pour les entrepreneurs, slasheurs et porteurs de projets
                 qui veulent un diagnostic assertif sur la viabilité et la
                 rentabilité de leurs idées avant leur mise en œuvre.
@@ -221,7 +219,7 @@ export const EdouardLanding = () => {
             </div>
 
             {/* Brain logo with laser scan */}
-            <div className="flex-1 flex items-center justify-center">
+            <div className="flex-1 flex items-center justify-center animate-fade-up" style={{ animationDelay: '0.2s' }}>
               <div
                 className="relative w-64 h-64 md:w-80 md:h-80 lg:w-[26rem] lg:h-[26rem] rounded-full overflow-hidden"
                 style={{
@@ -230,15 +228,15 @@ export const EdouardLanding = () => {
                   border: '1px solid rgba(245, 224, 144, 0.18)',
                 }}
               >
-                {/* Decorative outer rings */}
-                <div className="absolute inset-0 pointer-events-none">
+                {/* Decorative outer rings (pulse like Eugène avatar) */}
+                <div className="absolute inset-0 pointer-events-none animate-pulse">
                   <div
                     className="absolute inset-3 rounded-full border"
-                    style={{ borderColor: 'rgba(245, 224, 144, 0.12)' }}
+                    style={{ borderColor: 'rgba(245, 224, 144, 0.18)' }}
                   />
                   <div
                     className="absolute inset-8 rounded-full border"
-                    style={{ borderColor: 'rgba(245, 224, 144, 0.08)' }}
+                    style={{ borderColor: 'rgba(245, 224, 144, 0.10)' }}
                   />
                 </div>
 
