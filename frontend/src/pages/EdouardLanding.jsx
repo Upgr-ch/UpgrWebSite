@@ -4,7 +4,6 @@ import {
   ArrowRight,
   Activity,
   Layers,
-  ListChecks,
   ShieldCheck,
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
@@ -105,7 +104,7 @@ export const EdouardLanding = () => {
             to="/"
             className="text-xs md:text-sm font-light tracking-widest uppercase text-white/90 hover:text-[#F5E090] transition"
           >
-            ÉDOUARD — CONSULTANT EN FAISABILITÉ
+            ÉDOUARD CONSULTANT VIABILITÉ BUSINESS
           </Link>
           <nav className="hidden md:flex items-center gap-6 text-xs tracking-wider uppercase">
             <Link
@@ -124,7 +123,7 @@ export const EdouardLanding = () => {
               to="/edouard"
               className="text-[#F5E090] transition"
             >
-              Édouard
+              Édouard Consultant Viabilité Business
             </Link>
           </nav>
           <Button
@@ -162,10 +161,7 @@ export const EdouardLanding = () => {
                 className="font-raleway text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight tracking-tight"
                 style={{ color: '#F5E090' }}
               >
-                ÉDOUARD
-                <span className="block text-xl md:text-2xl lg:text-3xl font-light tracking-wide mt-3 text-white/90">
-                  — CONSULTANT EN FAISABILITÉ ET RENTABILITÉ DE PROJETS BUSINESS
-                </span>
+                Édouard Consultant Viabilité Business
               </h1>
 
               <p className="text-lg md:text-xl font-light leading-relaxed text-white/75 mb-8 max-w-2xl mx-auto lg:mx-0">
@@ -275,9 +271,6 @@ export const EdouardLanding = () => {
             >
               Les Piliers
             </p>
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-              Une lecture chirurgicale de votre projet.
-            </h2>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -334,35 +327,8 @@ export const EdouardLanding = () => {
             LE VERDICT EN 10 ÉTAPES
           </h2>
           <p className="text-base md:text-lg font-light text-white/70 leading-relaxed mb-10">
-            Un parcours de qualification exigeant pour établir un indice de
-            faisabilité final.
+            Un parcours exigeant pour établir un indice de viabilité final.
           </p>
-
-          <div className="flex items-center justify-center mb-12">
-            <div className="grid grid-cols-5 sm:grid-cols-10 gap-2 max-w-2xl">
-              {Array.from({ length: 10 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="flex flex-col items-center gap-2"
-                >
-                  <div
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium"
-                    style={{
-                      border: '1px solid rgba(245, 224, 144, 0.4)',
-                      color: '#F5E090',
-                      backgroundColor: 'rgba(245, 224, 144, 0.04)',
-                    }}
-                  >
-                    {String(i + 1).padStart(2, '0')}
-                  </div>
-                  <ListChecks
-                    className="w-3 h-3 opacity-50"
-                    style={{ color: '#F5E090' }}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
 
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-white/55 tracking-wider uppercase">
             {methodologyHighlights.map((h) => (
