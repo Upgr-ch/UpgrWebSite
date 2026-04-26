@@ -10,7 +10,6 @@ import { ValuesSection } from './components/ValuesSection';
 import { ApproachSection } from './components/ApproachSection';
 import { ProcessSection } from './components/ProcessSection';
 import { EugeneSection } from './components/EugeneSection';
-import { AcademySection } from './components/AcademySection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
@@ -31,7 +30,6 @@ const HomePage = () => (
       <ApproachSection />
       <ProcessSection />
       <EugeneSection />
-      <AcademySection />
       <ContactSection />
     </main>
     <Footer />
