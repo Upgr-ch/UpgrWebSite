@@ -105,7 +105,7 @@ export const EdouardLanding = () => {
             to="/"
             className="text-xs md:text-sm font-light tracking-widest uppercase text-white/90 hover:text-[#F5E090] transition"
           >
-            ÉDOUARD — L'ÉPREUVE DE VIABILITÉ
+            ÉDOUARD — CONSULTANT EN FAISABILITÉ
           </Link>
           <nav className="hidden md:flex items-center gap-6 text-xs tracking-wider uppercase">
             <Link
@@ -159,12 +159,13 @@ export const EdouardLanding = () => {
               </Badge>
 
               <h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight"
+                className="font-raleway text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight tracking-tight"
                 style={{ color: '#F5E090' }}
               >
-                L'ÉPREUVE DE
-                <br />
-                VIABILITÉ.
+                ÉDOUARD
+                <span className="block text-xl md:text-2xl lg:text-3xl font-light tracking-wide mt-3 text-white/90">
+                  — CONSULTANT EN FAISABILITÉ ET RENTABILITÉ DE PROJETS BUSINESS
+                </span>
               </h1>
 
               <p className="text-lg md:text-xl font-light leading-relaxed text-white/75 mb-8 max-w-2xl mx-auto lg:mx-0">
