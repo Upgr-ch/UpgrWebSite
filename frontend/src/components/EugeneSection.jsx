@@ -33,12 +33,12 @@ export const EugeneSection = () => {
       style={{ background: 'hsl(45 86% 76% / 0.015)' }}
     >
       <div className="max-w-3xl mx-auto text-center fade-up">
-        <p className="text-xs tracking-widest-plus uppercase mb-4 text-gold-deep">Eugène</p>
-        <h2 className="text-3xl md:text-4xl font-bold italic mb-6">Eugène</h2>
-        <p className="text-base font-light text-foreground/65 mb-8 max-w-xl mx-auto">
-          Votre Majordome Pédagogique qui transforme votre expertise en plan de formation structuré
-        </p>
-        <Link to="/eugene">
+        <Link to="/eugene" className="inline-block group">
+          <p className="text-xs tracking-widest-plus uppercase mb-4 text-gold-deep">Eugène</p>
+          <h2 className="text-3xl md:text-4xl font-bold italic mb-6 group-hover:text-gold transition-colors">Eugène</h2>
+          <p className="text-base font-light text-foreground/65 mb-8 max-w-xl mx-auto">
+            Votre Majordome Pédagogique qui transforme votre expertise en plan de formation structuré
+          </p>
           <Button
             className="bg-gold hover:bg-gold-glow text-midnight font-medium px-8 py-6 shadow-lg shadow-gold/20 transition-all hover:shadow-xl hover:shadow-gold/30"
           >
