@@ -12,7 +12,7 @@ export const Navigation = () => {
       setIsScrolled(window.scrollY > 60);
       
       // Update active section based on scroll position
-      const sections = ['accueil', 'positionnement', 'offres', 'academy', 'testimonials', 'contact'];
+      const sections = ['accueil', 'positionnement', 'offres', 'eugene', 'academy', 'testimonials', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -35,6 +35,7 @@ export const Navigation = () => {
     { href: '#accueil', label: 'Accueil' },
     { href: '#positionnement', label: 'Notre mission' },
     { href: '#offres', label: 'Solutions' },
+    { href: '#eugene', label: 'Eugène Majordome Pédagogique' },
     { href: '#academy', label: 'Edouard Consultant' },
     { href: '#testimonials', label: 'Ils parlent de nous' },
     { href: '#contact', label: 'Contact' },
