@@ -38,7 +38,7 @@ export const Navigation = () => {
     { type: 'anchor', href: '#accueil', label: 'Accueil' },
     { type: 'anchor', href: '#positionnement', label: 'Notre mission' },
     { type: 'anchor', href: '#offres', label: 'Solutions' },
-    { type: 'anchor', href: '#eugene', label: 'Eugène Majordome Pédagogique' },
+    { type: 'route', to: '/eugene', label: 'Eugène Majordome Pédagogique', activeKey: 'eugene' },
     { type: 'route', to: '/edouard', label: 'Édouard Consultant Viabilité Business', activeKey: 'edouard' },
     { type: 'anchor', href: '#testimonials', label: 'Ils parlent de nous' },
     { type: 'anchor', href: '#contact', label: 'Contact' },
