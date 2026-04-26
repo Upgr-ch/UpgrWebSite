@@ -1,0 +1,54 @@
+Création de la page edouard.html et mise à jour de la navigation globale.
+
+1. Référence Structurelle & Design (Obligatoire) :
+
+Inspiration : Utilise la mise en page (layout), les espacements et la structure de la page eugene.html.
+
+Charte Graphique : Fond #080F1E (Bleu Nuit), Accents et titres #F5E090 (Or), Textes #FFFFFF.
+
+Typographie : 'Raleway'.
+
+Logo central : Utilise le BrainLogo SVG (fourni) avec une animation de scan laser vertical (ligne dorée 2px avec box-shadow qui balaie le logo en boucle).
+
+2. Mise à jour de la Navigation (Header & Main Menu) :
+
+Main Menu : Ajoute une entrée "Édouard" dans le menu principal, juste après "Eugène".
+
+Header : Assure-toi que le lien vers Édouard est présent dans la navigation du header sur toutes les pages du site.
+
+Redirection : Configure les routes pour que /edouard ou le clic sur les boutons "Édouard" redirige vers edouard.html.
+
+3. Contenu de la page Édouard :
+
+Titre (H1) : L’ÉPREUVE DE VIABILITÉ.
+
+Sous-titre : Analyse de viabilité business.
+
+Philosophie : "Édouard confronte les utilisateurs. Il est ferme, assertif et juste."
+
+Accroche : "Édouard confronte chaque idée aux réalités économiques. Édouard analyse les données pour évaluer la viabilité d'un projet avant son déploiement."
+
+Destination : "Conçu pour les entrepreneurs, slasheurs et porteurs de projets qui veulent un diagnostic assertif sur la viabilité et la rentabilité de leurs idée avant sa mise en œuvre."
+
+Les Piliers (Cards style Eugène) :
+
+DIAGNOSTIC DE STRUCTURE : Identifier les failles d'un projet avant l'exécution pour éviter l'échec financier et la perte de temps.
+
+ANALYSE DES FLUX : Audit complet du projet à partir de l'idée à travers le prisme de la réalité du Marché, de la Structure et des Moyens.
+
+Méthodologie : "LE VERDICT EN 10 ÉTAPES : Un parcours de qualification exigeant pour établir un indice de faisabilité final."
+
+4. Bouton d'Action (CTA) :
+
+Style de bouton identique à Eugène mais en couleur Or (#F5E090).
+
+Texte : "→ Essayer Édouard gratuitement".
+
+Sous-texte de réassurance : "Sans carte bancaire · Accès immédiat · Diagnostic confidentiel".
+
+5. Ton & Posture :
+
+L'interface doit être chirurgicale, épurée et imposante. Édouard est un auditeur, pas un simple assistant.
+
+Comment l'utiliser :
+Copie ce bloc et colle-le directement dans le chat de Replit Agent. Il va scanner ton fichier eugene.html, copier sa structure, créer la nouvelle page et mettre à jour tes fichiers de navigation (comme header.html ou index.html) automatiquement.

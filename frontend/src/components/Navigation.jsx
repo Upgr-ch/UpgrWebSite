@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Button } from './ui/button';
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('accueil');
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 60);
-      
+
       // Update active section based on scroll position
       const sections = ['accueil', 'positionnement', 'offres', 'eugene', 'academy', 'testimonials', 'contact'];
-      const current = sections.find(section => {
+      const current = sections.find((section) => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
@@ -21,7 +24,7 @@ export const Navigation = () => {
         }
         return false;
       });
-      
+
       if (current) {
         setActiveSection(current);
       }
@@ -32,21 +35,38 @@ export const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { href: '#accueil', label: 'Accueil' },
-    { href: '#positionnement', label: 'Notre mission' },
-    { href: '#offres', label: 'Solutions' },
-    { href: '#eugene', label: 'Eugène Majordome Pédagogique' },
-    { href: '#academy', label: 'Edouard Consultant' },
-    { href: '#testimonials', label: 'Ils parlent de nous' },
-    { href: '#contact', label: 'Contact' },
+    { type: 'anchor', href: '#accueil', label: 'Accueil' },
+    { type: 'anchor', href: '#positionnement', label: 'Notre mission' },
+    { type: 'anchor', href: '#offres', label: 'Solutions' },
+    { type: 'anchor', href: '#eugene', label: 'Eugène Majordome Pédagogique' },
+    { type: 'route', to: '/edouard', label: 'Édouard', activeKey: 'edouard' },
+    { type: 'anchor', href: '#academy', label: 'Edouard Consultant' },
+    { type: 'anchor', href: '#testimonials', label: 'Ils parlent de nous' },
+    { type: 'anchor', href: '#contact', label: 'Contact' },
   ];
 
-  const handleNavClick = (href) => {
+  const handleNavClick = (link) => {
     setIsMobileMenuOpen(false);
-    const element = document.querySelector(href);
+    if (link.type === 'route') {
+      navigate(link.to);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    if (location.pathname !== '/') {
+      navigate('/' + link.href);
+      return;
+    }
+    const element = document.querySelector(link.href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const isLinkActive = (link) => {
+    if (link.type === 'route') {
+      return location.pathname === link.to;
+    }
+    return location.pathname === '/' && activeSection === link.href.substring(1);
   };
 
   return (
@@ -61,10 +81,10 @@ export const Navigation = () => {
           <div className="hidden md:flex items-center gap-8 text-sm tracking-wide">
             {navLinks.map((link) => (
               <button
-                key={link.href}
-                onClick={() => handleNavClick(link.href)}
+                key={link.label}
+                onClick={() => handleNavClick(link)}
                 className={`nav-link text-foreground/70 hover:text-foreground transition ${
-                  activeSection === link.href.substring(1) ? 'active' : ''
+                  isLinkActive(link) ? 'active' : ''
                 }`}
               >
                 {link.label}
@@ -91,8 +111,8 @@ export const Navigation = () => {
           <div className="flex flex-col">
             {navLinks.map((link) => (
               <button
-                key={link.href}
-                onClick={() => handleNavClick(link.href)}
+                key={link.label}
+                onClick={() => handleNavClick(link)}
                 className="px-6 py-3.5 text-sm font-light text-foreground/75 border-b border-foreground/5 hover:text-gold hover:bg-foreground/5 transition text-left tracking-wider"
               >
                 {link.label}

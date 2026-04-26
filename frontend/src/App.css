@@ -1,1 +1,32 @@
-/* Additional custom styles if needed */
+/* Édouard brain logo: vertical laser scan animation */
+@keyframes edouardLaserScan {
+  0% {
+    top: -2px;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.edouard-laser-scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #F5E090;
+  box-shadow:
+    0 0 12px 2px rgba(245, 224, 144, 0.9),
+    0 0 28px 6px rgba(245, 224, 144, 0.45),
+    0 0 60px 12px rgba(245, 224, 144, 0.18);
+  animation: edouardLaserScan 3.4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 2;
+}

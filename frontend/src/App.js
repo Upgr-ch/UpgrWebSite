@@ -15,6 +15,7 @@ import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ScrollToTop } from './components/ScrollToTop';
 import { EugeneLanding } from './pages/EugeneLanding';
+import { EdouardLanding } from './pages/EdouardLanding';
 import './App.css';
 
 const HomePage = () => (
@@ -44,6 +45,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/eugene" element={<EugeneLanding />} />
+        <Route path="/edouard" element={<EdouardLanding />} />
       </Routes>
     </Router>
   );
