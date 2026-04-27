@@ -14,11 +14,11 @@ jobs:
 
       - name: 🚀 Envoyer chez Infomaniak
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          with:
+       with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /
           port: 21
-          secure: false
+          protocol: ftps
+          secure: true
