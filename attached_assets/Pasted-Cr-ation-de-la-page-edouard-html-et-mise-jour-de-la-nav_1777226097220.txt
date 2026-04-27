@@ -1,4 +1,4 @@
-Création de la page edouard.html et mise à jour de la navigation globale.
+Création de la page edouard.html et mise à jour de la navigation globale. ok
 
 1. Référence Structurelle & Design (Obligatoire) :
 
