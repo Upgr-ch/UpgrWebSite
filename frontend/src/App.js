@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Navigation } from './components/Navigation';
 import { HeroSection } from './components/HeroSection';
@@ -16,7 +16,11 @@ import { EugeneLanding } from './pages/EugeneLanding';
 import { EdouardLanding } from './pages/EdouardLanding';
 import './App.css';
 
-const HomePage = () => (
+const HomePage = () => {
+  useEffect(() => {
+    document.title = 'UpGrade | Learning & Development';
+  }, []);
+  return (
   <div className="w-full min-h-screen bg-midnight text-foreground overflow-x-hidden">
     <Navigation />
     <main>
@@ -33,7 +37,8 @@ const HomePage = () => (
     <Footer />
     <ScrollToTop />
   </div>
-);
+  );
+};
 
 function App() {
   return (

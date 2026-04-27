@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Clock, Zap, Award, ShieldCheck } from 'lucide-react';
 import { Button } from '../components/ui/button';
@@ -38,6 +38,9 @@ const footerLinks = [
 ];
 
 export const EugeneLanding = () => {
+  useEffect(() => {
+    document.title = 'Eugène — Majordome Pédagogique | UpGrade';
+  }, []);
   return (
     <div
       className="min-h-screen text-white font-raleway"

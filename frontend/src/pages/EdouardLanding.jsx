@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -89,6 +89,9 @@ const BrainLogo = () => (
 );
 
 export const EdouardLanding = () => {
+  useEffect(() => {
+    document.title = 'Édouard — Consultant Viabilité Business | UpGrade';
+  }, []);
   return (
     <div
       className="min-h-screen text-white font-raleway"
