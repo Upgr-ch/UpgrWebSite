@@ -57,6 +57,12 @@ export const EugeneLanding = () => {
           </Link>
           <nav className="hidden md:flex items-center gap-6 text-xs tracking-wider uppercase">
             <Link
+              to="/"
+              className="text-white/70 hover:text-[#F5E090] transition"
+            >
+              Accueil
+            </Link>
+            <Link
               to="/eugene"
               className="text-[#F5E090] transition"
             >
