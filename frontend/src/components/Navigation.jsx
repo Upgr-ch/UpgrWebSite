@@ -40,12 +40,16 @@ export const Navigation = () => {
     { type: 'anchor', href: '#offres', label: 'Solutions' },
     { type: 'route', to: '/eugene', label: 'Eugène Majordome Pédagogique', activeKey: 'eugene' },
     { type: 'route', to: '/edouard', label: 'Édouard Consultant Viabilité Business', activeKey: 'edouard' },
-    { type: 'anchor', href: '#testimonials', label: 'Ils parlent de nous' },
+    { type: 'external', href: 'https://fr.trustpilot.com/', label: 'Ils parlent de nous' },
     { type: 'anchor', href: '#contact', label: 'Contact' },
   ];
 
   const handleNavClick = (link) => {
     setIsMobileMenuOpen(false);
+    if (link.type === 'external') {
+      window.open(link.href, '_blank', 'noopener,noreferrer');
+      return;
+    }
     if (link.type === 'route') {
       navigate(link.to);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -64,6 +68,9 @@ export const Navigation = () => {
   const isLinkActive = (link) => {
     if (link.type === 'route') {
       return location.pathname === link.to;
+    }
+    if (link.type === 'external') {
+      return false;
     }
     return location.pathname === '/' && activeSection === link.href.substring(1);
   };
