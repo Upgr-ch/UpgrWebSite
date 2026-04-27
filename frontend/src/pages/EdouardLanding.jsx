@@ -174,7 +174,7 @@ export const EdouardLanding = () => {
               <p
                 className="font-raleway shimmer-text text-2xl md:text-3xl lg:text-[2rem] font-medium italic leading-snug mb-8 max-w-2xl mx-auto lg:mx-0"
               >
-                Crash-testez votre projet avant que le marché ne s'en charge.
+                Crash-testez votre projet en une demi-journée avant que le marché ne s’en charge
               </p>
 
               <p className="font-raleway text-sm md:text-base font-light text-white/55 mb-10 max-w-2xl mx-auto lg:mx-0">
