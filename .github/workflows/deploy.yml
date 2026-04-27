@@ -22,3 +22,5 @@ jobs:
           port: 21
           protocol: ftp
           secure: false
+          passive: true
+          timeout: 90000
