@@ -178,6 +178,7 @@ export const EdouardLanding = () => {
 
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-6">
                 <Button
+                  asChild
                   size="lg"
                   className="font-medium px-8 py-6 text-base shadow-lg transition-all hover:scale-105"
                   style={{
@@ -186,8 +187,14 @@ export const EdouardLanding = () => {
                     boxShadow: '0 10px 30px -10px rgba(245, 224, 144, 0.4)',
                   }}
                 >
-                  <ArrowRight className="mr-2 h-5 w-5" />
-                  Essayer Édouard gratuitement
+                  <a
+                    href="https://edouard-consultant.ch/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ArrowRight className="mr-2 h-5 w-5" />
+                    Essayer Édouard gratuitement
+                  </a>
                 </Button>
               </div>
 
@@ -357,6 +364,7 @@ export const EdouardLanding = () => {
             juste. »
           </p>
           <Button
+            asChild
             size="lg"
             className="font-medium px-8 py-6 text-base shadow-lg transition-all hover:scale-105"
             style={{
@@ -365,8 +373,14 @@ export const EdouardLanding = () => {
               boxShadow: '0 10px 30px -10px rgba(245, 224, 144, 0.4)',
             }}
           >
-            <ArrowRight className="mr-2 h-5 w-5" />
-            Essayer Édouard gratuitement
+            <a
+              href="https://edouard-consultant.ch/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ArrowRight className="mr-2 h-5 w-5" />
+              Essayer Édouard gratuitement
+            </a>
           </Button>
           <p className="mt-4 text-xs text-white/50">
             Sans carte bancaire · Accès immédiat · Diagnostic confidentiel
