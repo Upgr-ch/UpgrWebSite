@@ -121,11 +121,18 @@ export const EugeneLanding = () => {
 
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
                 <Button
+                  asChild
                   size="lg"
                   className="bg-gold hover:bg-gold-glow text-midnight font-medium px-8 py-6 text-base shadow-lg shadow-gold/20 transition-all hover:shadow-xl hover:shadow-gold/30 hover:scale-105"
                 >
-                  <ArrowRight className="mr-2 h-5 w-5" />
-                  Essayer Eugène gratuitement
+                  <a
+                    href="https://eugene-majordome.ch/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ArrowRight className="mr-2 h-5 w-5" />
+                    Essayer Eugène gratuitement
+                  </a>
                 </Button>
               </div>
 
