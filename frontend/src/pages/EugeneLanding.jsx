@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Clock, Zap, Award, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Clock, Zap, Award, ShieldCheck, Sparkles } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -8,7 +8,7 @@ import { Badge } from '../components/ui/badge';
 const benefits = [
   {
     icon: Zap,
-    title: 'Gain de temps massif',
+    title: 'Gain de temps et clarification',
     description:
       "Passez de l'idée au plan structuré en 30 minutes au lieu de plusieurs jours.",
     gradient: 'from-gold/20 to-gold-deep/10',
@@ -17,14 +17,14 @@ const benefits = [
     icon: Award,
     title: 'Zéro base pédagogique',
     description:
-      "L'IA s'occupe de la structure, vous ne fournissez que votre expertise.",
+      "Eugène s'occupe de la structure prête à accueillir votre savoir.",
     gradient: 'from-gold-deep/20 to-gold/10',
   },
   {
-    icon: ShieldCheck,
-    title: 'Crédibilité immédiate',
+    icon: Sparkles,
+    title: 'Créez à la vitesse de la pensée',
     description:
-      'Présentez un dossier professionnel prêt à l\'emploi à votre direction ou vos clients.',
+      "Eugène supprime l'inertie entre votre idée et sa réalisation.",
     gradient: 'from-gold/20 to-gold-deep/10',
   },
 ];
@@ -197,8 +197,11 @@ export const EugeneLanding = () => {
               return (
                 <Card
                   key={benefit.title}
-                  className="bg-midnight border-foreground/10 hover:border-gold/30 transition-all duration-300 hover:shadow-lg hover:shadow-gold/10 hover:-translate-y-1"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="eugene-fade-in font-raleway bg-midnight border-foreground/10 hover:border-gold/30 transition-all duration-300 hover:shadow-lg hover:shadow-gold/10 hover:-translate-y-1"
+                  style={{
+                    backgroundColor: '#080F1E',
+                    animationDelay: `${index * 0.18}s`,
+                  }}
                 >
                   <CardContent className="p-8">
                     <div
@@ -206,8 +209,10 @@ export const EugeneLanding = () => {
                     >
                       <Icon className="w-7 h-7 text-gold" />
                     </div>
-                    <h3 className="text-xl font-bold mb-4 text-foreground">{benefit.title}</h3>
-                    <p className="text-foreground/60 leading-relaxed font-light">
+                    <h3 className="text-xl font-bold mb-4" style={{ color: '#FFFFFF' }}>
+                      {benefit.title}
+                    </h3>
+                    <p className="leading-relaxed font-light" style={{ color: '#FFFFFF', opacity: 0.75 }}>
                       {benefit.description}
                     </p>
                   </CardContent>
