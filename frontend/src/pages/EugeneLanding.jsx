@@ -76,10 +76,17 @@ export const EugeneLanding = () => {
             </Link>
           </nav>
           <Button
+            asChild
             variant="ghost"
             className="text-[#F5E090] hover:text-white hover:bg-[#F5E090]/10 transition-all text-sm font-light tracking-wide"
           >
-            Accéder à Eugène
+            <a
+              href="https://eugene-majordome.ch/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Accéder à Eugène
+            </a>
           </Button>
         </div>
       </header>

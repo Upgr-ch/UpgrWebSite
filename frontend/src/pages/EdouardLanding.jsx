@@ -127,10 +127,17 @@ export const EdouardLanding = () => {
             </Link>
           </nav>
           <Button
+            asChild
             variant="ghost"
             className="text-[#F5E090] hover:text-white hover:bg-[#F5E090]/10 transition-all text-sm font-light tracking-wide"
           >
-            Accéder à Édouard
+            <a
+              href="https://edouard-consultant.ch/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Accéder à Édouard
+            </a>
           </Button>
         </div>
       </header>
