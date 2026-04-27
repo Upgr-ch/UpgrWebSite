@@ -123,10 +123,14 @@ export const EugeneLanding = () => {
                 <span className="text-gold">en moins d'une heure.</span>
               </h1>
 
-              <h2 className="text-lg md:text-xl font-light leading-relaxed text-foreground/70 mb-10 max-w-2xl mx-auto lg:mx-0">
-                Eugène est votre Majordome Pédagogique. Il extrait votre expertise pour créer un
-                plan de transmission professionnel,{' '}
-                <span className="text-gold-deep italic">même si vous n'avez aucune base en pédagogie.</span>
+              <h2
+                className="eugene-fade-in font-raleway text-lg md:text-xl font-light leading-relaxed mb-10 max-w-2xl mx-auto lg:mx-0"
+                style={{ color: '#FFFFFF', opacity: 0.85, animationDelay: '0.15s' }}
+              >
+                Eugène, votre majordome pédagogique vous guide pour créer votre plan de formation,{' '}
+                <span className="italic" style={{ color: '#F5E090' }}>
+                  même si vous n'avez aucune base en pédagogie.
+                </span>
               </h2>
 
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
