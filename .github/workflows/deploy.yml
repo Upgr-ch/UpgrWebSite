@@ -21,6 +21,6 @@ jobs:
           server-dir: /
           port: 21
           protocol: ftp
-          secure: false
+          secure: true
+          secure-options: '{"rejectUnauthorized": false}'
           passive: true
-          timeout: 90000
