@@ -20,3 +20,22 @@ jobs:
           port: ${{ secrets.FTP_PORT }}
           local-dir: ./
           server-dir: ./
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/node_modules/**
+            replit.md
+            pyproject.toml
+            uv.lock
+            test_result.md
+            attached_assets/**
+            .replit
+            replit.nix
+            .gitignore
+            .gitconfig
+            .cache/**
+            .local/**
+            .emergent/**
+            .agents/**
+            README.md
