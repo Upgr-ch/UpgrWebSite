@@ -1,21 +1,22 @@
-name: Mise a jour automatique
+name: Déployer sur Infomaniak
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: 📦 Récupérer les fichiers
+      - name: Récupérer le code
         uses: actions/checkout@v4
 
-      - name: 🚀 Envoyer chez Infomaniak
+      - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /
+          port: ${{ secrets.FTP_PORT }}
+          local-dir: ./
+          server-dir: ./
