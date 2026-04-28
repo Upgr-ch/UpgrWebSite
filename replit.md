@@ -4,51 +4,31 @@ A French-language marketing landing page for UpGrade, a Learning & Development c
 
 ## Architecture
 
-- **Frontend**: React 19 + react-router-dom, built with Create React App and customized through Craco. Uses Tailwind CSS, Radix UI primitives, and shadcn-style components in `frontend/src/components/ui`.
-- **Backend** (optional, currently unused by the frontend): FastAPI + Motor (MongoDB) in `backend/server.py`. Exposes a sample `/api/status` endpoint.
+The project is now served as a **fully static site** built from the original React app.
 
-## Project Layout
+- `index.html` (root) — entry point produced by `react-scripts build`
+- `static/` — hashed JS/CSS/asset bundles
+- `asset-manifest.json` — build manifest
+- `server.js` — minimal Node.js static file server used by the Replit workflow (no caching, SPA fallback to `index.html`)
 
-```
-frontend/      # React app (CRA + Craco)
-  src/
-    components/   # Page sections + shadcn UI primitives
-    pages/        # Additional routes (e.g. /eugene)
-    App.js        # Router and homepage composition
-backend/       # FastAPI service (not currently called from the UI)
-  server.py
-  requirements.txt
-```
+The original React source (`frontend/`, `src/`, `public/`) and the FastAPI backend (`backend/`, `tests/`, `test_reports/`) have been removed.
 
 ## Development
 
-- The `Frontend` workflow runs `yarn start` from the `frontend/` directory and serves the dev build on port 5000.
-- The dev server binds to `0.0.0.0` and disables host checking via `DANGEROUSLY_DISABLE_HOST_CHECK=true` so the Replit preview iframe can reach it.
-- Frontend dependencies were installed with `bun install` (which produced a working `node_modules`); `yarn` is used at runtime to invoke `craco start` / `craco build`.
-
-## Environment Variables
-
-`frontend/.env`
-- `HOST=0.0.0.0`
-- `PORT=5000`
-- `DANGEROUSLY_DISABLE_HOST_CHECK=true`
-- `WDS_SOCKET_PORT=0`
-- `BROWSER=none`
-- `REACT_APP_BACKEND_URL=` (unused by the current UI)
-
-`backend/.env`
-- `MONGO_URL=mongodb://localhost:27017`
-- `DB_NAME=app_database`
-- `CORS_ORIGINS=*`
+- The `Frontend` workflow runs `node server.js` and serves the static build on port 5000 (host `0.0.0.0`).
+- `server.js` sends `Cache-Control: no-cache` so the Replit preview iframe always sees fresh content, and falls back to `index.html` for unknown paths (so React Router routes like `/eugene` still work).
 
 ## Deployment
 
 Configured as a **static** deployment:
-- Build: `cd frontend && yarn install && yarn build`
+- Build: `cd frontend && yarn install && yarn build` (legacy entry — the build output is already at the project root)
 - Public dir: `frontend/build`
 
-## Notes from import setup
+> Note: since the project was flattened, you can also just publish the project root as static assets.
 
-- Removed the `@emergentbase/visual-edits` dependency from `frontend/package.json` because the tarball URL stalled package resolution; `frontend/craco.config.js` already handles its absence with a try/catch.
-- Removed the `emergentintegrations` Python dependency from `backend/requirements.txt` because it is not published on PyPI and is not imported by `server.py`.
-- Removed the `packageManager` field from `frontend/package.json` so non-yarn package managers can install cleanly.
+## History
+
+- Imported from Replit Agent.
+- Removed the `@emergentbase/visual-edits` dependency and `emergentintegrations` Python dependency that were unused / unresolvable.
+- Built the React app with `npm run build` and moved the output to the project root, removed `backend/`, `tests/`, `test_reports/`, `frontend/`, `public/`, `src/`.
+- Replaced the dev workflow (`yarn start`) with a small Node static server (`server.js`).
