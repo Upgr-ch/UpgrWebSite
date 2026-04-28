@@ -3,6 +3,7 @@ name: Déployer sur Infomaniak
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   deploy:
