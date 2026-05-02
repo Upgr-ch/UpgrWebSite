@@ -1,0 +1,504 @@
+/*
+ * =====================================================
+ *  UPGRADE LEARNING & DEVELOPMENT — Design System
+ *  Charte graphique complète — prête à importer
+ * =====================================================
+ *
+ *  USAGE :
+ *  <link rel="stylesheet" href="upgrade-design-system.css">
+ *  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+ */
+
+/* ── Google Font ── */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,700&display=swap');
+
+
+/* ══════════════════════════════════════════
+   1. VARIABLES (tokens de design)
+══════════════════════════════════════════ */
+:root {
+  /* Fonds */
+  --up-bg:          #080F1E;   /* Midnight blue — fond principal */
+  --up-bg-card:     rgba(255, 255, 255, 0.02);
+  --up-bg-surface:  rgba(255, 255, 255, 0.04);
+
+  /* Or */
+  --up-gold:        #F5E090;   /* Or principal */
+  --up-gold-deep:   #B48C28;   /* Or foncé (hover, dégradés) */
+  --up-gold-glow:   rgba(245, 224, 144, 0.08);
+
+  /* Textes */
+  --up-text:        #FFFFFF;
+  --up-text-70:     rgba(255, 255, 255, 0.70);
+  --up-text-55:     rgba(255, 255, 255, 0.55);
+  --up-text-40:     rgba(255, 255, 255, 0.40);
+
+  /* Bordures */
+  --up-border:      rgba(255, 255, 255, 0.10);
+  --up-border-gold: rgba(245, 224, 144, 0.18);
+  --up-border-gold-strong: rgba(245, 224, 144, 0.30);
+
+  /* Ombres */
+  --up-shadow-gold: 0 10px 30px -10px rgba(245, 224, 144, 0.40);
+  --up-shadow-glow: 0 0 80px rgba(245, 224, 144, 0.08);
+
+  /* Géométrie */
+  --up-radius:      2px;        /* Minimal — style luxe */
+
+  /* Transitions */
+  --up-transition:          0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --up-transition-elegant:  0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Typographie */
+  --up-font: 'Raleway', sans-serif;
+}
+
+
+/* ══════════════════════════════════════════
+   2. RESET & BASE
+══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--up-font);
+  background-color: var(--up-bg);
+  color: var(--up-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html { scroll-behavior: smooth; }
+
+
+/* ══════════════════════════════════════════
+   3. TYPOGRAPHIE
+══════════════════════════════════════════ */
+
+/* Titre hero */
+.up-title-hero {
+  font-family: var(--up-font);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--up-gold);
+}
+
+/* Sous-titre italic + shimmer */
+.up-subtitle {
+  font-family: var(--up-font);
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  line-height: 1.3;
+}
+
+/* Corps de texte */
+.up-body {
+  font-family: var(--up-font);
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--up-text-55);
+}
+
+/* Label / tag uppercase */
+.up-label {
+  font-family: var(--up-font);
+  font-weight: 300;
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--up-gold);
+}
+
+
+/* ══════════════════════════════════════════
+   4. EFFETS TEXTE
+══════════════════════════════════════════ */
+
+/* Shimmer — reflet doré animé */
+.up-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--up-gold)      0%,
+    #ffffff             25%,
+    var(--up-gold)      50%,
+    var(--up-gold-deep) 75%,
+    var(--up-gold)      100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: upShimmer 6s linear infinite;
+}
+@keyframes upShimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+
+/* ══════════════════════════════════════════
+   5. LIGNES DÉCORATIVES
+══════════════════════════════════════════ */
+
+.up-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--up-gold), transparent);
+  border: none;
+}
+
+.up-line-left {
+  height: 1px;
+  background: linear-gradient(90deg, var(--up-gold), transparent);
+  border: none;
+}
+
+
+/* ══════════════════════════════════════════
+   6. BOUTONS
+══════════════════════════════════════════ */
+
+/* Bouton principal (CTA gold) */
+.up-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  font-family: var(--up-font);
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  background: var(--up-gold);
+  color: var(--up-bg);
+  border: none;
+  border-radius: var(--up-radius);
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: var(--up-shadow-gold);
+  transition: transform var(--up-transition), box-shadow var(--up-transition);
+}
+.up-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 14px 36px -8px rgba(245, 224, 144, 0.5);
+}
+
+/* Bouton secondaire (ghost) */
+.up-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  font-family: var(--up-font);
+  font-weight: 400;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  background: transparent;
+  color: var(--up-gold);
+  border: 1px solid var(--up-border-gold);
+  border-radius: var(--up-radius);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--up-transition);
+}
+.up-btn-ghost:hover {
+  background: rgba(245, 224, 144, 0.08);
+  color: var(--up-text);
+}
+
+
+/* ══════════════════════════════════════════
+   7. CARTES
+══════════════════════════════════════════ */
+
+.up-card {
+  background: var(--up-bg-card);
+  border: 1px solid var(--up-border);
+  border-radius: var(--up-radius);
+  padding: 2rem;
+  transition: all var(--up-transition-elegant);
+}
+.up-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--up-gold);
+  box-shadow: var(--up-shadow-gold);
+}
+
+/* Icône dans une carte */
+.up-card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--up-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(245, 224, 144, 0.12);
+  border: 1px solid var(--up-border-gold-strong);
+  margin-bottom: 1.5rem;
+  color: var(--up-gold);
+}
+
+
+/* ══════════════════════════════════════════
+   8. NAVIGATION
+══════════════════════════════════════════ */
+
+.up-nav {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  z-index: 50;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(8, 15, 30, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.up-nav-link {
+  position: relative;
+  font-family: var(--up-font);
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--up-text-70);
+  text-decoration: none;
+  transition: color var(--up-transition);
+}
+.up-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
+  background: var(--up-gold);
+  transition: width var(--up-transition);
+}
+.up-nav-link:hover,
+.up-nav-link.active { color: var(--up-gold); }
+.up-nav-link:hover::after,
+.up-nav-link.active::after { width: 100%; }
+
+
+/* ══════════════════════════════════════════
+   9. ANIMATIONS D'ENTRÉE
+══════════════════════════════════════════ */
+
+/* Fade up */
+@keyframes upFadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.up-fade-up { animation: upFadeUp 0.8s ease forwards; }
+.up-fade-up--delay-1 { animation-delay: 0.1s; opacity: 0; }
+.up-fade-up--delay-2 { animation-delay: 0.2s; opacity: 0; }
+.up-fade-up--delay-3 { animation-delay: 0.3s; opacity: 0; }
+
+/* Fade-in avec blur (style Eugène) */
+@keyframes upBlurFade {
+  0%   { opacity: 0; transform: translateY(24px); filter: blur(6px); }
+  60%  { filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.up-blur-fade {
+  opacity: 0;
+  animation: upBlurFade 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+
+/* ══════════════════════════════════════════
+   10. CERVEAU ANIMÉ ÉDOUARD
+       Usage : voir HTML ci-dessous
+══════════════════════════════════════════ */
+
+/*
+  HTML requis :
+
+  <div class="up-brain">
+    <div class="up-brain__rings">
+      <div class="up-brain__ring up-brain__ring--outer"></div>
+      <div class="up-brain__ring up-brain__ring--inner"></div>
+    </div>
+    <div class="up-brain__svg">
+      [coller le SVG ci-dessous]
+    </div>
+    <div class="up-brain__laser"></div>
+  </div>
+
+  SVG à coller dans .up-brain__svg :
+
+  <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <radialGradient id="brainGlow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%"   stop-color="#F5E090" stop-opacity="0.18"/>
+        <stop offset="60%"  stop-color="#F5E090" stop-opacity="0.05"/>
+        <stop offset="100%" stop-color="#F5E090" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <circle cx="120" cy="120" r="110" fill="url(#brainGlow)"/>
+    <g fill="none" stroke="#F5E090" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M120 28 C74 28,42 62,42 108 C42 132,50 152,64 168 C70 196,96 214,120 214 C144 214,170 196,176 168 C190 152,198 132,198 108 C198 62,166 28,120 28Z" opacity="0.85"/>
+      <path d="M120 32 L120 210" opacity="0.45" stroke-dasharray="3 4"/>
+      <path d="M85 58 Q66 78,78 100 T70 142 T90 178"   opacity="0.85"/>
+      <path d="M62 92 Q80 102,74 122 T92 154"           opacity="0.70"/>
+      <path d="M104 64 Q96 90,108 112 T96 148 T108 184" opacity="0.75"/>
+      <path d="M155 58 Q174 78,162 100 T170 142 T150 178" opacity="0.85"/>
+      <path d="M178 92 Q160 102,166 122 T148 154"         opacity="0.70"/>
+      <path d="M136 64 Q144 90,132 112 T144 148 T132 184" opacity="0.75"/>
+      <circle cx="80"  cy="100" r="2.2" fill="#F5E090"/>
+      <circle cx="160" cy="100" r="2.2" fill="#F5E090"/>
+      <circle cx="105" cy="130" r="2.2" fill="#F5E090"/>
+      <circle cx="135" cy="130" r="2.2" fill="#F5E090"/>
+      <circle cx="92"  cy="162" r="2"   fill="#F5E090"/>
+      <circle cx="148" cy="162" r="2"   fill="#F5E090"/>
+      <circle cx="120" cy="180" r="2"   fill="#F5E090"/>
+    </g>
+  </svg>
+*/
+
+.up-brain {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--up-border-gold);
+  box-shadow:
+    inset 0 0 60px rgba(245, 224, 144, 0.08),
+    0 0 80px rgba(245, 224, 144, 0.08);
+  flex-shrink: 0;
+}
+
+/* Tailles responsives */
+@media (min-width: 768px)  { .up-brain { width: 380px; height: 380px; } }
+@media (min-width: 1024px) { .up-brain { width: 416px; height: 416px; } }
+
+.up-brain__rings {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  animation: upPulse 2s ease-in-out infinite;
+}
+.up-brain__ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid;
+}
+.up-brain__ring--outer { inset: 12px; border-color: rgba(245, 224, 144, 0.18); }
+.up-brain__ring--inner { inset: 32px; border-color: rgba(245, 224, 144, 0.10); }
+
+@keyframes upPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+.up-brain__svg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.up-brain__svg svg { width: 100%; height: 100%; }
+
+/* Laser scan */
+@keyframes upLaserScan {
+  0%   { top: -2px;  opacity: 0; }
+  8%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { top: 100%;  opacity: 0; }
+}
+.up-brain__laser {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: var(--up-gold);
+  box-shadow:
+    0 0 12px  2px rgba(245, 224, 144, 0.90),
+    0 0 28px  6px rgba(245, 224, 144, 0.45),
+    0 0 60px 12px rgba(245, 224, 144, 0.18);
+  animation: upLaserScan 3.4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+
+/* ══════════════════════════════════════════
+   11. BADGE / TAG
+══════════════════════════════════════════ */
+
+.up-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  font-family: var(--up-font);
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--up-gold);
+  border: 1px solid var(--up-border-gold);
+  border-radius: var(--up-radius);
+  background: transparent;
+}
+
+
+/* ══════════════════════════════════════════
+   12. FOOTER
+══════════════════════════════════════════ */
+
+.up-footer {
+  padding: 32px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(8, 15, 30, 0.70);
+  text-align: center;
+}
+.up-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  list-style: none;
+}
+.up-footer-link {
+  font-family: var(--up-font);
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--up-text-40);
+  text-decoration: none;
+  transition: color var(--up-transition);
+}
+.up-footer-link:hover { color: var(--up-gold); }
+.up-footer-copy {
+  font-family: var(--up-font);
+  font-size: 0.75rem;
+  color: rgba(245, 224, 144, 0.80);
+}
+
+
+/* ══════════════════════════════════════════
+   13. UTILITAIRES
+══════════════════════════════════════════ */
+
+.up-gold   { color: var(--up-gold); }
+.up-muted  { color: var(--up-text-55); }
+.up-section {
+  padding: 80px 24px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.up-section-label {
+  font-family: var(--up-font);
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--up-gold);
+  margin-bottom: 12px;
+}

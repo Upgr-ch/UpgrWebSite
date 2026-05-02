@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "yMeUYFfOzg8ylJTk0SmQR"
+uri = "file://upgrade-design-system.zip"
+type = "unspecified"
+title = "UpGrade Design System — upgrade-design-system.css"
