@@ -1,0 +1,42 @@
+name: Déployer sur Infomaniak
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          local-dir: ./
+          server-dir: ./
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/node_modules/**
+            replit.md
+            pyproject.toml
+            uv.lock
+            test_result.md
+            attached_assets/**
+            .replit
+            replit.nix
+            .gitignore
+            .gitconfig
+            .cache/**
+            .local/**
+            .emergent/**
+            .agents/**
+            README.md
