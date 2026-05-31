@@ -28,7 +28,8 @@ const MIME = {
 const NO_CACHE = { 'Cache-Control': 'no-cache, no-store, must-revalidate', Pragma: 'no-cache', Expires: '0' };
 
 function serveFile(res, filePath) {
-  const type = MIME[path.extname(filePath).toLowerCase()] || 'text/html; charset=utf-8';
+  const ext = path.extname(filePath).toLowerCase();
+  const type = MIME[ext] || 'text/html; charset=utf-8';
   fs.readFile(filePath, (e, data) => {
     if (e) { res.writeHead(500, NO_CACHE); return res.end('Error'); }
     res.writeHead(200, { ...NO_CACHE, 'Content-Type': type });
@@ -49,18 +50,22 @@ http.createServer((req, res) => {
   if (urlPath === '/' || urlPath === '') return serveIndex(res);
 
   fs.stat(filePath, (err, stat) => {
-    if (err) return serveIndex(res); // SPA fallback
+    if (!err && stat.isFile()) return serveFile(res, filePath);
 
-    if (stat.isDirectory()) {
-      // Try index.html inside the directory
+    if (!err && stat.isDirectory()) {
+      // Try index.html inside directory
       const indexPath = path.join(filePath, 'index.html');
-      fs.stat(indexPath, (err2, stat2) => {
-        if (err2 || !stat2.isFile()) return serveIndex(res);
-        serveFile(res, indexPath);
+      return fs.stat(indexPath, (e2, s2) => {
+        if (!e2 && s2.isFile()) return serveFile(res, indexPath);
+        return serveIndex(res);
       });
-      return;
     }
 
-    serveFile(res, filePath);
+    // Try appending .html (for clean URLs like /upgr/politiquedecookies)
+    const htmlPath = filePath + '.html';
+    fs.stat(htmlPath, (e2, s2) => {
+      if (!e2 && s2.isFile()) return serveFile(res, htmlPath);
+      return serveIndex(res); // SPA fallback
+    });
   });
 }).listen(PORT, HOST, () => console.log(`Serving on http://${HOST}:${PORT}`));
