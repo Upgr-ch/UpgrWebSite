@@ -27,12 +27,17 @@ const MIME = {
 
 const NO_CACHE = { 'Cache-Control': 'no-cache, no-store, must-revalidate', Pragma: 'no-cache', Expires: '0' };
 
-function serveIndex(res) {
-  fs.readFile(path.join(ROOT, 'index.html'), (e, data) => {
-    if (e) { res.writeHead(404, NO_CACHE); return res.end('Not Found'); }
-    res.writeHead(200, { ...NO_CACHE, 'Content-Type': 'text/html; charset=utf-8' });
+function serveFile(res, filePath) {
+  const type = MIME[path.extname(filePath).toLowerCase()] || 'text/html; charset=utf-8';
+  fs.readFile(filePath, (e, data) => {
+    if (e) { res.writeHead(500, NO_CACHE); return res.end('Error'); }
+    res.writeHead(200, { ...NO_CACHE, 'Content-Type': type });
     res.end(data);
   });
+}
+
+function serveIndex(res) {
+  serveFile(res, path.join(ROOT, 'index.html'));
 }
 
 http.createServer((req, res) => {
@@ -44,12 +49,18 @@ http.createServer((req, res) => {
   if (urlPath === '/' || urlPath === '') return serveIndex(res);
 
   fs.stat(filePath, (err, stat) => {
-    if (err || !stat.isFile()) return serveIndex(res); // SPA fallback
-    const type = MIME[path.extname(filePath).toLowerCase()] || 'application/octet-stream';
-    fs.readFile(filePath, (e, data) => {
-      if (e) { res.writeHead(500, NO_CACHE); return res.end('Error'); }
-      res.writeHead(200, { ...NO_CACHE, 'Content-Type': type });
-      res.end(data);
-    });
+    if (err) return serveIndex(res); // SPA fallback
+
+    if (stat.isDirectory()) {
+      // Try index.html inside the directory
+      const indexPath = path.join(filePath, 'index.html');
+      fs.stat(indexPath, (err2, stat2) => {
+        if (err2 || !stat2.isFile()) return serveIndex(res);
+        serveFile(res, indexPath);
+      });
+      return;
+    }
+
+    serveFile(res, filePath);
   });
 }).listen(PORT, HOST, () => console.log(`Serving on http://${HOST}:${PORT}`));
