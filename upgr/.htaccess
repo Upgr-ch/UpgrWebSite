@@ -1,0 +1,3 @@
+DirectorySlash Off
+RewriteEngine On
+RewriteRule ^(politiquedecookies|confidentialite|mentionslegales|cgu|cgv)$ $1.html [L]

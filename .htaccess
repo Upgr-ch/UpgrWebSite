@@ -1,7 +1,8 @@
 Options -MultiViews
+DirectorySlash Off
 RewriteEngine On
 
-# Legal pages — internal rewrite to .html files (no redirect)
+# Legal pages — internal rewrite to .html files (no directory redirect)
 RewriteRule ^upgr/(politiquedecookies|confidentialite|mentionslegales|cgu|cgv)$ upgr/$1.html [L]
 
 # SPA fallback for everything else
