@@ -1,5 +1,10 @@
 Options -MultiViews
 RewriteEngine On
+
+# Legal pages — serve index.html directly without redirect
+RewriteRule ^upgr/(politiquedecookies|confidentialite|mentionslegales|cgu|cgv)/?$ /upgr/$1/index.html [L]
+
+# SPA fallback for everything else
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.html [QSA,L]
