@@ -1,0 +1,56 @@
+Politique de Cookies
+
+1. Introduction
+
+Notre blog utilise des cookies afin d'améliorer l'expérience utilisateur et d'optimiser nos services. En continuant à naviguer sur notre site, vous acceptez l'utilisation des cookies conformément à cette politique.
+
+2. Qu'est-ce qu'un cookie ?
+
+Un cookie est un petit fichier texte qui est stocké sur votre appareil lorsque vous visitez un site web. Il permet de mémoriser des informations sur votre visite, telles que vos préférences ou votre activité.
+
+3. Types de cookies utilisés
+
+Nous utilisons les types de cookies suivants :
+
+Cookies strictement nécessaires : Essentiels au bon fonctionnement du site.
+
+Cookies de performance : Collectent des données anonymes sur l'utilisation du site.
+
+Cookies de fonctionnalité : Retiennent vos préférences pour améliorer votre expérience.
+
+Cookies de ciblage ou publicitaires : Utilisés pour personnaliser les publicités et le contenu que vous voyez.
+
+4. Cookies tiers
+
+Des cookies de tiers, tels que ceux de services d'analyses (Google Analytics) ou de réseaux sociaux, peuvent être utilisés sur notre site. Ces cookies sont gérés par des entités externes et échappent à notre contrôle direct.
+
+5. Finalité des cookies
+
+Nous utilisons les cookies pour :
+
+Améliorer la navigation et l'expérience utilisateur.
+
+Analyser l'audience et les performances du site.
+
+Proposer du contenu personnalisé en fonction de vos préférences.
+
+6. Consentement à l'utilisation des cookies
+
+Conformément à la loi suisse, nous vous demandons votre consentement explicite avant de stocker des cookies non essentiels. Vous pouvez refuser ou accepter les cookies via le bandeau de cookies lors de votre première visite.
+
+7. Gestion et suppression des cookies
+
+Vous pouvez à tout moment gérer ou supprimer les cookies via les paramètres de votre navigateur. Toutefois, désactiver certains cookies peut affecter le bon fonctionnement de certaines parties du site.
+
+8. Durée de conservation des cookies
+
+Les cookies sont conservés pour la durée nécessaire aux finalités pour lesquelles ils ont été collectés. Les cookies de session sont supprimés lorsque vous fermez votre navigateur, tandis que les cookies persistants sont stockés jusqu’à leur expiration ou jusqu’à ce que vous les supprimiez.
+
+9. Protection des données personnelles
+
+Les informations collectées via les cookies peuvent contenir des données personnelles, qui sont traitées conformément à notre Politique de Confidentialité. Nous nous engageons à respecter les lois suisses en matière de protection des données, y compris la Loi fédérale sur la protection des données (LPD).
+
+10. Modifications de la politique de cookies
+
+Nous nous réservons le droit de modifier cette politique de cookies à tout moment. Toute modification sera publiée sur cette page et prendra effet dès sa publication. Il est recommandé de consulter régulièrement cette page pour vous tenir informé des éventuels changements.
+
