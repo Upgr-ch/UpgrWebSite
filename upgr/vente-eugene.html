@@ -191,29 +191,29 @@
     var REF = { single: 26, bundle: 47, bundleFull: 52 };
     var currentRates = { CHF: 1 };
 
-    function fmt(amount, currency) {
-      var rounded = Math.round(amount);
-      if (currency === 'XOF') {
-        rounded = Math.round(amount / 500) * 500;
-        return rounded.toLocaleString('fr-FR') + '\u00a0F CFA';
-      }
+    function roundAmt(amount, currency) {
+      if (currency === 'XOF') return Math.round(amount / 500) * 500;
+      return Math.round(amount);
+    }
+
+    function fmt(rounded, currency) {
+      if (currency === 'XOF') return rounded.toLocaleString('fr-FR') + '\u00a0F CFA';
       if (currency === 'CHF') return rounded + '\u00a0CHF';
       return rounded + '\u00a0\u20ac';
     }
 
     function showPrices(currency, rate, label) {
-      var p = REF.single * rate;
-      var pb = REF.bundle * rate;
-      var pbFull = REF.bundleFull * rate;
-      document.getElementById('price-1').textContent = fmt(p, currency);
-      document.getElementById('price-2').textContent = fmt(p, currency);
-      document.getElementById('currency-1').textContent = label;
-      document.getElementById('currency-2').textContent = label;
-      var pbDisplay = currency === 'XOF' ? Math.round(pb / 500) * 500 : Math.round(pb);
-      var pbFullDisplay = currency === 'XOF' ? Math.round(pbFull / 500) * 500 : Math.round(pbFull);
-      document.getElementById('price-bundle').textContent = fmt(pb, currency);
-      document.getElementById('price-strike').textContent = fmt(pbFull, currency);
-      document.getElementById('currency-bundle').textContent = 'Économisez\u00a0' + fmt(pbFullDisplay - pbDisplay, currency);
+      var p      = roundAmt(REF.single     * rate, currency);
+      var pb     = roundAmt(REF.bundle     * rate, currency);
+      var pbFull = roundAmt(REF.bundleFull * rate, currency);
+      var saving = pbFull - pb;
+      document.getElementById('price-1').textContent       = fmt(p,      currency);
+      document.getElementById('price-2').textContent       = fmt(p,      currency);
+      document.getElementById('currency-1').textContent    = label;
+      document.getElementById('currency-2').textContent    = label;
+      document.getElementById('price-bundle').textContent  = fmt(pb,     currency);
+      document.getElementById('price-strike').textContent  = fmt(pbFull, currency);
+      document.getElementById('currency-bundle').textContent = 'Économisez\u00a0' + fmt(saving, currency);
     }
 
     function applyZone(zone, countryName) {
