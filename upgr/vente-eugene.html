@@ -22,7 +22,9 @@
     .hero { max-width: 760px; margin: 0 auto; padding: 9rem 2rem 5rem; }
     .page-label { font-size: 0.7rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: #B48C28; margin-bottom: 1.2rem; }
     .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; font-style: italic; color: #F5E090; line-height: 1.12; margin-bottom: 1.5rem; }
-    .hero-sub { font-size: 1.05rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.65); max-width: 620px; }
+    .hero-sub { font-size: 1.05rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.65); max-width: 620px; margin-bottom: 2.5rem; }
+    .hero-cta { display: inline-block; padding: 0.9rem 2.2rem; background: #F5E090; color: #080F1E; font-family: 'Raleway', sans-serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 2px; transition: background 0.2s; }
+    .hero-cta:hover { background: #e8d07a; text-decoration: none; }
     .gold-line { height: 1px; background: linear-gradient(90deg, #F5E090, transparent); margin: 3rem 0; border: none; }
 
     /* SECTIONS */
@@ -32,42 +34,45 @@
     .section h2 { font-size: 1.25rem; font-weight: 600; color: #F5E090; margin-bottom: 1.4rem; letter-spacing: 0.02em; }
     .section p { font-size: 0.95rem; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.65); }
 
-    /* BOOKS */
-    .books { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
-    @media (max-width: 600px) { .books { grid-template-columns: 1fr; } }
-    .book-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(245,224,144,0.12); border-radius: 4px; padding: 2rem 1.8rem; }
-    .book-icon { font-size: 1.6rem; margin-bottom: 1rem; }
-    .book-card h3 { font-size: 1rem; font-weight: 600; color: #F5E090; margin-bottom: 1rem; font-style: italic; }
-    .book-card p { font-size: 0.88rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.55); }
-    .book-card ul { list-style: none; margin-top: 0.9rem; padding: 0; }
-    .book-card ul li { font-size: 0.88rem; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.55); padding-left: 1rem; position: relative; }
-    .book-card ul li::before { content: '—'; position: absolute; left: 0; color: #B48C28; }
-    .books-together { margin-top: 1.5rem; padding: 1.4rem 1.8rem; background: rgba(245,224,144,0.04); border: 1px solid rgba(245,224,144,0.18); border-radius: 4px; }
-    .books-together p { font-size: 0.9rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.6); }
-    .books-together strong { color: #F5E090; font-weight: 500; }
-
-    /* PRICING */
-    .pricing { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.2rem; margin-top: 2rem; }
-    @media (max-width: 700px) { .pricing { grid-template-columns: 1fr; } }
-    .price-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 2rem 1.6rem; display: flex; flex-direction: column; }
-    .price-card.featured { border-color: rgba(245,224,144,0.35); background: rgba(245,224,144,0.04); }
-    .price-label { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.8rem; }
-    .price-card h3 { font-size: 0.95rem; font-weight: 600; color: rgba(255,255,255,0.9); line-height: 1.4; margin-bottom: 1.5rem; flex-grow: 1; }
-    .price-amount { margin-bottom: 1.8rem; }
-    .price-main { font-size: 2.2rem; font-weight: 700; color: #F5E090; line-height: 1; }
-    .price-sub { font-size: 0.8rem; font-weight: 300; color: rgba(255,255,255,0.35); margin-top: 0.3rem; }
-    .price-strike { text-decoration: line-through; color: rgba(255,255,255,0.3); font-size: 1rem; margin-left: 0.5rem; }
-    .btn-buy { display: block; width: 100%; padding: 0.9rem 1.2rem; background: #F5E090; color: #080F1E; font-family: 'Raleway', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; text-align: center; transition: background 0.2s; text-decoration: none; }
-    .btn-buy:hover { background: #e8d07a; text-decoration: none; }
-    .btn-buy.outline { background: transparent; color: #F5E090; border: 1px solid rgba(245,224,144,0.4); }
-    .btn-buy.outline:hover { background: rgba(245,224,144,0.06); }
-
     /* ZONE SELECTOR */
     .zone-bar { margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
     .zone-bar span { font-size: 0.75rem; font-weight: 300; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); text-transform: uppercase; }
     .zone-btn { font-family: 'Raleway', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; padding: 0.4rem 1rem; border: 1px solid rgba(255,255,255,0.15); background: transparent; color: rgba(255,255,255,0.5); border-radius: 2px; cursor: pointer; transition: all 0.15s; text-transform: uppercase; }
     .zone-btn:hover { border-color: rgba(245,224,144,0.4); color: #F5E090; }
     .zone-btn.active { border-color: #F5E090; color: #F5E090; background: rgba(245,224,144,0.06); }
+
+    /* BOOKS */
+    .books { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+    @media (max-width: 600px) { .books { grid-template-columns: 1fr; } }
+
+    .book-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(245,224,144,0.12); border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; }
+    .book-cover-wrap { background: #f7f7f5; display: flex; align-items: center; justify-content: center; padding: 1.5rem 2rem; }
+    .book-cover-wrap img { width: 100%; max-width: 160px; height: auto; display: block; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+    .book-body { padding: 1.8rem 1.6rem; flex: 1; display: flex; flex-direction: column; }
+    .book-card h3 { font-size: 1rem; font-weight: 600; color: #F5E090; margin-bottom: 1rem; font-style: italic; }
+    .book-card p { font-size: 0.88rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.55); flex: 1; }
+
+    .book-price-block { margin-top: 1.8rem; padding-top: 1.4rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    .book-price-row { display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 1rem; }
+    .price-main { font-size: 1.9rem; font-weight: 700; color: #F5E090; line-height: 1; }
+    .price-sub { font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.35); }
+    .price-strike { text-decoration: line-through; color: rgba(255,255,255,0.3); font-size: 1rem; margin-left: 0.4rem; }
+
+    /* BUNDLE */
+    .bundle-card { margin-top: 1.5rem; padding: 2rem 2rem; background: rgba(245,224,144,0.04); border: 1px solid rgba(245,224,144,0.25); border-radius: 4px; }
+    .bundle-label { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.8rem; }
+    .bundle-card h3 { font-size: 1rem; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 0.8rem; }
+    .bundle-card p { font-size: 0.88rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.55); margin-bottom: 1.6rem; }
+    .bundle-bottom { display: flex; align-items: center; gap: 1.8rem; flex-wrap: wrap; }
+    .bundle-price-col .price-main { font-size: 2.1rem; }
+    .bundle-price-col .price-sub { font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.35); margin-top: 0.2rem; }
+
+    /* BUTTONS */
+    .btn-buy { display: block; width: 100%; padding: 0.9rem 1.2rem; background: #F5E090; color: #080F1E; font-family: 'Raleway', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; text-align: center; transition: background 0.2s; text-decoration: none; }
+    .btn-buy:hover { background: #e8d07a; text-decoration: none; }
+    .btn-buy.outline { background: transparent; color: #F5E090; border: 1px solid rgba(245,224,144,0.4); }
+    .btn-buy.outline:hover { background: rgba(245,224,144,0.06); }
+    .btn-bundle { padding: 0.9rem 2.2rem; white-space: nowrap; }
 
     /* FOOTER */
     footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 2.5rem 2rem; text-align: center; margin-top: 6rem; }
@@ -90,6 +95,7 @@
     <p class="page-label">Eugène Majordome Pédagogique</p>
     <h1>Allez au fond de vos conversations avec Eugène.</h1>
     <p class="hero-sub">Passez de l'idée floue au plan actionnable.</p>
+    <a href="#ouvrages" class="hero-cta">Découvrir les ouvrages</a>
     <hr class="gold-line"/>
   </div>
 
@@ -114,39 +120,9 @@
     <hr class="gold-line"/>
 
     <!-- LES OUVRAGES -->
-    <div class="section">
+    <div class="section" id="ouvrages">
       <p class="section-num">03 — Les ouvrages</p>
       <h2>Deux outils distincts. Un seul système.</h2>
-
-      <div class="books">
-        <div class="book-card">
-          <div class="book-icon">📘</div>
-          <h3>De l'idée au plan</h3>
-          <p>Un guide mode d'emploi pour vous préparer avant d'interagir avec Eugène. Il contient :</p>
-          <ul>
-            <li>L'identification des données à fournir avant d'ouvrir une session.</li>
-            <li>La trajectoire Eugène : 5 étapes pour structurer votre savoir, même sans base en pédagogie.</li>
-            <li>Des fiches pratiques pour organiser l'exécution : découpage du projet, responsabilités, rétroplanning, tableaux de bord.</li>
-          </ul>
-        </div>
-        <div class="book-card">
-          <div class="book-icon">💎</div>
-          <h3>Vos compétences humaines invisibles</h3>
-          <p>La clé de tout projet, c'est de mettre les idées en mouvement. Ce livre explore l'interconnexion directe entre votre mouvement corporel et le déploiement de vos compétences (cognition, créativité, communication). Il vous montre comment le corps devient un acteur essentiel pour piloter votre projet.</p>
-        </div>
-      </div>
-
-      <div class="books-together">
-        <p><strong>Les deux ouvrages sont distincts, mais ils fonctionnent ensemble.</strong> L'un sans l'autre, vous vous retrouvez soit avec une architecture sans exécution, soit avec une exécution sans architecture.</p>
-      </div>
-    </div>
-
-    <hr class="gold-line"/>
-
-    <!-- LES OFFRES -->
-    <div class="section">
-      <p class="section-num">04 — Les offres</p>
-      <h2>Choisissez votre accès.</h2>
 
       <div class="zone-bar">
         <span id="zone-label">Détection en cours…</span>
@@ -155,42 +131,60 @@
         <button class="zone-btn" onclick="setZone('af')" id="btn-af">🌍 Afrique</button>
       </div>
 
-      <div class="pricing">
+      <div class="books">
 
-        <!-- OPTION 1 -->
-        <div class="price-card">
-          <p class="price-label">Option 1</p>
-          <h3>De l'idée au plan</h3>
-          <div class="price-amount">
-            <div class="price-main" id="price-1">26 CHF</div>
-            <div class="price-sub" id="currency-1">Franc suisse</div>
+        <!-- LIVRE 1 -->
+        <div class="book-card">
+          <div class="book-cover-wrap">
+            <img src="/upgr/covers/idee-au-plan.png" alt="Couverture De l'idée au plan" loading="lazy"/>
           </div>
-          <a href="#" class="btn-buy outline" id="link-1" onclick="return false;">Acheter</a>
+          <div class="book-body">
+            <h3>De l'idée au plan</h3>
+            <p>Un mode d'emploi pour passer d'une idée floue à un plan concret, en vous préparant vraiment à interagir avec Eugène et/ou Édouard. Si vous avez un projet business, Édouard le crash-teste en 8 étapes et vous livre un diagnostic assertif. Si vous devez structurer une transmission, Eugène construit votre plan de formation en 5 étapes. La section « Agir » ajoute un rétroplanning, des responsabilités claires et une première action dans les 48 heures. Résultat&nbsp;: un plan limpide, cadré, réalisable, sans bla-bla.</p>
+            <div class="book-price-block">
+              <div class="book-price-row">
+                <span class="price-main" id="price-1">26 CHF</span>
+              </div>
+              <div class="price-sub" id="currency-1" style="margin-bottom:1rem;">Franc suisse</div>
+              <a href="#" class="btn-buy outline" id="link-1" onclick="return false;">Acheter cet ouvrage</a>
+            </div>
+          </div>
         </div>
 
-        <!-- OPTION 2 -->
-        <div class="price-card">
-          <p class="price-label">Option 2</p>
-          <h3>Vos compétences humaines invisibles</h3>
-          <div class="price-amount">
-            <div class="price-main" id="price-2">26 CHF</div>
-            <div class="price-sub" id="currency-2">Franc suisse</div>
+        <!-- LIVRE 2 -->
+        <div class="book-card">
+          <div class="book-cover-wrap">
+            <img src="/upgr/covers/competences-invisibles.png" alt="Couverture Vos compétences humaines invisibles" loading="lazy"/>
           </div>
-          <a href="#" class="btn-buy outline" id="link-2" onclick="return false;">Acheter</a>
-        </div>
-
-        <!-- OFFRE GROUPÉE -->
-        <div class="price-card featured">
-          <p class="price-label">Offre groupée</p>
-          <h3>Les deux ouvrages</h3>
-          <div class="price-amount">
-            <div class="price-main" id="price-bundle">47 CHF <span class="price-strike" id="price-strike">52</span></div>
-            <div class="price-sub" id="currency-bundle">Franc suisse — économisez 5 CHF</div>
+          <div class="book-body">
+            <h3>Vos compétences humaines invisibles</h3>
+            <p>Ce qui transforme un projet en résultats concrets et en chiffre d'affaires. Explorez l'interconnexion entre le mouvement corporel et l'expression de vos compétences humaines invisibles. En quoi les fondements de nos préférences motrices cérébrales éclairent comment le corps est un acteur essentiel de notre cognition&nbsp;? À travers des outils pratiques et des témoignages, découvrez comment actionner votre créativité, renforcer votre collaboration, améliorer votre communication — via le levier de l'intelligence corporelle.</p>
+            <div class="book-price-block">
+              <div class="book-price-row">
+                <span class="price-main" id="price-2">26 CHF</span>
+              </div>
+              <div class="price-sub" id="currency-2" style="margin-bottom:1rem;">Franc suisse</div>
+              <a href="#" class="btn-buy outline" id="link-2" onclick="return false;">Acheter cet ouvrage</a>
+            </div>
           </div>
-          <a href="#" class="btn-buy" id="link-bundle" onclick="return false;">Ajouter les deux ouvrages</a>
         </div>
 
       </div>
+
+      <!-- BUNDLE -->
+      <div class="bundle-card">
+        <p class="bundle-label">Offre groupée</p>
+        <h3>Les deux ouvrages ensemble</h3>
+        <p>L'un sans l'autre, vous vous retrouvez soit avec une architecture sans exécution, soit avec une exécution sans architecture. Les deux ouvrages sont distincts, mais ils fonctionnent en système.</p>
+        <div class="bundle-bottom">
+          <div class="bundle-price-col">
+            <div class="price-main" id="price-bundle">47 CHF <span class="price-strike" id="price-strike">52</span></div>
+            <div class="price-sub" id="currency-bundle" style="margin-top:0.3rem;">Économisez 5 CHF</div>
+          </div>
+          <a href="#" class="btn-buy btn-bundle" id="link-bundle" onclick="return false;">Prendre les deux ouvrages</a>
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -207,38 +201,33 @@
   </footer>
 
   <script>
-    // Prix de référence en CHF
     var REF = { single: 26, bundle: 47, bundleFull: 52 };
-
-    // Pays Afrique francophone (ISO 3166-1 alpha-2)
     var AF_FR = ['BJ','BF','BI','CM','CF','TD','KM','CG','CD','CI','DJ','GA','GN','GW','MG','ML','MR','MU','MA','NE','RW','SN','SC','TG','TN'];
-
     var currentCurrency = 'CHF';
     var currentRates = { CHF: 1 };
 
     function fmt(amount, currency) {
-      var symbols = { CHF: 'CHF', EUR: '€', XOF: 'F CFA', USD: '$' };
+      var symbols = { CHF: 'CHF', EUR: '€', XOF: 'F CFA' };
       var sym = symbols[currency] || currency;
       var rounded = Math.round(amount);
       if (currency === 'XOF') {
-        // Round to nearest 500
         rounded = Math.round(amount / 500) * 500;
-        return rounded.toLocaleString('fr-FR') + ' ' + sym;
+        return rounded.toLocaleString('fr-FR') + '\u00a0' + sym;
       }
-      if (currency === 'CHF') return rounded + ' ' + sym;
-      return sym + ' ' + rounded;
+      if (currency === 'CHF') return rounded + '\u00a0' + sym;
+      return sym + '\u00a0' + rounded;
     }
 
-    function showPrices(currency, rate, savingLabel) {
+    function showPrices(currency, rate, zoneLabel) {
       currentCurrency = currency;
       var p1 = REF.single * rate;
-      var p2 = REF.single * rate;
       var pb = REF.bundle * rate;
       var pbFull = REF.bundleFull * rate;
-      var saving = (pbFull - pb) * rate;
 
       document.getElementById('price-1').textContent = fmt(p1, currency);
-      document.getElementById('price-2').textContent = fmt(p2, currency);
+      document.getElementById('price-2').textContent = fmt(p1, currency);
+      document.getElementById('currency-1').textContent = zoneLabel;
+      document.getElementById('currency-2').textContent = zoneLabel;
 
       var bundleEl = document.getElementById('price-bundle');
       bundleEl.textContent = '';
@@ -248,59 +237,49 @@
       strike.textContent = fmt(pbFull, currency);
       bundleEl.appendChild(strike);
 
-      document.getElementById('currency-1').textContent = savingLabel;
-      document.getElementById('currency-2').textContent = savingLabel;
-      document.getElementById('currency-bundle').textContent = 'Économisez ' + fmt(pbFull - pb, currency);
+      document.getElementById('currency-bundle').textContent = 'Économisez\u00a0' + fmt(pbFull - pb, currency);
     }
 
     function setZone(zone) {
       document.querySelectorAll('.zone-btn').forEach(function(b){ b.classList.remove('active'); });
       document.getElementById('btn-' + zone).classList.add('active');
-      document.getElementById('zone-label').textContent = 'Votre zone :';
-
+      document.getElementById('zone-label').textContent = 'Votre zone\u00a0:';
       if (zone === 'ch') {
         showPrices('CHF', 1, 'Franc suisse');
       } else if (zone === 'eu') {
-        getRate('EUR', function(rate) { showPrices('EUR', rate, 'Euro'); });
+        getRate('EUR', function(r){ showPrices('EUR', r, 'Euro'); });
       } else if (zone === 'af') {
-        getRate('XOF', function(rate) { showPrices('XOF', rate, 'Franc CFA'); });
+        getRate('XOF', function(r){ showPrices('XOF', r, 'Franc CFA'); });
       }
     }
 
-    // Taux de fallback si toutes les APIs échouent
     var FALLBACK_RATES = { EUR: 0.95, XOF: 623 };
 
     function getRate(currency, cb) {
       if (currentRates[currency]) { cb(currentRates[currency]); return; }
-      // API 1 : Open Exchange Rates (CORS ok, pas de clé requise pour latest)
       fetch('https://open.er-api.com/v6/latest/CHF')
         .then(function(r){ return r.json(); })
         .then(function(d){
           if (d && d.rates && d.rates[currency]) {
-            currentRates[currency] = d.rates[currency];
-            cb(d.rates[currency]);
+            currentRates[currency] = d.rates[currency]; cb(d.rates[currency]);
           } else { throw new Error('no rate'); }
         })
         .catch(function(){
-          // API 2 : ExchangeRate.host (CORS ok)
           fetch('https://api.exchangerate.host/latest?base=CHF&symbols=' + currency)
             .then(function(r){ return r.json(); })
             .then(function(d){
               if (d && d.rates && d.rates[currency]) {
-                currentRates[currency] = d.rates[currency];
-                cb(d.rates[currency]);
+                currentRates[currency] = d.rates[currency]; cb(d.rates[currency]);
               } else { throw new Error('no rate'); }
             })
             .catch(function(){
-              // Fallback statique
               var rate = FALLBACK_RATES[currency] || 1;
-              currentRates[currency] = rate;
-              cb(rate);
+              currentRates[currency] = rate; cb(rate);
             });
         });
     }
 
-    // Afficher CHF immédiatement, puis adapter selon IP
+    // CHF immédiatement, puis détection IP
     setZone('ch');
 
     setTimeout(function(){
@@ -316,7 +295,7 @@
           } else if (country) {
             setZone('eu');
           }
-          if (name) document.getElementById('zone-label').textContent = 'Détecté : ' + name + ' —';
+          if (name) document.getElementById('zone-label').textContent = 'Détecté\u00a0: ' + name + '\u00a0—';
         })
         .catch(function(){
           var lang = (navigator.language || '').toLowerCase();
