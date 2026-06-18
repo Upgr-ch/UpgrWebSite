@@ -26,11 +26,7 @@
     .gold-line { height: 1px; background: linear-gradient(90deg, #F5E090 0%, transparent 100%); margin: 3rem 0; border: none; }
 
     /* DEVISE */
-    .devise-bar { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-    .devise-label { font-size: 0.72rem; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
-    .zone-btn { font-family: 'Raleway', sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; padding: 0.35rem 0.9rem; border: 1px solid rgba(255,255,255,0.14); background: transparent; color: rgba(255,255,255,0.45); border-radius: 2px; cursor: pointer; transition: all 0.15s; text-transform: uppercase; }
-    .zone-btn:hover { border-color: rgba(245,224,144,0.4); color: #F5E090; }
-    .zone-btn.active { border-color: #F5E090; color: #F5E090; background: rgba(245,224,144,0.05); }
+    .devise-info { margin-bottom: 2.5rem; font-size: 0.72rem; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
 
     /* CONTENU */
     .content { max-width: 900px; margin: 0 auto; padding: 0 2rem 6rem; }
@@ -68,8 +64,6 @@
     .bundle-price .price-currency { margin-top: 0.25rem; }
     .btn-bundle { padding: 0.85rem 2rem; white-space: nowrap; }
 
-    /* SEPARATEUR */
-    .sep { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: #B48C28; margin-bottom: 1.8rem; }
 
     /* FOOTER */
     footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 2.5rem 2rem; text-align: center; }
@@ -96,14 +90,7 @@
 
   <div class="content">
 
-    <p class="sep">Choisir votre devise</p>
-
-    <div class="devise-bar">
-      <span class="devise-label" id="zone-label">Détection…</span>
-      <button class="zone-btn" onclick="setZone('ch')" id="btn-ch">🇨🇭 Suisse</button>
-      <button class="zone-btn" onclick="setZone('eu')" id="btn-eu">🇪🇺 Europe</button>
-      <button class="zone-btn" onclick="setZone('af')" id="btn-af">🌍 Afrique</button>
-    </div>
+    <p class="devise-info" id="zone-label"></p>
 
     <!-- LIVRES -->
     <div class="books-grid">
@@ -200,21 +187,15 @@
       document.getElementById('price-2').textContent = fmt(p, currency);
       document.getElementById('currency-1').textContent = label;
       document.getElementById('currency-2').textContent = label;
-
       document.getElementById('price-bundle').textContent = fmt(pb, currency);
       document.getElementById('price-strike').textContent = fmt(pbFull, currency);
       document.getElementById('currency-bundle').textContent = 'Économisez\u00a0' + fmt(pbFull - pb, currency);
     }
 
-    function setZone(zone, countryName) {
-      document.querySelectorAll('.zone-btn').forEach(function(b){ b.classList.remove('active'); });
-      document.getElementById('btn-' + zone).classList.add('active');
-      var label = document.getElementById('zone-label');
-      if (countryName) {
-        label.textContent = countryName;
-      } else {
-        label.textContent = { ch: 'Suisse', eu: 'Europe', af: 'Afrique francophone' }[zone] || '';
-      }
+    function applyZone(zone, countryName) {
+      var zoneLabels = { ch: 'Suisse', eu: 'Europe', af: 'Afrique francophone' };
+      var el = document.getElementById('zone-label');
+      if (el) el.textContent = countryName || zoneLabels[zone] || '';
       if (zone === 'ch') {
         showPrices('CHF', 1, 'Franc suisse');
       } else if (zone === 'eu') {
@@ -234,21 +215,17 @@
           else throw new Error();
         })
         .catch(function(){
-          var rate = FALLBACK[currency] || 1;
-          currentRates[currency] = rate; cb(rate);
+          currentRates[currency] = FALLBACK[currency] || 1;
+          cb(currentRates[currency]);
         });
     }
 
-    // Affichage CHF immédiat
-    setZone('ch');
-
-    // Détection côté serveur (pas de CORS, pas d'API tierce côté client)
+    // CHF par défaut, puis détection serveur
+    applyZone('ch');
     fetch('/api/geo')
       .then(function(r){ return r.json(); })
-      .then(function(d){
-        if (d && d.zone) setZone(d.zone, d.country || null);
-      })
-      .catch(function(){ /* reste en CHF */ });
+      .then(function(d){ if (d && d.zone) applyZone(d.zone, d.country || null); })
+      .catch(function(){});
   </script>
 
 </body>
