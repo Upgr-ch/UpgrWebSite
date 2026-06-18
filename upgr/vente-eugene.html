@@ -300,8 +300,10 @@
         });
     }
 
-    // Détection par IP
-    (function(){
+    // Afficher CHF immédiatement, puis adapter selon IP
+    setZone('ch');
+
+    setTimeout(function(){
       fetch('https://ipapi.co/json/')
         .then(function(r){ return r.json(); })
         .then(function(d){
@@ -311,18 +313,16 @@
             setZone('ch');
           } else if (AF_FR.indexOf(country) !== -1) {
             setZone('af');
-          } else {
+          } else if (country) {
             setZone('eu');
           }
-          document.getElementById('zone-label').textContent = 'Détecté : ' + (name || 'votre pays') + ' —';
+          if (name) document.getElementById('zone-label').textContent = 'Détecté : ' + name + ' —';
         })
         .catch(function(){
-          // Fallback sur la langue du navigateur
           var lang = (navigator.language || '').toLowerCase();
-          if (lang.includes('-ch')) setZone('ch');
-          else setZone('eu');
+          if (!lang.includes('-ch')) setZone('eu');
         });
-    })();
+    }, 0);
   </script>
 
 </body>
