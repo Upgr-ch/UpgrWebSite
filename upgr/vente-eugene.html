@@ -7,77 +7,74 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Raleway', sans-serif; background-color: #080F1E; color: #ffffff; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    body { font-family: 'Raleway', sans-serif; background-color: #080F1E; color: #fff; -webkit-font-smoothing: antialiased; min-height: 100vh; }
     a { color: #F5E090; text-decoration: none; }
     a:hover { text-decoration: underline; }
 
     /* HEADER */
     header { position: fixed; top: 0; left: 0; width: 100%; z-index: 50; background: rgba(8,15,30,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .header-inner { max-width: 960px; margin: 0 auto; padding: 1.1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
-    .logo { font-size: 1.1rem; font-weight: 700; font-style: italic; color: #F5E090; letter-spacing: 0.02em; }
-    .back-link { font-size: 0.75rem; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+    .header-inner { max-width: 900px; margin: 0 auto; padding: 1.1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.1rem; font-weight: 700; font-style: italic; color: #F5E090; }
+    .back-link { font-size: 0.75rem; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
     .back-link:hover { color: #F5E090; text-decoration: none; }
 
     /* HERO */
-    .hero { max-width: 760px; margin: 0 auto; padding: 9rem 2rem 5rem; }
-    .page-label { font-size: 0.7rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: #B48C28; margin-bottom: 1.2rem; }
-    .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; font-style: italic; color: #F5E090; line-height: 1.12; margin-bottom: 1.5rem; }
-    .hero-sub { font-size: 1.05rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.65); max-width: 620px; margin-bottom: 2.5rem; }
-    .hero-cta { display: inline-block; padding: 0.9rem 2.2rem; background: #F5E090; color: #080F1E; font-family: 'Raleway', sans-serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 2px; transition: background 0.2s; }
-    .hero-cta:hover { background: #e8d07a; text-decoration: none; }
-    .gold-line { height: 1px; background: linear-gradient(90deg, #F5E090, transparent); margin: 3rem 0; border: none; }
+    .hero { max-width: 900px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+    .page-label { font-size: 0.68rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: #B48C28; margin-bottom: 1.2rem; }
+    .hero h1 { font-size: clamp(1.9rem, 4.5vw, 3rem); font-weight: 700; font-style: italic; color: #F5E090; line-height: 1.12; margin-bottom: 1rem; }
+    .hero-sub { font-size: 1rem; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.6); max-width: 640px; }
+    .gold-line { height: 1px; background: linear-gradient(90deg, #F5E090 0%, transparent 100%); margin: 3rem 0; border: none; }
 
-    /* SECTIONS */
-    .content { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
-    .section { margin-bottom: 4rem; }
-    .section-num { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.8rem; }
-    .section h2 { font-size: 1.25rem; font-weight: 600; color: #F5E090; margin-bottom: 1.4rem; letter-spacing: 0.02em; }
-    .section p { font-size: 0.95rem; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.65); }
-
-    /* ZONE SELECTOR */
-    .zone-bar { margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
-    .zone-bar span { font-size: 0.75rem; font-weight: 300; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); text-transform: uppercase; }
-    .zone-btn { font-family: 'Raleway', sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; padding: 0.4rem 1rem; border: 1px solid rgba(255,255,255,0.15); background: transparent; color: rgba(255,255,255,0.5); border-radius: 2px; cursor: pointer; transition: all 0.15s; text-transform: uppercase; }
+    /* DEVISE */
+    .devise-bar { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .devise-label { font-size: 0.72rem; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.35); }
+    .zone-btn { font-family: 'Raleway', sans-serif; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; padding: 0.35rem 0.9rem; border: 1px solid rgba(255,255,255,0.14); background: transparent; color: rgba(255,255,255,0.45); border-radius: 2px; cursor: pointer; transition: all 0.15s; text-transform: uppercase; }
     .zone-btn:hover { border-color: rgba(245,224,144,0.4); color: #F5E090; }
-    .zone-btn.active { border-color: #F5E090; color: #F5E090; background: rgba(245,224,144,0.06); }
+    .zone-btn.active { border-color: #F5E090; color: #F5E090; background: rgba(245,224,144,0.05); }
 
-    /* BOOKS */
-    .books { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
-    @media (max-width: 600px) { .books { grid-template-columns: 1fr; } }
+    /* CONTENU */
+    .content { max-width: 900px; margin: 0 auto; padding: 0 2rem 6rem; }
 
-    .book-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(245,224,144,0.12); border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; }
-    .book-cover-wrap { background: #f7f7f5; display: flex; align-items: center; justify-content: center; padding: 1.5rem 2rem; }
-    .book-cover-wrap img { width: 100%; max-width: 160px; height: auto; display: block; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
-    .book-body { padding: 1.8rem 1.6rem; flex: 1; display: flex; flex-direction: column; }
-    .book-card h3 { font-size: 1rem; font-weight: 600; color: #F5E090; margin-bottom: 1rem; font-style: italic; }
-    .book-card p { font-size: 0.88rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.55); flex: 1; }
+    /* GRILLE LIVRES */
+    .books-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    @media (max-width: 640px) { .books-grid { grid-template-columns: 1fr; } }
 
-    .book-price-block { margin-top: 1.8rem; padding-top: 1.4rem; border-top: 1px solid rgba(255,255,255,0.06); }
-    .book-price-row { display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 1rem; }
-    .price-main { font-size: 1.9rem; font-weight: 700; color: #F5E090; line-height: 1; }
-    .price-sub { font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.35); }
-    .price-strike { text-decoration: line-through; color: rgba(255,255,255,0.3); font-size: 1rem; margin-left: 0.4rem; }
+    .book { background: rgba(255,255,255,0.025); border: 1px solid rgba(245,224,144,0.1); border-radius: 4px; display: flex; flex-direction: column; }
+    .book-cover { background: #f5f4f0; padding: 2rem 2.5rem; display: flex; justify-content: center; }
+    .book-cover img { width: 100%; max-width: 140px; height: auto; display: block; box-shadow: 0 6px 28px rgba(0,0,0,0.25); }
+    .book-body { padding: 1.8rem 1.8rem 2rem; flex: 1; display: flex; flex-direction: column; gap: 0; }
+    .book-tag { font-size: 0.62rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.6rem; }
+    .book-title { font-size: 1.05rem; font-weight: 700; font-style: italic; color: #F5E090; line-height: 1.3; margin-bottom: 1.1rem; }
+    .book-desc { font-size: 0.87rem; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.5); flex: 1; }
+
+    .book-buy { margin-top: 1.8rem; padding-top: 1.4rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    .price-row { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 1rem; }
+    .price-amount { font-size: 2rem; font-weight: 700; color: #F5E090; line-height: 1; }
+    .price-currency { font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.3); }
+    .btn { display: block; width: 100%; padding: 0.85rem 1rem; font-family: 'Raleway', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; text-align: center; transition: background 0.18s, color 0.18s; text-decoration: none; }
+    .btn-outline { background: transparent; color: #F5E090; border: 1px solid rgba(245,224,144,0.35); }
+    .btn-outline:hover { background: rgba(245,224,144,0.06); text-decoration: none; }
+    .btn-solid { background: #F5E090; color: #080F1E; }
+    .btn-solid:hover { background: #e8d07a; text-decoration: none; }
 
     /* BUNDLE */
-    .bundle-card { margin-top: 1.5rem; padding: 2rem 2rem; background: rgba(245,224,144,0.04); border: 1px solid rgba(245,224,144,0.25); border-radius: 4px; }
-    .bundle-label { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.8rem; }
-    .bundle-card h3 { font-size: 1rem; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 0.8rem; }
-    .bundle-card p { font-size: 0.88rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.55); margin-bottom: 1.6rem; }
-    .bundle-bottom { display: flex; align-items: center; gap: 1.8rem; flex-wrap: wrap; }
-    .bundle-price-col .price-main { font-size: 2.1rem; }
-    .bundle-price-col .price-sub { font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.35); margin-top: 0.2rem; }
+    .bundle { margin-top: 2rem; border: 1px solid rgba(245,224,144,0.22); border-radius: 4px; padding: 2rem 2rem; background: rgba(245,224,144,0.03); }
+    .bundle-tag { font-size: 0.62rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.7rem; }
+    .bundle-title { font-size: 1.05rem; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 0.7rem; }
+    .bundle-desc { font-size: 0.87rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.45); margin-bottom: 1.8rem; }
+    .bundle-row { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+    .bundle-price .price-amount { font-size: 2.1rem; }
+    .price-strike { font-size: 0.95rem; text-decoration: line-through; color: rgba(255,255,255,0.25); margin-left: 0.3rem; }
+    .bundle-price .price-currency { margin-top: 0.25rem; }
+    .btn-bundle { padding: 0.85rem 2rem; white-space: nowrap; }
 
-    /* BUTTONS */
-    .btn-buy { display: block; width: 100%; padding: 0.9rem 1.2rem; background: #F5E090; color: #080F1E; font-family: 'Raleway', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; text-align: center; transition: background 0.2s; text-decoration: none; }
-    .btn-buy:hover { background: #e8d07a; text-decoration: none; }
-    .btn-buy.outline { background: transparent; color: #F5E090; border: 1px solid rgba(245,224,144,0.4); }
-    .btn-buy.outline:hover { background: rgba(245,224,144,0.06); }
-    .btn-bundle { padding: 0.9rem 2.2rem; white-space: nowrap; }
+    /* SEPARATEUR */
+    .sep { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: #B48C28; margin-bottom: 1.8rem; }
 
     /* FOOTER */
-    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 2.5rem 2rem; text-align: center; margin-top: 6rem; }
-    .footer-inner { max-width: 760px; margin: 0 auto; font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.3); letter-spacing: 0.05em; }
-    .footer-inner a { color: rgba(255,255,255,0.3); }
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 2.5rem 2rem; text-align: center; }
+    .footer-inner { max-width: 900px; margin: 0 auto; font-size: 0.73rem; font-weight: 300; color: rgba(255,255,255,0.28); letter-spacing: 0.04em; }
+    .footer-inner a { color: rgba(255,255,255,0.28); }
     .footer-inner a:hover { color: #F5E090; }
   </style>
 </head>
@@ -90,101 +87,82 @@
     </div>
   </header>
 
-  <!-- HERO -->
   <div class="hero">
-    <p class="page-label">Eugène Majordome Pédagogique</p>
-    <h1>Allez au fond de vos conversations avec Eugène.</h1>
-    <p class="hero-sub">Passez de l'idée floue au plan actionnable.</p>
-    <a href="#ouvrages" class="hero-cta">Découvrir les ouvrages</a>
+    <p class="page-label">Eugène — Majordome Pédagogique</p>
+    <h1>Vous avez vu comment Eugène fonctionne.<br>Maintenant, préparez-vous vraiment.</h1>
+    <p class="hero-sub">Sans préparation, vous répondez en surface. Avec ces deux ouvrages, vous arrivez avec vos idées structurées — et vous obtenez un plan concret dès la première session.</p>
     <hr class="gold-line"/>
   </div>
 
   <div class="content">
 
-    <!-- LE CONSTAT -->
-    <div class="section">
-      <p class="section-num">01 — Le constat</p>
-      <h2>Vous avez interagi avec Eugène.</h2>
-      <p>Vous avez vu comment il fonctionne : il challenge votre projet dès le premier message. Il pose des questions précises, parfois inconfortables, qui mettent le doigt sur ce sur quoi vous n'avez pas encore réfléchi. Sans préparation, vous passez à côté de son essence : vous répondez en surface, vous cherchez vos notes, l'échange devient redondant.</p>
+    <p class="sep">Choisir votre devise</p>
+
+    <div class="devise-bar">
+      <span class="devise-label" id="zone-label">Détection…</span>
+      <button class="zone-btn" onclick="setZone('ch')" id="btn-ch">🇨🇭 Suisse</button>
+      <button class="zone-btn" onclick="setZone('eu')" id="btn-eu">🇪🇺 Europe</button>
+      <button class="zone-btn" onclick="setZone('af')" id="btn-af">🌍 Afrique</button>
     </div>
 
-    <hr class="gold-line"/>
+    <!-- LIVRES -->
+    <div class="books-grid">
 
-    <!-- L'OBJECTIF -->
-    <div class="section">
-      <p class="section-num">02 — L'objectif</p>
-      <h2>Allez au fond de vos conversations avec Eugène.</h2>
-      <p>Passez de l'idée floue au plan actionnable.</p>
+      <!-- LIVRE 1 -->
+      <div class="book">
+        <div class="book-cover">
+          <img src="/upgr/covers/idee-au-plan.png" alt="De l'idée au plan — couverture"/>
+        </div>
+        <div class="book-body">
+          <p class="book-tag">Ouvrage 1</p>
+          <h2 class="book-title">De l'idée au plan</h2>
+          <p class="book-desc">Clarifier vos idées floues pour les transformer en un plan simple et concret. Un mode d'emploi pour vous préparer à interagir avec Eugène et/ou Édouard — crash-test business en 8 étapes, plan de formation en 5 étapes, rétroplanning et première action dans les 48 heures. Un plan limpide, cadré, réalisable, sans bla-bla.</p>
+          <div class="book-buy">
+            <div class="price-row">
+              <span class="price-amount" id="price-1">26 CHF</span>
+            </div>
+            <span class="price-currency" id="currency-1">Franc suisse</span>
+            <a href="#" class="btn btn-outline" id="link-1" style="margin-top:1rem;" onclick="return false;">Acheter cet ouvrage</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIVRE 2 -->
+      <div class="book">
+        <div class="book-cover">
+          <img src="/upgr/covers/competences-invisibles.png" alt="Vos compétences humaines invisibles — couverture"/>
+        </div>
+        <div class="book-body">
+          <p class="book-tag">Ouvrage 2</p>
+          <h2 class="book-title">Vos compétences humaines invisibles</h2>
+          <p class="book-desc">Ce qui transforme un projet en résultats concrets et en chiffre d'affaires. Explorez l'interconnexion entre le mouvement corporel et l'expression de vos compétences. Des outils pratiques et des témoignages pour actionner votre créativité, renforcer votre collaboration et améliorer votre communication — via le levier de l'intelligence corporelle.</p>
+          <div class="book-buy">
+            <div class="price-row">
+              <span class="price-amount" id="price-2">26 CHF</span>
+            </div>
+            <span class="price-currency" id="currency-2">Franc suisse</span>
+            <a href="#" class="btn btn-outline" id="link-2" style="margin-top:1rem;" onclick="return false;">Acheter cet ouvrage</a>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <hr class="gold-line"/>
-
-    <!-- LES OUVRAGES -->
-    <div class="section" id="ouvrages">
-      <p class="section-num">03 — Les ouvrages</p>
-      <h2>Deux outils distincts. Un seul système.</h2>
-
-      <div class="zone-bar">
-        <span id="zone-label">Détection en cours…</span>
-        <button class="zone-btn" onclick="setZone('ch')" id="btn-ch">🇨🇭 Suisse</button>
-        <button class="zone-btn" onclick="setZone('eu')" id="btn-eu">🇪🇺 Europe</button>
-        <button class="zone-btn" onclick="setZone('af')" id="btn-af">🌍 Afrique</button>
-      </div>
-
-      <div class="books">
-
-        <!-- LIVRE 1 -->
-        <div class="book-card">
-          <div class="book-cover-wrap">
-            <img src="/upgr/covers/idee-au-plan.png" alt="Couverture De l'idée au plan" loading="lazy"/>
+    <!-- BUNDLE -->
+    <div class="bundle">
+      <p class="bundle-tag">Offre groupée — recommandé</p>
+      <h3 class="bundle-title">Les deux ouvrages</h3>
+      <p class="bundle-desc">L'un structure l'idée, l'autre met le corps en mouvement pour l'exécuter. Ensemble, ils forment un système complet — de la clarification au passage à l'action.</p>
+      <div class="bundle-row">
+        <div class="bundle-price">
+          <div class="price-row">
+            <span class="price-amount" id="price-bundle">47 CHF</span>
+            <span class="price-strike" id="price-strike">52 CHF</span>
           </div>
-          <div class="book-body">
-            <h3>De l'idée au plan</h3>
-            <p>Un mode d'emploi pour passer d'une idée floue à un plan concret, en vous préparant vraiment à interagir avec Eugène et/ou Édouard. Si vous avez un projet business, Édouard le crash-teste en 8 étapes et vous livre un diagnostic assertif. Si vous devez structurer une transmission, Eugène construit votre plan de formation en 5 étapes. La section « Agir » ajoute un rétroplanning, des responsabilités claires et une première action dans les 48 heures. Résultat&nbsp;: un plan limpide, cadré, réalisable, sans bla-bla.</p>
-            <div class="book-price-block">
-              <div class="book-price-row">
-                <span class="price-main" id="price-1">26 CHF</span>
-              </div>
-              <div class="price-sub" id="currency-1" style="margin-bottom:1rem;">Franc suisse</div>
-              <a href="#" class="btn-buy outline" id="link-1" onclick="return false;">Acheter cet ouvrage</a>
-            </div>
-          </div>
+          <span class="price-currency" id="currency-bundle">Économisez 5 CHF</span>
         </div>
-
-        <!-- LIVRE 2 -->
-        <div class="book-card">
-          <div class="book-cover-wrap">
-            <img src="/upgr/covers/competences-invisibles.png" alt="Couverture Vos compétences humaines invisibles" loading="lazy"/>
-          </div>
-          <div class="book-body">
-            <h3>Vos compétences humaines invisibles</h3>
-            <p>Ce qui transforme un projet en résultats concrets et en chiffre d'affaires. Explorez l'interconnexion entre le mouvement corporel et l'expression de vos compétences humaines invisibles. En quoi les fondements de nos préférences motrices cérébrales éclairent comment le corps est un acteur essentiel de notre cognition&nbsp;? À travers des outils pratiques et des témoignages, découvrez comment actionner votre créativité, renforcer votre collaboration, améliorer votre communication — via le levier de l'intelligence corporelle.</p>
-            <div class="book-price-block">
-              <div class="book-price-row">
-                <span class="price-main" id="price-2">26 CHF</span>
-              </div>
-              <div class="price-sub" id="currency-2" style="margin-bottom:1rem;">Franc suisse</div>
-              <a href="#" class="btn-buy outline" id="link-2" onclick="return false;">Acheter cet ouvrage</a>
-            </div>
-          </div>
-        </div>
-
+        <a href="#" class="btn btn-solid btn-bundle" id="link-bundle" onclick="return false;">Prendre les deux ouvrages</a>
       </div>
-
-      <!-- BUNDLE -->
-      <div class="bundle-card">
-        <p class="bundle-label">Offre groupée</p>
-        <h3>Les deux ouvrages ensemble</h3>
-        <p>L'un sans l'autre, vous vous retrouvez soit avec une architecture sans exécution, soit avec une exécution sans architecture. Les deux ouvrages sont distincts, mais ils fonctionnent en système.</p>
-        <div class="bundle-bottom">
-          <div class="bundle-price-col">
-            <div class="price-main" id="price-bundle">47 CHF <span class="price-strike" id="price-strike">52</span></div>
-            <div class="price-sub" id="currency-bundle" style="margin-top:0.3rem;">Économisez 5 CHF</div>
-          </div>
-          <a href="#" class="btn-buy btn-bundle" id="link-bundle" onclick="return false;">Prendre les deux ouvrages</a>
-        </div>
-      </div>
-
     </div>
 
   </div>
@@ -202,48 +180,41 @@
 
   <script>
     var REF = { single: 26, bundle: 47, bundleFull: 52 };
-    var AF_FR = ['BJ','BF','BI','CM','CF','TD','KM','CG','CD','CI','DJ','GA','GN','GW','MG','ML','MR','MU','MA','NE','RW','SN','SC','TG','TN'];
-    var currentCurrency = 'CHF';
     var currentRates = { CHF: 1 };
 
     function fmt(amount, currency) {
-      var symbols = { CHF: 'CHF', EUR: '€', XOF: 'F CFA' };
-      var sym = symbols[currency] || currency;
       var rounded = Math.round(amount);
       if (currency === 'XOF') {
         rounded = Math.round(amount / 500) * 500;
-        return rounded.toLocaleString('fr-FR') + '\u00a0' + sym;
+        return rounded.toLocaleString('fr-FR') + '\u00a0F CFA';
       }
-      if (currency === 'CHF') return rounded + '\u00a0' + sym;
-      return sym + '\u00a0' + rounded;
+      if (currency === 'CHF') return rounded + '\u00a0CHF';
+      return '\u20ac\u00a0' + rounded;
     }
 
-    function showPrices(currency, rate, zoneLabel) {
-      currentCurrency = currency;
-      var p1 = REF.single * rate;
+    function showPrices(currency, rate, label) {
+      var p = REF.single * rate;
       var pb = REF.bundle * rate;
       var pbFull = REF.bundleFull * rate;
+      document.getElementById('price-1').textContent = fmt(p, currency);
+      document.getElementById('price-2').textContent = fmt(p, currency);
+      document.getElementById('currency-1').textContent = label;
+      document.getElementById('currency-2').textContent = label;
 
-      document.getElementById('price-1').textContent = fmt(p1, currency);
-      document.getElementById('price-2').textContent = fmt(p1, currency);
-      document.getElementById('currency-1').textContent = zoneLabel;
-      document.getElementById('currency-2').textContent = zoneLabel;
-
-      var bundleEl = document.getElementById('price-bundle');
-      bundleEl.textContent = '';
-      bundleEl.appendChild(document.createTextNode(fmt(pb, currency) + ' '));
-      var strike = document.createElement('span');
-      strike.className = 'price-strike';
-      strike.textContent = fmt(pbFull, currency);
-      bundleEl.appendChild(strike);
-
+      document.getElementById('price-bundle').textContent = fmt(pb, currency);
+      document.getElementById('price-strike').textContent = fmt(pbFull, currency);
       document.getElementById('currency-bundle').textContent = 'Économisez\u00a0' + fmt(pbFull - pb, currency);
     }
 
-    function setZone(zone) {
+    function setZone(zone, countryName) {
       document.querySelectorAll('.zone-btn').forEach(function(b){ b.classList.remove('active'); });
       document.getElementById('btn-' + zone).classList.add('active');
-      document.getElementById('zone-label').textContent = 'Votre zone\u00a0:';
+      var label = document.getElementById('zone-label');
+      if (countryName) {
+        label.textContent = countryName;
+      } else {
+        label.textContent = { ch: 'Suisse', eu: 'Europe', af: 'Afrique francophone' }[zone] || '';
+      }
       if (zone === 'ch') {
         showPrices('CHF', 1, 'Franc suisse');
       } else if (zone === 'eu') {
@@ -253,55 +224,31 @@
       }
     }
 
-    var FALLBACK_RATES = { EUR: 0.95, XOF: 623 };
-
+    var FALLBACK = { EUR: 0.95, XOF: 623 };
     function getRate(currency, cb) {
       if (currentRates[currency]) { cb(currentRates[currency]); return; }
       fetch('https://open.er-api.com/v6/latest/CHF')
         .then(function(r){ return r.json(); })
         .then(function(d){
-          if (d && d.rates && d.rates[currency]) {
-            currentRates[currency] = d.rates[currency]; cb(d.rates[currency]);
-          } else { throw new Error('no rate'); }
+          if (d && d.rates && d.rates[currency]) { currentRates[currency] = d.rates[currency]; cb(d.rates[currency]); }
+          else throw new Error();
         })
         .catch(function(){
-          fetch('https://api.exchangerate.host/latest?base=CHF&symbols=' + currency)
-            .then(function(r){ return r.json(); })
-            .then(function(d){
-              if (d && d.rates && d.rates[currency]) {
-                currentRates[currency] = d.rates[currency]; cb(d.rates[currency]);
-              } else { throw new Error('no rate'); }
-            })
-            .catch(function(){
-              var rate = FALLBACK_RATES[currency] || 1;
-              currentRates[currency] = rate; cb(rate);
-            });
+          var rate = FALLBACK[currency] || 1;
+          currentRates[currency] = rate; cb(rate);
         });
     }
 
-    // CHF immédiatement, puis détection IP
+    // Affichage CHF immédiat
     setZone('ch');
 
-    setTimeout(function(){
-      fetch('https://ipapi.co/json/')
-        .then(function(r){ return r.json(); })
-        .then(function(d){
-          var country = (d.country_code || '').toUpperCase();
-          var name = d.country_name || '';
-          if (country === 'CH') {
-            setZone('ch');
-          } else if (AF_FR.indexOf(country) !== -1) {
-            setZone('af');
-          } else if (country) {
-            setZone('eu');
-          }
-          if (name) document.getElementById('zone-label').textContent = 'Détecté\u00a0: ' + name + '\u00a0—';
-        })
-        .catch(function(){
-          var lang = (navigator.language || '').toLowerCase();
-          if (!lang.includes('-ch')) setZone('eu');
-        });
-    }, 0);
+    // Détection côté serveur (pas de CORS, pas d'API tierce côté client)
+    fetch('/api/geo')
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (d && d.zone) setZone(d.zone, d.country || null);
+      })
+      .catch(function(){ /* reste en CHF */ });
   </script>
 
 </body>
