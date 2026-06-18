@@ -27,8 +27,21 @@ const MIME = {
 
 const NO_CACHE = { 'Cache-Control': 'no-cache, no-store, must-revalidate', Pragma: 'no-cache', Expires: '0' };
 
-// Pays Afrique francophone
-const AF_FR = new Set(['BJ','BF','BI','CM','CF','TD','KM','CG','CD','CI','DJ','GA','GN','GW','MG','ML','MR','MU','MA','NE','RW','SN','SC','TG','TN']);
+// Devise par pays — FR/BE/LU et autres EU → EUR implicite (non listés)
+const COUNTRY_CURRENCY = {
+  'CH': 'CHF',
+  // Zone XOF — Franc CFA Ouest-africain
+  'BJ': 'XOF', 'BF': 'XOF', 'CI': 'XOF', 'GW': 'XOF',
+  'ML': 'XOF', 'NE': 'XOF', 'SN': 'XOF', 'TG': 'XOF',
+  // Zone XAF — Franc CFA Centre-africain
+  'CM': 'XAF', 'CF': 'XAF', 'TD': 'XAF', 'CG': 'XAF', 'GA': 'XAF',
+  // Devises propres
+  'MA': 'MAD',  // Maroc — Dirham marocain
+  'TN': 'TND',  // Tunisie — Dinar tunisien
+  // Pays dont la devise locale est peu utilisée en ligne → EUR
+  'BI': 'EUR', 'KM': 'EUR', 'CD': 'EUR', 'DJ': 'EUR', 'GN': 'EUR',
+  'MG': 'EUR', 'MR': 'EUR', 'MU': 'EUR', 'RW': 'EUR', 'SC': 'EUR',
+};
 
 // Géolocalisation IP via ipapi.co (côté serveur, pas de CORS)
 async function detectZone(ip) {
@@ -37,7 +50,7 @@ async function detectZone(ip) {
     const cleanIp = (ip || '').replace(/^::ffff:/, '');
     // IPs locales/privées → Suisse par défaut
     if (!cleanIp || cleanIp === '127.0.0.1' || cleanIp.startsWith('10.') || cleanIp.startsWith('192.168.') || cleanIp.startsWith('172.')) {
-      return { zone: 'ch', country: null };
+      return { zone: 'ch', currency: 'CHF', country: null };
     }
     const data = await new Promise((resolve, reject) => {
       const req = https.get(`https://ipapi.co/${cleanIp}/json/`, { headers: { 'User-Agent': 'upgr-geo/1.0' } }, (res) => {
@@ -50,12 +63,11 @@ async function detectZone(ip) {
     });
     const code = (data.country_code || '').toUpperCase();
     const name = data.country_name || '';
-    let zone = 'eu';
-    if (code === 'CH') zone = 'ch';
-    else if (AF_FR.has(code)) zone = 'af';
-    return { zone, country: name || null, code };
+    const currency = COUNTRY_CURRENCY[code] || 'EUR';
+    const zone = code === 'CH' ? 'ch' : (COUNTRY_CURRENCY[code] ? 'af' : 'eu');
+    return { zone, currency, country: name || null, code };
   } catch(e) {
-    return { zone: 'eu', country: null };
+    return { zone: 'eu', currency: 'EUR', country: null };
   }
 }
 

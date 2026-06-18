@@ -183,59 +183,87 @@
   </footer>
 
   <script>
-    /* Prix fixes par zone — aucune conversion pour CHF et EUR */
-    var PRICES = {
-      ch: { currency: 'CHF', label: 'Franc suisse',       single: 26, bundle: 47, bundleFull: 52 },
-      eu: { currency: 'EUR', label: 'Euro',                single: 28, bundle: 50, bundleFull: 56 },
-      af: { currency: 'XOF', label: 'Franc CFA',           single: null, bundle: null, bundleFull: null }
-    };
-    var XOF_RATE_FALLBACK = 623; /* 1 CHF ≈ 623 XOF */
-    var xofRate = null;
+    /* Prix de référence en CHF — base de toutes les conversions */
+    var REF_CHF = { single: 26, bundle: 47, bundleFull: 52 };
 
-    function roundXOF(n) { return Math.round(n / 500) * 500; }
+    /* Prix fixes (sans conversion) */
+    var FIXED = {
+      CHF: { single: 26, bundle: 47, bundleFull: 52 },
+      EUR: { single: 28, bundle: 50, bundleFull: 56 }
+    };
+
+    /* Taux de repli si l'API de taux échoue (1 CHF → devise) */
+    var FALLBACK = { XOF: 623, XAF: 623, MAD: 10.5, TND: 3.3 };
+
+    var cachedRates = {};
+
+    function roundAmt(n, currency) {
+      if (currency === 'XOF' || currency === 'XAF') return Math.round(n / 500) * 500;
+      return Math.round(n);
+    }
 
     function fmt(amount, currency) {
-      if (currency === 'XOF') return amount.toLocaleString('fr-FR') + '\u00a0F CFA';
+      if (currency === 'XOF' || currency === 'XAF') return amount.toLocaleString('fr-FR') + '\u00a0F CFA';
+      if (currency === 'EUR') return amount + '\u00a0\u20ac';
       if (currency === 'CHF') return amount + '\u00a0CHF';
-      return amount + '\u00a0\u20ac';
+      /* MAD, TND, et autres : montant + code ISO */
+      return amount.toLocaleString('fr-FR') + '\u00a0' + currency;
     }
 
-    function showPrices(p) {
-      var saving = p.bundleFull - p.bundle;
-      document.getElementById('price-1').textContent         = fmt(p.single,      p.currency);
-      document.getElementById('price-2').textContent         = fmt(p.single,      p.currency);
-      document.getElementById('price-bundle').textContent    = fmt(p.bundle,      p.currency);
-      document.getElementById('price-strike').textContent    = fmt(p.bundleFull,  p.currency);
-      document.getElementById('currency-bundle').textContent = 'Économisez\u00a0' + fmt(saving, p.currency);
+    function showPrices(single, bundle, bundleFull, currency) {
+      var saving = bundleFull - bundle;
+      document.getElementById('price-1').textContent         = fmt(single,      currency);
+      document.getElementById('price-2').textContent         = fmt(single,      currency);
+      document.getElementById('price-bundle').textContent    = fmt(bundle,      currency);
+      document.getElementById('price-strike').textContent    = fmt(bundleFull,  currency);
+      document.getElementById('currency-bundle').textContent = 'Économisez\u00a0' + fmt(saving, currency);
     }
 
-    function applyZone(zone) {
-      if (zone === 'af') {
-        function renderXOF(rate) {
-          var r = rate || XOF_RATE_FALLBACK;
-          showPrices({
-            currency: 'XOF', label: 'Franc CFA',
-            single:     roundXOF(26 * r),
-            bundle:     roundXOF(47 * r),
-            bundleFull: roundXOF(52 * r)
-          });
-        }
-        if (xofRate) { renderXOF(xofRate); return; }
-        fetch('https://open.er-api.com/v6/latest/CHF')
-          .then(function(r){ return r.json(); })
-          .then(function(d){ xofRate = (d && d.rates && d.rates.XOF) || XOF_RATE_FALLBACK; renderXOF(xofRate); })
-          .catch(function(){ renderXOF(XOF_RATE_FALLBACK); });
-      } else {
-        showPrices(PRICES[zone] || PRICES.ch);
+    function applyCurrency(currency) {
+      currency = currency || 'CHF';
+
+      /* Prix fixes — pas de conversion */
+      if (FIXED[currency]) {
+        var p = FIXED[currency];
+        showPrices(p.single, p.bundle, p.bundleFull, currency);
+        return;
       }
+
+      /* Conversion depuis CHF via taux de change */
+      function render(rate) {
+        var r = rate || FALLBACK[currency] || 1;
+        showPrices(
+          roundAmt(REF_CHF.single     * r, currency),
+          roundAmt(REF_CHF.bundle     * r, currency),
+          roundAmt(REF_CHF.bundleFull * r, currency),
+          currency
+        );
+      }
+
+      if (cachedRates[currency]) { render(cachedRates[currency]); return; }
+      fetch('https://open.er-api.com/v6/latest/CHF')
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          cachedRates[currency] = (d && d.rates && d.rates[currency]) || FALLBACK[currency] || 1;
+          render(cachedRates[currency]);
+        })
+        .catch(function(){ render(FALLBACK[currency]); });
     }
 
-    var forcedZone = new URLSearchParams(window.location.search).get('zone');
-    applyZone(forcedZone || 'ch');
-    if (!forcedZone) {
+    /* Paramètres URL pour preview forcé : ?currency=MAD ou ?zone=ch */
+    var params = new URLSearchParams(window.location.search);
+    var forcedCurrency = params.get('currency');
+    var forcedZone     = params.get('zone');
+    if (!forcedCurrency && forcedZone === 'ch') forcedCurrency = 'CHF';
+    if (!forcedCurrency && forcedZone === 'eu') forcedCurrency = 'EUR';
+    if (!forcedCurrency && forcedZone === 'af') forcedCurrency = 'XOF';
+
+    applyCurrency(forcedCurrency || 'CHF');
+
+    if (!forcedCurrency) {
       fetch('/api/geo')
         .then(function(r){ return r.json(); })
-        .then(function(d){ if (d && d.zone) applyZone(d.zone); })
+        .then(function(d){ if (d && d.currency) applyCurrency(d.currency); })
         .catch(function(){});
     }
   </script>
