@@ -28,7 +28,6 @@
     /* CONTENU */
     .content { max-width: 860px; margin: 0 auto; padding: 0 2rem 7rem; }
 
-    .devise-info { margin-bottom: 3rem; font-size: 0.73rem; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
 
     /* LIVRE — carte horizontale pleine largeur */
     .book { display: flex; gap: 0; border: 1px solid rgba(245,224,144,0.12); border-radius: 4px; background: rgba(255,255,255,0.02); margin-bottom: 3rem; overflow: hidden; }
@@ -105,8 +104,6 @@
 
   <div class="content">
 
-    <p class="devise-info" id="zone-label"></p>
-
     <!-- LIVRE 1 -->
     <div class="book">
       <div class="book-cover-col">
@@ -127,7 +124,6 @@
         <div class="book-buy">
           <div class="price-block">
             <div class="price-amount" id="price-1">26 CHF</div>
-            <div class="price-currency" id="currency-1">Franc suisse</div>
           </div>
           <a href="#" class="btn btn-outline" id="link-1" onclick="return false;">Acheter cet ouvrage</a>
         </div>
@@ -150,7 +146,6 @@
         <div class="book-buy">
           <div class="price-block">
             <div class="price-amount" id="price-2">26 CHF</div>
-            <div class="price-currency" id="currency-2">Franc suisse</div>
           </div>
           <a href="#" class="btn btn-outline" id="link-2" onclick="return false;">Acheter cet ouvrage</a>
         </div>
@@ -209,18 +204,12 @@
       var saving = p.bundleFull - p.bundle;
       document.getElementById('price-1').textContent         = fmt(p.single,      p.currency);
       document.getElementById('price-2').textContent         = fmt(p.single,      p.currency);
-      document.getElementById('currency-1').textContent      = p.label;
-      document.getElementById('currency-2').textContent      = p.label;
       document.getElementById('price-bundle').textContent    = fmt(p.bundle,      p.currency);
       document.getElementById('price-strike').textContent    = fmt(p.bundleFull,  p.currency);
       document.getElementById('currency-bundle').textContent = 'Économisez\u00a0' + fmt(saving, p.currency);
     }
 
-    function applyZone(zone, countryName) {
-      var zoneLabels = { ch: 'Suisse', eu: 'Europe', af: 'Afrique francophone' };
-      var el = document.getElementById('zone-label');
-      if (el) el.textContent = countryName || zoneLabels[zone] || '';
-
+    function applyZone(zone) {
       if (zone === 'af') {
         function renderXOF(rate) {
           var r = rate || XOF_RATE_FALLBACK;
@@ -244,7 +233,7 @@
     applyZone('ch');
     fetch('/api/geo')
       .then(function(r){ return r.json(); })
-      .then(function(d){ if (d && d.zone) applyZone(d.zone, d.country || null); })
+      .then(function(d){ if (d && d.zone) applyZone(d.zone); })
       .catch(function(){});
   </script>
 
