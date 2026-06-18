@@ -209,9 +209,11 @@
       document.getElementById('price-2').textContent = fmt(p, currency);
       document.getElementById('currency-1').textContent = label;
       document.getElementById('currency-2').textContent = label;
+      var pbDisplay = currency === 'XOF' ? Math.round(pb / 500) * 500 : Math.round(pb);
+      var pbFullDisplay = currency === 'XOF' ? Math.round(pbFull / 500) * 500 : Math.round(pbFull);
       document.getElementById('price-bundle').textContent = fmt(pb, currency);
       document.getElementById('price-strike').textContent = fmt(pbFull, currency);
-      document.getElementById('currency-bundle').textContent = 'Économisez\u00a0' + fmt(pbFull - pb, currency);
+      document.getElementById('currency-bundle').textContent = 'Économisez\u00a0' + fmt(pbFullDisplay - pbDisplay, currency);
     }
 
     function applyZone(zone, countryName) {
