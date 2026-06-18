@@ -12,62 +12,74 @@
     a:hover { text-decoration: underline; }
 
     /* HEADER */
-    header { position: fixed; top: 0; left: 0; width: 100%; z-index: 50; background: rgba(8,15,30,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .header-inner { max-width: 900px; margin: 0 auto; padding: 1.1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    header { position: fixed; top: 0; left: 0; width: 100%; z-index: 50; background: rgba(8,15,30,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .header-inner { max-width: 860px; margin: 0 auto; padding: 1.1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
     .logo { font-size: 1.1rem; font-weight: 700; font-style: italic; color: #F5E090; }
-    .back-link { font-size: 0.78rem; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.7); }
+    .back-link { font-size: 0.75rem; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
     .back-link:hover { color: #F5E090; text-decoration: none; }
 
     /* HERO */
-    .hero { max-width: 900px; margin: 0 auto; padding: 8rem 2rem 4rem; }
-    .page-label { font-size: 0.72rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: #B48C28; margin-bottom: 1.2rem; }
-    .hero h1 { font-size: clamp(1.9rem, 4.5vw, 3rem); font-weight: 700; font-style: italic; color: #F5E090; line-height: 1.12; margin-bottom: 1rem; }
-    .hero-sub { font-size: 1.1rem; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.85); max-width: 640px; }
+    .hero { max-width: 860px; margin: 0 auto; padding: 8rem 2rem 4.5rem; }
+    .page-label { font-size: 0.7rem; font-weight: 300; letter-spacing: 0.38em; text-transform: uppercase; color: #B48C28; margin-bottom: 1.3rem; }
+    .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; font-style: italic; color: #F5E090; line-height: 1.15; margin-bottom: 1.4rem; }
+    .hero-sub { font-size: 1.08rem; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.82); max-width: 620px; }
     .gold-line { height: 1px; background: linear-gradient(90deg, #F5E090 0%, transparent 100%); margin: 3rem 0; border: none; }
 
-    /* DEVISE */
-    .devise-info { margin-bottom: 2.5rem; font-size: 0.75rem; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
-
     /* CONTENU */
-    .content { max-width: 900px; margin: 0 auto; padding: 0 2rem 6rem; }
+    .content { max-width: 860px; margin: 0 auto; padding: 0 2rem 7rem; }
 
-    /* GRILLE LIVRES */
-    .books-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-    @media (max-width: 640px) { .books-grid { grid-template-columns: 1fr; } }
+    .devise-info { margin-bottom: 3rem; font-size: 0.73rem; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
 
-    .book { background: rgba(255,255,255,0.025); border: 1px solid rgba(245,224,144,0.1); border-radius: 4px; display: flex; flex-direction: column; }
-    .book-cover { background: #f5f4f0; padding: 2rem 2.5rem; display: flex; justify-content: center; }
-    .book-cover img { width: 100%; max-width: 140px; height: auto; display: block; box-shadow: 0 6px 28px rgba(0,0,0,0.25); }
-    .book-body { padding: 1.8rem 1.8rem 2rem; flex: 1; display: flex; flex-direction: column; gap: 0; }
-    .book-tag { font-size: 0.68rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.6rem; }
-    .book-title { font-size: 1.1rem; font-weight: 700; font-style: italic; color: #F5E090; line-height: 1.3; margin-bottom: 1.1rem; }
-    .book-desc { font-size: 0.97rem; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.82); flex: 1; }
+    /* LIVRE — carte horizontale pleine largeur */
+    .book { display: flex; gap: 0; border: 1px solid rgba(245,224,144,0.12); border-radius: 4px; background: rgba(255,255,255,0.02); margin-bottom: 3rem; overflow: hidden; }
+    @media (max-width: 640px) { .book { flex-direction: column; } }
 
-    .book-buy { margin-top: 1.8rem; padding-top: 1.4rem; border-top: 1px solid rgba(255,255,255,0.08); }
-    .price-row { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 1rem; }
-    .price-amount { font-size: 2rem; font-weight: 700; color: #F5E090; line-height: 1; }
-    .price-currency { font-size: 0.85rem; font-weight: 300; color: rgba(255,255,255,0.6); }
-    .btn { display: block; width: 100%; padding: 0.85rem 1rem; font-family: 'Raleway', sans-serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; text-align: center; transition: background 0.18s, color 0.18s; text-decoration: none; }
+    .book-cover-col { flex: 0 0 220px; background: #f5f4f2; display: flex; align-items: center; justify-content: center; padding: 2.5rem 2rem; }
+    @media (max-width: 640px) { .book-cover-col { flex: none; padding: 2rem; } }
+    .book-cover-col img { width: 100%; max-width: 160px; height: auto; display: block; box-shadow: 0 8px 32px rgba(0,0,0,0.28); }
+
+    .book-text-col { flex: 1; padding: 2.5rem 2.5rem 2rem; display: flex; flex-direction: column; border-left: 1px solid rgba(245,224,144,0.08); }
+    @media (max-width: 640px) { .book-text-col { border-left: none; border-top: 1px solid rgba(245,224,144,0.08); padding: 2rem 1.6rem; } }
+
+    .book-tag { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.7rem; }
+    .book-title { font-size: 1.35rem; font-weight: 700; font-style: italic; color: #F5E090; line-height: 1.25; margin-bottom: 1.4rem; }
+
+    .book-desc { font-size: 0.97rem; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.82); }
+    .book-desc p { margin-bottom: 1rem; }
+    .book-desc p:last-child { margin-bottom: 0; }
+    .book-desc strong { color: rgba(255,255,255,0.95); font-weight: 500; }
+
+    .book-points { list-style: none; margin: 1.2rem 0 1rem; padding: 0; }
+    .book-points li { font-size: 0.95rem; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.78); padding-left: 1.2rem; position: relative; margin-bottom: 0.4rem; }
+    .book-points li::before { content: '—'; position: absolute; left: 0; color: #B48C28; }
+
+    .book-buy { margin-top: auto; padding-top: 1.8rem; border-top: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+    .price-block .price-amount { font-size: 2rem; font-weight: 700; color: #F5E090; line-height: 1; }
+    .price-block .price-currency { font-size: 0.85rem; font-weight: 300; color: rgba(255,255,255,0.55); margin-top: 0.25rem; }
+
+    .btn { display: inline-block; padding: 0.85rem 2rem; font-family: 'Raleway', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; text-align: center; transition: background 0.18s, color 0.18s; text-decoration: none; white-space: nowrap; }
     .btn-outline { background: transparent; color: #F5E090; border: 1px solid rgba(245,224,144,0.5); }
     .btn-outline:hover { background: rgba(245,224,144,0.06); text-decoration: none; }
     .btn-solid { background: #F5E090; color: #080F1E; }
     .btn-solid:hover { background: #e8d07a; text-decoration: none; }
 
+    /* SÉPARATEUR ENTRE LIVRES */
+    .book-sep { text-align: center; margin: -1rem 0 3rem; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
+
     /* BUNDLE */
-    .bundle { margin-top: 2rem; border: 1px solid rgba(245,224,144,0.22); border-radius: 4px; padding: 2rem 2rem; background: rgba(245,224,144,0.03); }
-    .bundle-tag { font-size: 0.68rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.7rem; }
-    .bundle-title { font-size: 1.1rem; font-weight: 600; color: #ffffff; margin-bottom: 0.7rem; }
-    .bundle-desc { font-size: 0.97rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.8); margin-bottom: 1.8rem; }
-    .bundle-row { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
-    .bundle-price .price-amount { font-size: 2.1rem; }
-    .price-strike { font-size: 0.95rem; text-decoration: line-through; color: rgba(255,255,255,0.45); margin-left: 0.3rem; }
-    .bundle-price .price-currency { margin-top: 0.25rem; }
-    .btn-bundle { padding: 0.85rem 2rem; white-space: nowrap; }
+    .bundle { border: 1px solid rgba(245,224,144,0.28); border-radius: 4px; padding: 2.5rem 2.5rem; background: rgba(245,224,144,0.03); }
+    .bundle-tag { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.8rem; }
+    .bundle-title { font-size: 1.3rem; font-weight: 600; color: #ffffff; margin-bottom: 1rem; }
+    .bundle-desc { font-size: 0.97rem; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.8); margin-bottom: 2rem; }
+    .bundle-row { display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; }
+    .bundle-price .price-amount { font-size: 2.2rem; font-weight: 700; color: #F5E090; line-height: 1; }
+    .price-strike { font-size: 1rem; text-decoration: line-through; color: rgba(255,255,255,0.4); margin-left: 0.5rem; }
+    .bundle-price .price-currency { font-size: 0.85rem; font-weight: 300; color: rgba(255,255,255,0.55); margin-top: 0.3rem; }
 
     /* FOOTER */
     footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 2.5rem 2rem; text-align: center; }
-    .footer-inner { max-width: 900px; margin: 0 auto; font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; }
-    .footer-inner a { color: rgba(255,255,255,0.5); }
+    .footer-inner { max-width: 860px; margin: 0 auto; font-size: 0.76rem; font-weight: 300; color: rgba(255,255,255,0.45); letter-spacing: 0.04em; }
+    .footer-inner a { color: rgba(255,255,255,0.45); }
     .footer-inner a:hover { color: #F5E090; }
   </style>
 </head>
@@ -83,7 +95,7 @@
   <div class="hero">
     <p class="page-label">Eugène — Majordome Pédagogique</p>
     <h1>Vous avez vu comment Eugène fonctionne.<br>Maintenant, préparez-vous vraiment.</h1>
-    <p class="hero-sub">Sans préparation, vous répondez en surface. Avec ces deux ouvrages, vous arrivez avec vos idées structurées — et vous obtenez un plan concret dès la première session.</p>
+    <p class="hero-sub">Sans préparation, vous répondez en surface. Eugène pose des questions précises, parfois inconfortables — et sans matière solide à lui soumettre, l'échange tourne court. Ces deux ouvrages vous donnent la structure mentale et corporelle pour tirer le maximum de chaque session.</p>
     <hr class="gold-line"/>
   </div>
 
@@ -91,63 +103,74 @@
 
     <p class="devise-info" id="zone-label"></p>
 
-    <!-- LIVRES -->
-    <div class="books-grid">
-
-      <!-- LIVRE 1 -->
-      <div class="book">
-        <div class="book-cover">
-          <img src="/upgr/covers/idee-au-plan.png" alt="De l'idée au plan — couverture"/>
+    <!-- LIVRE 1 -->
+    <div class="book">
+      <div class="book-cover-col">
+        <img src="/upgr/covers/idee-au-plan.png" alt="De l'idée au plan — couverture"/>
+      </div>
+      <div class="book-text-col">
+        <p class="book-tag">Ouvrage 1</p>
+        <h2 class="book-title">De l'idée au plan</h2>
+        <div class="book-desc">
+          <p>Clarifier vos idées floues pour les transformer en un plan simple et concret. Ce guide est un mode d'emploi pensé pour ceux qui ont une idée — ou un projet — mais ne savent pas encore comment le structurer pour le soumettre à Eugène ou à Édouard avec efficacité.</p>
+          <p>Il suit une logique en deux temps :</p>
+          <ul class="book-points">
+            <li>Si vous avez un <strong>projet business</strong>, Édouard le crash-teste en 8 étapes et vous livre un diagnostic assertif avec les angles morts à traiter.</li>
+            <li>Si vous devez <strong>structurer une transmission</strong>, Eugène construit votre plan de formation en 5 étapes, depuis les objectifs jusqu'aux modalités d'évaluation.</li>
+          </ul>
+          <p>La section <strong>« Agir »</strong> ajoute un rétroplanning, des responsabilités claires et une première action concrète à engager dans les 48 heures. Résultat : un plan limpide, cadré, réalisable — sans bla-bla.</p>
         </div>
-        <div class="book-body">
-          <p class="book-tag">Ouvrage 1</p>
-          <h2 class="book-title">De l'idée au plan</h2>
-          <p class="book-desc">Clarifier vos idées floues pour les transformer en un plan simple et concret. Un mode d'emploi pour vous préparer à interagir avec Eugène et/ou Édouard — crash-test business en 8 étapes, plan de formation en 5 étapes, rétroplanning et première action dans les 48 heures. Un plan limpide, cadré, réalisable, sans bla-bla.</p>
-          <div class="book-buy">
-            <div class="price-row">
-              <span class="price-amount" id="price-1">26 CHF</span>
-            </div>
-            <span class="price-currency" id="currency-1">Franc suisse</span>
-            <a href="#" class="btn btn-outline" id="link-1" style="margin-top:1rem;" onclick="return false;">Acheter cet ouvrage</a>
+        <div class="book-buy">
+          <div class="price-block">
+            <div class="price-amount" id="price-1">26 CHF</div>
+            <div class="price-currency" id="currency-1">Franc suisse</div>
           </div>
+          <a href="#" class="btn btn-outline" id="link-1" onclick="return false;">Acheter cet ouvrage</a>
         </div>
       </div>
+    </div>
 
-      <!-- LIVRE 2 -->
-      <div class="book">
-        <div class="book-cover">
-          <img src="/upgr/covers/competences-invisibles.png" alt="Vos compétences humaines invisibles — couverture"/>
+    <!-- LIVRE 2 -->
+    <div class="book">
+      <div class="book-cover-col">
+        <img src="/upgr/covers/competences-invisibles.png" alt="Vos compétences humaines invisibles — couverture"/>
+      </div>
+      <div class="book-text-col">
+        <p class="book-tag">Ouvrage 2</p>
+        <h2 class="book-title">Vos compétences humaines invisibles</h2>
+        <div class="book-desc">
+          <p>Ce qui transforme un projet en résultats concrets et en chiffre d'affaires n'est pas toujours ce qu'on voit. Cet ouvrage explore l'interconnexion entre le <strong>mouvement corporel</strong> et l'expression de vos compétences dites « douces » — créativité, collaboration, communication.</p>
+          <p>À partir des fondements des préférences motrices cérébrales, il montre comment le corps est un acteur essentiel de votre cognition : comment vous pensez, prenez des décisions, entrez en relation. Ce n'est pas de la théorie — c'est un levier concret pour votre projet.</p>
+          <ul class="book-points">
+            <li><strong>Des outils pratiques</strong> pour activer votre intelligence corporelle au quotidien.</li>
+            <li><strong>Des témoignages de terrain</strong> issus de situations professionnelles réelles.</li>
+            <li>Un regard nouveau sur ce qui fait la différence entre un projet qui reste une idée et un projet qui avance.</li>
+          </ul>
         </div>
-        <div class="book-body">
-          <p class="book-tag">Ouvrage 2</p>
-          <h2 class="book-title">Vos compétences humaines invisibles</h2>
-          <p class="book-desc">Ce qui transforme un projet en résultats concrets et en chiffre d'affaires. Explorez l'interconnexion entre le mouvement corporel et l'expression de vos compétences. Des outils pratiques et des témoignages pour actionner votre créativité, renforcer votre collaboration et améliorer votre communication — via le levier de l'intelligence corporelle.</p>
-          <div class="book-buy">
-            <div class="price-row">
-              <span class="price-amount" id="price-2">26 CHF</span>
-            </div>
-            <span class="price-currency" id="currency-2">Franc suisse</span>
-            <a href="#" class="btn btn-outline" id="link-2" style="margin-top:1rem;" onclick="return false;">Acheter cet ouvrage</a>
+        <div class="book-buy">
+          <div class="price-block">
+            <div class="price-amount" id="price-2">26 CHF</div>
+            <div class="price-currency" id="currency-2">Franc suisse</div>
           </div>
+          <a href="#" class="btn btn-outline" id="link-2" onclick="return false;">Acheter cet ouvrage</a>
         </div>
       </div>
-
     </div>
 
     <!-- BUNDLE -->
     <div class="bundle">
       <p class="bundle-tag">Offre groupée — recommandé</p>
-      <h3 class="bundle-title">Les deux ouvrages</h3>
-      <p class="bundle-desc">L'un structure l'idée, l'autre met le corps en mouvement pour l'exécuter. Ensemble, ils forment un système complet — de la clarification au passage à l'action.</p>
+      <h3 class="bundle-title">Les deux ouvrages ensemble</h3>
+      <p class="bundle-desc">L'un vous donne la structure pour clarifier et planifier. L'autre vous donne la posture pour exécuter. Utilisés ensemble, ils forment un système complet — du moment où l'idée est encore floue jusqu'à la première action engagée. C'est la combinaison que nous recommandons à tous ceux qui veulent tirer le maximum de leurs conversations avec Eugène.</p>
       <div class="bundle-row">
         <div class="bundle-price">
-          <div class="price-row">
+          <div>
             <span class="price-amount" id="price-bundle">47 CHF</span>
             <span class="price-strike" id="price-strike">52 CHF</span>
           </div>
-          <span class="price-currency" id="currency-bundle">Économisez 5 CHF</span>
+          <div class="price-currency" id="currency-bundle">Économisez 5 CHF</div>
         </div>
-        <a href="#" class="btn btn-solid btn-bundle" id="link-bundle" onclick="return false;">Prendre les deux ouvrages</a>
+        <a href="#" class="btn btn-solid" id="link-bundle" onclick="return false;">Prendre les deux ouvrages</a>
       </div>
     </div>
 
@@ -219,7 +242,6 @@
         });
     }
 
-    // CHF par défaut, puis détection serveur
     applyZone('ch');
     fetch('/api/geo')
       .then(function(r){ return r.json(); })
