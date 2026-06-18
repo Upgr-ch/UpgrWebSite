@@ -230,11 +230,14 @@
       }
     }
 
-    applyZone('ch');
-    fetch('/api/geo')
-      .then(function(r){ return r.json(); })
-      .then(function(d){ if (d && d.zone) applyZone(d.zone); })
-      .catch(function(){});
+    var forcedZone = new URLSearchParams(window.location.search).get('zone');
+    applyZone(forcedZone || 'ch');
+    if (!forcedZone) {
+      fetch('/api/geo')
+        .then(function(r){ return r.json(); })
+        .then(function(d){ if (d && d.zone) applyZone(d.zone); })
+        .catch(function(){});
+    }
   </script>
 
 </body>
