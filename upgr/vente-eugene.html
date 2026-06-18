@@ -198,7 +198,7 @@
         return rounded.toLocaleString('fr-FR') + '\u00a0F CFA';
       }
       if (currency === 'CHF') return rounded + '\u00a0CHF';
-      return '\u20ac\u00a0' + rounded;
+      return rounded + '\u00a0\u20ac';
     }
 
     function showPrices(currency, rate, label) {
