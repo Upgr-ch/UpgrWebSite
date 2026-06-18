@@ -149,7 +149,7 @@
       <h2>Choisissez votre accès.</h2>
 
       <div class="zone-bar">
-        <span>Votre zone :</span>
+        <span id="zone-label">Détection en cours…</span>
         <button class="zone-btn" onclick="setZone('ch')" id="btn-ch">🇨🇭 Suisse</button>
         <button class="zone-btn" onclick="setZone('eu')" id="btn-eu">🇪🇺 Europe</button>
         <button class="zone-btn" onclick="setZone('af')" id="btn-af">🌍 Afrique</button>
@@ -207,43 +207,121 @@
   </footer>
 
   <script>
-    var zones = {
-      ch: {
-        p1: '26 CHF', p2: '26 CHF', pb: '47 CHF', strike: '52',
-        c1: 'Franc suisse', c2: 'Franc suisse', cb: 'Franc suisse — économisez 5 CHF'
-      },
-      eu: {
-        p1: '24 €', p2: '24 €', pb: '43 €', strike: '48',
-        c1: 'Euro', c2: 'Euro', cb: 'Euro — économisez 5 €'
-      },
-      af: {
-        p1: '12 €', p2: '12 €', pb: '20 €', strike: '24',
-        c1: 'Euro', c2: 'Euro', cb: 'Euro — économisez 4 €'
+    // Prix de référence en CHF
+    var REF = { single: 26, bundle: 47, bundleFull: 52 };
+
+    // Pays Afrique francophone (ISO 3166-1 alpha-2)
+    var AF_FR = ['BJ','BF','BI','CM','CF','TD','KM','CG','CD','CI','DJ','GA','GN','GW','MG','ML','MR','MU','MA','NE','RW','SN','SC','TG','TN'];
+
+    var currentCurrency = 'CHF';
+    var currentRates = { CHF: 1 };
+
+    function fmt(amount, currency) {
+      var symbols = { CHF: 'CHF', EUR: '€', XOF: 'F CFA', USD: '$' };
+      var sym = symbols[currency] || currency;
+      var rounded = Math.round(amount);
+      if (currency === 'XOF') {
+        // Round to nearest 500
+        rounded = Math.round(amount / 500) * 500;
+        return rounded.toLocaleString('fr-FR') + ' ' + sym;
       }
-    };
+      if (currency === 'CHF') return rounded + ' ' + sym;
+      return sym + ' ' + rounded;
+    }
+
+    function showPrices(currency, rate, savingLabel) {
+      currentCurrency = currency;
+      var p1 = REF.single * rate;
+      var p2 = REF.single * rate;
+      var pb = REF.bundle * rate;
+      var pbFull = REF.bundleFull * rate;
+      var saving = (pbFull - pb) * rate;
+
+      document.getElementById('price-1').textContent = fmt(p1, currency);
+      document.getElementById('price-2').textContent = fmt(p2, currency);
+
+      var bundleEl = document.getElementById('price-bundle');
+      bundleEl.textContent = '';
+      bundleEl.appendChild(document.createTextNode(fmt(pb, currency) + ' '));
+      var strike = document.createElement('span');
+      strike.className = 'price-strike';
+      strike.textContent = fmt(pbFull, currency);
+      bundleEl.appendChild(strike);
+
+      document.getElementById('currency-1').textContent = savingLabel;
+      document.getElementById('currency-2').textContent = savingLabel;
+      document.getElementById('currency-bundle').textContent = 'Économisez ' + fmt(pbFull - pb, currency);
+    }
 
     function setZone(zone) {
       document.querySelectorAll('.zone-btn').forEach(function(b){ b.classList.remove('active'); });
       document.getElementById('btn-' + zone).classList.add('active');
-      var z = zones[zone];
-      document.getElementById('price-1').childNodes[0].nodeValue = z.p1 + ' ';
-      document.getElementById('price-2').innerHTML = z.p2;
-      document.getElementById('price-bundle').innerHTML = z.pb + ' <span class="price-strike" id="price-strike">' + z.strike + '</span>';
-      document.getElementById('currency-1').textContent = z.c1;
-      document.getElementById('currency-2').textContent = z.c2;
-      document.getElementById('currency-bundle').textContent = z.cb;
+      document.getElementById('zone-label').textContent = 'Votre zone :';
+
+      if (zone === 'ch') {
+        showPrices('CHF', 1, 'Franc suisse');
+      } else if (zone === 'eu') {
+        getRate('EUR', function(rate) { showPrices('EUR', rate, 'Euro'); });
+      } else if (zone === 'af') {
+        getRate('XOF', function(rate) { showPrices('XOF', rate, 'Franc CFA'); });
+      }
     }
 
-    // Auto-detect zone from browser language
+    // Taux de fallback si toutes les APIs échouent
+    var FALLBACK_RATES = { EUR: 0.95, XOF: 623 };
+
+    function getRate(currency, cb) {
+      if (currentRates[currency]) { cb(currentRates[currency]); return; }
+      // API 1 : Open Exchange Rates (CORS ok, pas de clé requise pour latest)
+      fetch('https://open.er-api.com/v6/latest/CHF')
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          if (d && d.rates && d.rates[currency]) {
+            currentRates[currency] = d.rates[currency];
+            cb(d.rates[currency]);
+          } else { throw new Error('no rate'); }
+        })
+        .catch(function(){
+          // API 2 : ExchangeRate.host (CORS ok)
+          fetch('https://api.exchangerate.host/latest?base=CHF&symbols=' + currency)
+            .then(function(r){ return r.json(); })
+            .then(function(d){
+              if (d && d.rates && d.rates[currency]) {
+                currentRates[currency] = d.rates[currency];
+                cb(d.rates[currency]);
+              } else { throw new Error('no rate'); }
+            })
+            .catch(function(){
+              // Fallback statique
+              var rate = FALLBACK_RATES[currency] || 1;
+              currentRates[currency] = rate;
+              cb(rate);
+            });
+        });
+    }
+
+    // Détection par IP
     (function(){
-      var lang = navigator.language || navigator.userLanguage || '';
-      if (lang.toLowerCase().includes('-ch') || lang === 'gsw') {
-        setZone('ch');
-      } else if (['fr-ci','fr-sn','fr-cm','fr-cd','fr-ml','fr-bf','fr-ne','fr-mg','fr-gn','fr-bj','fr-tg','fr-rw','fr-ga'].some(function(l){ return lang.toLowerCase().startsWith(l.toLowerCase()); })) {
-        setZone('af');
-      } else {
-        setZone('eu');
-      }
+      fetch('https://ipapi.co/json/')
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          var country = (d.country_code || '').toUpperCase();
+          var name = d.country_name || '';
+          if (country === 'CH') {
+            setZone('ch');
+          } else if (AF_FR.indexOf(country) !== -1) {
+            setZone('af');
+          } else {
+            setZone('eu');
+          }
+          document.getElementById('zone-label').textContent = 'Détecté : ' + (name || 'votre pays') + ' —';
+        })
+        .catch(function(){
+          // Fallback sur la langue du navigateur
+          var lang = (navigator.language || '').toLowerCase();
+          if (lang.includes('-ch')) setZone('ch');
+          else setZone('eu');
+        });
     })();
   </script>
 
