@@ -188,60 +188,57 @@
   </footer>
 
   <script>
-    var REF = { single: 28, bundle: 47, bundleFull: 56 };
-    var currentRates = { CHF: 1 };
+    /* Prix fixes par zone — aucune conversion pour CHF et EUR */
+    var PRICES = {
+      ch: { currency: 'CHF', label: 'Franc suisse',       single: 26, bundle: 47, bundleFull: 52 },
+      eu: { currency: 'EUR', label: 'Euro',                single: 28, bundle: 50, bundleFull: 56 },
+      af: { currency: 'XOF', label: 'Franc CFA',           single: null, bundle: null, bundleFull: null }
+    };
+    var XOF_RATE_FALLBACK = 623; /* 1 CHF ≈ 623 XOF */
+    var xofRate = null;
 
-    function roundAmt(amount, currency) {
-      if (currency === 'XOF') return Math.round(amount / 500) * 500;
-      return Math.round(amount);
+    function roundXOF(n) { return Math.round(n / 500) * 500; }
+
+    function fmt(amount, currency) {
+      if (currency === 'XOF') return amount.toLocaleString('fr-FR') + '\u00a0F CFA';
+      if (currency === 'CHF') return amount + '\u00a0CHF';
+      return amount + '\u00a0\u20ac';
     }
 
-    function fmt(rounded, currency) {
-      if (currency === 'XOF') return rounded.toLocaleString('fr-FR') + '\u00a0F CFA';
-      if (currency === 'CHF') return rounded + '\u00a0CHF';
-      return rounded + '\u00a0\u20ac';
-    }
-
-    function showPrices(currency, rate, label) {
-      var p      = roundAmt(REF.single     * rate, currency);
-      var pb     = roundAmt(REF.bundle     * rate, currency);
-      var pbFull = roundAmt(REF.bundleFull * rate, currency);
-      var saving = pbFull - pb;
-      document.getElementById('price-1').textContent       = fmt(p,      currency);
-      document.getElementById('price-2').textContent       = fmt(p,      currency);
-      document.getElementById('currency-1').textContent    = label;
-      document.getElementById('currency-2').textContent    = label;
-      document.getElementById('price-bundle').textContent  = fmt(pb,     currency);
-      document.getElementById('price-strike').textContent  = fmt(pbFull, currency);
-      document.getElementById('currency-bundle').textContent = 'Économisez\u00a0' + fmt(saving, currency);
+    function showPrices(p) {
+      var saving = p.bundleFull - p.bundle;
+      document.getElementById('price-1').textContent         = fmt(p.single,      p.currency);
+      document.getElementById('price-2').textContent         = fmt(p.single,      p.currency);
+      document.getElementById('currency-1').textContent      = p.label;
+      document.getElementById('currency-2').textContent      = p.label;
+      document.getElementById('price-bundle').textContent    = fmt(p.bundle,      p.currency);
+      document.getElementById('price-strike').textContent    = fmt(p.bundleFull,  p.currency);
+      document.getElementById('currency-bundle').textContent = 'Économisez\u00a0' + fmt(saving, p.currency);
     }
 
     function applyZone(zone, countryName) {
       var zoneLabels = { ch: 'Suisse', eu: 'Europe', af: 'Afrique francophone' };
       var el = document.getElementById('zone-label');
       if (el) el.textContent = countryName || zoneLabels[zone] || '';
-      if (zone === 'ch') {
-        showPrices('CHF', 1, 'Franc suisse');
-      } else if (zone === 'eu') {
-        getRate('EUR', function(r){ showPrices('EUR', r, 'Euro'); });
-      } else if (zone === 'af') {
-        getRate('XOF', function(r){ showPrices('XOF', r, 'Franc CFA'); });
-      }
-    }
 
-    var FALLBACK = { EUR: 0.95, XOF: 623 };
-    function getRate(currency, cb) {
-      if (currentRates[currency]) { cb(currentRates[currency]); return; }
-      fetch('https://open.er-api.com/v6/latest/CHF')
-        .then(function(r){ return r.json(); })
-        .then(function(d){
-          if (d && d.rates && d.rates[currency]) { currentRates[currency] = d.rates[currency]; cb(d.rates[currency]); }
-          else throw new Error();
-        })
-        .catch(function(){
-          currentRates[currency] = FALLBACK[currency] || 1;
-          cb(currentRates[currency]);
-        });
+      if (zone === 'af') {
+        function renderXOF(rate) {
+          var r = rate || XOF_RATE_FALLBACK;
+          showPrices({
+            currency: 'XOF', label: 'Franc CFA',
+            single:     roundXOF(26 * r),
+            bundle:     roundXOF(47 * r),
+            bundleFull: roundXOF(52 * r)
+          });
+        }
+        if (xofRate) { renderXOF(xofRate); return; }
+        fetch('https://open.er-api.com/v6/latest/CHF')
+          .then(function(r){ return r.json(); })
+          .then(function(d){ xofRate = (d && d.rates && d.rates.XOF) || XOF_RATE_FALLBACK; renderXOF(xofRate); })
+          .catch(function(){ renderXOF(XOF_RATE_FALLBACK); });
+      } else {
+        showPrices(PRICES[zone] || PRICES.ch);
+      }
     }
 
     applyZone('ch');
