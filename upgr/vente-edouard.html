@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Travailler avec Édouard — UpGrade</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Raleway', sans-serif; background-color: #080F1E; color: #fff; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    a { color: #F5E090; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* HEADER */
+    header { position: fixed; top: 0; left: 0; width: 100%; z-index: 50; background: rgba(8,15,30,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .header-inner { max-width: 860px; margin: 0 auto; padding: 1.1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.1rem; font-weight: 700; font-style: italic; color: #F5E090; }
+    .back-link { font-size: 0.75rem; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
+    .back-link:hover { color: #F5E090; text-decoration: none; }
+
+    /* HERO */
+    .hero { max-width: 860px; margin: 0 auto; padding: 8rem 2rem 4.5rem; }
+    .page-label { font-size: 0.7rem; font-weight: 300; letter-spacing: 0.38em; text-transform: uppercase; color: #B48C28; margin-bottom: 1.3rem; }
+    .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; font-style: italic; color: #F5E090; line-height: 1.15; margin-bottom: 1.4rem; }
+    .hero-sub { font-size: 1.08rem; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.82); max-width: 620px; }
+    .gold-line { height: 1px; background: linear-gradient(90deg, #F5E090 0%, transparent 100%); margin: 3rem 0; border: none; }
+
+    /* CONTENU */
+    .content { max-width: 860px; margin: 0 auto; padding: 0 2rem 7rem; }
+
+    /* LIVRE — carte horizontale pleine largeur */
+    .book { display: flex; gap: 0; border: 1px solid rgba(245,224,144,0.12); border-radius: 4px; background: rgba(255,255,255,0.02); margin-bottom: 3rem; overflow: hidden; }
+    @media (max-width: 640px) { .book { flex-direction: column; } }
+
+    .book-cover-col { flex: 0 0 220px; background: #080F1E; display: flex; align-items: center; justify-content: center; padding: 2.5rem 2rem; }
+    @media (max-width: 640px) { .book-cover-col { flex: none; padding: 2rem; } }
+    .book-cover-col img { width: 100%; max-width: 160px; height: auto; display: block; box-shadow: 0 8px 32px rgba(0,0,0,0.28); }
+
+    .book-text-col { flex: 1; padding: 2.5rem 2.5rem 2rem; display: flex; flex-direction: column; border-left: 1px solid rgba(245,224,144,0.08); }
+    @media (max-width: 640px) { .book-text-col { border-left: none; border-top: 1px solid rgba(245,224,144,0.08); padding: 2rem 1.6rem; } }
+
+    .book-tag { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.7rem; }
+    .book-title { font-size: 1.65rem; font-weight: 700; font-style: italic; line-height: 1.25; margin-bottom: 1.4rem; display: inline-block;
+      background: linear-gradient(90deg, #f6dc8d 0%, #fff 25%, #f6dc8d 50%, #b58d26 75%, #f6dc8d 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      background-size: 200% 100%; animation: shimmer 6s linear infinite; }
+    @keyframes shimmer { 0% { background-position: -200% 0; } to { background-position: 200% 0; } }
+
+    .book-desc { font-size: 0.97rem; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.82); }
+    .book-desc p { margin-bottom: 1rem; }
+    .book-desc p:last-child { margin-bottom: 0; }
+    .book-desc strong { color: rgba(255,255,255,0.95); font-weight: 500; }
+
+    .book-points { list-style: none; margin: 1.2rem 0 1rem; padding: 0; }
+    .book-points li { font-size: 0.95rem; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.78); padding-left: 1.2rem; position: relative; margin-bottom: 0.4rem; }
+    .book-points li::before { content: '—'; position: absolute; left: 0; color: #B48C28; }
+
+    .book-buy { margin-top: auto; padding-top: 1.8rem; border-top: 1px solid rgba(255,255,255,0.07); display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+    .price-block .price-amount { font-size: 2rem; font-weight: 700; color: #F5E090; line-height: 1; }
+    .price-block .price-currency { font-size: 0.85rem; font-weight: 300; color: rgba(255,255,255,0.55); margin-top: 0.25rem; }
+
+    .btn { display: inline-block; padding: 0.85rem 2rem; font-family: 'Raleway', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; text-align: center; transition: background 0.18s, color 0.18s; text-decoration: none; white-space: nowrap; }
+    .btn-outline { background: transparent; color: #F5E090; border: 1px solid rgba(245,224,144,0.5); }
+    .btn-outline:hover { background: rgba(245,224,144,0.06); text-decoration: none; }
+    .btn-solid { background: #F5E090; color: #080F1E; }
+    .btn-solid:hover { background: #e8d07a; text-decoration: none; }
+
+    /* SÉPARATEUR ENTRE LIVRES */
+    .book-sep { text-align: center; margin: -1rem 0 3rem; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
+
+    /* BUNDLE */
+    .bundle { border: 1px solid rgba(245,224,144,0.28); border-radius: 4px; padding: 2.5rem 2.5rem; background: rgba(245,224,144,0.03); }
+    .bundle-tag { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.8rem; }
+    .bundle-title { font-size: 1.3rem; font-weight: 600; color: #ffffff; margin-bottom: 1rem; }
+    .bundle-desc { font-size: 0.97rem; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.8); margin-bottom: 2rem; }
+    .bundle-row { display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap; }
+    .bundle-price .price-amount { font-size: 2.2rem; font-weight: 700; color: #F5E090; line-height: 1; }
+    .price-strike { font-size: 1rem; text-decoration: line-through; color: rgba(255,255,255,0.4); margin-left: 0.5rem; }
+    .bundle-price .price-currency { font-size: 0.85rem; font-weight: 300; color: rgba(255,255,255,0.55); margin-top: 0.3rem; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 2.5rem 2rem; text-align: center; }
+    .footer-inner { max-width: 860px; margin: 0 auto; font-size: 0.76rem; font-weight: 300; color: rgba(255,255,255,0.45); letter-spacing: 0.04em; }
+    .footer-inner a { color: rgba(255,255,255,0.45); }
+    .footer-inner a:hover { color: #F5E090; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo">UpGrade</a>
+      <a href="/" class="back-link">← Retour</a>
+    </div>
+  </header>
+
+  <div class="hero">
+    <p class="page-label">Édouard — Conseiller Stratégique</p>
+    <h1>Vous avez interagi avec Édouard.<br>Maintenant, allez vraiment au fond.</h1>
+    <p class="hero-sub">Vous avez vu comment il fonctionne : il challenge votre projet dès le premier message. Mais il est confrontant. Il pose des questions précises, parfois inconfortables, qui mettent le doigt sur ce sur quoi vous n'avez pas encore réfléchi. Sans préparation, vous passez à côté de son essence : vous répondez en surface, vous cherchez vos notes, l'échange devient redondant. Allez au fond de vos conversations avec Édouard : passez de l'idée floue au plan actionnable.</p>
+    <hr class="gold-line"/>
+  </div>
+
+  <div class="content">
+
+    <!-- LIVRE 1 -->
+    <div class="book">
+      <div class="book-cover-col">
+        <img src="/upgr/covers/idee-au-plan.png" alt="De l'idée au plan — couverture"/>
+      </div>
+      <div class="book-text-col">
+        <p class="book-tag">Ouvrage 1</p>
+        <h2 class="book-title">De l'idée au plan</h2>
+        <div class="book-desc">
+          <p>Édouard ne s'accommode pas d'une idée vague. Il veut des faits, des hypothèses testées, des angles précis. Ce guide vous prépare à lui soumettre un projet solide — pas une ébauche.</p>
+          <p>Il suit la logique qu'Édouard applique lui-même en 8 étapes :</p>
+          <ul class="book-points">
+            <li>Clarifier l'<strong>intention réelle</strong> derrière le projet — ce que vous voulez vraiment produire.</li>
+            <li>Identifier les <strong>angles morts</strong> avant qu'Édouard les trouve — et les traiter en amont.</li>
+            <li>Structurer un <strong>diagnostic assertif</strong> : hypothèses, risques, leviers, première action concrète.</li>
+          </ul>
+          <p>Résultat : vous arrivez à la conversation avec un projet cadré, pas une intuition. Édouard peut alors aller là où il est le plus utile — le fond, pas la surface.</p>
+        </div>
+        <div class="book-buy">
+          <div class="price-block">
+            <div class="price-amount" id="price-1">26 CHF</div>
+          </div>
+          <a href="#" class="btn btn-outline" id="link-1" onclick="return false;">Acheter cet ouvrage</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIVRE 2 -->
+    <div class="book">
+      <div class="book-cover-col">
+        <img src="/upgr/covers/competences-invisibles.png" alt="Vos compétences humaines invisibles — couverture"/>
+      </div>
+      <div class="book-text-col">
+        <p class="book-tag">Ouvrage 2</p>
+        <h2 class="book-title">Vos compétences humaines invisibles</h2>
+        <div class="book-desc">
+          <p>Édouard challenge votre projet. Mais ce qui détermine la qualité de la réponse que vous lui donnez, c'est <strong>vous</strong> — votre clarté, votre engagement, votre capacité à défendre une position sous pression.</p>
+          <p>Ce livre explore ce qui se passe dans votre corps et dans votre tête quand vous êtes confronté : pourquoi certaines questions d'Édouard vous déstabilisent, et comment transformer cette confrontation en levier de progression plutôt qu'en blocage.</p>
+          <p>Il montre comment l'<strong>ancrage corporel</strong>, la cognition et la créativité s'interconnectent — et comment les mobiliser pour tenir la conversation à son niveau d'exigence.</p>
+        </div>
+        <div class="book-buy">
+          <div class="price-block">
+            <div class="price-amount" id="price-2">26 CHF</div>
+          </div>
+          <a href="#" class="btn btn-outline" id="link-2" onclick="return false;">Acheter cet ouvrage</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUNDLE -->
+    <div class="bundle">
+      <p class="bundle-tag">Offre groupée — recommandé</p>
+      <h3 class="bundle-title">Les deux ouvrages ensemble</h3>
+      <p class="bundle-desc">Le premier vous donne la structure pour arriver préparé. Le second vous donne la posture pour tenir sous la pression d'Édouard. Ensemble, ils forment le kit complet pour transformer chaque conversation en décision actée — de l'idée floue au plan sur lequel vous pouvez vous engager.</p>
+      <div class="bundle-row">
+        <div class="bundle-price">
+          <div>
+            <span class="price-amount" id="price-bundle">47 CHF</span>
+            <span class="price-strike" id="price-strike">52 CHF</span>
+          </div>
+          <div class="price-currency" id="currency-bundle">Économisez 5 CHF</div>
+        </div>
+        <a href="#" class="btn btn-solid" id="link-bundle" onclick="return false;">Prendre les deux ouvrages</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      © UpGrade Learning &amp; Development —
+      <a href="/upgr/mentionslegales">Mentions légales</a> ·
+      <a href="/upgr/confidentialite">Confidentialité</a> ·
+      <a href="/upgr/politiquedecookies">Politique de cookies</a> ·
+      <a href="/upgr/cgu">CGU</a> ·
+      <a href="/upgr/cgv">CGV</a>
+    </div>
+  </footer>
+
+  <script>
+    /* Prix de référence en CHF — base de toutes les conversions */
+    var REF_CHF = { single: 26, bundle: 47, bundleFull: 52 };
+
+    /* Prix fixes (sans conversion) */
+    var FIXED = {
+      CHF: { single: 26, bundle: 47, bundleFull: 52 },
+      EUR: { single: 28, bundle: 50, bundleFull: 56 }
+    };
+
+    /* Taux de repli si l'API de taux échoue (1 CHF → devise) */
+    var FALLBACK = { XOF: 623, XAF: 623, MAD: 10.5, TND: 3.3 };
+
+    var cachedRates = {};
+
+    function roundAmt(n, currency) {
+      if (currency === 'XOF' || currency === 'XAF') return Math.round(n / 500) * 500;
+      return Math.round(n);
+    }
+
+    function fmt(amount, currency) {
+      if (currency === 'XOF' || currency === 'XAF') return amount.toLocaleString('fr-FR') + '\u00a0F CFA';
+      if (currency === 'EUR') return amount + '\u00a0\u20ac';
+      if (currency === 'CHF') return amount + '\u00a0CHF';
+      return amount.toLocaleString('fr-FR') + '\u00a0' + currency;
+    }
+
+    function showPrices(single, bundle, bundleFull, currency) {
+      var saving = bundleFull - bundle;
+      document.getElementById('price-1').textContent         = fmt(single,      currency);
+      document.getElementById('price-2').textContent         = fmt(single,      currency);
+      document.getElementById('price-bundle').textContent    = fmt(bundle,      currency);
+      document.getElementById('price-strike').textContent    = fmt(bundleFull,  currency);
+      document.getElementById('currency-bundle').textContent = 'Économisez\u00a0' + fmt(saving, currency);
+    }
+
+    function applyCurrency(currency) {
+      currency = currency || 'CHF';
+
+      if (FIXED[currency]) {
+        var p = FIXED[currency];
+        showPrices(p.single, p.bundle, p.bundleFull, currency);
+        return;
+      }
+
+      function render(rate) {
+        var r = rate || FALLBACK[currency] || 1;
+        showPrices(
+          roundAmt(REF_CHF.single     * r, currency),
+          roundAmt(REF_CHF.bundle     * r, currency),
+          roundAmt(REF_CHF.bundleFull * r, currency),
+          currency
+        );
+      }
+
+      if (cachedRates[currency]) { render(cachedRates[currency]); return; }
+      fetch('https://open.er-api.com/v6/latest/CHF')
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          cachedRates[currency] = (d && d.rates && d.rates[currency]) || FALLBACK[currency] || 1;
+          render(cachedRates[currency]);
+        })
+        .catch(function(){ render(FALLBACK[currency]); });
+    }
+
+    var params = new URLSearchParams(window.location.search);
+    var forcedCurrency = params.get('currency');
+    var forcedZone     = params.get('zone');
+    if (!forcedCurrency && forcedZone === 'ch') forcedCurrency = 'CHF';
+    if (!forcedCurrency && forcedZone === 'eu') forcedCurrency = 'EUR';
+    if (!forcedCurrency && forcedZone === 'af') forcedCurrency = 'XOF';
+
+    applyCurrency(forcedCurrency || 'CHF');
+
+    if (!forcedCurrency) {
+      fetch('/api/geo')
+        .then(function(r){ return r.json(); })
+        .then(function(d){ if (d && d.currency) applyCurrency(d.currency); })
+        .catch(function(){});
+    }
+  </script>
+
+</body>
+</html>
