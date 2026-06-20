@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bon de commande — UpGrade</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body { background: #080F1E; color: rgba(255,255,255,0.88); font-family: 'Raleway', sans-serif; font-weight: 300; line-height: 1.7; min-height: 100vh; }
+
+    header { position: fixed; top: 0; left: 0; width: 100%; z-index: 50; background: rgba(8,15,30,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .header-inner { max-width: 820px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; height: 56px; }
+    .logo { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #F5E090; text-decoration: none; }
+
+    .page-wrap { max-width: 820px; margin: 0 auto; padding: 100px 2rem 80px; }
+
+    .page-label { font-size: 0.7rem; font-weight: 300; letter-spacing: 0.38em; text-transform: uppercase; color: #B48C28; margin-bottom: 1.3rem; }
+    h1 { font-size: 2rem; font-weight: 700; color: #fff; line-height: 1.25; margin-bottom: 0.6rem; }
+    .page-intro { font-size: 0.97rem; font-weight: 300; color: rgba(255,255,255,0.6); margin-bottom: 0.8rem; }
+
+    .currency-bar { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 3rem; font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.4); letter-spacing: 0.06em; }
+    .currency-pill { background: rgba(245,224,144,0.08); border: 1px solid rgba(245,224,144,0.2); border-radius: 2px; padding: 0.2rem 0.6rem; font-size: 0.72rem; font-weight: 600; color: #F5E090; letter-spacing: 0.1em; }
+
+    hr.gold-line { border: none; border-top: 1px solid rgba(245,224,144,0.15); margin: 2.5rem 0; }
+
+    /* Section agent */
+    .agent-section { margin-bottom: 3.5rem; }
+    .agent-label { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.38em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.5rem; }
+    .agent-title { font-size: 1.15rem; font-weight: 600; color: #fff; margin-bottom: 2rem; }
+
+    /* Cartes */
+    .cards { display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .card { display: flex; align-items: flex-start; gap: 1.6rem; border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 1.6rem 1.8rem; background: rgba(255,255,255,0.015); transition: border-color 0.18s, background 0.18s; cursor: pointer; position: relative; }
+    .card:hover { border-color: rgba(245,224,144,0.2); background: rgba(245,224,144,0.02); }
+    .card.featured { border-color: rgba(245,224,144,0.3); background: rgba(245,224,144,0.03); }
+
+    .card-cover { flex-shrink: 0; width: 72px; }
+    .card-cover img { width: 100%; height: auto; display: block; box-shadow: 0 6px 20px rgba(0,0,0,0.35); border-radius: 2px; }
+
+    .card-body { flex: 1; min-width: 0; }
+    .card-tag { font-size: 0.62rem; font-weight: 300; letter-spacing: 0.32em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.35rem; }
+    .card-title {
+      font-size: 1.1rem; font-weight: 700; font-style: italic; margin-bottom: 0.6rem; display: inline-block;
+      background: linear-gradient(90deg, #f6dc8d 0%, #fff 25%, #f6dc8d 50%, #b58d26 75%, #f6dc8d 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      background-size: 200% 100%; animation: shimmer 6s linear infinite;
+    }
+    @keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+    .card-desc { font-size: 0.88rem; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.7; }
+
+    .card-right { display: flex; flex-direction: column; align-items: flex-end; gap: 1rem; flex-shrink: 0; min-width: 130px; }
+    .card-price-wrap { text-align: right; }
+    .card-price { font-size: 1.6rem; font-weight: 700; color: #F5E090; line-height: 1; }
+    .card-price-strike { font-size: 0.85rem; text-decoration: line-through; color: rgba(255,255,255,0.35); margin-left: 0.4rem; }
+    .card-currency { font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
+    .card-economy { font-size: 0.72rem; font-weight: 400; color: #B48C28; margin-top: 0.15rem; }
+
+    .btn { display: inline-block; padding: 0.7rem 1.5rem; font-family: 'Raleway', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; text-align: center; transition: background 0.18s, color 0.18s; text-decoration: none; white-space: nowrap; }
+    .btn-outline { background: transparent; color: #F5E090; border: 1px solid rgba(245,224,144,0.5); }
+    .btn-outline:hover { background: rgba(245,224,144,0.06); }
+    .btn-solid { background: #F5E090; color: #080F1E; }
+    .btn-solid:hover { background: #e8d07a; }
+
+    .badge-recommended { position: absolute; top: -1px; right: 1.5rem; background: #F5E090; color: #080F1E; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.18rem 0.6rem; border-radius: 0 0 3px 3px; }
+
+    footer { text-align: center; font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.25); padding: 2rem 1rem; border-top: 1px solid rgba(255,255,255,0.05); letter-spacing: 0.04em; }
+    footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
+    footer a:hover { color: rgba(255,255,255,0.55); }
+
+    @media (max-width: 600px) {
+      .card { flex-direction: column; gap: 1rem; }
+      .card-right { flex-direction: row; align-items: center; justify-content: space-between; min-width: 0; width: 100%; }
+      .card-cover { width: 56px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="/">UpGrade</a>
+  </div>
+</header>
+
+<div class="page-wrap">
+
+  <p class="page-label">Accès aux ressources</p>
+  <h1>Bon de commande</h1>
+  <p class="page-intro">Choisissez vos ouvrages ci-dessous. Les prix sont affichés dans votre devise automatiquement.</p>
+
+  <div class="currency-bar">
+    Devise détectée&nbsp;: <span class="currency-pill" id="currency-label">CHF</span>
+  </div>
+
+  <!-- ===================== EUGÈNE ===================== -->
+  <div class="agent-section">
+    <p class="agent-label">Agent IA</p>
+    <p class="agent-title">Eugène — Consultant Business Stratégique</p>
+
+    <div class="cards">
+
+      <!-- Ouvrage 1 -->
+      <div class="card">
+        <div class="card-cover">
+          <img src="/upgr/covers/idee-au-plan.png" alt="De l'idée au plan"/>
+        </div>
+        <div class="card-body">
+          <p class="card-tag">Ouvrage 1</p>
+          <h2 class="card-title">De l'idée au plan</h2>
+          <p class="card-desc">Clarifiez vos idées floues et transformez-les en un plan structuré, prêt à soumettre à Eugène.</p>
+        </div>
+        <div class="card-right">
+          <div class="card-price-wrap">
+            <div class="card-price" id="e-price-1">26 CHF</div>
+          </div>
+          <a href="#" class="btn btn-outline" id="e-link-1" onclick="return false;">Commander</a>
+        </div>
+      </div>
+
+      <!-- Ouvrage 2 -->
+      <div class="card">
+        <div class="card-cover">
+          <img src="/upgr/covers/competences-invisibles.png" alt="Vos compétences humaines invisibles"/>
+        </div>
+        <div class="card-body">
+          <p class="card-tag">Ouvrage 2</p>
+          <h2 class="card-title">Vos compétences humaines invisibles</h2>
+          <p class="card-desc">Activez vos ressources corporelles et cognitives pour passer à l'action et générer des résultats.</p>
+        </div>
+        <div class="card-right">
+          <div class="card-price-wrap">
+            <div class="card-price" id="e-price-2">26 CHF</div>
+          </div>
+          <a href="#" class="btn btn-outline" id="e-link-2" onclick="return false;">Commander</a>
+        </div>
+      </div>
+
+      <!-- Bundle Eugène -->
+      <div class="card featured">
+        <span class="badge-recommended">Recommandé</span>
+        <div class="card-cover" style="display:flex;flex-direction:column;gap:0.5rem;">
+          <img src="/upgr/covers/idee-au-plan.png" alt="De l'idée au plan"/>
+          <img src="/upgr/covers/competences-invisibles.png" alt="Vos compétences humaines invisibles"/>
+        </div>
+        <div class="card-body">
+          <p class="card-tag">Offre groupée</p>
+          <h2 class="card-title">Les deux ouvrages ensemble</h2>
+          <p class="card-desc">La structure pour clarifier et planifier + la posture pour exécuter. Un système complet pour tirer le maximum de vos conversations avec Eugène.</p>
+        </div>
+        <div class="card-right">
+          <div class="card-price-wrap">
+            <div class="card-price">
+              <span id="e-price-bundle">47 CHF</span>
+              <span class="card-price-strike" id="e-price-strike">52 CHF</span>
+            </div>
+            <div class="card-economy" id="e-economy">Économisez 5 CHF</div>
+          </div>
+          <a href="#" class="btn btn-solid" id="e-link-bundle" onclick="return false;">Commander</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="gold-line"/>
+
+  <!-- ===================== ÉDOUARD ===================== -->
+  <div class="agent-section">
+    <p class="agent-label">Agent IA</p>
+    <p class="agent-title">Édouard — Consultant Viabilité Business</p>
+
+    <div class="cards">
+
+      <!-- Ouvrage 1 -->
+      <div class="card">
+        <div class="card-cover">
+          <img src="/upgr/covers/idee-au-plan.png" alt="De l'idée au plan"/>
+        </div>
+        <div class="card-body">
+          <p class="card-tag">Ouvrage 1</p>
+          <h2 class="card-title">De l'idée au plan</h2>
+          <p class="card-desc">Clarifiez vos idées floues et transformez-les en un plan structuré, prêt à soumettre à Édouard.</p>
+        </div>
+        <div class="card-right">
+          <div class="card-price-wrap">
+            <div class="card-price" id="ed-price-1">26 CHF</div>
+          </div>
+          <a href="#" class="btn btn-outline" id="ed-link-1" onclick="return false;">Commander</a>
+        </div>
+      </div>
+
+      <!-- Ouvrage 2 -->
+      <div class="card">
+        <div class="card-cover">
+          <img src="/upgr/covers/competences-invisibles.png" alt="Vos compétences humaines invisibles"/>
+        </div>
+        <div class="card-body">
+          <p class="card-tag">Ouvrage 2</p>
+          <h2 class="card-title">Vos compétences humaines invisibles</h2>
+          <p class="card-desc">Activez vos ressources corporelles et cognitives pour passer à l'action et générer des résultats.</p>
+        </div>
+        <div class="card-right">
+          <div class="card-price-wrap">
+            <div class="card-price" id="ed-price-2">26 CHF</div>
+          </div>
+          <a href="#" class="btn btn-outline" id="ed-link-2" onclick="return false;">Commander</a>
+        </div>
+      </div>
+
+      <!-- Bundle Édouard -->
+      <div class="card featured">
+        <span class="badge-recommended">Recommandé</span>
+        <div class="card-cover" style="display:flex;flex-direction:column;gap:0.5rem;">
+          <img src="/upgr/covers/idee-au-plan.png" alt="De l'idée au plan"/>
+          <img src="/upgr/covers/competences-invisibles.png" alt="Vos compétences humaines invisibles"/>
+        </div>
+        <div class="card-body">
+          <p class="card-tag">Offre groupée</p>
+          <h2 class="card-title">Les deux ouvrages ensemble</h2>
+          <p class="card-desc">La structure pour clarifier et planifier + la posture pour exécuter. Un système complet pour tirer le maximum de vos conversations avec Édouard.</p>
+        </div>
+        <div class="card-right">
+          <div class="card-price-wrap">
+            <div class="card-price">
+              <span id="ed-price-bundle">47 CHF</span>
+              <span class="card-price-strike" id="ed-price-strike">52 CHF</span>
+            </div>
+            <div class="card-economy" id="ed-economy">Économisez 5 CHF</div>
+          </div>
+          <a href="#" class="btn btn-solid" id="ed-link-bundle" onclick="return false;">Commander</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>
+    <a href="/upgr/cgv.html">CGV</a> &nbsp;·&nbsp;
+    <a href="/upgr/cgu.html">CGU</a> &nbsp;·&nbsp;
+    <a href="/upgr/mentionslegales.html">Mentions légales</a> &nbsp;·&nbsp;
+    <a href="/upgr/confidentialite.html">Confidentialité</a>
+  </p>
+  <p style="margin-top:0.5rem;">© 2025 UpGrade Learning &amp; Development. Tous droits réservés.</p>
+</footer>
+
+<script>
+  var REF_CHF = { single: 26, bundle: 47, bundleFull: 52 };
+
+  var FIXED = {
+    CHF: { single: 26, bundle: 47, bundleFull: 52 },
+    EUR: { single: 28, bundle: 50, bundleFull: 56 }
+  };
+
+  var FALLBACK = { MAD: 9.8, TND: 3.3, XOF: 600, XAF: 600 };
+
+  function roundAmt(n, currency) {
+    if (currency === 'XOF' || currency === 'XAF') return Math.round(n / 500) * 500;
+    if (currency === 'MAD' || currency === 'TND') return Math.round(n * 2) / 2;
+    return Math.round(n);
+  }
+
+  function fmt(amount, currency) {
+    if (currency === 'EUR') return amount + '\u00a0\u20ac';
+    if (currency === 'CHF') return amount + '\u00a0CHF';
+    return amount + '\u00a0' + currency;
+  }
+
+  function economy(single, bundleFull, currency) {
+    var saved = bundleFull - (arguments[1] ? 0 : 0);
+    saved = roundAmt((REF_CHF.bundleFull - REF_CHF.bundle), currency) || (bundleFull - arguments[0]);
+    return 'Économisez ' + fmt(bundleFull - arguments[1] + arguments[1] - arguments[0], currency);
+  }
+
+  function showPrices(single, bundle, bundleFull, currency) {
+    var saved = fmt(bundleFull - bundle, currency);
+    var econText = 'Économisez ' + saved;
+    var ids = [
+      ['e-price-1','e-price-2','e-price-bundle','e-price-strike','e-economy'],
+      ['ed-price-1','ed-price-2','ed-price-bundle','ed-price-strike','ed-economy']
+    ];
+    ids.forEach(function(g) {
+      document.getElementById(g[0]).textContent = fmt(single, currency);
+      document.getElementById(g[1]).textContent = fmt(single, currency);
+      document.getElementById(g[2]).textContent = fmt(bundle, currency);
+      document.getElementById(g[3]).textContent = fmt(bundleFull, currency);
+      document.getElementById(g[4]).textContent = econText;
+    });
+    document.getElementById('currency-label').textContent = currency;
+  }
+
+  function applyCurrency(currency) {
+    currency = currency || 'CHF';
+    if (FIXED[currency]) {
+      var p = FIXED[currency];
+      showPrices(p.single, p.bundle, p.bundleFull, currency);
+      return;
+    }
+    var fb = FALLBACK[currency];
+    if (fb) {
+      showPrices(
+        roundAmt(REF_CHF.single * fb, currency),
+        roundAmt(REF_CHF.bundle * fb, currency),
+        roundAmt(REF_CHF.bundleFull * fb, currency),
+        currency
+      );
+    }
+    fetch('https://open.er-api.com/v6/latest/CHF')
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        var r = data.rates && data.rates[currency];
+        if (!r) return;
+        showPrices(
+          roundAmt(REF_CHF.single * r, currency),
+          roundAmt(REF_CHF.bundle * r, currency),
+          roundAmt(REF_CHF.bundleFull * r, currency),
+          currency
+        );
+      }).catch(function(){});
+  }
+
+  var params = new URLSearchParams(window.location.search);
+  var forcedCurrency = params.get('currency');
+  var forcedZone = params.get('zone');
+  if (!forcedCurrency && forcedZone === 'ch') forcedCurrency = 'CHF';
+  if (!forcedCurrency && forcedZone === 'eu') forcedCurrency = 'EUR';
+
+  if (forcedCurrency) {
+    applyCurrency(forcedCurrency);
+  } else {
+    fetch('/api/geo')
+      .then(function(r){ return r.json(); })
+      .then(function(data){ applyCurrency(data.currency || 'CHF'); })
+      .catch(function(){ applyCurrency('CHF'); });
+  }
+</script>
+
+</body>
+</html>
