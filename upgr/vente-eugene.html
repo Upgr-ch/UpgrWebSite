@@ -82,6 +82,36 @@
     .price-strike { font-size: 1rem; text-decoration: line-through; color: rgba(255,255,255,0.4); margin-left: 0.5rem; }
     .bundle-price .price-currency { font-size: 0.85rem; font-weight: 300; color: rgba(255,255,255,0.55); margin-top: 0.3rem; }
 
+    /* UPSELL MODAL */
+    .upsell-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(4,8,18,0.88); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); align-items: center; justify-content: center; padding: 1.5rem; }
+    .upsell-overlay.open { display: flex; }
+    .upsell-modal { background: #0d1628; border: 1px solid rgba(245,224,144,0.3); border-radius: 6px; width: 100%; max-width: 460px; display: flex; flex-direction: column; overflow: hidden; }
+    .upsell-head { padding: 1.3rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; }
+    .upsell-pretitle { font-size: 0.62rem; font-weight: 300; letter-spacing: 0.32em; text-transform: uppercase; color: #B48C28; }
+    .upsell-close { background: none; border: none; color: rgba(255,255,255,0.3); font-size: 1.4rem; cursor: pointer; line-height: 1; padding: 0 0.2rem; font-family: inherit; }
+    .upsell-close:hover { color: rgba(255,255,255,0.75); }
+    .upsell-selected { padding: 1.1rem 1.5rem; background: rgba(255,255,255,0.025); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .upsell-selected-label { font-size: 0.62rem; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.38); display: block; margin-bottom: 0.45rem; }
+    .upsell-selected-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .upsell-selected-title { font-size: 0.95rem; font-weight: 600; font-style: italic; color: #fff; }
+    .upsell-selected-price { font-size: 1.2rem; font-weight: 700; color: #F5E090; white-space: nowrap; }
+    .upsell-offer { padding: 1.5rem; }
+    .upsell-offer-badge { display: inline-block; background: #F5E090; color: #080F1E; font-size: 0.54rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.18rem 0.6rem; border-radius: 2px; margin-bottom: 0.9rem; }
+    .upsell-offer-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+    .upsell-offer-desc { font-size: 0.83rem; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.5); margin-bottom: 1.1rem; }
+    .upsell-prices-row { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.25rem; }
+    .upsell-bundle-price { font-size: 1.85rem; font-weight: 700; color: #F5E090; line-height: 1; }
+    .upsell-bundle-strike { font-size: 0.97rem; text-decoration: line-through; color: rgba(255,255,255,0.3); }
+    .upsell-saving { font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.42); margin-bottom: 1.3rem; }
+    .upsell-btn-bundle { display: block; width: 100%; text-align: center; padding: 0.9rem 1.5rem; font-family: 'Raleway', sans-serif; font-size: 0.77rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: #F5E090; color: #080F1E; border-radius: 2px; text-decoration: none; transition: background 0.18s; }
+    .upsell-btn-bundle:hover { background: #e8d07a; text-decoration: none; }
+    .upsell-skip { display: block; text-align: center; padding: 1rem 1.5rem; font-size: 0.72rem; font-weight: 300; color: rgba(255,255,255,0.35); text-decoration: none; border-top: 1px solid rgba(255,255,255,0.06); transition: color 0.18s; }
+    .upsell-skip:hover { color: rgba(255,255,255,0.68); text-decoration: none; }
+    @media (max-width: 600px) {
+      .upsell-overlay { align-items: flex-end; padding: 0; }
+      .upsell-modal { border-radius: 12px 12px 0 0; max-width: 100%; }
+    }
+
     /* FOOTER */
     footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 2.5rem 2rem; text-align: center; }
     .footer-inner { max-width: 860px; margin: 0 auto; font-size: 0.76rem; font-weight: 300; color: rgba(255,255,255,0.45); letter-spacing: 0.04em; }
@@ -128,7 +158,7 @@
             <div class="price-amount" id="price-1">26 CHF</div>
           </div>
           <a href="/upgr/extrait-idee-au-plan?from=eugene" class="btn btn-outline" id="extrait-1">Voir un extrait</a>
-          <a href="#" class="btn btn-outline" id="link-1" onclick="return false;">Commander</a>
+          <a href="#" class="btn btn-outline" id="link-1" onclick="openUpsell(1); return false;">Commander</a>
         </div>
       </div>
     </div>
@@ -150,7 +180,7 @@
             <div class="price-amount" id="price-2">26 CHF</div>
           </div>
           <a href="#" class="btn btn-outline" id="extrait-2" onclick="return false;">Voir un extrait</a>
-          <a href="#" class="btn btn-outline" id="link-2" onclick="return false;">Commander</a>
+          <a href="#" class="btn btn-outline" id="link-2" onclick="openUpsell(2); return false;">Commander</a>
         </div>
       </div>
     </div>
@@ -185,6 +215,37 @@
       <a href="/upgr/cgv">CGV</a>
     </div>
   </footer>
+
+  <!-- UPSELL MODAL -->
+  <div id="upsell-overlay" class="upsell-overlay" onclick="if(event.target===this)closeUpsell()">
+    <div class="upsell-modal" role="dialog" aria-modal="true" aria-label="Offre groupée">
+      <div class="upsell-head">
+        <span class="upsell-pretitle">Avant de finaliser</span>
+        <button class="upsell-close" onclick="closeUpsell()" aria-label="Fermer">&times;</button>
+      </div>
+      <div class="upsell-selected">
+        <span class="upsell-selected-label">Votre sélection</span>
+        <div class="upsell-selected-row">
+          <span id="upsell-book-title" class="upsell-selected-title"></span>
+          <span id="upsell-book-price" class="upsell-selected-price"></span>
+        </div>
+      </div>
+      <div class="upsell-offer">
+        <span class="upsell-offer-badge">Recommandé</span>
+        <div class="upsell-offer-title">Les deux ouvrages ensemble</div>
+        <p class="upsell-offer-desc">L'un vous donne la structure pour clarifier et planifier. L'autre vous donne la posture pour exécuter.</p>
+        <div class="upsell-prices-row">
+          <span id="upsell-bundle-price" class="upsell-bundle-price"></span>
+          <span id="upsell-bundle-strike" class="upsell-bundle-strike"></span>
+        </div>
+        <div id="upsell-saving" class="upsell-saving"></div>
+        <a href="#" id="upsell-btn-bundle" class="upsell-btn-bundle" onclick="return false;">
+          Prendre les deux &mdash; <span id="upsell-bundle-cta-price"></span>
+        </a>
+      </div>
+      <a href="#" id="upsell-btn-single" class="upsell-skip" onclick="return false;">Non merci, continuer avec un seul ouvrage &rarr;</a>
+    </div>
+  </div>
 
   <script>
     /* Prix de référence en CHF — base de toutes les conversions */
@@ -270,6 +331,48 @@
         .then(function(d){ if (d && d.currency) applyCurrency(d.currency); })
         .catch(function(){});
     }
+
+    /* UPSELL MODAL */
+    function openUpsell(bookId) {
+      var titles = document.querySelectorAll('.book-title');
+      var bookTitle = titles[bookId - 1] ? titles[bookId - 1].textContent.trim() : '';
+      var bookPrice = (document.getElementById('price-' + bookId) || {}).textContent || '';
+      var bundlePrice  = (document.getElementById('price-bundle') || {}).textContent || '';
+      var bundleStrike = (document.getElementById('price-strike') || {}).textContent || '';
+      var saving       = (document.getElementById('currency-bundle') || {}).textContent || '';
+
+      document.getElementById('upsell-book-title').textContent    = bookTitle;
+      document.getElementById('upsell-book-price').textContent    = bookPrice;
+      document.getElementById('upsell-bundle-price').textContent  = bundlePrice;
+      document.getElementById('upsell-bundle-strike').textContent = bundleStrike;
+      document.getElementById('upsell-saving').textContent        = saving;
+      document.getElementById('upsell-bundle-cta-price').textContent = bundlePrice;
+
+      var singleBtn  = document.getElementById('upsell-btn-single');
+      var singleLink = document.getElementById('link-' + bookId);
+      if (singleBtn && singleLink) {
+        singleBtn.href    = singleLink.href;
+        singleBtn.onclick = null;
+      }
+      var bundleBtn  = document.getElementById('upsell-btn-bundle');
+      var bundleLink = document.getElementById('link-bundle');
+      if (bundleBtn && bundleLink) {
+        bundleBtn.href    = bundleLink.href;
+        bundleBtn.onclick = null;
+      }
+
+      document.getElementById('upsell-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeUpsell() {
+      document.getElementById('upsell-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeUpsell();
+    });
   </script>
 
 </body>
