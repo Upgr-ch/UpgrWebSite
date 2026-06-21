@@ -93,8 +93,10 @@
     .upsell-selected { padding: 1.1rem 1.5rem; background: rgba(255,255,255,0.025); border-bottom: 1px solid rgba(255,255,255,0.06); }
     .upsell-selected-label { font-size: 0.62rem; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.38); display: block; margin-bottom: 0.45rem; }
     .upsell-selected-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .upsell-selected-info { display: flex; flex-direction: column; gap: 0.18rem; min-width: 0; }
     .upsell-selected-title { font-size: 0.95rem; font-weight: 600; font-style: italic; color: #fff; }
-    .upsell-selected-price { font-size: 1.2rem; font-weight: 700; color: #F5E090; white-space: nowrap; }
+    .upsell-selected-subtitle { font-size: 0.72rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.52); line-height: 1.4; }
+    .upsell-selected-price { font-size: 1.2rem; font-weight: 700; color: #F5E090; white-space: nowrap; flex-shrink: 0; }
     .upsell-offer { padding: 1.5rem; }
     .upsell-offer-badge { display: inline-block; background: #F5E090; color: #080F1E; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.22rem 0.75rem; border-radius: 2px; margin-bottom: 0.9rem; }
     .upsell-offer-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
@@ -226,7 +228,10 @@
       <div class="upsell-selected">
         <span class="upsell-selected-label">Votre sélection</span>
         <div class="upsell-selected-row">
-          <span id="upsell-book-title" class="upsell-selected-title"></span>
+          <div class="upsell-selected-info">
+            <span id="upsell-book-title" class="upsell-selected-title"></span>
+            <span id="upsell-book-subtitle" class="upsell-selected-subtitle"></span>
+          </div>
           <span id="upsell-book-price" class="upsell-selected-price"></span>
         </div>
       </div>
@@ -333,6 +338,11 @@
     }
 
     /* UPSELL MODAL */
+    var BOOK_SUBTITLES = {
+      1: 'Clarifier vos idées floues pour les transformer en un plan simple et concret.',
+      2: 'Ce qui transforme un projet en résultats concrets et en chiffre d\'affaires.'
+    };
+
     function openUpsell(bookId) {
       var titles = document.querySelectorAll('.book-title');
       var bookTitle = titles[bookId - 1] ? titles[bookId - 1].textContent.trim() : '';
@@ -342,6 +352,7 @@
       var saving       = (document.getElementById('currency-bundle') || {}).textContent || '';
 
       document.getElementById('upsell-book-title').textContent    = bookTitle;
+      document.getElementById('upsell-book-subtitle').textContent = BOOK_SUBTITLES[bookId] || '';
       document.getElementById('upsell-book-price').textContent    = bookPrice;
       document.getElementById('upsell-bundle-price').textContent  = bundlePrice;
       document.getElementById('upsell-bundle-strike').textContent = bundleStrike;
