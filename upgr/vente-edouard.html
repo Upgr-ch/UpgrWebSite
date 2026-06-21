@@ -69,7 +69,8 @@
     .book-sep { text-align: center; margin: -1rem 0 3rem; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
 
     /* BUNDLE */
-    .bundle { border: 1px solid rgba(245,224,144,0.28); border-radius: 4px; padding: 2.5rem 2.5rem; background: rgba(245,224,144,0.03); }
+    .bundle { border: 1px solid rgba(245,224,144,0.28); border-radius: 4px; padding: 2.5rem 2.5rem; background: rgba(245,224,144,0.03); position: relative; }
+    .bundle-badge { position: absolute; top: -1px; right: 1.8rem; background: #F5E090; color: #080F1E; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.2rem 0.7rem; border-radius: 0 0 4px 4px; }
     .bundle-tag { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.8rem; }
     .bundle-title { font-size: 1.3rem; font-weight: 600; color: #ffffff; margin-bottom: 1rem; }
     .bundle-desc { font-size: 0.97rem; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.8); margin-bottom: 2rem; }
@@ -124,7 +125,7 @@
           <div class="price-block">
             <div class="price-amount" id="price-1">26 CHF</div>
           </div>
-          <a href="#" class="btn btn-outline" id="link-1" onclick="return false;">Acheter cet ouvrage</a>
+          <a href="#" class="btn btn-outline" id="link-1" onclick="return false;">Commander</a>
         </div>
       </div>
     </div>
@@ -146,14 +147,15 @@
           <div class="price-block">
             <div class="price-amount" id="price-2">26 CHF</div>
           </div>
-          <a href="#" class="btn btn-outline" id="link-2" onclick="return false;">Acheter cet ouvrage</a>
+          <a href="#" class="btn btn-outline" id="link-2" onclick="return false;">Commander</a>
         </div>
       </div>
     </div>
 
     <!-- BUNDLE -->
     <div class="bundle">
-      <p class="bundle-tag">Offre groupée — recommandé</p>
+      <span class="bundle-badge">Recommandé</span>
+      <p class="bundle-tag">Offre groupée</p>
       <h3 class="bundle-title">Les deux ouvrages ensemble</h3>
       <p class="bundle-desc">L'un vous donne la structure pour clarifier et planifier. L'autre vous donne la posture pour exécuter. Utilisés ensemble, ils forment un système complet — du moment où l'idée est encore floue jusqu'à la première action engagée. C'est la combinaison que nous recommandons à tous ceux qui veulent tirer le maximum de leurs conversations avec Édouard.</p>
       <div class="bundle-row">
