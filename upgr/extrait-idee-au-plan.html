@@ -63,6 +63,9 @@
 
     .header-sep { color: rgba(255,255,255,0.18); font-size: 0.65rem; }
 
+    .header-title-group { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+    .header-tagline { font-size: 0.62rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.45); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
     .header-title {
       font-size: 0.8rem;
       font-weight: 600;
@@ -189,7 +192,10 @@
   <div class="header-center">
     <span class="header-label">Extrait</span>
     <span class="header-sep">·</span>
-    <span class="header-title">De l'idée au plan</span>
+    <div class="header-title-group">
+      <span class="header-title">De l'idée au plan</span>
+      <span class="header-tagline">Clarifier vos idées floues pour les transformer en un plan simple et concret.</span>
+    </div>
   </div>
 
   <div class="header-actions">
