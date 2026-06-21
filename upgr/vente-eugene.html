@@ -96,7 +96,7 @@
     .upsell-selected-title { font-size: 0.95rem; font-weight: 600; font-style: italic; color: #fff; }
     .upsell-selected-price { font-size: 1.2rem; font-weight: 700; color: #F5E090; white-space: nowrap; }
     .upsell-offer { padding: 1.5rem; }
-    .upsell-offer-badge { display: inline-block; background: #F5E090; color: #080F1E; font-size: 0.54rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.18rem 0.6rem; border-radius: 2px; margin-bottom: 0.9rem; }
+    .upsell-offer-badge { display: inline-block; background: #F5E090; color: #080F1E; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.22rem 0.75rem; border-radius: 2px; margin-bottom: 0.9rem; }
     .upsell-offer-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
     .upsell-offer-desc { font-size: 0.83rem; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.5); margin-bottom: 1.1rem; }
     .upsell-prices-row { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.25rem; }
@@ -105,8 +105,8 @@
     .upsell-saving { font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.42); margin-bottom: 1.3rem; }
     .upsell-btn-bundle { display: block; width: 100%; text-align: center; padding: 0.9rem 1.5rem; font-family: 'Raleway', sans-serif; font-size: 0.77rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: #F5E090; color: #080F1E; border-radius: 2px; text-decoration: none; transition: background 0.18s; }
     .upsell-btn-bundle:hover { background: #e8d07a; text-decoration: none; }
-    .upsell-skip { display: block; text-align: center; padding: 1rem 1.5rem; font-size: 0.72rem; font-weight: 300; color: rgba(255,255,255,0.35); text-decoration: none; border-top: 1px solid rgba(255,255,255,0.06); transition: color 0.18s; }
-    .upsell-skip:hover { color: rgba(255,255,255,0.68); text-decoration: none; }
+    .upsell-skip { display: block; text-align: center; padding: 1rem 1.5rem; font-size: 0.72rem; font-weight: 300; color: rgba(255,255,255,0.85); text-decoration: none; border-top: 1px solid rgba(255,255,255,0.06); transition: color 0.18s; }
+    .upsell-skip:hover { color: #fff; text-decoration: none; }
     @media (max-width: 600px) {
       .upsell-overlay { align-items: flex-end; padding: 0; }
       .upsell-modal { border-radius: 12px 12px 0 0; max-width: 100%; }
@@ -240,7 +240,7 @@
         </div>
         <div id="upsell-saving" class="upsell-saving"></div>
         <a href="#" id="upsell-btn-bundle" class="upsell-btn-bundle" onclick="return false;">
-          Prendre les deux &mdash; <span id="upsell-bundle-cta-price"></span>
+          Prendre les deux : <span id="upsell-bundle-cta-price"></span>
         </a>
       </div>
       <a href="#" id="upsell-btn-single" class="upsell-skip" onclick="return false;">Non merci, continuer avec un seul ouvrage &rarr;</a>
