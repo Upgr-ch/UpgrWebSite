@@ -165,77 +165,6 @@
     </div>
   </div>
 
-  <hr class="gold-line"/>
-
-  <!-- ===================== ÉDOUARD ===================== -->
-  <div class="agent-section">
-    <p class="agent-label">Agent IA</p>
-    <p class="agent-title">Édouard — Consultant Viabilité Business</p>
-
-    <div class="cards">
-
-      <!-- Ouvrage 1 -->
-      <div class="card">
-        <div class="card-cover">
-          <img src="/upgr/covers/idee-au-plan.png" alt="De l'idée au plan"/>
-        </div>
-        <div class="card-body">
-          <p class="card-tag">Ouvrage 1</p>
-          <h2 class="card-title">De l'idée au plan</h2>
-          <p class="card-desc">Clarifiez vos idées floues et transformez-les en un plan structuré, prêt à soumettre à Édouard.</p>
-        </div>
-        <div class="card-right">
-          <div class="card-price-wrap">
-            <div class="card-price" id="ed-price-1">26 CHF</div>
-          </div>
-          <a href="#" class="btn btn-outline" id="ed-link-1" onclick="return false;">Commander</a>
-        </div>
-      </div>
-
-      <!-- Ouvrage 2 -->
-      <div class="card">
-        <div class="card-cover">
-          <img src="/upgr/covers/competences-invisibles.png" alt="Vos compétences humaines invisibles"/>
-        </div>
-        <div class="card-body">
-          <p class="card-tag">Ouvrage 2</p>
-          <h2 class="card-title">Vos compétences humaines invisibles</h2>
-          <p class="card-desc">Activez vos ressources corporelles et cognitives pour passer à l'action et générer des résultats.</p>
-        </div>
-        <div class="card-right">
-          <div class="card-price-wrap">
-            <div class="card-price" id="ed-price-2">26 CHF</div>
-          </div>
-          <a href="#" class="btn btn-outline" id="ed-link-2" onclick="return false;">Commander</a>
-        </div>
-      </div>
-
-      <!-- Bundle Édouard -->
-      <div class="card featured">
-        <span class="badge-recommended">Recommandé</span>
-        <div class="card-cover" style="display:flex;flex-direction:column;gap:0.5rem;">
-          <img src="/upgr/covers/idee-au-plan.png" alt="De l'idée au plan"/>
-          <img src="/upgr/covers/competences-invisibles.png" alt="Vos compétences humaines invisibles"/>
-        </div>
-        <div class="card-body">
-          <p class="card-tag">Offre groupée</p>
-          <h2 class="card-title">Les deux ouvrages ensemble</h2>
-          <p class="card-desc">La structure pour clarifier et planifier + la posture pour exécuter. Un système complet pour tirer le maximum de vos conversations avec Édouard.</p>
-        </div>
-        <div class="card-right">
-          <div class="card-price-wrap">
-            <div class="card-price">
-              <span id="ed-price-bundle">47 CHF</span>
-              <span class="card-price-strike" id="ed-price-strike">52 CHF</span>
-            </div>
-            <div class="card-economy" id="ed-economy">Économisez 5 CHF</div>
-          </div>
-          <a href="#" class="btn btn-solid" id="ed-link-bundle" onclick="return false;">Commander</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
 
 </div>
 
@@ -271,26 +200,13 @@
     return amount + '\u00a0' + currency;
   }
 
-  function economy(single, bundleFull, currency) {
-    var saved = bundleFull - (arguments[1] ? 0 : 0);
-    saved = roundAmt((REF_CHF.bundleFull - REF_CHF.bundle), currency) || (bundleFull - arguments[0]);
-    return 'Économisez ' + fmt(bundleFull - arguments[1] + arguments[1] - arguments[0], currency);
-  }
-
   function showPrices(single, bundle, bundleFull, currency) {
-    var saved = fmt(bundleFull - bundle, currency);
-    var econText = 'Économisez ' + saved;
-    var ids = [
-      ['e-price-1','e-price-2','e-price-bundle','e-price-strike','e-economy'],
-      ['ed-price-1','ed-price-2','ed-price-bundle','ed-price-strike','ed-economy']
-    ];
-    ids.forEach(function(g) {
-      document.getElementById(g[0]).textContent = fmt(single, currency);
-      document.getElementById(g[1]).textContent = fmt(single, currency);
-      document.getElementById(g[2]).textContent = fmt(bundle, currency);
-      document.getElementById(g[3]).textContent = fmt(bundleFull, currency);
-      document.getElementById(g[4]).textContent = econText;
-    });
+    var econText = 'Économisez ' + fmt(bundleFull - bundle, currency);
+    document.getElementById('e-price-1').textContent      = fmt(single,     currency);
+    document.getElementById('e-price-2').textContent      = fmt(single,     currency);
+    document.getElementById('e-price-bundle').textContent = fmt(bundle,     currency);
+    document.getElementById('e-price-strike').textContent = fmt(bundleFull, currency);
+    document.getElementById('e-economy').textContent      = econText;
     document.getElementById('currency-label').textContent = currency;
   }
 
