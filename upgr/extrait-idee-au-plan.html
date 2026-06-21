@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>De l'idée au plan — Extrait | UpGrade</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Raleway', sans-serif; background: #080F1E; color: rgba(255,255,255,0.88); display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+
+    header { flex-shrink: 0; background: rgba(8,15,30,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 56px; gap: 1.5rem; }
+    .logo { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #F5E090; text-decoration: none; flex-shrink: 0; }
+    .header-center { display: flex; align-items: center; gap: 0.6rem; min-width: 0; }
+    .header-label { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: #B48C28; white-space: nowrap; }
+    .header-title { font-size: 0.85rem; font-weight: 600; font-style: italic; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .header-sep { color: rgba(255,255,255,0.2); font-size: 0.7rem; }
+    .header-actions { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+    .back-link { font-size: 0.72rem; font-weight: 300; letter-spacing: 0.06em; color: rgba(255,255,255,0.4); text-decoration: none; }
+    .back-link:hover { color: rgba(255,255,255,0.7); }
+    .btn-dl { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.2rem; font-family: 'Raleway', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; background: #F5E090; color: #080F1E; border-radius: 2px; text-decoration: none; transition: background 0.18s; white-space: nowrap; }
+    .btn-dl:hover { background: #e8d07a; }
+    .btn-dl svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    .viewer { flex: 1; width: 100%; display: flex; flex-direction: column; }
+    iframe.pdf-frame { flex: 1; width: 100%; border: none; background: #1a2035; }
+
+    .mobile-fallback { display: none; flex: 1; align-items: center; justify-content: center; padding: 3rem 2rem; text-align: center; flex-direction: column; gap: 1.5rem; }
+    .mobile-fallback p { font-size: 0.95rem; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.7; }
+    .btn-dl-large { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 2rem; font-family: 'Raleway', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; background: #F5E090; color: #080F1E; border-radius: 2px; text-decoration: none; transition: background 0.18s; }
+    .btn-dl-large:hover { background: #e8d07a; }
+
+    @media (max-width: 600px) {
+      iframe.pdf-frame { display: none; }
+      .mobile-fallback { display: flex; }
+      .header-center { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="/">UpGrade</a>
+
+  <div class="header-center">
+    <span class="header-label">Extrait</span>
+    <span class="header-sep">·</span>
+    <span class="header-title">De l'idée au plan</span>
+  </div>
+
+  <div class="header-actions">
+    <a href="javascript:history.back()" class="back-link">← Retour</a>
+    <a href="/upgr/extraits/idee-au-plan-extrait.pdf" download="De-l-idee-au-plan-extrait.pdf" class="btn-dl">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Télécharger l'extrait
+    </a>
+  </div>
+</header>
+
+<div class="viewer">
+  <iframe
+    class="pdf-frame"
+    src="/upgr/extraits/idee-au-plan-extrait.pdf#toolbar=1&navpanes=1&scrollbar=1&view=FitH"
+    title="De l'idée au plan — Extrait"
+    allowfullscreen
+  ></iframe>
+
+  <div class="mobile-fallback">
+    <p>La lecture en ligne n'est pas disponible sur mobile.<br>Téléchargez l'extrait pour le consulter.</p>
+    <a href="/upgr/extraits/idee-au-plan-extrait.pdf" download="De-l-idee-au-plan-extrait.pdf" class="btn-dl-large">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Télécharger l'extrait
+    </a>
+  </div>
+</div>
+
+</body>
+</html>
