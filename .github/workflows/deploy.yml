@@ -31,6 +31,7 @@ jobs:
             uv.lock
             test_result.md
             attached_assets/**
+            upgr/extraits/**
             .replit
             replit.nix
             .gitignore
