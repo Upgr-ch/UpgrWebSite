@@ -1,3 +1,3 @@
 DirectorySlash Off
 RewriteEngine On
-RewriteRule ^(politiquedecookies|confidentialite|mentionslegales|cgu|cgv|vente-eugene|vente-edouard|extrait-idee-au-plan)$ $1.html [L]
+RewriteRule ^(politiquedecookies|confidentialite|mentionslegales|cgu|cgv|vente-eugene|vente-edouard|extrait-idee-au-plan|extrait-vos-competences-invisibles)$ $1.html [L]
