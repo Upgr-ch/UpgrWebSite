@@ -200,7 +200,7 @@
 
   <div class="header-actions">
     <a id="back-btn" href="/upgr/vente-eugene" class="back-link">← Retour</a>
-    <a href="https://cdn.jsdelivr.net/gh/Upgr-ch/UpgrWebSite@main/upgr/extraits/idee-au-plan-extrait.pdf" download="De-l-idee-au-plan-extrait.pdf" class="btn-dl">
+    <a href="/upgr/extraits/idee-au-plan-extrait.pdf" download="De-l-idee-au-plan-extrait.pdf" class="btn-dl">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
         <polyline points="7 10 12 15 17 10"/>
@@ -230,7 +230,7 @@
   pdfjsLib.GlobalWorkerOptions.workerSrc =
     'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-  var PDF_URL = 'https://cdn.jsdelivr.net/gh/Upgr-ch/UpgrWebSite@main/upgr/extraits/idee-au-plan-extrait.pdf';
+  var PDF_URL = '/upgr/extraits/idee-au-plan-extrait.pdf';
   var reader  = document.getElementById('reader');
   var status  = document.getElementById('status');
 
@@ -275,7 +275,7 @@
   function showError(err) {
     status.innerHTML =
       '<p class="error-msg">Impossible de charger l\'extrait.<br>' +
-      '<a href="https://cdn.jsdelivr.net/gh/Upgr-ch/UpgrWebSite@main/upgr/extraits/idee-au-plan-extrait.pdf" download style="color:#F5E090;">Téléchargez-le directement.</a></p>';
+      '<a href="/upgr/extraits/idee-au-plan-extrait.pdf" download style="color:#F5E090;">Téléchargez-le directement.</a></p>';
     if (!status.parentNode) reader.appendChild(status);
     console.error(err);
   }
