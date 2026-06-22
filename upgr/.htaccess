@@ -1,3 +1,4 @@
 DirectorySlash Off
 RewriteEngine On
+# routes clean
 RewriteRule ^(politiquedecookies|confidentialite|mentionslegales|cgu|cgv|vente-eugene|vente-edouard|extrait-idee-au-plan|extrait-vos-competences-invisibles)$ $1.html [L]
