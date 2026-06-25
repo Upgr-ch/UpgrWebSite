@@ -41,5 +41,4 @@ externalPort = 80
 
 [deployment]
 deploymentTarget = "autoscale"
-build = ["sh", "-c", "cd frontend && yarn install && yarn build"]
 run = ["node", "serve.js"]
