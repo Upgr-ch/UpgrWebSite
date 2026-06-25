@@ -94,7 +94,7 @@ function systemeApiCall(method, endpoint, body) {
     const data = body ? JSON.stringify(body) : null;
     const options = {
       hostname: 'api.systeme.io',
-      path: endpoint,
+      path: `/api${endpoint}`,
       method,
       headers: {
         'X-API-Key': process.env.SYSTEMEIO_API_KEY || '',
