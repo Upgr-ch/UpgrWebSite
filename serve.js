@@ -149,7 +149,7 @@ async function ajouterContactSystemeIO({ email, prenom, nom, tagName }) {
   }
 
   // 2. Récupérer ou créer le tag
-  const tagsRes = await systemeApiCall('GET', `/tags?name=${encodeURIComponent(tagName)}&limit=1`, null);
+  const tagsRes = await systemeApiCall('GET', `/tags?name=${encodeURIComponent(tagName)}&limit=10`, null);
   console.log(`[debug] GET /tags status=${tagsRes.status} body=${JSON.stringify(tagsRes.body)}`);
   let tagId = tagsRes.body && tagsRes.body.items && tagsRes.body.items[0] && tagsRes.body.items[0].id;
 
@@ -157,6 +157,11 @@ async function ajouterContactSystemeIO({ email, prenom, nom, tagName }) {
     const newTagRes = await systemeApiCall('POST', '/tags', { name: tagName });
     console.log(`[debug] POST /tags status=${newTagRes.status} body=${JSON.stringify(newTagRes.body)}`);
     tagId = newTagRes.body && newTagRes.body.id;
+    // Si tag déjà existant (422), refaire un GET pour trouver l'id
+    if (!tagId) {
+      const retryRes = await systemeApiCall('GET', `/tags?name=${encodeURIComponent(tagName)}&limit=10`, null);
+      tagId = retryRes.body && retryRes.body.items && retryRes.body.items.find(t => t.name === tagName) && retryRes.body.items.find(t => t.name === tagName).id;
+    }
   }
 
   if (!tagId) {
