@@ -121,6 +121,7 @@ function systemeApiCall(method, endpoint, body) {
 
 async function ajouterContactSystemeIO({ email, prenom, nom, tagName }) {
   const apiKey = process.env.SYSTEMEIO_API_KEY || '';
+  console.log(`[debug] SYSTEMEIO_API_KEY longueur=${apiKey.length} vide=${!apiKey}`);
   if (!apiKey) {
     console.warn('⚠️  SYSTEMEIO_API_KEY non défini — contact non ajouté dans Systeme.io');
     return;
