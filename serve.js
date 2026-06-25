@@ -66,199 +66,110 @@ async function detectZone(ip) {
   }
 }
 
-// ── Configuration produits (à renseigner via Secrets Replit) ─────────────────
-// Identifiants des Payment Links Stripe (plink_xxx) — depuis le dashboard Stripe
+// ── Configuration produits ───────────────────────────────────────────────────
+// Chaque produit a un tag Systeme.io — ce tag déclenche l'automation d'envoi
+// du lien Proton Drive. Les liens/codes sont gérés dans Systeme.io (pas ici).
 const PRODUCTS = {
   [process.env.STRIPE_LINK_LIVRE1 || '__livre1__']: {
-    nom: "De l'idée au plan",
-    desc: "Guide numérique — De l'idée au plan · 80 pages · Téléchargeable · Imprimable",
-    lien: process.env.PROTON_LINK_LIVRE1 || '',
-    code: process.env.PROTON_CODE_LIVRE1 || '',
+    nom:  "De l'idée au plan",
+    desc: "Guide numérique · 80 pages · Téléchargeable · Imprimable",
+    tag:  'livre1-acheteur',
   },
   [process.env.STRIPE_LINK_LIVRE2 || '__livre2__']: {
-    nom: "Vos compétences humaines invisibles",
-    desc: "Guide numérique — Vos compétences humaines invisibles · 120 pages · Téléchargeable · Imprimable",
-    lien: process.env.PROTON_LINK_LIVRE2 || '',
-    code: process.env.PROTON_CODE_LIVRE2 || '',
+    nom:  "Vos compétences humaines invisibles",
+    desc: "Guide numérique · 120 pages · Téléchargeable · Imprimable",
+    tag:  'livre2-acheteur',
   },
   [process.env.STRIPE_LINK_BUNDLE || '__bundle__']: {
-    nom: "Offre groupée — Les deux guides",
-    desc: "Guides numériques — De l'idée au plan + Vos compétences humaines invisibles",
-    lien: process.env.PROTON_LINK_BUNDLE || '',
-    code: process.env.PROTON_CODE_BUNDLE || '',
+    nom:  "Offre groupée — Les deux guides",
+    desc: "De l'idée au plan + Vos compétences humaines invisibles",
+    tag:  'bundle-acheteur',
   },
 };
 
-// ── Informations de facturation UpGrade ──────────────────────────────────────
-const COMPANY = {
-  nom:     process.env.COMPANY_NAME    || 'UpGrade Learning & Development',
-  adresse: process.env.COMPANY_ADDRESS || '',
-  ide:     process.env.COMPANY_IDE     || '',
-  email:   process.env.FROM_EMAIL      || 'bonjour@upgr.ch',
-  site:    'www.upgr.ch',
-};
-
-// ── Génération PDF facture ────────────────────────────────────────────────────
-function genererFacturePDF({ numero, date, client, produit, montant, devise }) {
+// ── Systeme.io API ────────────────────────────────────────────────────────────
+function systemeApiCall(method, endpoint, body) {
   return new Promise((resolve, reject) => {
-    const PDFDocument = require('pdfkit');
-    const doc = new PDFDocument({ size: 'A4', margin: 50 });
-    const chunks = [];
-    doc.on('data', c => chunks.push(c));
-    doc.on('end', () => resolve(Buffer.concat(chunks)));
-    doc.on('error', reject);
+    const https = require('https');
+    const data = body ? JSON.stringify(body) : null;
+    const options = {
+      hostname: 'api.systeme.io',
+      path: `/api${endpoint}`,
+      method,
+      headers: {
+        'X-API-Key': process.env.SYSTEME_API_KEY || '',
+        'Content-Type': 'application/json',
+        'accept': 'application/json',
+      },
+    };
+    if (data) options.headers['Content-Length'] = Buffer.byteLength(data);
 
-    const gold = '#B48C28';
-    const dark = '#0d1628';
-    const grey = '#555555';
-
-    // En-tête
-    doc.rect(0, 0, doc.page.width, 90).fill(dark);
-    doc.fillColor('#F5E090').fontSize(22).font('Helvetica-Bold')
-       .text('UpGrade L&D', 50, 28);
-    doc.fillColor('#ffffff').fontSize(9).font('Helvetica')
-       .text(COMPANY.site, 50, 56);
-
-    doc.fillColor(gold).fontSize(11).font('Helvetica-Bold')
-       .text('FACTURE', doc.page.width - 150, 35, { width: 100, align: 'right' });
-    doc.fillColor('#ffffff').fontSize(9).font('Helvetica')
-       .text(`N° ${numero}`, doc.page.width - 150, 52, { width: 100, align: 'right' })
-       .text(date, doc.page.width - 150, 66, { width: 100, align: 'right' });
-
-    // Vendeur / Acheteur
-    doc.moveDown(3);
-    const y1 = doc.y;
-    doc.fillColor(dark).fontSize(9).font('Helvetica-Bold').text('VENDEUR', 50, y1);
-    doc.fillColor(grey).font('Helvetica')
-       .text(COMPANY.nom, 50, y1 + 14)
-       .text(COMPANY.adresse || '', 50, y1 + 26)
-       .text(COMPANY.ide ? `IDE : ${COMPANY.ide}` : 'Non assujetti à la TVA', 50, y1 + 38)
-       .text(COMPANY.email, 50, y1 + 50);
-
-    doc.fillColor(dark).fontSize(9).font('Helvetica-Bold').text('ACHETEUR', 300, y1);
-    doc.fillColor(grey).font('Helvetica')
-       .text(client.nom || '', 300, y1 + 14)
-       .text(client.email || '', 300, y1 + 26);
-
-    // Ligne séparatrice
-    const yTab = y1 + 80;
-    doc.moveTo(50, yTab).lineTo(doc.page.width - 50, yTab).strokeColor(gold).lineWidth(1).stroke();
-
-    // Tableau
-    doc.fillColor(dark).fontSize(9).font('Helvetica-Bold')
-       .text('DÉSIGNATION', 50, yTab + 12)
-       .text('MONTANT', doc.page.width - 150, yTab + 12, { width: 100, align: 'right' });
-
-    doc.moveTo(50, yTab + 28).lineTo(doc.page.width - 50, yTab + 28).strokeColor('#dddddd').lineWidth(0.5).stroke();
-
-    doc.fillColor(grey).font('Helvetica').fontSize(9)
-       .text(produit.desc, 50, yTab + 38, { width: 360 });
-
-    const montantStr = `${montant} ${devise}`;
-    doc.fillColor(dark).font('Helvetica-Bold').fontSize(10)
-       .text(montantStr, doc.page.width - 150, yTab + 38, { width: 100, align: 'right' });
-
-    // Total
-    const yTotal = yTab + 90;
-    doc.moveTo(50, yTotal).lineTo(doc.page.width - 50, yTotal).strokeColor(gold).lineWidth(1).stroke();
-    doc.fillColor(dark).font('Helvetica-Bold').fontSize(11)
-       .text('TOTAL', 50, yTotal + 12)
-       .text(montantStr, doc.page.width - 150, yTotal + 12, { width: 100, align: 'right' });
-
-    // Mention TVA
-    doc.fillColor(grey).font('Helvetica').fontSize(8)
-       .text(COMPANY.ide ? 'TVA incluse selon taux en vigueur.' : 'Non assujetti à la TVA — Art. 10 LTVA (Suisse) ou équivalent local.', 50, yTotal + 36);
-
-    // Pied de page
-    const yFoot = doc.page.height - 60;
-    doc.moveTo(50, yFoot).lineTo(doc.page.width - 50, yFoot).strokeColor('#dddddd').lineWidth(0.5).stroke();
-    doc.fillColor(grey).fontSize(7).font('Helvetica')
-       .text(`${COMPANY.nom} · ${COMPANY.adresse || ''} · ${COMPANY.email} · ${COMPANY.site}`, 50, yFoot + 10, { align: 'center', width: doc.page.width - 100 });
-
-    doc.end();
+    const req = https.request(options, (res) => {
+      let responseBody = '';
+      res.on('data', d => responseBody += d);
+      res.on('end', () => {
+        try { resolve({ status: res.statusCode, body: JSON.parse(responseBody) }); }
+        catch(e) { resolve({ status: res.statusCode, body: responseBody }); }
+      });
+    });
+    req.on('error', reject);
+    req.setTimeout(8000, () => { req.destroy(); reject(new Error('timeout systeme.io')); });
+    if (data) req.write(data);
+    req.end();
   });
 }
 
-// ── Envoi email ──────────────────────────────────────────────────────────────
-function creerTransport() {
-  const nodemailer = require('nodemailer');
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST || 'mail.infomaniak.com',
-    port: parseInt(process.env.SMTP_PORT || '587'),
-    secure: false,
-    auth: {
-      user: process.env.SMTP_USER || '',
-      pass: process.env.SMTP_PASS || '',
-    },
-  });
-}
+async function ajouterContactSystemeIO({ email, prenom, nom, tagName }) {
+  const apiKey = process.env.SYSTEME_API_KEY || '';
+  if (!apiKey) {
+    console.warn('⚠️  SYSTEME_API_KEY non défini — contact non ajouté dans Systeme.io');
+    return;
+  }
 
-async function envoyerEmailClient({ to, clientNom, produit, lien, code, pdfBuffer, devise, montant, numeroFacture }) {
-  const transport = creerTransport();
-  const sujet = `Votre commande UpGrade — ${produit.nom}`;
-  const html = `
-<!DOCTYPE html>
-<html lang="fr">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#f4f4f4;font-family:Arial,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f4;padding:30px 0;">
-    <tr><td align="center">
-      <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:6px;overflow:hidden;max-width:600px;">
-        <!-- Header -->
-        <tr><td style="background:#0d1628;padding:28px 40px;">
-          <span style="font-size:22px;font-weight:bold;color:#F5E090;letter-spacing:0.05em;">UpGrade L&amp;D</span>
-        </td></tr>
-        <!-- Body -->
-        <tr><td style="padding:36px 40px;">
-          <p style="font-size:16px;color:#0d1628;font-weight:bold;margin:0 0 8px;">Merci pour votre commande${clientNom ? ', ' + clientNom : ''} !</p>
-          <p style="font-size:14px;color:#555;margin:0 0 24px;">Votre paiement a bien été reçu. Voici votre lien de téléchargement.</p>
+  // 1. Créer ou mettre à jour le contact
+  const contactPayload = { email };
+  if (prenom) contactPayload.firstName = prenom;
+  if (nom)    contactPayload.lastName  = nom;
 
-          <div style="background:#0d1628;border-radius:6px;padding:24px 28px;margin-bottom:28px;">
-            <p style="color:#F5E090;font-size:11px;font-weight:bold;letter-spacing:0.15em;text-transform:uppercase;margin:0 0 8px;">Votre commande</p>
-            <p style="color:#ffffff;font-size:15px;font-weight:bold;margin:0 0 4px;">${produit.nom}</p>
-            <p style="color:rgba(255,255,255,0.6);font-size:12px;margin:0 0 20px;">${produit.desc}</p>
-            <p style="color:#F5E090;font-size:11px;font-weight:bold;letter-spacing:0.15em;text-transform:uppercase;margin:0 0 8px;">Lien de téléchargement</p>
-            <a href="${lien}" style="display:inline-block;background:#F5E090;color:#0d1628;padding:12px 24px;border-radius:3px;text-decoration:none;font-weight:bold;font-size:13px;margin-bottom:14px;">Télécharger mon guide →</a>
-            <br>
-            <p style="color:rgba(255,255,255,0.7);font-size:12px;margin:8px 0 4px;">Code d'accès :</p>
-            <p style="color:#ffffff;font-size:16px;font-weight:bold;letter-spacing:0.2em;margin:0;font-family:monospace;">${code}</p>
-          </div>
+  const contactRes = await systemeApiCall('POST', '/contacts', contactPayload);
+  if (contactRes.status !== 201 && contactRes.status !== 200 && contactRes.status !== 409) {
+    console.warn('Systeme.io — erreur création contact :', contactRes.status, JSON.stringify(contactRes.body));
+  }
 
-          <p style="font-size:13px;color:#888;margin:0 0 6px;">Votre facture est jointe à cet email (PDF).</p>
-          <p style="font-size:13px;color:#888;margin:0;">Une question ? Écrivez-nous : <a href="mailto:${COMPANY.email}" style="color:#B48C28;">${COMPANY.email}</a></p>
-        </td></tr>
-        <!-- Footer -->
-        <tr><td style="background:#f8f8f8;padding:18px 40px;border-top:1px solid #eeeeee;">
-          <p style="font-size:11px;color:#aaa;margin:0;text-align:center;">${COMPANY.nom} · ${COMPANY.site}</p>
-        </td></tr>
-      </table>
-    </td></tr>
-  </table>
-</body>
-</html>`;
+  // Si 409 (contact existe déjà), récupérer l'id via GET
+  let contactId = contactRes.body && contactRes.body.id;
+  if (!contactId) {
+    const getRes = await systemeApiCall('GET', `/contacts?email=${encodeURIComponent(email)}&limit=1`, null);
+    contactId = getRes.body && getRes.body.items && getRes.body.items[0] && getRes.body.items[0].id;
+  }
 
-  await transport.sendMail({
-    from: `"UpGrade L&D" <${COMPANY.email}>`,
-    to,
-    subject: sujet,
-    html,
-    attachments: [{
-      filename: `facture-${numeroFacture}.pdf`,
-      content: pdfBuffer,
-      contentType: 'application/pdf',
-    }],
-  });
-}
+  if (!contactId) {
+    console.warn('Systeme.io — impossible de récupérer l\'id du contact pour', email);
+    return;
+  }
 
-async function envoyerEmailProprietaire({ produit, client, montant, devise, numeroFacture }) {
-  const ownerEmail = process.env.OWNER_EMAIL || COMPANY.email;
-  const transport = creerTransport();
-  await transport.sendMail({
-    from: `"UpGrade Webhook" <${COMPANY.email}>`,
-    to: ownerEmail,
-    subject: `💰 Nouvelle vente — ${produit.nom} · ${montant} ${devise}`,
-    text: `Nouvelle commande reçue.\n\nProduit : ${produit.nom}\nMontant : ${montant} ${devise}\nClient : ${client.nom || '—'} <${client.email}>\nFacture : ${numeroFacture}\n\nÀ enregistrer dans facture.net.`,
-  });
+  // 2. Récupérer ou créer le tag
+  const tagsRes = await systemeApiCall('GET', `/tags?name=${encodeURIComponent(tagName)}&limit=1`, null);
+  let tagId = tagsRes.body && tagsRes.body.items && tagsRes.body.items[0] && tagsRes.body.items[0].id;
+
+  if (!tagId) {
+    const newTagRes = await systemeApiCall('POST', '/tags', { name: tagName });
+    tagId = newTagRes.body && newTagRes.body.id;
+  }
+
+  if (!tagId) {
+    console.warn('Systeme.io — impossible de trouver/créer le tag :', tagName);
+    return;
+  }
+
+  // 3. Appliquer le tag au contact
+  const addTagRes = await systemeApiCall('POST', `/contacts/${contactId}/tags`, { tagId });
+  if (addTagRes.status >= 400) {
+    console.warn('Systeme.io — erreur ajout tag :', addTagRes.status, JSON.stringify(addTagRes.body));
+    return;
+  }
+
+  console.log(`✅ Systeme.io : contact ${email} tagué "${tagName}" (contact #${contactId})`);
 }
 
 // ── Traitement webhook Stripe ─────────────────────────────────────────────────
@@ -285,52 +196,25 @@ async function traiterWebhookStripe(rawBody, signature) {
     return;
   }
 
-  const client = {
-    nom:   (session.customer_details && session.customer_details.name)  || '',
-    email: (session.customer_details && session.customer_details.email) || '',
-  };
+  const details = session.customer_details || {};
+  const email   = details.email || '';
+  const nomComplet = details.name || '';
+  const [prenom, ...reste] = nomComplet.trim().split(' ');
+  const nom = reste.join(' ');
 
-  if (!client.email) {
+  if (!email) {
     console.warn('Email client absent dans la session :', session.id);
     return;
   }
 
-  // Montant : Stripe stocke en centimes (sauf JPY etc.)
   const devise  = (session.currency || 'eur').toUpperCase();
   const montant = (session.amount_total / 100).toFixed(2).replace('.00', '');
 
-  // Numéro de facture : UPGR-YYYYMMDD-SESSIONID(6)
-  const now = new Date();
-  const yyyymmdd = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}`;
-  const numeroFacture = `UPGR-${yyyymmdd}-${session.id.slice(-6).toUpperCase()}`;
-  const dateStr = now.toLocaleDateString('fr-CH', { year: 'numeric', month: 'long', day: 'numeric' });
+  // Ajouter le contact + tag dans Systeme.io → déclenche l'automation
+  await ajouterContactSystemeIO({ email, prenom, nom, tagName: produit.tag });
 
-  // Génération PDF
-  const pdfBuffer = await genererFacturePDF({
-    numero: numeroFacture,
-    date: dateStr,
-    client,
-    produit,
-    montant,
-    devise,
-  });
-
-  // Envoi emails
-  await envoyerEmailClient({
-    to: client.email,
-    clientNom: client.nom,
-    produit,
-    lien: produit.lien,
-    code: produit.code,
-    pdfBuffer,
-    devise,
-    montant,
-    numeroFacture,
-  });
-
-  await envoyerEmailProprietaire({ produit, client, montant, devise, numeroFacture });
-
-  console.log(`✅ Commande traitée : ${numeroFacture} — ${client.email} — ${produit.nom} — ${montant} ${devise}`);
+  console.log(`✅ Vente traitée : ${produit.nom} · ${montant} ${devise} · ${email}`);
+  console.log(`   → Tag Systeme.io "${produit.tag}" appliqué — automation en cours d'envoi`);
 }
 
 // ── Serveur statique ──────────────────────────────────────────────────────────
@@ -363,8 +247,8 @@ http.createServer((req, res) => {
     const chunks = [];
     req.on('data', c => chunks.push(c));
     req.on('end', async () => {
-      const rawBody  = Buffer.concat(chunks);
-      const sig      = req.headers['stripe-signature'] || '';
+      const rawBody = Buffer.concat(chunks);
+      const sig     = req.headers['stripe-signature'] || '';
       try {
         await traiterWebhookStripe(rawBody, sig);
         res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -414,7 +298,7 @@ http.createServer((req, res) => {
   });
 }).listen(PORT, HOST, () => {
   console.log(`Serving on http://${HOST}:${PORT}`);
-  if (!process.env.STRIPE_SECRET_KEY)  console.warn('⚠️  STRIPE_SECRET_KEY non défini — webhook inactif');
+  if (!process.env.STRIPE_SECRET_KEY)     console.warn('⚠️  STRIPE_SECRET_KEY non défini — webhook inactif');
   if (!process.env.STRIPE_WEBHOOK_SECRET) console.warn('⚠️  STRIPE_WEBHOOK_SECRET non défini — webhook inactif');
-  if (!process.env.SMTP_USER) console.warn('⚠️  SMTP_USER non défini — emails inactifs');
+  if (!process.env.SYSTEME_API_KEY)       console.warn('⚠️  SYSTEME_API_KEY non défini — Systeme.io inactif');
 });
