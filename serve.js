@@ -262,6 +262,21 @@ http.createServer((req, res) => {
     return;
   }
 
+  // ── Test Systeme.io (temporaire) ──────────────────────────────────────────
+  if (urlPath === '/test-systeme' && req.method === 'GET') {
+    const tag = (req.url || '').split('tag=')[1] || 'livre1-acheteur';
+    ajouterContactSystemeIO({ email: 'test@upgr.ch', prenom: 'Test', nom: 'UpGrade', tagName: tag })
+      .then(() => {
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: true, message: `Contact test@upgr.ch tagué "${tag}" dans Systeme.io` }));
+      })
+      .catch(err => {
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: false, error: err.message }));
+      });
+    return;
+  }
+
   // ── API géolocalisation ────────────────────────────────────────────────────
   if (urlPath === '/api/geo') {
     if (req.method === 'OPTIONS') {
