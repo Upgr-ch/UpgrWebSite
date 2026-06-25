@@ -120,9 +120,9 @@ function systemeApiCall(method, endpoint, body) {
 }
 
 async function ajouterContactSystemeIO({ email, prenom, nom, tagName }) {
-  const apiKey = process.env.SYSTEME_API_KEY || '';
+  const apiKey = process.env.SYSTEMEIO_API_KEY || '';
   if (!apiKey) {
-    console.warn('⚠️  SYSTEME_API_KEY non défini — contact non ajouté dans Systeme.io');
+    console.warn('⚠️  SYSTEMEIO_API_KEY non défini — contact non ajouté dans Systeme.io');
     return;
   }
 
@@ -300,5 +300,5 @@ http.createServer((req, res) => {
   console.log(`Serving on http://${HOST}:${PORT}`);
   if (!process.env.STRIPE_SECRET_KEY)     console.warn('⚠️  STRIPE_SECRET_KEY non défini — webhook inactif');
   if (!process.env.STRIPE_WEBHOOK_SECRET) console.warn('⚠️  STRIPE_WEBHOOK_SECRET non défini — webhook inactif');
-  if (!process.env.SYSTEME_API_KEY)       console.warn('⚠️  SYSTEME_API_KEY non défini — Systeme.io inactif');
+  if (!process.env.SYSTEMEIO_API_KEY)     console.warn('⚠️  SYSTEMEIO_API_KEY non défini — Systeme.io inactif');
 });
