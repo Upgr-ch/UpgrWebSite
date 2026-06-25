@@ -270,6 +270,26 @@ http.createServer((req, res) => {
     return;
   }
 
+  // ── Liste payment links (temporaire) ──────────────────────────────────────
+  if (urlPath === '/admin/payment-links' && req.method === 'GET') {
+    const https = require('https');
+    const key = process.env.STRIPE_SECRET_KEY || '';
+    const req2 = https.get('https://api.stripe.com/v1/payment_links?limit=10', {
+      headers: { 'Authorization': 'Bearer ' + key }
+    }, (res2) => {
+      let body = '';
+      res2.on('data', d => body += d);
+      res2.on('end', () => {
+        const data = JSON.parse(body);
+        const liens = (data.data || []).map(pl => ({ id: pl.id, actif: pl.active, url: pl.url }));
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify(liens, null, 2));
+      });
+    });
+    req2.on('error', e => { res.writeHead(500); res.end(e.message); });
+    return;
+  }
+
   // ── Test Systeme.io (temporaire) ──────────────────────────────────────────
   if (urlPath === '/test-systeme' && req.method === 'GET') {
     const params = new URLSearchParams((req.url || '').split('?')[1] || '');
