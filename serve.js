@@ -138,7 +138,7 @@ async function ajouterContactSystemeIO({ email, prenom, nom, tagName }) {
   // Récupérer l'id : depuis la réponse ou via GET si le contact existe déjà (409 ou 422)
   let contactId = contactRes.body && contactRes.body.id;
   if (!contactId) {
-    const getRes = await systemeApiCall('GET', `/contacts?email=${encodeURIComponent(email)}&limit=1`, null);
+    const getRes = await systemeApiCall('GET', `/contacts?email=${encodeURIComponent(email)}&limit=10`, null);
     console.log(`[debug] GET /contacts status=${getRes.status} body=${JSON.stringify(getRes.body)}`);
     contactId = getRes.body && getRes.body.items && getRes.body.items[0] && getRes.body.items[0].id;
   }
