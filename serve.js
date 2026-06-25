@@ -265,8 +265,10 @@ http.createServer((req, res) => {
 
   // ── Test Systeme.io (temporaire) ──────────────────────────────────────────
   if (urlPath === '/test-systeme' && req.method === 'GET') {
-    const tag = (req.url || '').split('tag=')[1] || 'livre1-acheteur';
-    ajouterContactSystemeIO({ email: 'test@upgr.ch', prenom: 'Test', nom: 'UpGrade', tagName: tag })
+    const params = new URLSearchParams((req.url || '').split('?')[1] || '');
+    const tag   = params.get('tag')   || 'livre1-acheteur';
+    const email = params.get('email') || 'test@upgr.ch';
+    ajouterContactSystemeIO({ email, prenom: 'Test', nom: 'UpGrade', tagName: tag })
       .then(() => {
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({ ok: true, message: `Contact test@upgr.ch tagué "${tag}" dans Systeme.io` }));
