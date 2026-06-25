@@ -133,14 +133,13 @@ async function ajouterContactSystemeIO({ email, prenom, nom, tagName }) {
   if (nom)    contactPayload.lastName  = nom;
 
   const contactRes = await systemeApiCall('POST', '/contacts', contactPayload);
-  if (contactRes.status !== 201 && contactRes.status !== 200 && contactRes.status !== 409) {
-    console.warn('Systeme.io — erreur création contact :', contactRes.status, JSON.stringify(contactRes.body));
-  }
+  console.log(`[debug] POST /contacts status=${contactRes.status} body=${JSON.stringify(contactRes.body)}`);
 
-  // Si 409 (contact existe déjà), récupérer l'id via GET
+  // Récupérer l'id : depuis la réponse ou via GET si le contact existe déjà (409 ou 422)
   let contactId = contactRes.body && contactRes.body.id;
   if (!contactId) {
     const getRes = await systemeApiCall('GET', `/contacts?email=${encodeURIComponent(email)}&limit=1`, null);
+    console.log(`[debug] GET /contacts status=${getRes.status} body=${JSON.stringify(getRes.body)}`);
     contactId = getRes.body && getRes.body.items && getRes.body.items[0] && getRes.body.items[0].id;
   }
 
