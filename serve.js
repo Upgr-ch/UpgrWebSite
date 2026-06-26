@@ -305,13 +305,9 @@ http.createServer((req, res) => {
       const params = new URLSearchParams((req.url || '').split('?')[1] || '');
       const email = params.get('email') || '';
       if (!email) { res.writeHead(400); res.end('?email= requis'); return; }
-      const apiKey = process.env.SYSTEMEIO_API_KEY || '';
-      const lookup = await fetch(`https://api.systeme.io/api/contacts?email=${encodeURIComponent(email)}&limit=10`, {
-        headers: { 'X-API-Key': apiKey, 'Accept': 'application/json' }
-      });
-      const data = await lookup.json();
+      const result = await systemeApiCall('GET', `/contacts?email=${encodeURIComponent(email)}&limit=10`, null);
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-      res.end(JSON.stringify(data, null, 2));
+      res.end(JSON.stringify({ status: result.status, data: result.body }, null, 2));
     })().catch(e => { res.writeHead(500); res.end(e.message); });
     return;
   }
