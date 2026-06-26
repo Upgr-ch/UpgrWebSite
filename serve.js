@@ -376,45 +376,200 @@ http.createServer((req, res) => {
   // ── Tableau de bord des ventes ────────────────────────────────────────────
   if (urlPath === '/admin/ventes' && req.method === 'GET') {
     (async () => {
-      const result = await db.query(
-        `SELECT id, to_char(date_achat AT TIME ZONE 'Europe/Zurich', 'DD/MM/YYYY HH24:MI') AS date,
-                email, nom, produit, tag, montant, devise, stripe_session_id
-         FROM ventes ORDER BY date_achat DESC LIMIT 100`
-      );
-      const rows = result.rows;
-      const total = rows.reduce((s, r) => s + parseFloat(r.montant || 0), 0);
+      const [ventesRes, chartRes] = await Promise.all([
+        db.query(
+          `SELECT id, to_char(date_achat AT TIME ZONE 'Europe/Zurich', 'DD/MM/YYYY HH24:MI') AS date,
+                  email, nom, produit, tag, montant, devise, stripe_session_id
+           FROM ventes ORDER BY date_achat DESC LIMIT 500`
+        ),
+        db.query(
+          `SELECT to_char(date_achat AT TIME ZONE 'Europe/Zurich', 'YYYY-MM-DD') AS jour,
+                  SUM(montant) AS total, COUNT(*) AS nb
+           FROM ventes
+           GROUP BY jour ORDER BY jour ASC`
+        ),
+      ]);
+      const rows = ventesRes.rows;
+      const chart = chartRes.rows;
+      const totalAll = rows.reduce((s, r) => s + parseFloat(r.montant || 0), 0);
+      const nbClients = new Set(rows.map(r => r.email)).size;
+      const chartLabels = JSON.stringify(chart.map(r => r.jour));
+      const chartData   = JSON.stringify(chart.map(r => parseFloat(r.total).toFixed(2)));
+      const allRows     = JSON.stringify(rows.map(r => ({
+        date: r.date, email: r.email, nom: r.nom || '', produit: r.produit,
+        tag: r.tag || '', montant: parseFloat(r.montant).toFixed(2), devise: r.devise,
+        sid: (r.stripe_session_id || '').substring(0, 24),
+      })));
+
       const html = `<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8">
-<title>UpGrade — Ventes</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UpGrade — CRM Ventes</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-  body{font-family:sans-serif;max-width:900px;margin:40px auto;padding:0 20px;color:#222}
-  h1{color:#1a1a2e;border-bottom:2px solid #e94560;padding-bottom:10px}
-  .total{background:#f0f4ff;border-left:4px solid #4361ee;padding:12px 16px;margin:20px 0;border-radius:4px;font-size:1.1em}
-  table{width:100%;border-collapse:collapse;margin-top:20px}
-  th{background:#1a1a2e;color:#fff;padding:10px 12px;text-align:left;font-size:.85em}
-  td{padding:9px 12px;border-bottom:1px solid #eee;font-size:.9em}
-  tr:hover td{background:#f8f9ff}
-  .badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:.8em;font-weight:600}
-  .livre1{background:#d4edda;color:#155724}.livre2{background:#cce5ff;color:#004085}.bundle{background:#fff3cd;color:#856404}
-  .empty{text-align:center;padding:40px;color:#888}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f6fb;color:#222;min-height:100vh}
+.header{background:#1a1a2e;color:#fff;padding:18px 32px;display:flex;align-items:center;gap:12px}
+.header h1{font-size:1.3em;font-weight:700}
+.header span{font-size:.85em;opacity:.6;margin-left:auto}
+.content{max-width:1100px;margin:0 auto;padding:28px 24px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px}
+.card{background:#fff;border-radius:10px;padding:20px 22px;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.card .label{font-size:.75em;color:#888;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.card .value{font-size:1.8em;font-weight:700;color:#1a1a2e}
+.card .value.green{color:#198754}.card .value.blue{color:#0d6efd}
+.chart-box{background:#fff;border-radius:10px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,.07);margin-bottom:28px}
+.chart-box h2{font-size:.95em;color:#555;margin-bottom:16px;font-weight:600}
+.chart-wrap{position:relative;height:220px}
+.filters{background:#fff;border-radius:10px;padding:18px 22px;box-shadow:0 1px 4px rgba(0,0,0,.07);margin-bottom:20px;display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
+.filters label{font-size:.78em;color:#666;display:block;margin-bottom:4px;font-weight:500}
+.filters input,.filters select{padding:7px 10px;border:1px solid #ddd;border-radius:6px;font-size:.88em;outline:none;width:100%}
+.filters input:focus,.filters select:focus{border-color:#4361ee}
+.f-group{flex:1;min-width:140px}
+.btn-reset{padding:7px 16px;background:#e94560;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.88em;font-weight:600;white-space:nowrap;height:34px}
+.btn-reset:hover{background:#c73652}
+.table-box{background:#fff;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.07);overflow:hidden}
+table{width:100%;border-collapse:collapse}
+th{background:#1a1a2e;color:#fff;padding:11px 14px;text-align:left;font-size:.8em;font-weight:600;letter-spacing:.03em}
+td{padding:10px 14px;border-bottom:1px solid #f0f0f0;font-size:.88em;vertical-align:middle}
+tbody tr:hover td{background:#f8f9ff}
+tbody tr:last-child td{border-bottom:none}
+.badge{display:inline-block;padding:3px 9px;border-radius:12px;font-size:.78em;font-weight:600}
+.livre1{background:#d1e7dd;color:#0a3622}.livre2{background:#cfe2ff;color:#084298}.bundle{background:#fff3cd;color:#664d03}
+.email-link{color:#4361ee;text-decoration:none}.email-link:hover{text-decoration:underline}
+.montant{font-weight:700;color:#198754}
+.sid{font-size:.72em;color:#aaa;font-family:monospace}
+.empty{text-align:center;padding:50px;color:#aaa;font-size:1em}
+.count-info{font-size:.82em;color:#888;margin-bottom:10px}
 </style></head><body>
-<h1>📊 Ventes UpGrade</h1>
-<div class="total">💰 Total : <strong>${total.toFixed(2)} CHF</strong> — ${rows.length} vente${rows.length !== 1 ? 's' : ''}</div>
-${rows.length === 0 ? '<p class="empty">Aucune vente enregistrée pour le moment.</p>' : `
-<table>
-<thead><tr><th>Date (CH)</th><th>Email</th><th>Nom</th><th>Produit</th><th>Montant</th><th>Session Stripe</th></tr></thead>
-<tbody>
-${rows.map(r => {
-  const cls = r.tag && r.tag.includes('livre1') ? 'livre1' : r.tag && r.tag.includes('livre2') ? 'livre2' : 'bundle';
-  return `<tr>
-    <td>${r.date}</td>
-    <td><a href="mailto:${r.email}">${r.email}</a></td>
-    <td>${r.nom || '—'}</td>
-    <td><span class="badge ${cls}">${r.produit}</span></td>
-    <td><strong>${parseFloat(r.montant).toFixed(2)} ${r.devise}</strong></td>
-    <td style="font-size:.75em;color:#888">${(r.stripe_session_id || '').substring(0, 20)}…</td>
-  </tr>`;
-}).join('')}
-</tbody></table>`}
+<div class="header">
+  <span>📊</span><h1>CRM Ventes — UpGrade</h1>
+  <span>Dernière mise à jour : ${new Date().toLocaleString('fr-CH',{timeZone:'Europe/Zurich'})}</span>
+</div>
+<div class="content">
+  <div class="cards">
+    <div class="card"><div class="label">Chiffre d'affaires</div><div class="value green" id="totalCA">${totalAll.toFixed(2)} CHF</div></div>
+    <div class="card"><div class="label">Ventes totales</div><div class="value blue" id="totalVentes">${rows.length}</div></div>
+    <div class="card"><div class="label">Clients uniques</div><div class="value" id="totalClients">${nbClients}</div></div>
+    <div class="card"><div class="label">Panier moyen</div><div class="value" id="panierMoyen">${rows.length ? (totalAll / rows.length).toFixed(2) : '0.00'} CHF</div></div>
+  </div>
+
+  <div class="chart-box">
+    <h2>📈 Chiffre d'affaires par jour</h2>
+    <div class="chart-wrap"><canvas id="ventesChart"></canvas></div>
+  </div>
+
+  <div class="filters">
+    <div class="f-group"><label>🔍 Email ou nom</label><input type="text" id="fText" placeholder="ex: jean@gmail.com" oninput="filtrer()"></div>
+    <div class="f-group"><label>📦 Produit</label>
+      <select id="fProduit" onchange="filtrer()">
+        <option value="">Tous</option>
+        <option value="livre1">De l'idée au plan</option>
+        <option value="livre2">Compétences humaines</option>
+        <option value="bundle">Offre groupée</option>
+      </select>
+    </div>
+    <div class="f-group"><label>📅 Date début</label><input type="date" id="fDateDeb" oninput="filtrer()"></div>
+    <div class="f-group"><label>📅 Date fin</label><input type="date" id="fDateFin" oninput="filtrer()"></div>
+    <button class="btn-reset" onclick="resetFiltres()">✕ Réinitialiser</button>
+  </div>
+
+  <p class="count-info" id="countInfo"></p>
+
+  <div class="table-box">
+    <table>
+      <thead><tr><th>Date (CH)</th><th>Email</th><th>Nom</th><th>Produit</th><th>Montant</th><th>ID Stripe</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div id="emptyMsg" class="empty" style="display:none">Aucune vente ne correspond aux filtres.</div>
+  </div>
+</div>
+
+<script>
+const ALL = ${allRows};
+const chartLabels = ${chartLabels};
+const chartData   = ${chartData};
+
+// Courbe Chart.js
+const ctx = document.getElementById('ventesChart').getContext('2d');
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: chartLabels,
+    datasets: [{
+      label: 'CA (CHF)',
+      data: chartData,
+      borderColor: '#4361ee',
+      backgroundColor: 'rgba(67,97,238,.08)',
+      borderWidth: 2.5,
+      pointBackgroundColor: '#4361ee',
+      pointRadius: chartLabels.length < 20 ? 4 : 2,
+      tension: 0.35,
+      fill: true,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.parsed.y + ' CHF' } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: { beginAtZero: true, ticks: { callback: v => v + ' CHF', font: { size: 11 } }, grid: { color: '#f0f0f0' } }
+    }
+  }
+});
+
+function badgeCls(tag) {
+  if (!tag) return 'bundle';
+  if (tag.includes('livre1')) return 'livre1';
+  if (tag.includes('livre2')) return 'livre2';
+  return 'bundle';
+}
+
+function filtrer() {
+  const txt  = document.getElementById('fText').value.toLowerCase().trim();
+  const prod = document.getElementById('fProduit').value;
+  const deb  = document.getElementById('fDateDeb').value;
+  const fin  = document.getElementById('fDateFin').value;
+
+  const filtered = ALL.filter(r => {
+    if (txt && !r.email.toLowerCase().includes(txt) && !r.nom.toLowerCase().includes(txt)) return false;
+    if (prod && !r.tag.includes(prod)) return false;
+    // date au format DD/MM/YYYY → convert to YYYY-MM-DD
+    const parts = r.date.split(' ')[0].split('/');
+    const iso = parts[2] + '-' + parts[1] + '-' + parts[0];
+    if (deb && iso < deb) return false;
+    if (fin && iso > fin) return false;
+    return true;
+  });
+
+  const ca = filtered.reduce((s, r) => s + parseFloat(r.montant), 0);
+  document.getElementById('totalCA').textContent    = ca.toFixed(2) + ' CHF';
+  document.getElementById('totalVentes').textContent = filtered.length;
+  document.getElementById('totalClients').textContent = new Set(filtered.map(r => r.email)).size;
+  document.getElementById('panierMoyen').textContent  = filtered.length ? (ca / filtered.length).toFixed(2) + ' CHF' : '0.00 CHF';
+  document.getElementById('countInfo').textContent    = filtered.length + ' vente' + (filtered.length !== 1 ? 's' : '') + ' affichée' + (filtered.length !== 1 ? 's' : '');
+
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = filtered.map(r => \`<tr>
+    <td>\${r.date}</td>
+    <td><a class="email-link" href="mailto:\${r.email}">\${r.email}</a></td>
+    <td>\${r.nom || '—'}</td>
+    <td><span class="badge \${badgeCls(r.tag)}">\${r.produit}</span></td>
+    <td class="montant">\${r.montant} \${r.devise}</td>
+    <td class="sid">\${r.sid}…</td>
+  </tr>\`).join('');
+  document.getElementById('emptyMsg').style.display = filtered.length ? 'none' : 'block';
+}
+
+function resetFiltres() {
+  document.getElementById('fText').value = '';
+  document.getElementById('fProduit').value = '';
+  document.getElementById('fDateDeb').value = '';
+  document.getElementById('fDateFin').value = '';
+  filtrer();
+}
+
+filtrer();
+</script>
 </body></html>`;
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       res.end(html);
