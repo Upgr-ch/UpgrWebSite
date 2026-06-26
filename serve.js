@@ -272,22 +272,30 @@ http.createServer((req, res) => {
 
   // ── Liste payment links (temporaire) ──────────────────────────────────────
   if (urlPath === '/admin/payment-links' && req.method === 'GET') {
-    const https = require('https');
-    const key = process.env.STRIPE_SECRET_KEY || '';
-    const req2 = https.get('https://api.stripe.com/v1/payment_links?limit=10', {
-      headers: { 'Authorization': 'Bearer ' + key }
-    }, (res2) => {
-      let body = '';
-      res2.on('data', d => body += d);
-      res2.on('end', () => {
-        const data = JSON.parse(body);
-        const keyPrefix = key ? key.substring(0, 12) + '...' : 'ABSENTE';
-        const liens = (data.data || []).map(pl => ({ id: pl.id, actif: pl.active, url: pl.url }));
-        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify({ cle_prefix: keyPrefix, nb_liens: liens.length, liens }, null, 2));
+    (async () => {
+      const https = require('https');
+      const key = (process.env.STRIPE_SECRET_KEY || '').trim();
+      const keyPrefix = key ? key.substring(0, 14) + '...' : 'ABSENTE';
+      const stripeGet = (p) => new Promise((resolve) => {
+        const r = https.get('https://api.stripe.com' + p, {
+          headers: { 'Authorization': 'Bearer ' + key }
+        }, (r2) => { let b = ''; r2.on('data', d => b += d); r2.on('end', () => resolve(JSON.parse(b))); });
+        r.on('error', e => resolve({ error: e.message }));
       });
-    });
-    req2.on('error', e => { res.writeHead(500); res.end(e.message); });
+      const [account, liens, plink] = await Promise.all([
+        stripeGet('/v1/account'),
+        stripeGet('/v1/payment_links?limit=10'),
+        stripeGet('/v1/payment_links/plink_1TmAZUH51Bvzgbhu2QG9H2YX'),
+      ]);
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({
+        cle_prefix: keyPrefix,
+        compte_email: account.email || account.error,
+        nb_liens: (liens.data || []).length,
+        liens: (liens.data || []).map(pl => ({ id: pl.id, actif: pl.active, url: pl.url })),
+        plink_bundle: plink.id || plink.error,
+      }, null, 2));
+    })().catch(e => { res.writeHead(500); res.end(e.message); });
     return;
   }
 
