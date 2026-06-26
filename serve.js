@@ -299,6 +299,23 @@ http.createServer((req, res) => {
     return;
   }
 
+  // ── Consultation contact Systeme.io ───────────────────────────────────────
+  if (urlPath === '/admin/contact' && req.method === 'GET') {
+    (async () => {
+      const params = new URLSearchParams((req.url || '').split('?')[1] || '');
+      const email = params.get('email') || '';
+      if (!email) { res.writeHead(400); res.end('?email= requis'); return; }
+      const apiKey = process.env.SYSTEMEIO_API_KEY || '';
+      const lookup = await fetch(`https://api.systeme.io/api/contacts?email=${encodeURIComponent(email)}&limit=10`, {
+        headers: { 'X-API-Key': apiKey, 'Accept': 'application/json' }
+      });
+      const data = await lookup.json();
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify(data, null, 2));
+    })().catch(e => { res.writeHead(500); res.end(e.message); });
+    return;
+  }
+
   // ── Test Systeme.io (temporaire) ──────────────────────────────────────────
   if (urlPath === '/test-systeme' && req.method === 'GET') {
     const params = new URLSearchParams((req.url || '').split('?')[1] || '');
