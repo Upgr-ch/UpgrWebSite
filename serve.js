@@ -281,9 +281,10 @@ http.createServer((req, res) => {
       res2.on('data', d => body += d);
       res2.on('end', () => {
         const data = JSON.parse(body);
+        const keyPrefix = key ? key.substring(0, 12) + '...' : 'ABSENTE';
         const liens = (data.data || []).map(pl => ({ id: pl.id, actif: pl.active, url: pl.url }));
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify(liens, null, 2));
+        res.end(JSON.stringify({ cle_prefix: keyPrefix, nb_liens: liens.length, liens }, null, 2));
       });
     });
     req2.on('error', e => { res.writeHead(500); res.end(e.message); });
