@@ -299,15 +299,20 @@ http.createServer((req, res) => {
     return;
   }
 
-  // ── Consultation contact Systeme.io ───────────────────────────────────────
+  // ── Consultation contact + champs Systeme.io ──────────────────────────────
   if (urlPath === '/admin/contact' && req.method === 'GET') {
     (async () => {
       const params = new URLSearchParams((req.url || '').split('?')[1] || '');
       const email = params.get('email') || '';
-      if (!email) { res.writeHead(400); res.end('?email= requis'); return; }
-      const result = await systemeApiCall('GET', `/contacts?email=${encodeURIComponent(email)}&limit=10`, null);
+      const [contactRes, fieldsRes] = await Promise.all([
+        email ? systemeApiCall('GET', `/contacts?email=${encodeURIComponent(email)}&limit=10`, null) : Promise.resolve({ status: 0, body: {} }),
+        systemeApiCall('GET', '/contact-fields?limit=50', null),
+      ]);
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-      res.end(JSON.stringify({ status: result.status, data: result.body }, null, 2));
+      res.end(JSON.stringify({
+        contact: contactRes.body,
+        champs_disponibles: fieldsRes.body,
+      }, null, 2));
     })().catch(e => { res.writeHead(500); res.end(e.message); });
     return;
   }
