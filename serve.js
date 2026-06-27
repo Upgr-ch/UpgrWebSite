@@ -620,6 +620,57 @@ filtrer();
     return;
   }
 
+  // ── Test achat complet (temporaire) ───────────────────────────────────────
+  if (urlPath === '/test-achat-complet' && req.method === 'GET') {
+    (async () => {
+      const params  = new URLSearchParams((req.url || '').split('?')[1] || '');
+      const email   = params.get('email') || 'test@upgr.ch';
+      const prenom  = params.get('prenom') || 'Test';
+      const nom     = params.get('nom') || 'Client';
+      const plinkKey= params.get('produit') || 'livre1';
+      const plinkMap = {
+        livre1: process.env.STRIPE_LINK_LIVRE1 || '__livre1__',
+        livre2: process.env.STRIPE_LINK_LIVRE2 || '__livre2__',
+        bundle: process.env.STRIPE_LINK_BUNDLE || '__bundle__',
+      };
+      const plink   = plinkMap[plinkKey] || plinkMap.livre1;
+      const produit = PRODUCTS[plink];
+      if (!produit) {
+        res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8' });
+        return res.end(JSON.stringify({ ok: false, error: 'produit inconnu' }));
+      }
+      const fakeSessionId = 'cs_test_' + Date.now() + '_' + Math.random().toString(36).slice(2,8);
+      const montant  = '29.00';
+      const devise   = 'CHF';
+      const dateAchat = new Date().toISOString().slice(0, 10);
+      const log = [];
+      try {
+        const dbRes = await db.query(
+          `INSERT INTO ventes (email, nom, produit, tag, montant, devise, stripe_session_id, stripe_plink)
+           VALUES ($1,$2,$3,$4,$5,$6,$7,$8) ON CONFLICT (stripe_session_id) DO NOTHING RETURNING id`,
+          [email, prenom + ' ' + nom, produit.nom, produit.tag, parseFloat(montant), devise, fakeSessionId, plink]
+        );
+        log.push({ etape: '1-DB', ok: true, id: dbRes.rows[0]?.id });
+      } catch(e) { log.push({ etape: '1-DB', ok: false, error: e.message }); }
+      let contactId = null;
+      try {
+        contactId = await ajouterContactSystemeIO({ email, prenom, nom, tagName: produit.tag });
+        log.push({ etape: '2-SystemeIO-tag', ok: true, contactId, tag: produit.tag });
+      } catch(e) { log.push({ etape: '2-SystemeIO-tag', ok: false, error: e.message }); }
+      if (contactId) {
+        try {
+          const patch = await patchContactSystemeIO(contactId, produit.nom, montant, devise, dateAchat);
+          log.push({ etape: '3-SystemeIO-patch', ok: patch.status < 300, status: patch.status });
+        } catch(e) { log.push({ etape: '3-SystemeIO-patch', ok: false, error: e.message }); }
+      } else {
+        log.push({ etape: '3-SystemeIO-patch', ok: false, note: 'contactId absent — patch ignoré' });
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ email, produit: produit.nom, tag: produit.tag, fakeSessionId, log }, null, 2));
+    })().catch(e => { res.writeHead(500); res.end(e.message); });
+    return;
+  }
+
   // ── Test Systeme.io (temporaire) ──────────────────────────────────────────
   if (urlPath === '/test-systeme' && req.method === 'GET') {
     const params = new URLSearchParams((req.url || '').split('?')[1] || '');
