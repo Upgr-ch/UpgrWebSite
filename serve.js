@@ -402,8 +402,11 @@ http.createServer((req, res) => {
         const d = new Date(); d.setDate(d.getDate() - 29 + i);
         return d.toISOString().slice(0,10);
       });
+      const MOIS_FR = ['jan','fév','mar','avr','mai','juin','juil','août','sep','oct','nov','déc'];
       const chartLabels = JSON.stringify(days30.map(d => {
-        const p = d.split('-'); return p[2] + '/' + p[1];
+        const p = d.split('-');
+        const mois = MOIS_FR[parseInt(p[1],10)-1];
+        return p[2] + ' ' + mois + ' ' + p[0];
       }));
       const chartData   = JSON.stringify(days30.map(d => chartMap[d] || '0'));
       const allRows     = JSON.stringify(rows.map(r => ({
