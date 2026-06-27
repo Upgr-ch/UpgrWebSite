@@ -386,6 +386,7 @@ http.createServer((req, res) => {
           `SELECT to_char(date_achat AT TIME ZONE 'Europe/Zurich', 'YYYY-MM-DD') AS jour,
                   SUM(montant) AS total, COUNT(*) AS nb
            FROM ventes
+           WHERE date_achat >= NOW() - INTERVAL '30 days'
            GROUP BY jour ORDER BY jour ASC`
         ),
       ]);
@@ -393,8 +394,18 @@ http.createServer((req, res) => {
       const chart = chartRes.rows;
       const totalAll = rows.reduce((s, r) => s + parseFloat(r.montant || 0), 0);
       const nbClients = new Set(rows.map(r => r.email)).size;
-      const chartLabels = JSON.stringify(chart.map(r => r.jour));
-      const chartData   = JSON.stringify(chart.map(r => parseFloat(r.total).toFixed(2)));
+
+      // Construire un tableau complet de 30 jours (jours sans vente = 0)
+      const chartMap = {};
+      chart.forEach(r => { chartMap[r.jour] = parseFloat(r.total).toFixed(2); });
+      const days30 = Array.from({length: 30}, (_, i) => {
+        const d = new Date(); d.setDate(d.getDate() - 29 + i);
+        return d.toISOString().slice(0,10);
+      });
+      const chartLabels = JSON.stringify(days30.map(d => {
+        const p = d.split('-'); return p[2] + '/' + p[1];
+      }));
+      const chartData   = JSON.stringify(days30.map(d => chartMap[d] || '0'));
       const allRows     = JSON.stringify(rows.map(r => ({
         date: r.date, email: r.email, nom: r.nom || '', produit: r.produit,
         tag: r.tag || '', montant: parseFloat(r.montant).toFixed(2), devise: r.devise,
@@ -470,7 +481,6 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 
   <div class="filters">
-    <div class="f-group"><label>Recherche email / nom</label><input type="text" id="fText" placeholder="ex : jean@gmail.com" oninput="filtrer()"></div>
     <div class="f-group"><label>Produit</label>
       <select id="fProduit" onchange="filtrer()">
         <option value="">Tous les produits</option>
@@ -481,6 +491,7 @@ tbody tr:last-child td{border-bottom:none}
     </div>
     <div class="f-group"><label>Date début</label><input type="date" id="fDateDeb" oninput="filtrer()"></div>
     <div class="f-group"><label>Date fin</label><input type="date" id="fDateFin" oninput="filtrer()"></div>
+    <div class="f-group"><label>Recherche email / nom</label><input type="text" id="fText" placeholder="ex : jean@gmail.com" oninput="filtrer()"></div>
     <button class="btn-reset" onclick="resetFiltres()">Réinitialiser</button>
   </div>
 
