@@ -237,12 +237,22 @@ async function patchContactSystemeIO(contactId, produit, montant, devise, date) 
 }
 
 async function traiterWebhookStripe(rawBody, signature) {
-  const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY || '');
+  const crypto = require('crypto');
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
 
+  // Vérification HMAC manuelle (ne dépend pas de STRIPE_SECRET_KEY)
   let event;
   try {
-    event = stripe.webhooks.constructEvent(rawBody, signature, webhookSecret);
+    const parts = {};
+    signature.split(',').forEach(p => { const [k, v] = p.split('='); parts[k] = v; });
+    const timestamp = parts['t'];
+    const v1        = parts['v1'];
+    if (!timestamp || !v1) throw new Error('header stripe-signature malformé');
+    const signedPayload = timestamp + '.' + rawBody.toString('utf8');
+    const expected = crypto.createHmac('sha256', webhookSecret).update(signedPayload).digest('hex');
+    if (expected !== v1) throw new Error('signatures HMAC ne correspondent pas');
+    event = JSON.parse(rawBody.toString('utf8'));
+    console.log(`[webhook] signature OK — event type: ${event.type}`);
   } catch (err) {
     console.error('Webhook signature invalide :', err.message);
     throw new Error('signature_invalide');
