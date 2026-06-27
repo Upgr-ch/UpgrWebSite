@@ -404,73 +404,84 @@ http.createServer((req, res) => {
       const html = `<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>UpGrade — CRM Ventes</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f6fb;color:#222;min-height:100vh}
-.header{background:#1a1a2e;color:#fff;padding:18px 32px;display:flex;align-items:center;gap:12px}
-.header h1{font-size:1.3em;font-weight:700}
-.header span{font-size:.85em;opacity:.6;margin-left:auto}
-.content{max-width:1100px;margin:0 auto;padding:28px 24px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px}
-.card{background:#fff;border-radius:10px;padding:20px 22px;box-shadow:0 1px 4px rgba(0,0,0,.07)}
-.card .label{font-size:.75em;color:#888;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
-.card .value{font-size:1.8em;font-weight:700;color:#1a1a2e}
-.card .value.green{color:#198754}.card .value.blue{color:#0d6efd}
-.chart-box{background:#fff;border-radius:10px;padding:22px;box-shadow:0 1px 4px rgba(0,0,0,.07);margin-bottom:28px}
-.chart-box h2{font-size:.95em;color:#555;margin-bottom:16px;font-weight:600}
+body{font-family:'Inter',sans-serif;background:#070b12;color:#fff;min-height:100vh}
+.header{background:#0a0f1a;border-bottom:1px solid rgba(246,220,141,.15);padding:16px 32px;display:flex;align-items:center;gap:16px}
+.logo{font-size:1.25em;font-weight:700;letter-spacing:-.01em}
+.logo em{font-style:italic;color:#f6dc8d}
+.logo-sub{font-size:.65em;letter-spacing:.18em;color:#f6dc8d;opacity:.7;text-transform:uppercase;display:block;margin-top:1px}
+.header-right{margin-left:auto;font-size:.78em;color:#a6a6a6}
+.content{max-width:1120px;margin:0 auto;padding:32px 24px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:28px}
+.card{background:#1f242e;border:1px solid rgba(246,220,141,.1);border-radius:10px;padding:20px 22px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#b58d26,#f6dc8d)}
+.card .label{font-size:.72em;color:#a6a6a6;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;font-weight:500}
+.card .value{font-size:1.9em;font-weight:700;color:#f6dc8d}
+.card .value.white{color:#fff}
+.chart-box{background:#1f242e;border:1px solid rgba(246,220,141,.1);border-radius:10px;padding:24px;margin-bottom:24px}
+.chart-box h2{font-size:.82em;color:#a6a6a6;text-transform:uppercase;letter-spacing:.08em;margin-bottom:18px;font-weight:600}
 .chart-wrap{position:relative;height:220px}
-.filters{background:#fff;border-radius:10px;padding:18px 22px;box-shadow:0 1px 4px rgba(0,0,0,.07);margin-bottom:20px;display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
-.filters label{font-size:.78em;color:#666;display:block;margin-bottom:4px;font-weight:500}
-.filters input,.filters select{padding:7px 10px;border:1px solid #ddd;border-radius:6px;font-size:.88em;outline:none;width:100%}
-.filters input:focus,.filters select:focus{border-color:#4361ee}
-.f-group{flex:1;min-width:140px}
-.btn-reset{padding:7px 16px;background:#e94560;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:.88em;font-weight:600;white-space:nowrap;height:34px}
-.btn-reset:hover{background:#c73652}
-.table-box{background:#fff;border-radius:10px;box-shadow:0 1px 4px rgba(0,0,0,.07);overflow:hidden}
+.filters{background:#1f242e;border:1px solid rgba(246,220,141,.1);border-radius:10px;padding:18px 22px;margin-bottom:16px;display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end}
+.filters label{font-size:.72em;color:#a6a6a6;display:block;margin-bottom:5px;font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+.filters input,.filters select{padding:8px 11px;background:#070b12;border:1px solid rgba(255,255,255,.12);border-radius:6px;font-size:.88em;color:#fff;outline:none;width:100%;font-family:'Inter',sans-serif}
+.filters input:focus,.filters select:focus{border-color:#f6dc8d}
+.filters select option{background:#1f242e}
+.f-group{flex:1;min-width:150px}
+.btn-reset{padding:8px 18px;background:transparent;color:#f6dc8d;border:1px solid #f6dc8d;border-radius:6px;cursor:pointer;font-size:.83em;font-weight:600;white-space:nowrap;font-family:'Inter',sans-serif;transition:all .2s}
+.btn-reset:hover{background:#f6dc8d;color:#070b12}
+.count-info{font-size:.78em;color:#a6a6a6;margin-bottom:10px;padding-left:2px}
+.table-box{background:#1f242e;border:1px solid rgba(246,220,141,.1);border-radius:10px;overflow:hidden}
 table{width:100%;border-collapse:collapse}
-th{background:#1a1a2e;color:#fff;padding:11px 14px;text-align:left;font-size:.8em;font-weight:600;letter-spacing:.03em}
-td{padding:10px 14px;border-bottom:1px solid #f0f0f0;font-size:.88em;vertical-align:middle}
-tbody tr:hover td{background:#f8f9ff}
+th{background:#0a0f1a;color:#a6a6a6;padding:11px 16px;text-align:left;font-size:.72em;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border-bottom:1px solid rgba(246,220,141,.1)}
+td{padding:11px 16px;border-bottom:1px solid rgba(255,255,255,.05);font-size:.88em;vertical-align:middle;color:#e0e0e0}
+tbody tr:hover td{background:rgba(246,220,141,.04)}
 tbody tr:last-child td{border-bottom:none}
-.badge{display:inline-block;padding:3px 9px;border-radius:12px;font-size:.78em;font-weight:600}
-.livre1{background:#d1e7dd;color:#0a3622}.livre2{background:#cfe2ff;color:#084298}.bundle{background:#fff3cd;color:#664d03}
-.email-link{color:#4361ee;text-decoration:none}.email-link:hover{text-decoration:underline}
-.montant{font-weight:700;color:#198754}
-.sid{font-size:.72em;color:#aaa;font-family:monospace}
-.empty{text-align:center;padding:50px;color:#aaa;font-size:1em}
-.count-info{font-size:.82em;color:#888;margin-bottom:10px}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.75em;font-weight:600;letter-spacing:.02em}
+.livre1{background:rgba(181,141,38,.2);color:#f6dc8d;border:1px solid rgba(181,141,38,.4)}
+.livre2{background:rgba(246,220,141,.12);color:#f5e090;border:1px solid rgba(246,220,141,.25)}
+.bundle{background:rgba(239,67,67,.12);color:#ef9999;border:1px solid rgba(239,67,67,.25)}
+.email-link{color:#f6dc8d;text-decoration:none;opacity:.85}.email-link:hover{opacity:1;text-decoration:underline}
+.montant{font-weight:700;color:#f6dc8d}
+.sid{font-size:.72em;color:#555;font-family:monospace}
+.empty{text-align:center;padding:50px;color:#a6a6a6;font-size:.95em}
 </style></head><body>
 <div class="header">
-  <span>📊</span><h1>CRM Ventes — UpGrade</h1>
-  <span>Dernière mise à jour : ${new Date().toLocaleString('fr-CH',{timeZone:'Europe/Zurich'})}</span>
+  <div>
+    <div class="logo"><em>Up</em>Grade<span class="logo-sub">Learning &amp; Development</span></div>
+  </div>
+  <div style="width:1px;height:36px;background:rgba(246,220,141,.2);margin:0 8px"></div>
+  <span style="color:#a6a6a6;font-size:.88em;font-weight:500">CRM — Tableau de bord des ventes</span>
+  <div class="header-right">Mis à jour : ${new Date().toLocaleString('fr-CH',{timeZone:'Europe/Zurich'})}</div>
 </div>
 <div class="content">
   <div class="cards">
-    <div class="card"><div class="label">Chiffre d'affaires</div><div class="value green" id="totalCA">${totalAll.toFixed(2)} CHF</div></div>
-    <div class="card"><div class="label">Ventes totales</div><div class="value blue" id="totalVentes">${rows.length}</div></div>
-    <div class="card"><div class="label">Clients uniques</div><div class="value" id="totalClients">${nbClients}</div></div>
-    <div class="card"><div class="label">Panier moyen</div><div class="value" id="panierMoyen">${rows.length ? (totalAll / rows.length).toFixed(2) : '0.00'} CHF</div></div>
+    <div class="card"><div class="label">Chiffre d'affaires</div><div class="value" id="totalCA">${totalAll.toFixed(2)} CHF</div></div>
+    <div class="card"><div class="label">Ventes totales</div><div class="value white" id="totalVentes">${rows.length}</div></div>
+    <div class="card"><div class="label">Clients uniques</div><div class="value white" id="totalClients">${nbClients}</div></div>
+    <div class="card"><div class="label">Panier moyen</div><div class="value" id="panierMoyen">${rows.length ? (totalAll/rows.length).toFixed(2) : '0.00'} CHF</div></div>
   </div>
 
   <div class="chart-box">
-    <h2>📈 Chiffre d'affaires par jour</h2>
+    <h2>Chiffre d'affaires par jour (CHF)</h2>
     <div class="chart-wrap"><canvas id="ventesChart"></canvas></div>
   </div>
 
   <div class="filters">
-    <div class="f-group"><label>🔍 Email ou nom</label><input type="text" id="fText" placeholder="ex: jean@gmail.com" oninput="filtrer()"></div>
-    <div class="f-group"><label>📦 Produit</label>
+    <div class="f-group"><label>Recherche email / nom</label><input type="text" id="fText" placeholder="ex : jean@gmail.com" oninput="filtrer()"></div>
+    <div class="f-group"><label>Produit</label>
       <select id="fProduit" onchange="filtrer()">
-        <option value="">Tous</option>
+        <option value="">Tous les produits</option>
         <option value="livre1">De l'idée au plan</option>
         <option value="livre2">Compétences humaines</option>
         <option value="bundle">Offre groupée</option>
       </select>
     </div>
-    <div class="f-group"><label>📅 Date début</label><input type="date" id="fDateDeb" oninput="filtrer()"></div>
-    <div class="f-group"><label>📅 Date fin</label><input type="date" id="fDateFin" oninput="filtrer()"></div>
-    <button class="btn-reset" onclick="resetFiltres()">✕ Réinitialiser</button>
+    <div class="f-group"><label>Date début</label><input type="date" id="fDateDeb" oninput="filtrer()"></div>
+    <div class="f-group"><label>Date fin</label><input type="date" id="fDateFin" oninput="filtrer()"></div>
+    <button class="btn-reset" onclick="resetFiltres()">Réinitialiser</button>
   </div>
 
   <p class="count-info" id="countInfo"></p>
@@ -498,10 +509,10 @@ new Chart(ctx, {
     datasets: [{
       label: 'CA (CHF)',
       data: chartData,
-      borderColor: '#4361ee',
-      backgroundColor: 'rgba(67,97,238,.08)',
+      borderColor: '#f6dc8d',
+      backgroundColor: 'rgba(246,220,141,.07)',
       borderWidth: 2.5,
-      pointBackgroundColor: '#4361ee',
+      pointBackgroundColor: '#f6dc8d',
       pointRadius: chartLabels.length < 20 ? 4 : 2,
       tension: 0.35,
       fill: true,
@@ -511,8 +522,8 @@ new Chart(ctx, {
     responsive: true, maintainAspectRatio: false,
     plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => c.parsed.y + ' CHF' } } },
     scales: {
-      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
-      y: { beginAtZero: true, ticks: { callback: v => v + ' CHF', font: { size: 11 } }, grid: { color: '#f0f0f0' } }
+      x: { grid: { display: false }, ticks: { color: '#a6a6a6', font: { size: 11 } } },
+      y: { beginAtZero: true, ticks: { callback: v => v + ' CHF', color: '#a6a6a6', font: { size: 11 } }, grid: { color: 'rgba(255,255,255,.05)' } }
     }
   }
 });
