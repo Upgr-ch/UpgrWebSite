@@ -386,14 +386,6 @@
       document.getElementById('upsell-overlay').classList.add('open');
       document.body.style.overflow = 'hidden';
 
-      // Conversion Google Ads — intention d'achat confirmée
-      if (typeof gtag === 'function') {
-        gtag('event', 'conversion', {
-          'send_to': 'AW-18294385008/HVHwCJeq2ckcEPDSuJNE',
-          'value': 1.0,
-          'currency': 'EUR'
-        });
-      }
     }
 
     function closeUpsell() {
