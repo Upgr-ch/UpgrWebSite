@@ -121,6 +121,14 @@
     .footer-inner a { color: rgba(255,255,255,0.45); }
     .footer-inner a:hover { color: #F5E090; }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18294385008"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18294385008');
+  </script>
 </head>
 <body>
 
@@ -377,6 +385,15 @@
 
       document.getElementById('upsell-overlay').classList.add('open');
       document.body.style.overflow = 'hidden';
+
+      // Conversion Google Ads — intention d'achat confirmée
+      if (typeof gtag === 'function') {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18294385008/HVHwCJeq2ckcEPDSuJNE',
+          'value': 1.0,
+          'currency': 'EUR'
+        });
+      }
     }
 
     function closeUpsell() {
