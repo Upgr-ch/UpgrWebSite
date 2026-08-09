@@ -93,6 +93,11 @@
     .price-card-desc { font-size: 0.87rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.82); margin-bottom: 1.2rem; flex: 1; }
     .price-card-desc em { color: rgba(255,255,255,0.95); font-style: italic; }
     .price-card-note { font-size: 0.78rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.62); margin-bottom: 1.2rem; line-height: 1.55; }
+    .note-shimmer { font-size: 0.8rem; font-weight: 500; font-style: italic; margin-bottom: 1rem; display: inline-block;
+      background: linear-gradient(90deg, #b58d26 0%, #f6dc8d 30%, #fff 50%, #f6dc8d 70%, #b58d26 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      background-size: 250% 100%; animation: shimmer 4s linear infinite; }
+    @keyframes shimmer { 0% { background-position: 200% 0; } to { background-position: -200% 0; } }
 
     .price-amount { font-size: 2.2rem; font-weight: 700; color: #F5E090; line-height: 1; }
     .price-eur-equiv { font-size: 0.95rem; font-weight: 300; color: rgba(255,255,255,0.55); margin-top: 0.2rem; }
@@ -207,12 +212,12 @@
         <span class="price-card-badge">⭐ Recommandé</span>
         <p class="price-card-tag">Pack</p>
         <h3 class="price-card-title">Pack Découverte</h3>
+        <p class="note-shimmer">Vous avez déjà les ouvrages ? Ce que vous avez payé sera déduit au paiement.</p>
         <div class="promo-banner">
           <strong>Masterclasse + 2 ouvrages, prix groupé</strong>
           <span>40 CHF / 43 € de moins qu'en achetant séparément</span>
         </div>
         <p class="price-card-desc"><em>L'Art de Transmettre #1</em> + <em>De l'idée au plan</em> + <em>Vos compétences humaines invisibles</em>. Les trois forment un pack complet, de l'idée à la première session.</p>
-        <p class="price-card-note">Vous avez déjà les ouvrages ? Ce que vous avez payé sera déduit.</p>
         <div class="price-amount">110 CHF</div>
         <div class="price-eur-equiv">/ 118 €</div>
         <p class="price-disclaimer">Prix en euros donné à titre indicatif, sur la base d'un équivalent en CHF. Le montant facturé peut varier selon le taux de change appliqué au moment du paiement.</p>
