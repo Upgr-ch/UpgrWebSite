@@ -1,0 +1,596 @@
+<style>
+    .masterclass-container {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 750px;
+        margin: 20px auto;
+        padding: 0 20px;
+    }
+
+    /* FICHE SYNTHESE - DESIGN IMPACTANT */
+    .fiche-synthese {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 0;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 30px rgba(8, 15, 30, 0.10);
+        overflow: hidden;
+        border: 1px solid #e9ecf2;
+        position: relative;
+    }
+
+    .fiche-synthese .fs-banner {
+        background: #080F1E;
+        padding: 20px 32px 16px 32px;
+        text-align: center;
+        border-bottom: 4px solid #D4AF37;
+        position: relative;
+        z-index: 1;
+    }
+    .fiche-synthese .fs-banner .fs-badge {
+        display: inline-block;
+        background: #D4AF37;
+        color: #080F1E;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        padding: 3px 16px;
+        border-radius: 20px;
+        margin-bottom: 8px;
+    }
+    .fiche-synthese .fs-banner .fs-title {
+        font-size: 24px;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: -0.3px;
+        margin-bottom: 2px;
+    }
+    .fiche-synthese .fs-banner .fs-subtitle {
+        font-size: 14px;
+        color: rgba(255,255,255,0.7);
+        font-weight: 300;
+    }
+
+    .fiche-synthese .fs-body {
+        padding: 28px 32px 32px 32px;
+        background: #fafbff;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* ===== FILIGRANE "EXtrait" PAR SECTION ===== */
+    .fs-intro {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #1a2a3a;
+        text-align: center;
+        margin-bottom: 24px;
+        padding: 12px 20px;
+        background: #edf2f9;
+        border-radius: 8px;
+        border-left: 4px solid #D4AF37;
+        font-weight: 500;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .fs-intro .watermark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .fs-intro .watermark span {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 60px;
+        font-weight: 900;
+        color: rgba(0, 0, 0, 0.06);
+        text-transform: uppercase;
+        letter-spacing: 8px;
+        transform: rotate(-30deg);
+        user-select: none;
+        white-space: nowrap;
+        display: block;
+    }
+    .fs-intro > *:not(.watermark) {
+        position: relative;
+        z-index: 1;
+    }
+
+    .fs-point {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 18px;
+        align-items: flex-start;
+        background: #ffffff;
+        padding: 16px 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(8, 15, 30, 0.05);
+        border-left: 4px solid transparent;
+        transition: border-color 0.2s;
+        position: relative;
+        overflow: hidden;
+    }
+    .fs-point:hover {
+        border-left-color: #D4AF37;
+    }
+
+    .fs-point .watermark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .fs-point .watermark span {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 70px;
+        font-weight: 900;
+        color: rgba(0, 0, 0, 0.05);
+        text-transform: uppercase;
+        letter-spacing: 8px;
+        transform: rotate(-30deg);
+        user-select: none;
+        white-space: nowrap;
+        display: block;
+    }
+    .fs-point > *:not(.watermark) {
+        position: relative;
+        z-index: 1;
+    }
+
+    .fs-point .fs-num {
+        font-weight: 700;
+        color: #ffffff;
+        font-size: 16px;
+        min-width: 32px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        background: #080F1E;
+        border-radius: 50%;
+        flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(8, 15, 30, 0.15);
+        margin-top: 2px;
+    }
+
+    .fs-point .fs-content {
+        flex: 1;
+    }
+    .fs-point .fs-content .fs-point-title {
+        font-weight: 700;
+        color: #080F1E;
+        font-size: 15px;
+        margin-bottom: 2px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .fs-point .fs-content .fs-point-title .fs-icon {
+        color: #D4AF37;
+        font-size: 16px;
+    }
+    .fs-point .fs-content .fs-point-text {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #1a2a3a;
+        text-align: justify;
+    }
+
+    .fs-questions {
+        margin-top: 24px;
+        padding-top: 20px;
+        border-top: 2px solid #eef1f6;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .fs-questions .watermark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    .fs-questions .watermark span {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 80px;
+        font-weight: 900;
+        color: rgba(0, 0, 0, 0.05);
+        text-transform: uppercase;
+        letter-spacing: 10px;
+        transform: rotate(-30deg);
+        user-select: none;
+        white-space: nowrap;
+        display: block;
+    }
+    .fs-questions > *:not(.watermark) {
+        position: relative;
+        z-index: 1;
+    }
+
+    .fs-questions .fs-q-title {
+        font-weight: 700;
+        color: #080F1E;
+        font-size: 16px;
+        margin-bottom: 14px;
+        text-align: center;
+        letter-spacing: 0.5px;
+    }
+    .fs-questions .fs-q-title span {
+        display: inline-block;
+        background: #080F1E;
+        color: white;
+        padding: 2px 14px;
+        border-radius: 20px;
+        font-size: 12px;
+        letter-spacing: 0.8px;
+    }
+    .fs-questions .fs-q-item {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #1a2a3a;
+        padding: 8px 0 8px 28px;
+        position: relative;
+        text-align: justify;
+        border-bottom: 1px solid #f0f2f5;
+    }
+    .fs-questions .fs-q-item:last-child {
+        border-bottom: none;
+    }
+    .fs-questions .fs-q-item::before {
+        content: "*";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        color: #D4AF37;
+        font-size: 14px;
+    }
+
+    .btn-download-pdf {
+        display: inline-block;
+        background: #D4AF37;
+        color: #080F1E;
+        border: none;
+        border-radius: 8px;
+        padding: 14px 32px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 10px;
+        font-family: inherit;
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    }
+    .btn-download-pdf:hover {
+        background: #c4a032;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    @media (max-width: 480px) {
+        .fiche-synthese .fs-banner {
+            padding: 16px 20px 12px 20px;
+        }
+        .fiche-synthese .fs-banner .fs-title {
+            font-size: 20px;
+        }
+        .fiche-synthese .fs-body {
+            padding: 20px 16px 24px 16px;
+        }
+        .fiche-synthese .fs-point {
+            padding: 12px 14px;
+            gap: 12px;
+        }
+        .fiche-synthese .fs-point .fs-num {
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            font-size: 14px;
+            min-width: 28px;
+        }
+        .fiche-synthese .fs-point .fs-content .fs-point-title {
+            font-size: 14px;
+        }
+        .fiche-synthese .fs-point .fs-content .fs-point-text {
+            font-size: 13px;
+        }
+        .fiche-synthese .fs-questions .fs-q-item {
+            font-size: 13px;
+            padding-left: 24px;
+        }
+        .fs-intro .watermark span,
+        .fs-point .watermark span,
+        .fs-questions .watermark span {
+            font-size: 40px;
+            letter-spacing: 4px;
+        }
+    }
+</style>
+
+<div class="masterclass-container">
+
+    <div class="fiche-synthese" id="ficheSynthese">
+
+        <!-- BANDEAU -->
+        <div class="fs-banner">
+            <div class="fs-badge">* Fiche Synthese *</div>
+            <div class="fs-title">Module 02 - L'Architecture et le Rythme</div>
+            <div class="fs-subtitle">Module 2</div>
+        </div>
+
+        <!-- CORPS -->
+        <div class="fs-body">
+
+            <!-- INTRODUCTION -->
+            <div class="fs-intro">
+                <div class="watermark"><span>Extrait</span></div>
+                Apres l'ecoute de l'audio du Module 2, consolidez et retenez l'essentiel.
+            </div>
+
+            <!-- POINT 1 -->
+            <div class="fs-point">
+                <div class="watermark"><span>Extrait</span></div>
+                <div class="fs-num">1</div>
+                <div class="fs-content">
+                    <div class="fs-point-title">Une sequence = une idee</div>
+                    <div class="fs-point-text">La regle d'or de l'architecture pedagogique : une idee centrale, un exemple concret, une mise en pratique. Pas deux idees. Pas trois. Une. Cette contrainte est un service rendu a votre apprenant.</div>
+                </div>
+            </div>
+
+            <!-- POINT 2 -->
+            <div class="fs-point">
+                <div class="watermark"><span>Extrait</span></div>
+                <div class="fs-num">2</div>
+                <div class="fs-content">
+                    <div class="fs-point-title">La surcharge cognitive est universelle</div>
+                    <div class="fs-point-text">Notre cerveau ne peut traiter qu'un nombre limite d'informations nouvelles en parallele. Depasser ce seuil ne signe pas l'intelligence du formateur. Cela signe son manque d'attention a l'apprenant.</div>
+                </div>
+            </div>
+
+            <!-- POINT 3 -->
+            <div class="fs-point">
+                <div class="watermark"><span>Extrait</span></div>
+                <div class="fs-num">3</div>
+                <div class="fs-content">
+                    <div class="fs-point-title">Le rythme binaire : reception puis action</div>
+                    <div class="fs-point-text">Alternez systematiquement : apport theorique, puis exercice. Explication, puis application. Ce rythme structure toute pedagogie efficace, quelle que soit la modalite.</div>
+                </div>
+            </div>
+
+            <!-- POINT 4 -->
+            <div class="fs-point">
+                <div class="watermark"><span>Extrait</span></div>
+                <div class="fs-num">4</div>
+                <div class="fs-content">
+                    <div class="fs-point-title">Le rythme selon la modalite cible</div>
+                    <div class="fs-point-text">Presentiel : 45-60 min par bloc. Distanciel : 20-25 min, pauses camera coupee. Hybride : cale sur le public le plus contraint, compensations physiques pour le presentiel.</div>
+                </div>
+            </div>
+
+            <!-- POINT 5 -->
+            <div class="fs-point">
+                <div class="watermark"><span>Extrait</span></div>
+                <div class="fs-num">5</div>
+                <div class="fs-content">
+                    <div class="fs-point-title">Le Sequenceur n'est pas un plan de cours</div>
+                    <div class="fs-point-text">C'est une carte de navigation. Elle dit dans quel ordre vous allez emmener vos apprenants, quelles escales vous faites, et combien de temps vous passez a chacune.</div>
+                </div>
+            </div>
+
+            <!-- QUESTIONS DE REFLEXION -->
+            <div class="fs-questions">
+                <div class="watermark"><span>Extrait</span></div>
+                <div class="fs-q-title"><span>Questions de reflexion personnelle</span></div>
+                <div class="fs-q-item">1. Dans votre contenu actuel, y a-t-il des sequences qui contiennent trop d'idees ? Lesquelles ?</div>
+                <div class="fs-q-item">2. Avez-vous tendance a sous-estimer ou surestimer ce que vos apprenants peuvent absorber en une heure ?</div>
+                <div class="fs-q-item">3. Le rythme que vous envisagez est-il vraiment adapte aux contraintes de votre modalite cible ?</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- BOUTON TELECHARGER PDF -->
+    <button class="btn-download-pdf" onclick="downloadPDF()">Telecharger la fiche synthese (PDF)</button>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+</script>
+<script>
+    // =============================================
+    // EN-TETE DU PDF
+    // =============================================
+    function addHeader(doc, pageWidth, margin, yPos) {
+        const headerY = margin / 2 + 2;
+
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor('#080F1E');
+        doc.text('UpGrade Learning & Development', margin, headerY);
+
+        const rightText = "L'Art de Transmettre #1 - Poser les fondations";
+        const textWidth = doc.getTextWidth(rightText);
+        doc.setFont('helvetica', 'bold');
+        doc.text(rightText, pageWidth - margin - textWidth, headerY);
+
+        doc.setDrawColor('#eef1f6');
+        doc.setLineWidth(0.3);
+        doc.line(margin, headerY + 4, pageWidth - margin, headerY + 4);
+
+        return headerY + 8;
+    }
+
+    // =============================================
+    // TELECHARGEMENT PDF
+    // =============================================
+    function downloadPDF() {
+        if (typeof window.jspdf === 'undefined') {
+            alert("La bibliotheque de generation PDF n'est pas chargee. Veuillez rafraichir la page et reessayer.");
+            return;
+        }
+
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('p', 'mm', 'a4');
+        const pageWidth = 210;
+        const margin = 20;
+        let yPos = margin + 10;
+
+        // En-tete
+        yPos = addHeader(doc, pageWidth, margin, yPos) + 6;
+
+        // Bandeau
+        doc.setFillColor('#080F1E');
+        doc.rect(margin, yPos, pageWidth - (margin * 2), 18, 'F');
+        doc.setDrawColor('#D4AF37');
+        doc.setLineWidth(0.8);
+        doc.line(margin, yPos + 18, pageWidth - margin, yPos + 18);
+
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor('#D4AF37');
+        doc.text('* FICHE SYNTHESE *', pageWidth / 2, yPos + 5, { align: 'center' });
+
+        doc.setFontSize(12);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor('#ffffff');
+        doc.text("Module 02 - L'Architecture et le Rythme", pageWidth / 2, yPos + 12.5, { align: 'center' });
+
+        yPos += 24;
+
+        // Sous-titre
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor('#6b7a8f');
+        doc.text('Masterclasse 2h - Module 2', pageWidth / 2, yPos, { align: 'center' });
+        yPos += 6;
+
+        const date = new Date().toLocaleDateString('fr-FR', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+        doc.setFontSize(8);
+        doc.setTextColor('#9aabbf');
+        doc.text('Date : ' + date, pageWidth / 2, yPos, { align: 'center' });
+        yPos += 8;
+
+        // Ligne
+        doc.setDrawColor('#eef1f6');
+        doc.line(margin, yPos, pageWidth - margin, yPos);
+        yPos += 6;
+
+        // Introduction
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'italic');
+        doc.setTextColor('#6b7a8f');
+        doc.text("Apres l'ecoute de l'audio du Module 2, consolidez et retenez l'essentiel.", pageWidth / 2, yPos, { align: 'center' });
+        yPos += 8;
+
+        // ====== POINTS ======
+        const points = [
+            { num: '1', title: "Une sequence = une idee", text: "La regle d'or de l'architecture pedagogique : une idee centrale, un exemple concret, une mise en pratique. Pas deux idees. Pas trois. Une. Cette contrainte est un service rendu a votre apprenant." },
+            { num: '2', title: "La surcharge cognitive est universelle", text: "Notre cerveau ne peut traiter qu'un nombre limite d'informations nouvelles en parallele. Depasser ce seuil ne signe pas l'intelligence du formateur. Cela signe son manque d'attention a l'apprenant." },
+            { num: '3', title: "Le rythme binaire : reception puis action", text: "Alternez systematiquement : apport theorique, puis exercice. Explication, puis application. Ce rythme structure toute pedagogie efficace, quelle que soit la modalite." },
+            { num: '4', title: "Le rythme selon la modalite cible", text: "Presentiel : 45-60 min par bloc. Distanciel : 20-25 min, pauses camera coupee. Hybride : cale sur le public le plus contraint, compensations physiques pour le presentiel." },
+            { num: '5', title: "Le Sequenceur n'est pas un plan de cours", text: "C'est une carte de navigation. Elle dit dans quel ordre vous allez emmener vos apprenants, quelles escales vous faites, et combien de temps vous passez a chacune." }
+        ];
+
+        points.forEach((point) => {
+            if (yPos > 230) {
+                doc.addPage();
+                yPos = margin + 10;
+                yPos = addHeader(doc, pageWidth, margin, yPos) + 6;
+            }
+
+            // Numero en cercle
+            doc.setFillColor('#080F1E');
+            doc.circle(margin + 8, yPos - 2, 5, 'F');
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor('#ffffff');
+            doc.text(point.num, margin + 8, yPos + 2, { align: 'center' });
+
+            // Titre
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor('#080F1E');
+            doc.text(point.title, margin + 16, yPos);
+            yPos += 5;
+
+            // Texte
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor('#1a2a3a');
+            const textLines = doc.splitTextToSize(point.text, pageWidth - (margin * 2));
+            doc.text(textLines, margin, yPos);
+            yPos += (textLines.length * 4.5) + 6;
+        });
+
+        // ====== QUESTIONS ======
+        if (yPos > 210) {
+            doc.addPage();
+            yPos = margin + 10;
+            yPos = addHeader(doc, pageWidth, margin, yPos) + 6;
+        }
+
+        // Titre questions avec encadre
+        doc.setFillColor('#080F1E');
+        doc.roundedRect(margin + 30, yPos - 3, 90, 7, 2, 2, 'F');
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor('#ffffff');
+        doc.text('Questions de reflexion personnelle', margin + 75, yPos + 1, { align: 'center' });
+        yPos += 10;
+
+        const questions = [
+            "1. Dans votre contenu actuel, y a-t-il des sequences qui contiennent trop d'idees ? Lesquelles ?",
+            "2. Avez-vous tendance a sous-estimer ou surestimer ce que vos apprenants peuvent absorber en une heure ?",
+            "3. Le rythme que vous envisagez est-il vraiment adapte aux contraintes de votre modalite cible ?"
+        ];
+
+        questions.forEach((q) => {
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor('#1a2a3a');
+            doc.setTextColor('#D4AF37');
+            doc.text('*', margin, yPos);
+            doc.setTextColor('#1a2a3a');
+            const qLines = doc.splitTextToSize(q, pageWidth - (margin * 2) - 6);
+            doc.text(qLines, margin + 6, yPos);
+            yPos += (qLines.length * 4.5) + 4;
+        });
+
+        // Pied de page
+        doc.setFontSize(8);
+        doc.setFont('helvetica', 'italic');
+        doc.setTextColor('#9aabbf');
+        doc.text("Fiche Synthese - Module 2 · L'Art de Transmettre", pageWidth / 2, yPos + 10, { align: 'center' });
+
+        doc.save('Fiche_Synthese_M2.pdf');
+    }
+</script>

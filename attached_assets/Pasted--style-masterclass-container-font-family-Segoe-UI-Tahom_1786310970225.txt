@@ -1,0 +1,885 @@
+<style>
+    .masterclass-container {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 750px;
+        margin: 20px auto;
+        padding: 0 20px;
+    }
+
+    .masterclass-banner {
+        background: #080F1E;
+        padding: 20px 32px 16px 32px;
+        text-align: center;
+        border-bottom: 4px solid #D4AF37;
+        border-radius: 12px 12px 0 0;
+    }
+    .masterclass-banner .banner-badge {
+        display: inline-block;
+        background: #D4AF37;
+        color: #080F1E;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        padding: 3px 16px;
+        border-radius: 20px;
+        margin-bottom: 8px;
+    }
+    .masterclass-banner .banner-title {
+        font-size: 22px;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: -0.3px;
+        margin-bottom: 2px;
+    }
+    .masterclass-banner .banner-subtitle {
+        font-size: 14px;
+        color: rgba(255,255,255,0.7);
+        font-weight: 300;
+    }
+
+    .masterclass-body {
+        padding: 28px 32px 32px 32px;
+        background: #fafbff;
+        border-radius: 0 0 12px 12px;
+        border: 1px solid #e9ecf2;
+        border-top: none;
+    }
+
+    .masterclass-box {
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 20px 24px;
+        margin-bottom: 18px;
+        box-shadow: 0 2px 8px rgba(8, 15, 30, 0.05);
+        border-left: 4px solid transparent;
+        transition: border-color 0.2s;
+        position: relative;
+        overflow: hidden;
+    }
+    .masterclass-box:hover {
+        border-left-color: #D4AF37;
+    }
+
+    /* ===== FILIGRANE SUR CHAQUE SECTION ===== */
+    .masterclass-box .watermark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .masterclass-box .watermark span {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 100px;
+        font-weight: 900;
+        color: rgba(0, 0, 0, 0.07);
+        text-transform: uppercase;
+        letter-spacing: 14px;
+        transform: rotate(-30deg);
+        user-select: none;
+        white-space: nowrap;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .masterclass-box .box-label,
+    .masterclass-box .box-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .masterclass-box .box-label {
+        font-weight: 700;
+        color: #080F1E;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        margin-bottom: 8px;
+    }
+
+    .masterclass-box .box-content {
+        font-size: 15px;
+        line-height: 1.7;
+        color: #1a2a3a;
+        text-align: justify;
+    }
+    .masterclass-box .box-content p {
+        margin-bottom: 10px;
+    }
+    .masterclass-box .box-content p:last-child {
+        margin-bottom: 0;
+    }
+    .masterclass-box .box-content .note {
+        font-size: 13px;
+        color: #6b7a8f;
+        font-style: italic;
+    }
+
+    .sequence-modalite-selector {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin: 8px 0 12px 0;
+        padding: 12px 16px;
+        background: #f7f8fc;
+        border-radius: 8px;
+        border-left: 3px solid #D4AF37;
+        position: relative;
+        z-index: 1;
+    }
+    .sequence-modalite-selector label {
+        font-size: 14px;
+        font-weight: 500;
+        color: #1a2a3a;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .sequence-modalite-selector input[type="radio"] {
+        accent-color: #D4AF37;
+        transform: scale(1.1);
+        cursor: pointer;
+    }
+    .sequence-modalite-selector .modalite-hint {
+        font-size: 12px;
+        color: #6b7a8f;
+        margin-left: 4px;
+    }
+
+    .sequence-table-wrap {
+        overflow-x: auto;
+        margin-top: 8px;
+        position: relative;
+        z-index: 1;
+    }
+    .sequence-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        min-width: 600px;
+    }
+    .sequence-table th {
+        background: #080F1E;
+        color: white;
+        padding: 8px 10px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .sequence-table td {
+        padding: 6px 8px;
+        border-bottom: 1px solid #eef1f6;
+        vertical-align: middle;
+    }
+    .sequence-table tr:hover td {
+        background: #fafbff;
+    }
+    .sequence-table input,
+    .sequence-table select {
+        width: 100%;
+        padding: 6px 8px;
+        border: 2px solid #e9ecf2;
+        border-radius: 6px;
+        font-size: 13px;
+        font-family: inherit;
+        box-sizing: border-box;
+        transition: border-color 0.2s;
+        background: white;
+    }
+    .sequence-table input:focus,
+    .sequence-table select:focus {
+        border-color: #080F1E;
+        outline: none;
+    }
+    .sequence-table input.error,
+    .sequence-table select.error {
+        border-color: #c73b3b;
+        background: #fce8e8;
+    }
+    .sequence-table input.success,
+    .sequence-table select.success {
+        border-color: #2d8f5c;
+        background: #e6f4ea;
+    }
+    .sequence-table .btn-remove-row {
+        background: transparent;
+        border: none;
+        color: #c73b3b;
+        cursor: pointer;
+        font-size: 18px;
+        padding: 4px 8px;
+        border-radius: 4px;
+        transition: background 0.2s;
+        font-weight: 700;
+    }
+    .sequence-table .btn-remove-row:hover {
+        background: #fce8e8;
+    }
+
+    .btn-add-row {
+        display: inline-block;
+        background: transparent;
+        color: #080F1E;
+        border: 2px dashed #D4AF37;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: inherit;
+        margin-top: 8px;
+        width: 100%;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+    .btn-add-row:hover {
+        background: #fdf6e8;
+        border-color: #080F1E;
+    }
+
+    .btn-validate-sequenceur {
+        display: inline-block;
+        background: #080F1E;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 14px 32px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: inherit;
+        margin-top: 12px;
+        box-shadow: 0 4px 12px rgba(8, 15, 30, 0.2);
+        width: 100%;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+    .btn-validate-sequenceur:hover {
+        background: #1a2a4a;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(8, 15, 30, 0.3);
+    }
+
+    .btn-download-pdf {
+        display: inline-block;
+        background: #D4AF37;
+        color: #080F1E;
+        border: none;
+        border-radius: 8px;
+        padding: 14px 32px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 10px;
+        font-family: inherit;
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        display: none;
+        position: relative;
+        z-index: 1;
+    }
+    .btn-download-pdf:hover {
+        background: #c4a032;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+    }
+
+    .btn-reset {
+        display: inline-block;
+        background: transparent;
+        color: #080F1E;
+        border: 2px solid #080F1E;
+        border-radius: 8px;
+        padding: 10px 24px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+        text-align: center;
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 8px;
+        font-family: inherit;
+        position: relative;
+        z-index: 1;
+    }
+    .btn-reset:hover {
+        background: #080F1E;
+        color: white;
+    }
+
+    .validation-result {
+        display: none;
+        margin-top: 16px;
+        padding: 16px 20px;
+        background: #f7f8fc;
+        border-radius: 8px;
+        border-left: 4px solid #D4AF37;
+        position: relative;
+        z-index: 1;
+    }
+    .validation-result.open {
+        display: block;
+    }
+    .validation-result .vr-titre {
+        font-weight: 700;
+        color: #080F1E;
+        font-size: 15px;
+        margin-bottom: 6px;
+    }
+    .validation-result .vr-ligne {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 4px 0;
+        font-size: 14px;
+        color: #1a2a3a;
+        border-bottom: 1px solid #eef1f6;
+    }
+    .validation-result .vr-ligne:last-child {
+        border-bottom: none;
+    }
+    .validation-result .vr-status {
+        font-weight: 700;
+        min-width: 60px;
+    }
+    .validation-result .vr-status.ok {
+        color: #2d8f5c;
+    }
+    .validation-result .vr-status.ko {
+        color: #c73b3b;
+    }
+    .validation-result .vr-score {
+        font-weight: 700;
+        color: #080F1E;
+        font-size: 16px;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 2px solid #eef1f6;
+        text-align: center;
+    }
+
+    .regle-item {
+        position: relative;
+        z-index: 1;
+    }
+
+    @media (max-width: 600px) {
+        .masterclass-banner {
+            padding: 16px 20px 12px 20px;
+        }
+        .masterclass-banner .banner-title {
+            font-size: 18px;
+        }
+        .masterclass-body {
+            padding: 20px 16px 24px 16px;
+        }
+        .masterclass-box {
+            padding: 16px 18px;
+        }
+        .sequence-table th,
+        .sequence-table td {
+            padding: 4px 6px;
+            font-size: 12px;
+        }
+        .sequence-table input,
+        .sequence-table select {
+            font-size: 12px;
+            padding: 4px 6px;
+        }
+        .sequence-modalite-selector {
+            flex-direction: column;
+            gap: 6px;
+            padding: 10px 14px;
+        }
+        .sequence-modalite-selector label {
+            font-size: 13px;
+        }
+        .masterclass-box .watermark span {
+            font-size: 60px;
+            letter-spacing: 8px;
+        }
+    }
+</style>
+
+<div class="masterclass-container">
+
+    <!-- BANDEAU -->
+    <div class="masterclass-banner">
+        <div class="banner-badge">Exercice 4</div>
+        <div class="banner-title">Complétion du Séquenceur de Cours</div>
+        <div class="banner-subtitle">Architecte en atelier · Construisez la colonne vertébrale de votre formation</div>
+    </div>
+
+    <!-- CORPS -->
+    <div class="masterclass-body">
+
+        <!-- SECTION 1 : VOTRE MISSION -->
+        <div class="masterclass-box">
+            <div class="watermark"><span>Extrait</span></div>
+            <div class="box-label">Votre mission</div>
+            <div class="box-content">
+                <p>Vous allez maintenant construire la colonne vertébrale de votre formation : le Séquenceur de Cours.</p>
+                <p class="note">Ce document est votre livrable 02. Il sera la base de toutes vos futures formations.</p>
+            </div>
+        </div>
+
+        <!-- SECTION 2 : MODALITÉ CIBLE -->
+        <div class="masterclass-box">
+            <div class="watermark"><span>Extrait</span></div>
+            <div class="box-label">1. Choisissez votre modalité cible</div>
+            <div class="box-content">
+                <p style="font-size:14px;color:#6b7a8f;">Cette modalité détermine les durées recommandées pour vos séquences.</p>
+
+                <div class="sequence-modalite-selector">
+                    <label><input type="radio" name="modalite_cible" value="presentiel" checked onchange="mettreAJourDurees()"> Présentiel <span class="modalite-hint">(45-60 min)</span></label>
+                    <label><input type="radio" name="modalite_cible" value="distanciel" onchange="mettreAJourDurees()"> Distanciel <span class="modalite-hint">(20-25 min)</span></label>
+                    <label><input type="radio" name="modalite_cible" value="hybride" onchange="mettreAJourDurees()"> Hybride <span class="modalite-hint">(20-25 min)</span></label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3 : SÉQUENCES -->
+        <div class="masterclass-box">
+            <div class="watermark"><span>Extrait</span></div>
+            <div class="box-label">2. Renseignez vos séquences</div>
+            <div class="box-content">
+                <p style="font-size:14px;color:#6b7a8f;">Pour chaque séquence, renseignez le titre, l'objectif observable, le format, la durée et la modalité.</p>
+
+                <div class="sequence-table-wrap">
+                    <table class="sequence-table" id="sequenceTable">
+                        <thead>
+                            <tr>
+                                <th style="width:18%;">Titre</th>
+                                <th style="width:22%;">Objectif observable</th>
+                                <th style="width:14%;">Format</th>
+                                <th style="width:12%;">Durée</th>
+                                <th style="width:14%;">Modalité</th>
+                                <th style="width:6%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="sequenceBody">
+                            <!-- Les lignes sont ajoutées par JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <button class="btn-add-row" onclick="ajouterLigne()">+ Ajouter une séquence</button>
+
+                <button class="btn-validate-sequenceur" onclick="validerSequenceur()">Valider mon Séquenceur</button>
+
+                <div class="validation-result" id="validationResult">
+                    <div class="vr-titre">Résultat de la validation</div>
+                    <div id="validationDetails"></div>
+                    <div class="vr-score" id="validationScore"></div>
+                </div>
+
+                <button class="btn-download-pdf" id="downloadBtn" onclick="telechargerPDF()">⬇ Télécharger mon Séquenceur (PDF)</button>
+            </div>
+        </div>
+
+        <!-- SECTION 4 : RÈGLES D'OR -->
+        <div class="masterclass-box">
+            <div class="watermark"><span>Extrait</span></div>
+            <div class="box-label">Rappel des règles d'or</div>
+            <div class="box-content">
+                <p style="font-size:14px;color:#6b7a8f;">Vérifiez que votre Séquenceur respecte ces 3 règles :</p>
+                <ul style="list-style:none;padding:0;margin:6px 0 0 0;">
+                    <li style="padding:4px 0;font-size:14px;color:#1a2a3a;border-bottom:1px solid #eef1f6;">
+                        <strong style="color:#D4AF37;">1.</strong> Une idée par séquence — le titre ne doit pas contenir "et" ou "&"
+                    </li>
+                    <li style="padding:4px 0;font-size:14px;color:#1a2a3a;border-bottom:1px solid #eef1f6;">
+                        <strong style="color:#D4AF37;">2.</strong> Alternance théorie/pratique — pas plus de 2 théories d'affilée
+                    </li>
+                    <li style="padding:4px 0;font-size:14px;color:#1a2a3a;">
+                        <strong style="color:#D4AF37;">3.</strong> Durées adaptées — selon votre modalité cible
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+</script>
+<script>
+    // =============================================
+    // ÉTAT
+    // =============================================
+    let sequenceCount = 0;
+    let modaliteActuelle = 'presentiel';
+
+    const formats = ['Théorie', 'Pratique', 'Atelier', 'Quiz', 'Synthèse', 'Mise en situation', 'Débrief', 'Exercice'];
+
+    const dureesRecommandees = {
+        presentiel: { min: 45, max: 60, label: '45-60 min' },
+        distanciel: { min: 20, max: 25, label: '20-25 min' },
+        hybride: { min: 20, max: 25, label: '20-25 min' }
+    };
+
+    // =============================================
+    // INITIALISATION
+    // =============================================
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ajouter 3 lignes par défaut
+        for (let i = 0; i < 3; i++) {
+            ajouterLigne();
+        }
+        // Mettre à jour les durées
+        mettreAJourDurees();
+    });
+
+    // =============================================
+    // GESTION DES LIGNES
+    // =============================================
+    function ajouterLigne() {
+        const tbody = document.getElementById('sequenceBody');
+        const tr = document.createElement('tr');
+        tr.id = 'row_' + sequenceCount;
+
+        const modalite = document.querySelector('input[name="modalite_cible"]:checked').value;
+        const dureeDefaut = dureesRecommandees[modalite].min;
+
+        tr.innerHTML = `
+            <td><input type="text" class="seq-titre" placeholder="Ex: Prioriser ses tâches" data-row="${sequenceCount}"></td>
+            <td><input type="text" class="seq-objectif" placeholder="Ex: Classer ses tâches dans la matrice" data-row="${sequenceCount}"></td>
+            <td>
+                <select class="seq-format" data-row="${sequenceCount}">
+                    ${formats.map(f => `<option value="${f}">${f}</option>`).join('')}
+                </select>
+            </td>
+            <td><input type="number" class="seq-duree" value="${dureeDefaut}" min="5" max="90" data-row="${sequenceCount}" style="width:60px;"> min</td>
+            <td>
+                <select class="seq-modalite" data-row="${sequenceCount}">
+                    <option value="presentiel">Présentiel</option>
+                    <option value="distanciel" ${modalite === 'distanciel' ? 'selected' : ''}>Distanciel</option>
+                    <option value="hybride" ${modalite === 'hybride' ? 'selected' : ''}>Hybride</option>
+                </select>
+            </td>
+            <td><button class="btn-remove-row" onclick="supprimerLigne(${sequenceCount})" ${sequenceCount < 3 ? 'disabled style="opacity:0.3;"' : ''}>✕</button></td>
+        `;
+
+        tbody.appendChild(tr);
+        sequenceCount++;
+        mettreAJourDurees();
+    }
+
+    function supprimerLigne(rowId) {
+        const row = document.getElementById('row_' + rowId);
+        if (row && document.querySelectorAll('#sequenceBody tr').length > 1) {
+            row.remove();
+            mettreAJourDurees();
+        }
+    }
+
+    // =============================================
+    // MISE À JOUR DES DURÉES
+    // =============================================
+    function mettreAJourDurees() {
+        const modalite = document.querySelector('input[name="modalite_cible"]:checked').value;
+        modaliteActuelle = modalite;
+        const dureeDefaut = dureesRecommandees[modalite].min;
+
+        document.querySelectorAll('.seq-duree').forEach(input => {
+            if (!input.dataset.userValue) {
+                input.value = dureeDefaut;
+            }
+        });
+
+        document.querySelectorAll('.seq-modalite').forEach(select => {
+            select.value = modalite;
+        });
+    }
+
+    // =============================================
+    // VALIDATION DU SÉQUENCEUR
+    // =============================================
+    function validerSequenceur() {
+        const rows = document.querySelectorAll('#sequenceBody tr');
+        if (rows.length === 0) {
+            alert('Ajoutez au moins une séquence avant de valider.');
+            return;
+        }
+
+        let resultats = {
+            regle1: { ok: true, details: [] },
+            regle2: { ok: true, details: [] },
+            regle3: { ok: true, details: [] }
+        };
+
+        let titres = [];
+        let formatsList = [];
+
+        rows.forEach((row, index) => {
+            const titre = row.querySelector('.seq-titre').value.trim();
+            const objectif = row.querySelector('.seq-objectif').value.trim();
+            const format = row.querySelector('.seq-format').value;
+            const duree = parseInt(row.querySelector('.seq-duree').value);
+            const modalite = row.querySelector('.seq-modalite').value;
+
+            // Nettoyer les champs
+            row.querySelector('.seq-titre').classList.remove('error', 'success');
+            row.querySelector('.seq-objectif').classList.remove('error', 'success');
+            row.querySelector('.seq-duree').classList.remove('error', 'success');
+
+            // Règle 1 : Une idée par séquence
+            if (titre === '') {
+                resultats.regle1.ok = false;
+                resultats.regle1.details.push('Séquence ' + (index + 1) + ' : titre manquant');
+                row.querySelector('.seq-titre').classList.add('error');
+            } else if (titre.toLowerCase().includes(' et ') || titre.includes(' & ') || titre.includes('+')) {
+                resultats.regle1.ok = false;
+                resultats.regle1.details.push('Séquence ' + (index + 1) + ' : "' + titre + '" semble contenir plusieurs idées');
+                row.querySelector('.seq-titre').classList.add('error');
+            } else {
+                row.querySelector('.seq-titre').classList.add('success');
+            }
+
+            if (objectif === '') {
+                resultats.regle1.ok = false;
+                resultats.regle1.details.push('Séquence ' + (index + 1) + ' : objectif manquant');
+                row.querySelector('.seq-objectif').classList.add('error');
+            } else {
+                row.querySelector('.seq-objectif').classList.add('success');
+            }
+
+            // Règle 3 : Durées adaptées
+            const dureeMin = dureesRecommandees[modalite].min;
+            const dureeMax = dureesRecommandees[modalite].max;
+            if (duree < dureeMin || duree > dureeMax) {
+                resultats.regle3.ok = false;
+                resultats.regle3.details.push('Séquence ' + (index + 1) + ' : durée ' + duree + ' min (recommandé : ' + dureeMin + '-' + dureeMax + ' min pour ' + modalite + ')');
+                row.querySelector('.seq-duree').classList.add('error');
+            } else {
+                row.querySelector('.seq-duree').classList.add('success');
+            }
+
+            titres.push(titre);
+            formatsList.push(format);
+        });
+
+        // Règle 2 : Alternance théorie/pratique
+        let theorieConsecutive = 0;
+        for (let i = 0; i < formatsList.length; i++) {
+            if (formatsList[i] === 'Théorie') {
+                theorieConsecutive++;
+                if (theorieConsecutive > 2) {
+                    resultats.regle2.ok = false;
+                    resultats.regle2.details.push('3 théories d\'affilée (séquences ' + (i - 1) + ', ' + i + ', ' + (i + 1) + '). Ajoutez une pratique.');
+                    break;
+                }
+            } else {
+                theorieConsecutive = 0;
+            }
+        }
+
+        // Affichage des résultats
+        const validationDiv = document.getElementById('validationResult');
+        const detailsDiv = document.getElementById('validationDetails');
+        const scoreDiv = document.getElementById('validationScore');
+
+        let html = '';
+        let score = 0;
+        const regles = [
+            { id: 'regle1', label: 'Une idée par séquence', ok: resultats.regle1.ok },
+            { id: 'regle2', label: 'Alternance théorie/pratique', ok: resultats.regle2.ok },
+            { id: 'regle3', label: 'Durées adaptées', ok: resultats.regle3.ok }
+        ];
+
+        regles.forEach(regle => {
+            const details = resultats[regle.id].details;
+            const status = regle.ok ? '✅' : '❌';
+            const statusClass = regle.ok ? 'ok' : 'ko';
+            html += `
+                <div class="vr-ligne">
+                    <span class="vr-status ${statusClass}">${status} ${regle.label}</span>
+                    ${details.length > 0 ? '<span style="font-size:13px;color:#6b7a8f;">' + details.join(' · ') + '</span>' : '<span style="font-size:13px;color:#2d8f5c;">OK</span>'}
+                </div>
+            `;
+            if (regle.ok) score++;
+        });
+
+        detailsDiv.innerHTML = html;
+
+        let niveau = '';
+        if (score === 3) niveau = 'Architecte Confirmé · Votre Séquenceur est prêt à être déployé.';
+        else if (score === 2) niveau = 'Plan à affiner · Corrigez les points signalés ci-dessus.';
+        else niveau = 'Chantier à reprendre · Revoyez votre structure en profondeur.';
+
+        scoreDiv.textContent = score + ' / 3 · ' + niveau;
+
+        validationDiv.classList.add('open');
+        document.getElementById('downloadBtn').style.display = 'block';
+        validationDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // =============================================
+    // TÉLÉCHARGEMENT PDF
+    // =============================================
+    function addHeader(doc, pageWidth, margin, yPos) {
+        const headerY = margin / 2 + 2;
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor('#080F1E');
+        doc.text('UpGrade Learning & Development', margin, headerY);
+
+        const rightText = 'L\'Art de Transmettre #1 - Poser les fondations';
+        const textWidth = doc.getTextWidth(rightText);
+        doc.setFont('helvetica', 'bold');
+        doc.text(rightText, pageWidth - margin - textWidth, headerY);
+
+        doc.setDrawColor('#eef1f6');
+        doc.setLineWidth(0.3);
+        doc.line(margin, headerY + 4, pageWidth - margin, headerY + 4);
+        return headerY + 8;
+    }
+
+    function telechargerPDF() {
+        if (typeof window.jspdf === 'undefined') {
+            alert('La bibliothèque de génération PDF n\'est pas chargée. Veuillez rafraîchir la page et réessayer.');
+            return;
+        }
+
+        const rows = document.querySelectorAll('#sequenceBody tr');
+        if (rows.length === 0) {
+            alert('Ajoutez au moins une séquence avant de télécharger.');
+            return;
+        }
+
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('p', 'mm', 'a4');
+        const pageWidth = 210;
+        const margin = 20;
+        let yPos = margin + 10;
+
+        yPos = addHeader(doc, pageWidth, margin, yPos) + 6;
+
+        doc.setFillColor('#080F1E');
+        doc.rect(margin, yPos, pageWidth - (margin * 2), 18, 'F');
+        doc.setDrawColor('#D4AF37');
+        doc.setLineWidth(0.8);
+        doc.line(margin, yPos + 18, pageWidth - margin, yPos + 18);
+
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor('#D4AF37');
+        doc.text('EXERCICE 4 · SÉQUENCEUR DE COURS', pageWidth / 2, yPos + 5, { align: 'center' });
+
+        doc.setFontSize(12);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor('#ffffff');
+        doc.text('Mon séquenceur', pageWidth / 2, yPos + 12.5, { align: 'center' });
+
+        yPos += 24;
+
+        const date = new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        doc.setFontSize(8);
+        doc.setTextColor('#9aabbf');
+        doc.text('Date : ' + date, pageWidth / 2, yPos, { align: 'center' });
+        yPos += 8;
+
+        const modalite = document.querySelector('input[name="modalite_cible"]:checked').value;
+        const modaliteLabels = { presentiel: 'Présentiel', distanciel: 'Distanciel', hybride: 'Hybride' };
+        doc.setFontSize(9);
+        doc.setTextColor('#6b7a8f');
+        doc.text('Modalité cible : ' + modaliteLabels[modalite], pageWidth / 2, yPos, { align: 'center' });
+        yPos += 8;
+
+        doc.setDrawColor('#eef1f6');
+        doc.line(margin, yPos, pageWidth - margin, yPos);
+        yPos += 8;
+
+        // Tableau
+        const colWidths = [38, 45, 28, 20, 25];
+        const headers = ['Titre', 'Objectif observable', 'Format', 'Durée', 'Modalité'];
+
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor('#ffffff');
+        doc.setFillColor('#080F1E');
+        doc.rect(margin, yPos, pageWidth - (margin * 2), 7, 'F');
+
+        let xPos = margin;
+        headers.forEach((h, i) => {
+            doc.text(h, xPos + 2, yPos + 4.5);
+            xPos += colWidths[i];
+        });
+        yPos += 7;
+
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor('#1a2a3a');
+
+        rows.forEach((row, index) => {
+            if (yPos > 240) {
+                doc.addPage();
+                yPos = margin + 10;
+                yPos = addHeader(doc, pageWidth, margin, yPos) + 6;
+            }
+
+            const titre = row.querySelector('.seq-titre').value || 'Non renseigné';
+            const objectif = row.querySelector('.seq-objectif').value || 'Non renseigné';
+            const format = row.querySelector('.seq-format').value;
+            const duree = row.querySelector('.seq-duree').value || '?';
+            const modaliteRow = row.querySelector('.seq-modalite').value;
+            const modaliteRowLabel = modaliteLabels[modaliteRow] || modaliteRow;
+
+            const cells = [titre, objectif, format, duree + ' min', modaliteRowLabel];
+            let xPosRow = margin;
+
+            // Fond alterné
+            if (index % 2 === 0) {
+                doc.setFillColor('#f7f8fc');
+                doc.rect(margin, yPos - 1, pageWidth - (margin * 2), 6.5, 'F');
+            }
+
+            cells.forEach((c, i) => {
+                const text = c.length > 25 ? c.substring(0, 22) + '...' : c;
+                doc.text(text, xPosRow + 2, yPos + 4);
+                xPosRow += colWidths[i];
+            });
+            yPos += 7;
+        });
+
+        yPos += 4;
+
+        // Pied de page
+        doc.setFontSize(8);
+        doc.setFont('helvetica', 'italic');
+        doc.setTextColor('#9aabbf');
+        doc.text('Séquenceur de Cours · L\'Art de Transmettre #1', pageWidth / 2, yPos + 10, { align: 'center' });
+
+        doc.save('Sequenceur_de_Cours.pdf');
+    }
+
+    // =============================================
+    // SURCHARGES
+    // =============================================
+    document.querySelectorAll('input[name="modalite_cible"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            mettreAJourDurees();
+        });
+    });
+</script>
