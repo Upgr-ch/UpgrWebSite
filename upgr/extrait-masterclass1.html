@@ -93,6 +93,181 @@
     }
     .back-link:hover { color: rgba(255,255,255,0.7); }
 
+    /* --- LAYOUT PRINCIPAL --- */
+    .layout {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    /* --- BARRE LATÉRALE --- */
+    .sidebar {
+      width: 260px;
+      min-width: 260px;
+      background: #fff;
+      border-right: 1px solid #e9ecf2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px 32px;
+      gap: 0;
+      position: sticky;
+      top: 54px;
+      height: calc(100vh - 54px);
+      overflow-y: auto;
+    }
+
+    .sidebar-logo {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #080F1E;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .sidebar-logo svg {
+      width: 44px;
+      height: 44px;
+      fill: #D4AF37;
+    }
+    .sidebar-logo-text {
+      text-align: center;
+      line-height: 1.1;
+    }
+    .sidebar-logo-text .sl-upgrade {
+      font-family: 'Raleway', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      font-style: italic;
+      color: #F5E090;
+    }
+    .sidebar-logo-text .sl-sub {
+      font-family: 'Raleway', sans-serif;
+      font-size: 8px;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+    }
+
+    .sidebar-author {
+      font-family: 'Raleway', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #080F1E;
+      text-align: center;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .sidebar-nav {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+      margin-bottom: 14px;
+    }
+    .sidebar-nav button {
+      flex: 1;
+      padding: 8px 0;
+      font-family: 'Raleway', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid #e9ecf2;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .sidebar-nav .btn-prev {
+      background: #fff;
+      color: #9aabbf;
+    }
+    .sidebar-nav .btn-next {
+      background: #080F1E;
+      color: #fff;
+      border-color: #080F1E;
+    }
+    .sidebar-nav .btn-next:hover { background: #1a2a4a; }
+
+    .sidebar-progress-wrap {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .sidebar-progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #eef1f6;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+    .sidebar-progress-bar-fill {
+      height: 100%;
+      background: #D4AF37;
+      border-radius: 10px;
+      width: 0%;
+    }
+    .sidebar-progress-label {
+      font-size: 11px;
+      color: #9aabbf;
+      text-align: center;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .sidebar-section {
+      width: 100%;
+      border-top: 1px solid #eef1f6;
+      padding-top: 14px;
+    }
+    .sidebar-section-title {
+      font-family: 'Raleway', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #080F1E;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .sidebar-section-title svg {
+      width: 12px; height: 12px; flex-shrink: 0; color: #9aabbf;
+    }
+
+    .sidebar-lesson {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 6px 0;
+      cursor: default;
+    }
+    .sidebar-lesson-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid #D4AF37;
+      flex-shrink: 0;
+      margin-top: 2px;
+      background: #fff;
+      position: relative;
+    }
+    .sidebar-lesson-dot.active {
+      background: #D4AF37;
+    }
+    .sidebar-lesson-label {
+      font-family: 'Raleway', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #D4AF37;
+      line-height: 1.4;
+    }
+
+    /* --- CONTENU PRINCIPAL --- */
     .reader {
       flex: 1;
       display: flex;
@@ -100,6 +275,13 @@
       align-items: center;
       padding: 2rem 1rem 4rem;
       gap: 2rem;
+      background: #fff;
+      min-width: 0;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .layout { flex-direction: column; }
     }
 
     /* ========== STYLES DES BLOCS ========== */
@@ -481,6 +663,37 @@
   </div>
 </header>
 
+<div class="layout">
+
+<!-- BARRE LATÉRALE -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-text">
+      <div class="sl-upgrade">UpGrade</div>
+      <div class="sl-sub">L&amp;D</div>
+    </div>
+  </div>
+  <div class="sidebar-author">UpGrade LD I Kévin<br>Lavergne</div>
+  <div class="sidebar-nav">
+    <button class="btn-prev" disabled>Précédent</button>
+    <button class="btn-next">Suivant</button>
+  </div>
+  <div class="sidebar-progress-wrap">
+    <div class="sidebar-progress-bar"><div class="sidebar-progress-bar-fill"></div></div>
+    <div class="sidebar-progress-label">0%</div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg>
+      EXTRAIT L'Art de Transmettre#1
+    </div>
+    <div class="sidebar-lesson">
+      <div class="sidebar-lesson-dot active"></div>
+      <div class="sidebar-lesson-label">3.4 Votre séquenceur de transmission.</div>
+    </div>
+  </div>
+</aside>
+
 <div class="reader">
 
   <!-- BANDEAU INTRO -->
@@ -645,7 +858,8 @@
   </div>
 
 
-</div>
+</div><!-- fin .reader -->
+</div><!-- fin .layout -->
 
 <script>
   let sequenceCount = 0;
