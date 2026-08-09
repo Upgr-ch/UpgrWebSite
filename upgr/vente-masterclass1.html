@@ -18,11 +18,12 @@
     .back-link { font-size: 0.75rem; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
     .back-link:hover { color: #F5E090; text-decoration: none; }
 
-    /* HERO — split layout */
-    .hero-wrap { max-width: 1000px; margin: 0 auto; padding: 7.5rem 2rem 0; display: grid; grid-template-columns: 1fr 340px; gap: 3rem; align-items: center; }
-    @media (max-width: 720px) { .hero-wrap { grid-template-columns: 1fr; padding-top: 6rem; } }
+    /* HERO */
+    .hero-wrap { max-width: 860px; margin: 0 auto; padding: 7.5rem 2rem 0; }
+    @media (max-width: 720px) { .hero-wrap { padding-top: 6rem; } }
 
     .hero-text {}
+    .hero-cover { width: 110px; height: auto; display: block; margin-bottom: 1.6rem; border-radius: 3px; box-shadow: 0 4px 24px rgba(0,0,0,0.5); }
     .page-label { display: inline-flex; align-items: center; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #080F1E; background: #F5E090; padding: 0.32rem 0.85rem 0.28rem; border-radius: 2px; margin-bottom: 1.5rem; }
     .hero h1 { font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 700; font-style: italic; color: #F5E090; line-height: 1.12; margin-bottom: 0.4rem; }
     .hero-sub-title { font-size: 1.2rem; font-weight: 300; color: rgba(255,255,255,0.92); margin-bottom: 1.4rem; }
@@ -40,10 +41,6 @@
     .extract-cta-label { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #F5E090; }
     .extract-cta-sub { display: block; font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.7); margin-top: 0.1rem; }
 
-    /* HERO IMAGE */
-    .hero-image-col { display: flex; align-items: center; justify-content: center; }
-    @media (max-width: 720px) { .hero-image-col { order: -1; } }
-    .hero-image-col img { width: 100%; max-width: 300px; height: auto; display: block; mix-blend-mode: multiply; filter: brightness(1.08); border-radius: 4px; }
 
     /* GOLD LINE */
     .gold-line { max-width: 1000px; margin: 3.5rem auto 0; padding: 0 2rem; }
@@ -128,6 +125,7 @@
   <div class="hero-wrap">
 
     <div class="hero-text hero">
+      <img src="/upgr/covers/masterclass1.png" alt="L'Art de Transmettre #1" class="hero-cover"/>
       <p class="page-label">Masterclasse en ligne</p>
       <h1>L'Art de Transmettre #1</h1>
       <p class="hero-sub-title">Poser les Fondations</p>
@@ -148,10 +146,6 @@
           <span class="extract-cta-sub">L'exercice du Séquenceur de Cours</span>
         </span>
       </a>
-    </div>
-
-    <div class="hero-image-col">
-      <img src="/upgr/covers/masterclass1.png" alt="L'Art de Transmettre #1 — Poser les Fondations"/>
     </div>
 
   </div>
