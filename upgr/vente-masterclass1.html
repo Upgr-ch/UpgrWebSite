@@ -13,66 +13,68 @@
 
     /* HEADER */
     header { position: fixed; top: 0; left: 0; width: 100%; z-index: 50; background: rgba(8,15,30,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .header-inner { max-width: 860px; margin: 0 auto; padding: 1.1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .header-inner { max-width: 1000px; margin: 0 auto; padding: 1.1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
     .logo { font-size: 1.1rem; font-weight: 700; font-style: italic; color: #F5E090; }
     .back-link { font-size: 0.75rem; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
     .back-link:hover { color: #F5E090; text-decoration: none; }
 
-    /* HERO */
-    .hero { max-width: 860px; margin: 0 auto; padding: 8rem 2rem 4.5rem; }
-    .page-label { display: inline-flex; align-items: center; gap: 0.65rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: #080F1E; background: #F5E090; padding: 0.35rem 0.9rem 0.3rem; border-radius: 2px; margin-bottom: 1.6rem; }
-    .hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700; font-style: italic; color: #F5E090; line-height: 1.12; margin-bottom: 0.5rem; }
-    .hero-sub-title { font-size: 1.3rem; font-weight: 300; color: rgba(255,255,255,0.88); margin-bottom: 1.4rem; letter-spacing: 0.01em; }
-    .hero-sub { font-size: 1.08rem; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.9); max-width: 620px; }
-    .gold-line { height: 1px; background: linear-gradient(90deg, #F5E090 0%, transparent 100%); margin: 3rem 0; border: none; }
+    /* HERO — split layout */
+    .hero-wrap { max-width: 1000px; margin: 0 auto; padding: 7.5rem 2rem 0; display: grid; grid-template-columns: 1fr 340px; gap: 3rem; align-items: center; }
+    @media (max-width: 720px) { .hero-wrap { grid-template-columns: 1fr; padding-top: 6rem; } }
+
+    .hero-text {}
+    .page-label { display: inline-flex; align-items: center; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: #080F1E; background: #F5E090; padding: 0.32rem 0.85rem 0.28rem; border-radius: 2px; margin-bottom: 1.5rem; }
+    .hero h1 { font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 700; font-style: italic; color: #F5E090; line-height: 1.12; margin-bottom: 0.4rem; }
+    .hero-sub-title { font-size: 1.2rem; font-weight: 300; color: rgba(255,255,255,0.92); margin-bottom: 1.4rem; }
+    .hero-sub { font-size: 1rem; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.88); margin-bottom: 2rem; }
+
+    /* META CHIPS */
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+    .chip { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.14); border-radius: 2px; padding: 0.25rem 0.6rem; }
+
+    /* EXTRACT CTA */
+    .extract-cta { display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.9rem 1.4rem; border: 1px solid rgba(245,224,144,0.55); border-radius: 3px; background: rgba(245,224,144,0.05); transition: background 0.18s, border-color 0.18s; }
+    .extract-cta:hover { background: rgba(245,224,144,0.1); border-color: rgba(245,224,144,0.8); text-decoration: none; }
+    .extract-cta-arrow { font-size: 1rem; color: #F5E090; }
+    .extract-cta-body {}
+    .extract-cta-label { display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #F5E090; }
+    .extract-cta-sub { display: block; font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.7); margin-top: 0.1rem; }
+
+    /* HERO IMAGE */
+    .hero-image-col { display: flex; align-items: center; justify-content: center; }
+    @media (max-width: 720px) { .hero-image-col { order: -1; } }
+    .hero-image-col img { width: 100%; max-width: 300px; height: auto; display: block; mix-blend-mode: multiply; filter: brightness(1.08); border-radius: 4px; }
+
+    /* GOLD LINE */
+    .gold-line { max-width: 1000px; margin: 3.5rem auto 0; padding: 0 2rem; }
+    .gold-line hr { height: 1px; background: linear-gradient(90deg, #F5E090 0%, transparent 100%); border: none; }
 
     /* CONTENT */
-    .content { max-width: 860px; margin: 0 auto; padding: 0 2rem 7rem; }
+    .content { max-width: 1000px; margin: 0 auto; padding: 3.5rem 2rem 7rem; }
 
-    /* MASTERCLASS CARD */
-    .mc-card { display: flex; gap: 0; border: 1px solid rgba(245,224,144,0.12); border-radius: 4px; background: rgba(255,255,255,0.02); margin-bottom: 3rem; overflow: hidden; }
-    @media (max-width: 640px) { .mc-card { flex-direction: column; } }
-
-    .mc-cover-col { flex: 0 0 240px; background: #1B3A8C; display: flex; align-items: center; justify-content: center; padding: 2.5rem 2rem; }
-    @media (max-width: 640px) { .mc-cover-col { flex: none; padding: 2rem; } }
-    .mc-cover-col img { width: 100%; max-width: 200px; height: auto; display: block; }
-
-    .mc-text-col { flex: 1; padding: 2.5rem 2.5rem 2rem; display: flex; flex-direction: column; border-left: 1px solid rgba(245,224,144,0.08); }
-    @media (max-width: 640px) { .mc-text-col { border-left: none; border-top: 1px solid rgba(245,224,144,0.08); padding: 2rem 1.6rem; } }
-
-    .mc-tag { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.7rem; }
-    .mc-title { font-size: 1.5rem; font-weight: 700; font-style: italic; line-height: 1.25; margin-bottom: 0.35rem; display: inline-block;
-      background: linear-gradient(90deg, #f6dc8d 0%, #fff 25%, #f6dc8d 50%, #b58d26 75%, #f6dc8d 100%);
-      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-      background-size: 200% 100%; animation: shimmer 6s linear infinite; }
-    @keyframes shimmer { 0% { background-position: -200% 0; } to { background-position: 200% 0; } }
-    .mc-meta { font-size: 0.68rem; font-weight: 300; letter-spacing: 0.12em; color: rgba(255,255,255,0.55); text-transform: uppercase; margin-bottom: 1.2rem; }
-
-    .mc-desc { font-size: 0.97rem; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.92); }
-    .mc-desc p { margin-bottom: 1rem; }
-    .mc-desc p:last-child { margin-bottom: 0; }
-    .mc-desc strong { color: #fff; font-weight: 600; }
-
-    .mc-extract { margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,0.07); }
-    .btn-extrait { display: inline-block; font-family: 'Raleway', sans-serif; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.1em; color: rgba(255,255,255,0.45); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 1px; transition: color 0.18s, border-color 0.18s; }
-    .btn-extrait:hover { color: #F5E090; border-color: rgba(245,224,144,0.5); text-decoration: none; }
+    /* PROGRAMME STRIP */
+    .programme { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(245,224,144,0.1); border: 1px solid rgba(245,224,144,0.1); border-radius: 4px; overflow: hidden; margin-bottom: 3.5rem; }
+    @media (max-width: 580px) { .programme { grid-template-columns: 1fr; } }
+    .prog-item { background: #080F1E; padding: 1.5rem 1.6rem; }
+    .prog-num { font-size: 0.62rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.4rem; }
+    .prog-title { font-size: 0.92rem; font-weight: 600; color: #fff; margin-bottom: 0.35rem; }
+    .prog-desc { font-size: 0.82rem; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.78); }
 
     /* SECTION LABEL */
     .section-label { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.38em; text-transform: uppercase; color: #B48C28; margin-bottom: 1.2rem; display: block; }
 
     /* PROFILES */
-    .profiles { margin-bottom: 3rem; }
-    .profile-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem; }
-    .profile-item { padding: 1.3rem 1.5rem; border: 1px solid rgba(245,224,144,0.1); border-radius: 4px; background: rgba(255,255,255,0.02); }
+    .profiles { margin-bottom: 3.5rem; }
+    .profile-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.8rem; }
+    .profile-item { padding: 1.2rem 1.5rem; border-left: 2px solid rgba(245,224,144,0.35); background: rgba(255,255,255,0.02); }
     .profile-item p { font-size: 0.97rem; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.92); }
     .profile-item strong { color: #fff; font-weight: 600; }
-
-    .not-for { margin-top: 1.5rem; padding: 1rem 1.5rem; border-left: 2px solid rgba(245,224,144,0.22); }
-    .not-for p { font-size: 0.9rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.72); font-style: italic; }
+    .not-for { margin-top: 1.5rem; padding: 1rem 1.5rem; border-left: 2px solid rgba(255,255,255,0.1); }
+    .not-for p { font-size: 0.9rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.65); font-style: italic; }
     .not-for p + p { margin-top: 0.6rem; }
 
     /* COUP DE POUCE */
-    .coup-de-pouce { margin-bottom: 3rem; padding: 2rem 2.5rem; border: 1px solid rgba(245,224,144,0.12); border-radius: 4px; background: rgba(255,255,255,0.02); }
+    .coup-de-pouce { margin-bottom: 3.5rem; padding: 1.8rem 2rem; border: 1px solid rgba(245,224,144,0.12); border-radius: 4px; background: rgba(255,255,255,0.02); }
     .coup-de-pouce p { font-size: 0.97rem; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.92); }
     .coup-de-pouce p + p { margin-top: 0.8rem; }
 
@@ -81,24 +83,25 @@
     @media (max-width: 600px) { .pricing { grid-template-columns: 1fr; } }
 
     .price-card { border: 1px solid rgba(245,224,144,0.15); border-radius: 4px; padding: 2rem; background: rgba(255,255,255,0.02); display: flex; flex-direction: column; position: relative; }
-    .price-card.featured { border-color: rgba(245,224,144,0.32); background: rgba(245,224,144,0.03); }
+    .price-card.featured { border-color: #F5E090; background: rgba(245,224,144,0.04); box-shadow: 0 0 32px rgba(245,224,144,0.07); }
 
-    .price-card-badge { position: absolute; top: -1px; right: 1.2rem; background: #F5E090; color: #080F1E; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 0 0 4px 4px; }
-    .price-card.featured { border-color: #F5E090; background: rgba(245,224,144,0.05); box-shadow: 0 0 0 1px rgba(245,224,144,0.18), 0 8px 32px rgba(245,224,144,0.07); }
-    .promo-banner { background: rgba(245,224,144,0.12); border: 1px solid rgba(245,224,144,0.3); border-radius: 3px; padding: 0.6rem 0.9rem; margin-bottom: 1.2rem; text-align: center; }
-    .promo-banner strong { font-size: 0.82rem; font-weight: 700; color: #F5E090; letter-spacing: 0.04em; }
-    .promo-banner span { display: block; font-size: 0.72rem; font-weight: 300; color: rgba(255,255,255,0.75); margin-top: 0.15rem; }
-    .price-card-tag { font-size: 0.62rem; font-weight: 300; letter-spacing: 0.32em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.55rem; }
+    .price-card-badge { position: absolute; top: -1px; left: 1.2rem; background: #F5E090; color: #080F1E; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.28rem 0.8rem; border-radius: 0 0 4px 4px; }
+    .price-card-tag { font-size: 0.62rem; font-weight: 300; letter-spacing: 0.32em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.55rem; margin-top: 0.9rem; }
     .price-card-title { font-size: 1.05rem; font-weight: 600; color: #fff; margin-bottom: 0.9rem; line-height: 1.3; }
+
+    .promo-banner { background: rgba(245,224,144,0.1); border: 1px solid rgba(245,224,144,0.28); border-radius: 3px; padding: 0.65rem 1rem; margin-bottom: 1.2rem; }
+    .promo-banner strong { font-size: 0.82rem; font-weight: 700; color: #F5E090; display: block; }
+    .promo-banner span { font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.78); display: block; margin-top: 0.18rem; }
+
     .price-card-desc { font-size: 0.87rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.82); margin-bottom: 1.2rem; flex: 1; }
-    .price-card-desc em { color: rgba(255,255,255,0.92); font-style: italic; }
+    .price-card-desc em { color: rgba(255,255,255,0.95); font-style: italic; }
     .price-card-note { font-size: 0.78rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.62); margin-bottom: 1.2rem; line-height: 1.55; }
 
-    .price-amount { font-size: 2rem; font-weight: 700; color: #F5E090; line-height: 1; }
-    .price-eur-equiv { font-size: 0.95rem; font-weight: 300; color: rgba(255,255,255,0.52); margin-top: 0.2rem; }
-    .price-disclaimer { font-size: 0.72rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.38); line-height: 1.55; margin-top: 0.5rem; }
+    .price-amount { font-size: 2.2rem; font-weight: 700; color: #F5E090; line-height: 1; }
+    .price-eur-equiv { font-size: 0.95rem; font-weight: 300; color: rgba(255,255,255,0.55); margin-top: 0.2rem; }
+    .price-disclaimer { font-size: 0.72rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.4); line-height: 1.55; margin-top: 0.5rem; }
 
-    .btn { display: block; width: 100%; padding: 0.85rem 2rem; font-family: 'Raleway', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; text-align: center; transition: background 0.18s, color 0.18s; text-decoration: none; margin-top: 1.5rem; }
+    .btn { display: block; width: 100%; padding: 0.9rem 2rem; font-family: 'Raleway', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; text-align: center; transition: background 0.18s, color 0.18s; text-decoration: none; margin-top: 1.5rem; }
     .btn-outline { background: transparent; color: #F5E090; border: 1px solid rgba(245,224,144,0.5); }
     .btn-outline:hover { background: rgba(245,224,144,0.06); text-decoration: none; }
     .btn-solid { background: #F5E090; color: #080F1E; }
@@ -106,7 +109,7 @@
 
     /* FOOTER */
     footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 2.5rem 2rem; text-align: center; }
-    .footer-inner { max-width: 860px; margin: 0 auto; font-size: 0.76rem; font-weight: 300; color: rgba(255,255,255,0.45); letter-spacing: 0.04em; }
+    .footer-inner { max-width: 1000px; margin: 0 auto; font-size: 0.76rem; font-weight: 300; color: rgba(255,255,255,0.45); letter-spacing: 0.04em; }
     .footer-inner a { color: rgba(255,255,255,0.45); }
     .footer-inner a:hover { color: #F5E090; }
   </style>
@@ -121,35 +124,58 @@
     </div>
   </header>
 
-  <div class="hero">
-    <p class="page-label">Masterclasse en ligne</p>
-    <h1>L'Art de Transmettre #1</h1>
-    <p class="hero-sub-title">Poser les Fondations</p>
-    <p class="hero-sub">La transmission est un métier à part entière, qui s'apprend comme les autres. Que vous vouliez ou deviez transmettre votre savoir, vous connaissez votre sujet. Cette masterclasse vous donne les outils pour le faire.</p>
-    <hr class="gold-line"/>
+  <!-- HERO -->
+  <div class="hero-wrap">
+
+    <div class="hero-text hero">
+      <p class="page-label">Masterclasse en ligne</p>
+      <h1>L'Art de Transmettre #1</h1>
+      <p class="hero-sub-title">Poser les Fondations</p>
+      <p class="hero-sub">La transmission est un métier à part entière, qui s'apprend comme les autres. Que vous vouliez ou deviez transmettre votre savoir, vous connaissez votre sujet. Cette masterclasse vous donne les outils pour le faire.</p>
+
+      <div class="hero-meta">
+        <span class="chip">2h de contenu</span>
+        <span class="chip">35 min de bonus</span>
+        <span class="chip">Audio</span>
+        <span class="chip">Exercices interactifs</span>
+        <span class="chip">3 livrables</span>
+      </div>
+
+      <a href="https://e779-kl.systeme.io/school/course/extrait1" class="extract-cta" target="_blank" rel="noopener">
+        <span class="extract-cta-arrow">▶</span>
+        <span class="extract-cta-body">
+          <span class="extract-cta-label">Accéder à un extrait gratuit</span>
+          <span class="extract-cta-sub">L'exercice du Séquenceur de Cours</span>
+        </span>
+      </a>
+    </div>
+
+    <div class="hero-image-col">
+      <img src="/upgr/covers/masterclass1.png" alt="L'Art de Transmettre #1 — Poser les Fondations"/>
+    </div>
+
   </div>
+
+  <div class="gold-line"><hr/></div>
 
   <div class="content">
 
-    <!-- MASTERCLASS CARD -->
-    <div class="mc-card">
-      <div class="mc-cover-col">
-        <img src="/upgr/covers/masterclass1.png" alt="L'Art de Transmettre #1 — Poser les Fondations"/>
+    <!-- PROGRAMME -->
+    <div class="programme">
+      <div class="prog-item">
+        <p class="prog-num">Module 1</p>
+        <p class="prog-title">Pourquoi transmettez-vous ?</p>
+        <p class="prog-desc">Votre style, votre public, votre intention. Vous produisez votre Fiche Fondatrice.</p>
       </div>
-      <div class="mc-text-col">
-        <p class="mc-tag">2h de contenu · 35 min de bonus</p>
-        <h2 class="mc-title">Poser les Fondations</h2>
-        <p class="mc-meta">Masterclasse en ligne · Audio · Exercices · Livrables</p>
-        <div class="mc-desc">
-          <p>En deux heures, vous repartez avec <strong>trois documents opérationnels</strong> : un plan de transmission, une structure séquence par séquence, et une phrase qui dit ce que vous faites. Vous avez une vision claire de votre public, de l'ordre de vos idées et du temps à consacrer à chaque partie.</p>
-          <p>La question posée est simple : <strong>pourquoi transmettez-vous ?</strong> Qu'est-ce que vous voulez que vos apprenants fassent différemment après vous avoir écouté ? Vous identifiez votre style et vous apprenez à l'assumer. Vous produisez votre <strong>Fiche Fondatrice</strong>, une page qui vous suit d'une session à l'autre.</p>
-          <p>Vient ensuite la structure. Une règle simple : une séquence, une idée. Vous choisissez votre format — présentiel, distanciel ou hybride — et vous construisez la progression de votre contenu. Vous produisez votre <strong>Séquenceur de Cours</strong>.</p>
-          <p>Le <strong>bonus de trente-cinq minutes</strong> est conçu pour ceux qui envisagent une commercialisation. Sans cynisme, sans pression. Vous produisez votre <strong>Proposition de Valeur Initiale</strong> : ce que vous vendez, à qui, et pourquoi.</p>
-          <p>Chaque module alterne un audio, des exercices avec retour immédiat, un livrable à compléter, et un coup de pouce si vous êtes coincé. <strong>Vous n'écoutez pas, vous construisez.</strong></p>
-        </div>
-        <div class="mc-extract">
-          <a href="https://e779-kl.systeme.io/school/course/extrait1" class="btn-extrait" target="_blank" rel="noopener">→ Accéder à un extrait — l'exercice du Séquenceur de Cours</a>
-        </div>
+      <div class="prog-item">
+        <p class="prog-num">Module 2</p>
+        <p class="prog-title">Construire la progression</p>
+        <p class="prog-desc">Une séquence, une idée. Vous construisez votre Séquenceur de Cours.</p>
+      </div>
+      <div class="prog-item">
+        <p class="prog-num">Bonus — 35 min</p>
+        <p class="prog-title">Commercialiser sans pression</p>
+        <p class="prog-desc">Pour ceux qui envisagent une offre. Vous produisez votre Proposition de Valeur Initiale.</p>
       </div>
     </div>
 
