@@ -110,7 +110,11 @@
     .upsell-prices-row { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.25rem; }
     .upsell-bundle-price { font-size: 1.85rem; font-weight: 700; color: #F5E090; line-height: 1; }
     .upsell-bundle-strike { font-size: 0.97rem; text-decoration: line-through; color: rgba(255,255,255,0.7); }
-    .upsell-saving { font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.9); margin-bottom: 1.3rem; }
+    .upsell-saving { font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.9); margin-bottom: 0.5rem; }
+    .upsell-price-col { display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0; }
+    .upsell-eur-equiv { font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.52); margin-top: 0.15rem; }
+    .upsell-eur-row { font-size: 0.88rem; font-weight: 300; color: rgba(255,255,255,0.52); margin-bottom: 0.25rem; }
+    .upsell-eur-row .upsell-eur-strike { text-decoration: line-through; color: rgba(255,255,255,0.32); margin-left: 0.25rem; font-size: 0.78rem; }
     .upsell-btn-bundle { display: block; width: 100%; text-align: center; padding: 0.9rem 1.5rem; font-family: 'Raleway', sans-serif; font-size: 0.77rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: #F5E090; color: #080F1E; border-radius: 2px; text-decoration: none; transition: background 0.18s; }
     .upsell-btn-bundle:hover { background: #e8d07a; text-decoration: none; }
     .upsell-skip { display: block; text-align: center; padding: 1rem 1.5rem; font-size: 0.72rem; font-weight: 300; color: rgba(255,255,255,0.85); text-decoration: none; border-top: 1px solid rgba(255,255,255,0.06); transition: color 0.18s; }
@@ -253,7 +257,10 @@
             <span id="upsell-book-title" class="upsell-selected-title"></span>
             <span id="upsell-book-subtitle" class="upsell-selected-subtitle"></span>
           </div>
-          <span id="upsell-book-price" class="upsell-selected-price"></span>
+          <div class="upsell-price-col">
+              <span id="upsell-book-price" class="upsell-selected-price"></span>
+              <span class="upsell-eur-equiv">/ 28 €</span>
+            </div>
         </div>
       </div>
       <div class="upsell-offer">
@@ -264,7 +271,9 @@
           <span id="upsell-bundle-price" class="upsell-bundle-price"></span>
           <span id="upsell-bundle-strike" class="upsell-bundle-strike"></span>
         </div>
+        <div class="upsell-eur-row">/ 50 € <span class="upsell-eur-strike">56 €</span></div>
         <div id="upsell-saving" class="upsell-saving"></div>
+        <p class="price-disclaimer" style="margin-bottom:1.1rem;">Prix en euros donné à titre indicatif, sur la base d'un équivalent en CHF. Le montant facturé peut varier selon le taux de change appliqué au moment du paiement.</p>
         <a href="#" id="upsell-btn-bundle" class="upsell-btn-bundle" onclick="return false;">
           Prendre les deux : <span id="upsell-bundle-cta-price"></span>
         </a>
