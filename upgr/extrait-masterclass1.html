@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>L'Art de Transmettre #1 — Extrait | UpGrade</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: #0b1120;
+      color: rgba(255,255,255,0.88);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,15,30,0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      height: 54px;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #F5E090;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .header-center {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      min-width: 0;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .header-label {
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #B48C28;
+      white-space: nowrap;
+    }
+
+    .header-sep { color: rgba(255,255,255,0.18); font-size: 0.65rem; }
+
+    .header-title-group { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+    .header-tagline { font-size: 0.62rem; font-weight: 700; font-style: italic; color: rgba(255,255,255,0.65); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .header-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-style: italic;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .back-link {
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.38);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .back-link:hover { color: rgba(255,255,255,0.7); }
+
+    .reader {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem 4rem;
+      gap: 2rem;
+    }
+
+    /* ========== STYLES DES BLOCS ========== */
+
+    .masterclass-container {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 750px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    /* --- BANDEAU COMMUN --- */
+    .masterclass-banner {
+      background: #080F1E;
+      padding: 20px 32px 16px 32px;
+      text-align: center;
+      border-bottom: 4px solid #D4AF37;
+      border-radius: 12px 12px 0 0;
+    }
+    .masterclass-banner .banner-badge {
+      display: inline-block;
+      background: #D4AF37;
+      color: #080F1E;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      padding: 3px 16px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+    .masterclass-banner .banner-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.3px;
+      margin-bottom: 2px;
+    }
+    .masterclass-banner .banner-subtitle {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 300;
+    }
+
+    /* --- CORPS COMMUN --- */
+    .masterclass-body {
+      padding: 28px 32px 32px 32px;
+      background: #fafbff;
+      border-radius: 0 0 12px 12px;
+      border: 1px solid #e9ecf2;
+      border-top: none;
+    }
+
+    /* --- BOX GÉNÉRIQUE --- */
+    .masterclass-box {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 8px rgba(8,15,30,0.05);
+      border-left: 4px solid transparent;
+      transition: border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .masterclass-box:hover { border-left-color: #D4AF37; }
+
+    .masterclass-box .watermark {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .masterclass-box .watermark span {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 100px; font-weight: 900;
+      color: rgba(0,0,0,0.07); text-transform: uppercase;
+      letter-spacing: 14px; transform: rotate(-30deg);
+      user-select: none; white-space: nowrap; display: block;
+      width: 100%; text-align: center;
+    }
+    .masterclass-box .box-label,
+    .masterclass-box .box-content { position: relative; z-index: 1; }
+
+    .masterclass-box .box-label {
+      font-weight: 700; color: #080F1E; font-size: 13px;
+      text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px;
+    }
+    .masterclass-box .box-content {
+      font-size: 15px; line-height: 1.7; color: #1a2a3a; text-align: justify;
+    }
+    .masterclass-box .box-content p { margin-bottom: 10px; }
+    .masterclass-box .box-content p:last-child { margin-bottom: 0; }
+    .masterclass-box .box-content .note { font-size: 13px; color: #6b7a8f; font-style: italic; }
+
+    /* --- SÉQUENCEUR --- */
+    .sequence-modalite-selector {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      margin: 8px 0 12px 0; padding: 12px 16px;
+      background: #f7f8fc; border-radius: 8px;
+      border-left: 3px solid #D4AF37;
+      position: relative; z-index: 1;
+    }
+    .sequence-modalite-selector label {
+      font-size: 14px; font-weight: 500; color: #1a2a3a;
+      cursor: pointer; display: flex; align-items: center; gap: 6px;
+    }
+    .sequence-modalite-selector input[type="radio"] { accent-color: #D4AF37; transform: scale(1.1); cursor: pointer; }
+    .sequence-modalite-selector .modalite-hint { font-size: 12px; color: #6b7a8f; margin-left: 4px; }
+
+    .sequence-table-wrap { overflow-x: auto; margin-top: 8px; position: relative; z-index: 1; }
+    .sequence-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 600px; }
+    .sequence-table th {
+      background: #080F1E; color: white; padding: 8px 10px;
+      text-align: left; font-weight: 600; font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .sequence-table td { padding: 6px 8px; border-bottom: 1px solid #eef1f6; vertical-align: middle; }
+    .sequence-table tr:hover td { background: #fafbff; }
+    .sequence-table input,
+    .sequence-table select {
+      width: 100%; padding: 6px 8px; border: 2px solid #e9ecf2;
+      border-radius: 6px; font-size: 13px; font-family: inherit;
+      box-sizing: border-box; transition: border-color 0.2s; background: white;
+    }
+    .sequence-table input:focus,
+    .sequence-table select:focus { border-color: #080F1E; outline: none; }
+    .sequence-table input.error,
+    .sequence-table select.error { border-color: #c73b3b; background: #fce8e8; }
+    .sequence-table input.success,
+    .sequence-table select.success { border-color: #2d8f5c; background: #e6f4ea; }
+    .sequence-table .btn-remove-row {
+      background: transparent; border: none; color: #c73b3b;
+      cursor: pointer; font-size: 18px; padding: 4px 8px;
+      border-radius: 4px; transition: background 0.2s; font-weight: 700;
+    }
+    .sequence-table .btn-remove-row:hover { background: #fce8e8; }
+
+    .btn-add-row {
+      display: inline-block; background: transparent; color: #080F1E;
+      border: 2px dashed #D4AF37; border-radius: 8px; padding: 10px 20px;
+      font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+      font-family: inherit; margin-top: 8px; width: 100%; text-align: center;
+      position: relative; z-index: 1;
+    }
+    .btn-add-row:hover { background: #fdf6e8; border-color: #080F1E; }
+
+    .btn-validate-sequenceur {
+      display: inline-block; background: #080F1E; color: white;
+      border: none; border-radius: 8px; padding: 14px 32px;
+      font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s;
+      font-family: inherit; margin-top: 12px;
+      box-shadow: 0 4px 12px rgba(8,15,30,0.2);
+      width: 100%; text-align: center; position: relative; z-index: 1;
+    }
+    .btn-validate-sequenceur:hover {
+      background: #1a2a4a; transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(8,15,30,0.3);
+    }
+
+    .validation-result {
+      display: none; margin-top: 16px; padding: 16px 20px;
+      background: #f7f8fc; border-radius: 8px;
+      border-left: 4px solid #D4AF37; position: relative; z-index: 1;
+    }
+    .validation-result.open { display: block; }
+    .validation-result .vr-titre { font-weight: 700; color: #080F1E; font-size: 15px; margin-bottom: 6px; }
+    .validation-result .vr-ligne {
+      display: flex; align-items: center; gap: 10px; padding: 4px 0;
+      font-size: 14px; color: #1a2a3a; border-bottom: 1px solid #eef1f6;
+    }
+    .validation-result .vr-ligne:last-child { border-bottom: none; }
+    .validation-result .vr-status { font-weight: 700; min-width: 60px; }
+    .validation-result .vr-status.ok { color: #2d8f5c; }
+    .validation-result .vr-status.ko { color: #c73b3b; }
+    .validation-result .vr-score {
+      font-weight: 700; color: #080F1E; font-size: 16px;
+      margin-top: 10px; padding-top: 10px; border-top: 2px solid #eef1f6; text-align: center;
+    }
+
+    /* --- FICHE SYNTHÈSE --- */
+    .fiche-synthese {
+      background: #ffffff; border-radius: 12px; padding: 0;
+      box-shadow: 0 8px 30px rgba(8,15,30,0.10); overflow: hidden;
+      border: 1px solid #e9ecf2; position: relative;
+    }
+    .fiche-synthese .fs-banner {
+      background: #080F1E; padding: 20px 32px 16px 32px;
+      text-align: center; border-bottom: 4px solid #D4AF37;
+      position: relative; z-index: 1;
+    }
+    .fiche-synthese .fs-banner .fs-badge {
+      display: inline-block; background: #D4AF37; color: #080F1E;
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.2px; padding: 3px 16px; border-radius: 20px; margin-bottom: 8px;
+    }
+    .fiche-synthese .fs-banner .fs-title {
+      font-size: 24px; font-weight: 700; color: #ffffff;
+      letter-spacing: -0.3px; margin-bottom: 2px;
+    }
+    .fiche-synthese .fs-banner .fs-subtitle {
+      font-size: 14px; color: rgba(255,255,255,0.7); font-weight: 300;
+    }
+    .fiche-synthese .fs-body {
+      padding: 28px 32px 32px 32px; background: #fafbff; position: relative; z-index: 1;
+    }
+
+    .fs-intro {
+      font-size: 15px; line-height: 1.6; color: #1a2a3a; text-align: center;
+      margin-bottom: 24px; padding: 12px 20px;
+      background: #edf2f9; border-radius: 8px;
+      border-left: 4px solid #D4AF37; font-weight: 500;
+      position: relative; overflow: hidden;
+    }
+    .fs-intro .watermark {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .fs-intro .watermark span {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 60px; font-weight: 900; color: rgba(0,0,0,0.06);
+      text-transform: uppercase; letter-spacing: 8px; transform: rotate(-30deg);
+      user-select: none; white-space: nowrap; display: block;
+    }
+    .fs-intro > *:not(.watermark) { position: relative; z-index: 1; }
+
+    .fs-point {
+      display: flex; gap: 16px; margin-bottom: 18px; align-items: flex-start;
+      background: #ffffff; padding: 16px 20px; border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(8,15,30,0.05);
+      border-left: 4px solid transparent; transition: border-color 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .fs-point:hover { border-left-color: #D4AF37; }
+    .fs-point .watermark {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .fs-point .watermark span {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 70px; font-weight: 900; color: rgba(0,0,0,0.05);
+      text-transform: uppercase; letter-spacing: 8px; transform: rotate(-30deg);
+      user-select: none; white-space: nowrap; display: block;
+    }
+    .fs-point > *:not(.watermark) { position: relative; z-index: 1; }
+    .fs-point .fs-num {
+      font-weight: 700; color: #ffffff; font-size: 16px;
+      min-width: 32px; height: 32px; line-height: 32px; text-align: center;
+      background: #080F1E; border-radius: 50%; flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(8,15,30,0.15); margin-top: 2px;
+    }
+    .fs-point .fs-content { flex: 1; }
+    .fs-point .fs-content .fs-point-title {
+      font-weight: 700; color: #080F1E; font-size: 15px; margin-bottom: 2px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .fs-point .fs-content .fs-point-text {
+      font-size: 14px; line-height: 1.6; color: #1a2a3a; text-align: justify;
+    }
+
+    .fs-questions {
+      margin-top: 24px; padding-top: 20px;
+      border-top: 2px solid #eef1f6;
+      position: relative; overflow: hidden;
+    }
+    .fs-questions .watermark {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .fs-questions .watermark span {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.05);
+      text-transform: uppercase; letter-spacing: 10px; transform: rotate(-30deg);
+      user-select: none; white-space: nowrap; display: block;
+    }
+    .fs-questions > *:not(.watermark) { position: relative; z-index: 1; }
+    .fs-questions .fs-q-title {
+      font-weight: 700; color: #080F1E; font-size: 16px;
+      margin-bottom: 14px; text-align: center; letter-spacing: 0.5px;
+    }
+    .fs-questions .fs-q-title span {
+      display: inline-block; background: #080F1E; color: white;
+      padding: 2px 14px; border-radius: 20px; font-size: 12px; letter-spacing: 0.8px;
+    }
+    .fs-questions .fs-q-item {
+      font-size: 14px; line-height: 1.6; color: #1a2a3a;
+      padding: 8px 0 8px 28px; position: relative; text-align: justify;
+      border-bottom: 1px solid #f0f2f5;
+    }
+    .fs-questions .fs-q-item:last-child { border-bottom: none; }
+    .fs-questions .fs-q-item::before {
+      content: "*"; position: absolute; left: 0; top: 8px;
+      color: #D4AF37; font-size: 14px;
+    }
+
+    /* --- CTA RETOUR --- */
+    .cta-retour {
+      max-width: 750px; width: 100%; text-align: center;
+    }
+    .btn-commander {
+      display: inline-block;
+      background: #F5E090; color: #080F1E;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.9rem 2.5rem; border-radius: 2px;
+      text-decoration: none; transition: background 0.18s;
+    }
+    .btn-commander:hover { background: #e8d07a; }
+    .cta-retour p {
+      font-size: 0.78rem; font-weight: 300;
+      color: rgba(255,255,255,0.45); margin-top: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 600px) {
+      header { padding: 0 1rem; }
+      .header-center { display: none; }
+      .back-link { font-size: 0.65rem; }
+      .reader { padding: 1rem 0.5rem 3rem; gap: 1.5rem; }
+      .masterclass-banner { padding: 16px 20px 12px 20px; }
+      .masterclass-banner .banner-title { font-size: 18px; }
+      .masterclass-body { padding: 20px 16px 24px 16px; }
+      .masterclass-box { padding: 16px 18px; }
+      .fiche-synthese .fs-banner { padding: 16px 20px 12px 20px; }
+      .fiche-synthese .fs-banner .fs-title { font-size: 20px; }
+      .fiche-synthese .fs-body { padding: 20px 16px 24px 16px; }
+      .fs-point { padding: 12px 14px; gap: 12px; }
+      .fs-point .fs-num { width: 28px; height: 28px; line-height: 28px; font-size: 14px; min-width: 28px; }
+      .sequence-modalite-selector { flex-direction: column; gap: 6px; padding: 10px 14px; }
+      .masterclass-box .watermark span { font-size: 60px; letter-spacing: 8px; }
+    }
+  </style>
+<!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=AW-18294385008"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-18294385008');</script></head>
+<body>
+
+<header>
+  <a class="logo" href="/">UpGrade</a>
+  <div class="header-center">
+    <span class="header-label">Extrait</span>
+    <span class="header-sep">·</span>
+    <div class="header-title-group">
+      <span class="header-title">L'Art de Transmettre #1</span>
+      <span class="header-tagline">Poser les Fondations</span>
+    </div>
+  </div>
+  <div class="header-actions">
+    <a href="/upgr/masterclass1" class="back-link">← Retour</a>
+  </div>
+</header>
+
+<div class="reader">
+
+  <!-- ===== BLOC 1 : SÉQUENCEUR ===== -->
+  <div class="masterclass-container">
+    <div class="masterclass-banner">
+      <div class="banner-badge">Exercice 4</div>
+      <div class="banner-title">Complétion du Séquenceur de Cours</div>
+      <div class="banner-subtitle">Architecte en atelier · Construisez la colonne vertébrale de votre formation</div>
+    </div>
+    <div class="masterclass-body">
+
+      <div class="masterclass-box">
+        <div class="watermark"><span>Extrait</span></div>
+        <div class="box-label">Votre mission</div>
+        <div class="box-content">
+          <p>Vous allez maintenant construire la colonne vertébrale de votre formation : le Séquenceur de Cours.</p>
+          <p class="note">Ce document est votre livrable 02. Il sera la base de toutes vos futures formations.</p>
+        </div>
+      </div>
+
+      <div class="masterclass-box">
+        <div class="watermark"><span>Extrait</span></div>
+        <div class="box-label">1. Choisissez votre modalité cible</div>
+        <div class="box-content">
+          <p style="font-size:14px;color:#6b7a8f;">Cette modalité détermine les durées recommandées pour vos séquences.</p>
+          <div class="sequence-modalite-selector">
+            <label><input type="radio" name="modalite_cible" value="presentiel" checked onchange="mettreAJourDurees()"> Présentiel <span class="modalite-hint">(45-60 min)</span></label>
+            <label><input type="radio" name="modalite_cible" value="distanciel" onchange="mettreAJourDurees()"> Distanciel <span class="modalite-hint">(20-25 min)</span></label>
+            <label><input type="radio" name="modalite_cible" value="hybride" onchange="mettreAJourDurees()"> Hybride <span class="modalite-hint">(20-25 min)</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="masterclass-box">
+        <div class="watermark"><span>Extrait</span></div>
+        <div class="box-label">2. Renseignez vos séquences</div>
+        <div class="box-content">
+          <p style="font-size:14px;color:#6b7a8f;">Pour chaque séquence, renseignez le titre, l'objectif observable, le format, la durée et la modalité.</p>
+          <div class="sequence-table-wrap">
+            <table class="sequence-table" id="sequenceTable">
+              <thead>
+                <tr>
+                  <th style="width:18%;">Titre</th>
+                  <th style="width:22%;">Objectif observable</th>
+                  <th style="width:14%;">Format</th>
+                  <th style="width:12%;">Durée</th>
+                  <th style="width:14%;">Modalité</th>
+                  <th style="width:6%;"></th>
+                </tr>
+              </thead>
+              <tbody id="sequenceBody"></tbody>
+            </table>
+          </div>
+          <button class="btn-add-row" onclick="ajouterLigne()">+ Ajouter une séquence</button>
+          <button class="btn-validate-sequenceur" onclick="validerSequenceur()">Valider mon Séquenceur</button>
+          <div class="validation-result" id="validationResult">
+            <div class="vr-titre">Résultat de la validation</div>
+            <div id="validationDetails"></div>
+            <div class="vr-score" id="validationScore"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="masterclass-box">
+        <div class="watermark"><span>Extrait</span></div>
+        <div class="box-label">Rappel des règles d'or</div>
+        <div class="box-content">
+          <p style="font-size:14px;color:#6b7a8f;">Vérifiez que votre Séquenceur respecte ces 3 règles :</p>
+          <ul style="list-style:none;padding:0;margin:6px 0 0 0;">
+            <li style="padding:4px 0;font-size:14px;color:#1a2a3a;border-bottom:1px solid #eef1f6;">
+              <strong style="color:#D4AF37;">1.</strong> Une idée par séquence — le titre ne doit pas contenir "et" ou "&"
+            </li>
+            <li style="padding:4px 0;font-size:14px;color:#1a2a3a;border-bottom:1px solid #eef1f6;">
+              <strong style="color:#D4AF37;">2.</strong> Alternance théorie/pratique — pas plus de 2 théories d'affilée
+            </li>
+            <li style="padding:4px 0;font-size:14px;color:#1a2a3a;">
+              <strong style="color:#D4AF37;">3.</strong> Durées adaptées — selon votre modalité cible
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== BLOC 2 : FICHE SYNTHÈSE ===== -->
+  <div class="masterclass-container">
+    <div class="fiche-synthese">
+      <div class="fs-banner">
+        <div class="fs-badge">✦ Fiche Synthèse ✦</div>
+        <div class="fs-title">Module 02 — L'Architecture et le Rythme</div>
+        <div class="fs-subtitle">Module 2</div>
+      </div>
+      <div class="fs-body">
+
+        <div class="fs-intro">
+          <div class="watermark"><span>Extrait</span></div>
+          Après l'écoute de l'audio du Module 2, consolidez et retenez l'essentiel.
+        </div>
+
+        <div class="fs-point">
+          <div class="watermark"><span>Extrait</span></div>
+          <div class="fs-num">1</div>
+          <div class="fs-content">
+            <div class="fs-point-title">Une séquence = une idée</div>
+            <div class="fs-point-text">La règle d'or de l'architecture pédagogique : une idée centrale, un exemple concret, une mise en pratique. Pas deux idées. Pas trois. Une. Cette contrainte est un service rendu à votre apprenant.</div>
+          </div>
+        </div>
+
+        <div class="fs-point">
+          <div class="watermark"><span>Extrait</span></div>
+          <div class="fs-num">2</div>
+          <div class="fs-content">
+            <div class="fs-point-title">La surcharge cognitive est universelle</div>
+            <div class="fs-point-text">Notre cerveau ne peut traiter qu'un nombre limité d'informations nouvelles en parallèle. Dépasser ce seuil ne signe pas l'intelligence du formateur. Cela signe son manque d'attention à l'apprenant.</div>
+          </div>
+        </div>
+
+        <div class="fs-point">
+          <div class="watermark"><span>Extrait</span></div>
+          <div class="fs-num">3</div>
+          <div class="fs-content">
+            <div class="fs-point-title">Le rythme binaire : réception puis action</div>
+            <div class="fs-point-text">Alternez systématiquement : apport théorique, puis exercice. Explication, puis application. Ce rythme structure toute pédagogie efficace, quelle que soit la modalité.</div>
+          </div>
+        </div>
+
+        <div class="fs-point">
+          <div class="watermark"><span>Extrait</span></div>
+          <div class="fs-num">4</div>
+          <div class="fs-content">
+            <div class="fs-point-title">Le rythme selon la modalité cible</div>
+            <div class="fs-point-text">Présentiel : 45-60 min par bloc. Distanciel : 20-25 min, pauses caméra coupée. Hybride : calé sur le public le plus contraint, compensations physiques pour le présentiel.</div>
+          </div>
+        </div>
+
+        <div class="fs-point">
+          <div class="watermark"><span>Extrait</span></div>
+          <div class="fs-num">5</div>
+          <div class="fs-content">
+            <div class="fs-point-title">Le Séquenceur n'est pas un plan de cours</div>
+            <div class="fs-point-text">C'est une carte de navigation. Elle dit dans quel ordre vous allez emmener vos apprenants, quelles escales vous faites, et combien de temps vous passez à chacune.</div>
+          </div>
+        </div>
+
+        <div class="fs-questions">
+          <div class="watermark"><span>Extrait</span></div>
+          <div class="fs-q-title"><span>Questions de réflexion personnelle</span></div>
+          <div class="fs-q-item">1. Dans votre contenu actuel, y a-t-il des séquences qui contiennent trop d'idées ? Lesquelles ?</div>
+          <div class="fs-q-item">2. Avez-vous tendance à sous-estimer ou surestimer ce que vos apprenants peuvent absorber en une heure ?</div>
+          <div class="fs-q-item">3. Le rythme que vous envisagez est-il vraiment adapté aux contraintes de votre modalité cible ?</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA RETOUR -->
+  <div class="cta-retour">
+    <a href="/upgr/masterclass1" class="btn-commander">Accéder à la masterclasse complète</a>
+    <p>110 CHF · Pack Découverte incluant les 2 ouvrages</p>
+  </div>
+
+</div>
+
+<script>
+  let sequenceCount = 0;
+  let modaliteActuelle = 'presentiel';
+  const formats = ['Théorie', 'Pratique', 'Atelier', 'Quiz', 'Synthèse', 'Mise en situation', 'Débrief', 'Exercice'];
+  const dureesRecommandees = {
+    presentiel: { min: 45, max: 60 },
+    distanciel: { min: 20, max: 25 },
+    hybride:    { min: 20, max: 25 }
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    for (let i = 0; i < 3; i++) ajouterLigne();
+    mettreAJourDurees();
+  });
+
+  function ajouterLigne() {
+    const tbody = document.getElementById('sequenceBody');
+    const tr = document.createElement('tr');
+    tr.id = 'row_' + sequenceCount;
+    const modalite = document.querySelector('input[name="modalite_cible"]:checked').value;
+    const dureeDefaut = dureesRecommandees[modalite].min;
+    tr.innerHTML = `
+      <td><input type="text" class="seq-titre" placeholder="Ex : Prioriser ses tâches" data-row="${sequenceCount}"></td>
+      <td><input type="text" class="seq-objectif" placeholder="Ex : Classer ses tâches dans la matrice" data-row="${sequenceCount}"></td>
+      <td><select class="seq-format" data-row="${sequenceCount}">${formats.map(f => `<option value="${f}">${f}</option>`).join('')}</select></td>
+      <td><input type="number" class="seq-duree" value="${dureeDefaut}" min="5" max="90" data-row="${sequenceCount}" style="width:60px;"> min</td>
+      <td><select class="seq-modalite" data-row="${sequenceCount}">
+        <option value="presentiel" ${modalite === 'presentiel' ? 'selected' : ''}>Présentiel</option>
+        <option value="distanciel" ${modalite === 'distanciel' ? 'selected' : ''}>Distanciel</option>
+        <option value="hybride" ${modalite === 'hybride' ? 'selected' : ''}>Hybride</option>
+      </select></td>
+      <td><button class="btn-remove-row" onclick="supprimerLigne(${sequenceCount})" ${sequenceCount < 3 ? 'disabled style="opacity:0.3;"' : ''}>✕</button></td>
+    `;
+    tbody.appendChild(tr);
+    sequenceCount++;
+    mettreAJourDurees();
+  }
+
+  function supprimerLigne(rowId) {
+    const row = document.getElementById('row_' + rowId);
+    if (row && document.querySelectorAll('#sequenceBody tr').length > 1) {
+      row.remove();
+      mettreAJourDurees();
+    }
+  }
+
+  function mettreAJourDurees() {
+    const modalite = document.querySelector('input[name="modalite_cible"]:checked').value;
+    modaliteActuelle = modalite;
+    const dureeDefaut = dureesRecommandees[modalite].min;
+    document.querySelectorAll('.seq-duree').forEach(input => {
+      if (!input.dataset.userValue) input.value = dureeDefaut;
+    });
+    document.querySelectorAll('.seq-modalite').forEach(select => { select.value = modalite; });
+  }
+
+  function validerSequenceur() {
+    const rows = document.querySelectorAll('#sequenceBody tr');
+    if (rows.length === 0) { alert('Ajoutez au moins une séquence avant de valider.'); return; }
+    let resultats = { regle1: { ok: true, details: [] }, regle2: { ok: true, details: [] }, regle3: { ok: true, details: [] } };
+    let formatsList = [];
+    rows.forEach((row, index) => {
+      const titre = row.querySelector('.seq-titre').value.trim();
+      const objectif = row.querySelector('.seq-objectif').value.trim();
+      const format = row.querySelector('.seq-format').value;
+      const duree = parseInt(row.querySelector('.seq-duree').value);
+      const modalite = row.querySelector('.seq-modalite').value;
+      row.querySelector('.seq-titre').classList.remove('error', 'success');
+      row.querySelector('.seq-objectif').classList.remove('error', 'success');
+      row.querySelector('.seq-duree').classList.remove('error', 'success');
+      if (titre === '') {
+        resultats.regle1.ok = false;
+        resultats.regle1.details.push('Séquence ' + (index + 1) + ' : titre manquant');
+        row.querySelector('.seq-titre').classList.add('error');
+      } else if (titre.toLowerCase().includes(' et ') || titre.includes(' & ') || titre.includes('+')) {
+        resultats.regle1.ok = false;
+        resultats.regle1.details.push('Séquence ' + (index + 1) + ' : "' + titre + '" semble contenir plusieurs idées');
+        row.querySelector('.seq-titre').classList.add('error');
+      } else { row.querySelector('.seq-titre').classList.add('success'); }
+      if (objectif === '') {
+        resultats.regle1.ok = false;
+        resultats.regle1.details.push('Séquence ' + (index + 1) + ' : objectif manquant');
+        row.querySelector('.seq-objectif').classList.add('error');
+      } else { row.querySelector('.seq-objectif').classList.add('success'); }
+      const dureeMin = dureesRecommandees[modalite].min;
+      const dureeMax = dureesRecommandees[modalite].max;
+      if (duree < dureeMin || duree > dureeMax) {
+        resultats.regle3.ok = false;
+        resultats.regle3.details.push('Séquence ' + (index + 1) + ' : ' + duree + ' min (recommandé : ' + dureeMin + '-' + dureeMax + ' min)');
+        row.querySelector('.seq-duree').classList.add('error');
+      } else { row.querySelector('.seq-duree').classList.add('success'); }
+      formatsList.push(format);
+    });
+    let theorieConsecutive = 0;
+    for (let i = 0; i < formatsList.length; i++) {
+      if (formatsList[i] === 'Théorie') {
+        theorieConsecutive++;
+        if (theorieConsecutive > 2) {
+          resultats.regle2.ok = false;
+          resultats.regle2.details.push('3 théories d\'affilée (séquences ' + (i - 1) + ', ' + i + ', ' + (i + 1) + '). Ajoutez une pratique.');
+          break;
+        }
+      } else { theorieConsecutive = 0; }
+    }
+    const validationDiv = document.getElementById('validationResult');
+    const detailsDiv = document.getElementById('validationDetails');
+    const scoreDiv = document.getElementById('validationScore');
+    let html = ''; let score = 0;
+    const regles = [
+      { id: 'regle1', label: 'Une idée par séquence', ok: resultats.regle1.ok },
+      { id: 'regle2', label: 'Alternance théorie/pratique', ok: resultats.regle2.ok },
+      { id: 'regle3', label: 'Durées adaptées', ok: resultats.regle3.ok }
+    ];
+    regles.forEach(regle => {
+      const details = resultats[regle.id].details;
+      html += `<div class="vr-ligne"><span class="vr-status ${regle.ok ? 'ok' : 'ko'}">${regle.ok ? '✅' : '❌'} ${regle.label}</span>${details.length > 0 ? '<span style="font-size:13px;color:#6b7a8f;">' + details.join(' · ') + '</span>' : '<span style="font-size:13px;color:#2d8f5c;">OK</span>'}</div>`;
+      if (regle.ok) score++;
+    });
+    detailsDiv.innerHTML = html;
+    let niveau = score === 3 ? 'Architecte Confirmé · Votre Séquenceur est prêt.' : score === 2 ? 'Plan à affiner · Corrigez les points signalés.' : 'Chantier à reprendre · Revoyez votre structure.';
+    scoreDiv.textContent = score + ' / 3 · ' + niveau;
+    validationDiv.classList.add('open');
+    validationDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+
+</body>
+</html>
