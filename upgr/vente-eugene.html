@@ -83,6 +83,9 @@
     .price-strike { font-size: 1rem; text-decoration: line-through; color: rgba(255,255,255,0.7); margin-left: 0.5rem; }
     .bundle-price .price-currency { font-size: 0.85rem; font-weight: 300; color: rgba(255,255,255,0.9); margin-top: 0.3rem; }
 
+    /* MENTION INDICATIF EUR */
+    .price-disclaimer { display: none; font-size: 0.72rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.38); line-height: 1.55; margin-top: 0.5rem; max-width: 100%; }
+
     /* UPSELL MODAL */
     .upsell-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(4,8,18,0.88); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); align-items: center; justify-content: center; padding: 1.5rem; }
     .upsell-overlay.open { display: flex; }
@@ -167,6 +170,7 @@
         <div class="book-buy">
           <div class="price-block">
             <div class="price-amount" id="price-1">26 CHF</div>
+            <p class="price-disclaimer" id="disclaimer-1">Prix en euros donné à titre indicatif, sur la base d'un équivalent en CHF. Le montant facturé peut varier selon le taux de change appliqué au moment du paiement.</p>
           </div>
           <a href="/upgr/extrait-idee-au-plan?from=eugene" class="btn btn-outline" id="extrait-1">Voir un extrait</a>
           <a href="https://buy.stripe.com/00w4gzdzJd5398s8XYgw00j" class="btn btn-outline" id="link-1" onclick="openUpsell(1); return false;">Commander</a>
@@ -190,6 +194,7 @@
         <div class="book-buy">
           <div class="price-block">
             <div class="price-amount" id="price-2">26 CHF</div>
+            <p class="price-disclaimer" id="disclaimer-2">Prix en euros donné à titre indicatif, sur la base d'un équivalent en CHF. Le montant facturé peut varier selon le taux de change appliqué au moment du paiement.</p>
           </div>
           <a href="/upgr/extrait-vos-competences-invisibles?from=eugene" class="btn btn-outline" id="extrait-2">Voir un extrait</a>
           <a href="https://buy.stripe.com/6oUdR9fHR7KJ70kfmmgw00k" class="btn btn-outline" id="link-2" onclick="openUpsell(2); return false;">Commander</a>
@@ -210,6 +215,7 @@
             <span class="price-strike" id="price-strike">52 CHF</span>
           </div>
           <div class="price-currency" id="currency-bundle">Économisez 5 CHF</div>
+          <p class="price-disclaimer" id="disclaimer-bundle">Prix en euros donné à titre indicatif, sur la base d'un équivalent en CHF. Le montant facturé peut varier selon le taux de change appliqué au moment du paiement.</p>
         </div>
         <a href="https://buy.stripe.com/28EbJ18fp3utckE7TUgw00l" class="btn btn-solid" id="link-bundle">Commander</a>
       </div>
@@ -297,6 +303,11 @@
       document.getElementById('price-bundle').textContent    = fmt(bundle,      currency);
       document.getElementById('price-strike').textContent    = fmt(bundleFull,  currency);
       document.getElementById('currency-bundle').textContent = 'Économisez\u00a0' + fmt(saving, currency);
+      var showDisclaimer = currency === 'EUR';
+      ['disclaimer-1', 'disclaimer-2', 'disclaimer-bundle'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.style.display = showDisclaimer ? 'block' : 'none';
+      });
     }
 
     function applyCurrency(currency) {

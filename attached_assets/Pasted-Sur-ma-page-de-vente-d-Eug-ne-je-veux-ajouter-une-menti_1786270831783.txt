@@ -1,0 +1,73 @@
+Sur ma page de vente d’Eugène, je veux ajouter une mention claire et discrète concernant les prix affichés en CHF et en euros.
+
+### Texte exact à afficher
+
+Sous chaque prix concerné, ajoute cette mention :
+
+> *Prix en euros donné à titre indicatif, sur la base d’un équivalent en CHF. Le montant facturé peut varier selon le taux de change appliqué au moment du paiement.*
+
+### Prix concernés
+
+La mention doit apparaître sous :
+
+* **26 CHF / 28 €**
+* **47 CHF / 50 €**
+* **52 CHF / 56 €**, lorsqu’il apparaît comme prix de référence.
+
+Si plusieurs occurrences de ces prix existent sur la page, appliquer la même règle à toutes les occurrences pertinentes.
+
+### Respect STRICT de la charte graphique existante
+
+La nouvelle mention doit s'intégrer naturellement à la page et respecter **à l'identique la charte graphique déjà en place**.
+
+Avant toute modification, analyse le design existant et reprends les éléments déjà utilisés sur la page :
+
+* famille de police ;
+* taille et hiérarchie typographique ;
+* couleurs ;
+* niveaux de contraste ;
+* graisse ;
+* espacement ;
+* marges ;
+* alignements ;
+* rayons de bordure si nécessaire ;
+* style général ;
+* responsive desktop/mobile.
+
+**Ne crée aucun nouveau style graphique qui ne serait pas cohérent avec l'existant.**
+
+La mention doit être :
+
+* plus petite que le prix ;
+* suffisamment lisible ;
+* visuellement secondaire ;
+* discrète pour ne pas détourner l'attention de l'offre ;
+* alignée avec le prix et les autres éléments de la section ;
+* intégrée au design existant comme si elle avait toujours fait partie de la page.
+
+### Contraintes
+
+* Ne modifie aucun prix.
+* Ne modifie aucun bouton.
+* Ne modifie aucun texte commercial existant.
+* Ne modifie aucune image.
+* Ne modifie aucun lien.
+* Ne modifie pas la structure générale de la page.
+* Ne modifie pas les couleurs existantes.
+* Ne modifie pas les polices existantes.
+* Ne crée pas de popup, tooltip ou accordéon.
+* La mention doit être directement visible sous le prix.
+* Ne crée pas de doublons si la mention existe déjà.
+* Sur mobile, le texte doit rester lisible et ne provoquer aucun débordement horizontal.
+
+### Méthode
+
+1. Analyse d'abord la structure et la charte graphique actuelle de la page.
+2. Identifie les composants qui affichent les prix.
+3. Ajoute la mention au niveau du composant approprié afin d'éviter de dupliquer inutilement le code.
+4. Réutilise les styles existants autant que possible.
+5. Vérifie le rendu sur desktop et mobile.
+6. Vérifie que les prix, boutons, textes et autres éléments existants n'ont pas été modifiés.
+7. Vérifie qu'aucune autre section de la page n'a été impactée.
+
+**Objectif : la mention doit sembler native à la page et ne doit en aucun cas donner l'impression qu'un élément graphique a été ajouté après coup.**
