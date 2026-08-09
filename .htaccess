@@ -5,6 +5,9 @@ RewriteEngine On
 # Legal pages — internal rewrite to .html files (no directory redirect)
 RewriteRule ^upgr/(politiquedecookies|confidentialite|mentionslegales|cgu|cgv)$ upgr/$1.html [L]
 
+# Masterclass pages
+RewriteRule ^masterclass1$ upgr/vente-masterclass1.html [L]
+
 # SPA fallback for everything else
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

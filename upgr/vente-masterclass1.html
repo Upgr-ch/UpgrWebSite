@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>L'Art de Transmettre #1 — Poser les Fondations | UpGrade</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Raleway', sans-serif; background-color: #080F1E; color: #fff; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    a { color: #F5E090; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* HEADER */
+    header { position: fixed; top: 0; left: 0; width: 100%; z-index: 50; background: rgba(8,15,30,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .header-inner { max-width: 860px; margin: 0 auto; padding: 1.1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.1rem; font-weight: 700; font-style: italic; color: #F5E090; }
+    .back-link { font-size: 0.75rem; font-weight: 300; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.65); }
+    .back-link:hover { color: #F5E090; text-decoration: none; }
+
+    /* HERO */
+    .hero { max-width: 860px; margin: 0 auto; padding: 8rem 2rem 4.5rem; }
+    .page-label { font-size: 0.7rem; font-weight: 300; letter-spacing: 0.38em; text-transform: uppercase; color: #B48C28; margin-bottom: 1.3rem; }
+    .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; font-style: italic; color: #F5E090; line-height: 1.15; margin-bottom: 0.5rem; }
+    .hero-sub-title { font-size: 1.25rem; font-weight: 300; color: rgba(255,255,255,0.7); margin-bottom: 1.4rem; letter-spacing: 0.01em; }
+    .hero-sub { font-size: 1.08rem; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.82); max-width: 620px; }
+    .gold-line { height: 1px; background: linear-gradient(90deg, #F5E090 0%, transparent 100%); margin: 3rem 0; border: none; }
+
+    /* CONTENT */
+    .content { max-width: 860px; margin: 0 auto; padding: 0 2rem 7rem; }
+
+    /* MASTERCLASS CARD */
+    .mc-card { display: flex; gap: 0; border: 1px solid rgba(245,224,144,0.12); border-radius: 4px; background: rgba(255,255,255,0.02); margin-bottom: 3rem; overflow: hidden; }
+    @media (max-width: 640px) { .mc-card { flex-direction: column; } }
+
+    .mc-cover-col { flex: 0 0 240px; background: #fff; display: flex; align-items: center; justify-content: center; padding: 2.5rem 2rem; }
+    @media (max-width: 640px) { .mc-cover-col { flex: none; padding: 2rem; } }
+    .mc-cover-col img { width: 100%; max-width: 200px; height: auto; display: block; }
+
+    .mc-text-col { flex: 1; padding: 2.5rem 2.5rem 2rem; display: flex; flex-direction: column; border-left: 1px solid rgba(245,224,144,0.08); }
+    @media (max-width: 640px) { .mc-text-col { border-left: none; border-top: 1px solid rgba(245,224,144,0.08); padding: 2rem 1.6rem; } }
+
+    .mc-tag { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.7rem; }
+    .mc-title { font-size: 1.5rem; font-weight: 700; font-style: italic; line-height: 1.25; margin-bottom: 0.35rem; display: inline-block;
+      background: linear-gradient(90deg, #f6dc8d 0%, #fff 25%, #f6dc8d 50%, #b58d26 75%, #f6dc8d 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      background-size: 200% 100%; animation: shimmer 6s linear infinite; }
+    @keyframes shimmer { 0% { background-position: -200% 0; } to { background-position: 200% 0; } }
+    .mc-meta { font-size: 0.68rem; font-weight: 300; letter-spacing: 0.12em; color: rgba(255,255,255,0.55); text-transform: uppercase; margin-bottom: 1.2rem; }
+
+    .mc-desc { font-size: 0.97rem; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.82); }
+    .mc-desc p { margin-bottom: 1rem; }
+    .mc-desc p:last-child { margin-bottom: 0; }
+    .mc-desc strong { color: rgba(255,255,255,0.95); font-weight: 500; }
+
+    .mc-extract { margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,0.07); }
+    .btn-extrait { display: inline-block; font-family: 'Raleway', sans-serif; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.1em; color: rgba(255,255,255,0.45); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 1px; transition: color 0.18s, border-color 0.18s; }
+    .btn-extrait:hover { color: #F5E090; border-color: rgba(245,224,144,0.5); text-decoration: none; }
+
+    /* SECTION LABEL */
+    .section-label { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.38em; text-transform: uppercase; color: #B48C28; margin-bottom: 1.2rem; display: block; }
+
+    /* PROFILES */
+    .profiles { margin-bottom: 3rem; }
+    .profile-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem; }
+    .profile-item { padding: 1.3rem 1.5rem; border: 1px solid rgba(245,224,144,0.1); border-radius: 4px; background: rgba(255,255,255,0.02); }
+    .profile-item p { font-size: 0.97rem; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.8); }
+    .profile-item strong { color: rgba(255,255,255,0.95); font-weight: 500; }
+
+    .not-for { margin-top: 1.5rem; padding: 1rem 1.5rem; border-left: 2px solid rgba(245,224,144,0.22); }
+    .not-for p { font-size: 0.9rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.5); font-style: italic; }
+    .not-for p + p { margin-top: 0.6rem; }
+
+    /* COUP DE POUCE */
+    .coup-de-pouce { margin-bottom: 3rem; padding: 2rem 2.5rem; border: 1px solid rgba(245,224,144,0.12); border-radius: 4px; background: rgba(255,255,255,0.02); }
+    .coup-de-pouce p { font-size: 0.97rem; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,0.8); }
+    .coup-de-pouce p + p { margin-top: 0.8rem; }
+
+    /* PRICING */
+    .pricing { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 600px) { .pricing { grid-template-columns: 1fr; } }
+
+    .price-card { border: 1px solid rgba(245,224,144,0.15); border-radius: 4px; padding: 2rem; background: rgba(255,255,255,0.02); display: flex; flex-direction: column; position: relative; }
+    .price-card.featured { border-color: rgba(245,224,144,0.32); background: rgba(245,224,144,0.03); }
+
+    .price-card-badge { position: absolute; top: -1px; right: 1.2rem; background: #F5E090; color: #080F1E; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.2rem 0.7rem; border-radius: 0 0 4px 4px; }
+    .price-card-tag { font-size: 0.62rem; font-weight: 300; letter-spacing: 0.32em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.55rem; }
+    .price-card-title { font-size: 1.05rem; font-weight: 600; color: #fff; margin-bottom: 0.9rem; line-height: 1.3; }
+    .price-card-desc { font-size: 0.87rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.65); margin-bottom: 1.2rem; flex: 1; }
+    .price-card-desc em { color: rgba(255,255,255,0.75); font-style: italic; }
+    .price-card-note { font-size: 0.78rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.42); margin-bottom: 1.2rem; line-height: 1.55; }
+
+    .price-amount { font-size: 2rem; font-weight: 700; color: #F5E090; line-height: 1; }
+    .price-eur-equiv { font-size: 0.95rem; font-weight: 300; color: rgba(255,255,255,0.52); margin-top: 0.2rem; }
+    .price-disclaimer { font-size: 0.72rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.38); line-height: 1.55; margin-top: 0.5rem; }
+
+    .btn { display: block; width: 100%; padding: 0.85rem 2rem; font-family: 'Raleway', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; text-align: center; transition: background 0.18s, color 0.18s; text-decoration: none; margin-top: 1.5rem; }
+    .btn-outline { background: transparent; color: #F5E090; border: 1px solid rgba(245,224,144,0.5); }
+    .btn-outline:hover { background: rgba(245,224,144,0.06); text-decoration: none; }
+    .btn-solid { background: #F5E090; color: #080F1E; }
+    .btn-solid:hover { background: #e8d07a; text-decoration: none; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 2.5rem 2rem; text-align: center; }
+    .footer-inner { max-width: 860px; margin: 0 auto; font-size: 0.76rem; font-weight: 300; color: rgba(255,255,255,0.45); letter-spacing: 0.04em; }
+    .footer-inner a { color: rgba(255,255,255,0.45); }
+    .footer-inner a:hover { color: #F5E090; }
+  </style>
+  <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=AW-18294385008"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-18294385008');</script>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo">UpGrade</a>
+      <a href="/" class="back-link">← Retour</a>
+    </div>
+  </header>
+
+  <div class="hero">
+    <p class="page-label">Masterclasse en ligne</p>
+    <h1>L'Art de Transmettre #1</h1>
+    <p class="hero-sub-title">Poser les Fondations</p>
+    <p class="hero-sub">La transmission est un métier à part entière, qui s'apprend comme les autres. Que vous vouliez ou deviez transmettre votre savoir, vous connaissez votre sujet. Cette masterclasse vous donne les outils pour le faire.</p>
+    <hr class="gold-line"/>
+  </div>
+
+  <div class="content">
+
+    <!-- MASTERCLASS CARD -->
+    <div class="mc-card">
+      <div class="mc-cover-col">
+        <img src="/upgr/covers/masterclass1.png" alt="L'Art de Transmettre #1 — Poser les Fondations"/>
+      </div>
+      <div class="mc-text-col">
+        <p class="mc-tag">2h de contenu · 35 min de bonus</p>
+        <h2 class="mc-title">Poser les Fondations</h2>
+        <p class="mc-meta">Masterclasse en ligne · Audio · Exercices · Livrables</p>
+        <div class="mc-desc">
+          <p>En deux heures, vous repartez avec <strong>trois documents opérationnels</strong> : un plan de transmission, une structure séquence par séquence, et une phrase qui dit ce que vous faites. Vous avez une vision claire de votre public, de l'ordre de vos idées et du temps à consacrer à chaque partie.</p>
+          <p>La question posée est simple : <strong>pourquoi transmettez-vous ?</strong> Qu'est-ce que vous voulez que vos apprenants fassent différemment après vous avoir écouté ? Vous identifiez votre style et vous apprenez à l'assumer. Vous produisez votre <strong>Fiche Fondatrice</strong>, une page qui vous suit d'une session à l'autre.</p>
+          <p>Vient ensuite la structure. Une règle simple : une séquence, une idée. Vous choisissez votre format — présentiel, distanciel ou hybride — et vous construisez la progression de votre contenu. Vous produisez votre <strong>Séquenceur de Cours</strong>.</p>
+          <p>Le <strong>bonus de trente-cinq minutes</strong> est conçu pour ceux qui envisagent une commercialisation. Sans cynisme, sans pression. Vous produisez votre <strong>Proposition de Valeur Initiale</strong> : ce que vous vendez, à qui, et pourquoi.</p>
+          <p>Chaque module alterne un audio, des exercices avec retour immédiat, un livrable à compléter, et un coup de pouce si vous êtes coincé. <strong>Vous n'écoutez pas, vous construisez.</strong></p>
+        </div>
+        <div class="mc-extract">
+          <a href="#" class="btn-extrait">→ Accéder à un extrait — l'exercice du Séquenceur de Cours</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILES -->
+    <div class="profiles">
+      <span class="section-label">À qui s'adresse cette masterclasse</span>
+      <ul class="profile-list">
+        <li class="profile-item">
+          <p><strong>Les experts qui doivent transmettre sans avoir jamais appris à le faire.</strong> Ils maîtrisent leur métier, ils ont des années d'expérience, mais quand ils doivent expliquer à d'autres ce qu'ils font, ils se sentent démunis.</p>
+        </li>
+        <li class="profile-item">
+          <p><strong>Ceux qui animent déjà des sessions mais sans cadre structuré.</strong> Ils improvisent, parfois ça marche, parfois les gens décrochent, et ils ne savent pas comment faire mieux.</p>
+        </li>
+        <li class="profile-item">
+          <p><strong>Ceux qui veulent se lancer mais qui se sentent illégitimes</strong>, qui attendent d'être prêts et qui ne le sont jamais.</p>
+        </li>
+      </ul>
+      <div class="not-for">
+        <p>Ce que ces trois profils ont en commun : un savoir réel, une envie de le partager, et un besoin d'outils pour le faire. Ils n'ont pas de formation en pédagogie et ils n'en veulent pas.</p>
+        <p>Cette masterclasse n'est pas pour ceux qui cherchent une certification, ni pour ceux qui ont déjà un système qui fonctionne.</p>
+      </div>
+    </div>
+
+    <!-- COUP DE POUCE -->
+    <div class="coup-de-pouce">
+      <span class="section-label">Coup de pouce</span>
+      <p>Si vous avez besoin d'un regard sur votre progression dans L'Art de Transmettre #1, si vous voulez clarifier un point, un livrable ou poser une question sur un module, vous pourrez nous contacter.</p>
+      <p>Nous mettons un point d'honneur à répondre à tous les messages.</p>
+    </div>
+
+    <!-- PRICING -->
+    <span class="section-label">Tarifs</span>
+    <div class="pricing">
+
+      <div class="price-card">
+        <p class="price-card-tag">Masterclasse seule</p>
+        <h3 class="price-card-title">Poser les Fondations</h3>
+        <p class="price-card-desc">Les deux modules, le bonus, les trois livrables, les exercices interactifs et les coups de pouce.</p>
+        <div class="price-amount">150 CHF</div>
+        <div class="price-eur-equiv">/ 160 €</div>
+        <p class="price-disclaimer">Prix en euros donné à titre indicatif, sur la base d'un équivalent en CHF. Le paiement s'effectue en francs suisses.</p>
+        <a href="#" class="btn btn-outline">Commander</a>
+      </div>
+
+      <div class="price-card featured">
+        <span class="price-card-badge">Recommandé</span>
+        <p class="price-card-tag">Pack</p>
+        <h3 class="price-card-title">Pack Découverte</h3>
+        <p class="price-card-desc"><em>L'Art de Transmettre #1</em> + <em>De l'idée au plan</em> + <em>Vos compétences humaines invisibles</em>. Les trois forment un pack complet, de l'idée à la première session.</p>
+        <p class="price-card-note">Vous avez déjà les ouvrages ? Ce que vous avez payé est déduit.</p>
+        <div class="price-amount">110 CHF</div>
+        <div class="price-eur-equiv">/ 118 €</div>
+        <p class="price-disclaimer">Prix en euros donné à titre indicatif, sur la base d'un équivalent en CHF. Le paiement s'effectue en francs suisses.</p>
+        <a href="#" class="btn btn-solid">Commander</a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      © UpGrade Learning &amp; Development ·
+      <a href="/upgr/mentionslegales">Mentions légales</a> ·
+      <a href="/upgr/confidentialite">Confidentialité</a> ·
+      <a href="/upgr/politiquedecookies">Politique de cookies</a> ·
+      <a href="/upgr/cgu">CGU</a> ·
+      <a href="/upgr/cgv">CGV</a>
+    </div>
+  </footer>
+
+</body>
+</html>
