@@ -124,87 +124,128 @@
       .upsell-modal { border-radius: 12px 12px 0 0; max-width: 100%; }
     }
 
-    /* ENCART MASTERCLASS */
-    .encart-masterclass {
+    /* SECTION MASTERCLASS */
+    .mc-section {
       max-width: 860px;
-      margin: 0 auto 0;
-      padding: 2rem 2rem 0;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 0;
     }
-    .encart-mc-inner {
-      border: 1px solid rgba(245,224,144,0.25);
-      border-radius: 6px;
-      background: rgba(245,224,144,0.04);
-      padding: 1.5rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .encart-mc-left { min-width: 0; }
-    .encart-mc-eyebrow {
-      font-size: 0.6rem;
+    .mc-section-label {
+      font-size: 0.62rem;
       font-weight: 700;
-      letter-spacing: 0.28em;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #F5E090;
+      display: block;
+      border-bottom: 1px solid rgba(245,224,144,0.2);
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.2rem;
+    }
+    .mc-section-intro {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+    .mc-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    .mc-card {
+      border: 1px solid rgba(245,224,144,0.15);
+      border-radius: 4px;
+      padding: 1.6rem;
+      background: rgba(255,255,255,0.02);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .mc-card.featured {
+      border-color: #F5E090;
+      background: rgba(245,224,144,0.04);
+      box-shadow: 0 0 32px rgba(245,224,144,0.07);
+    }
+    .mc-card-badge {
+      position: absolute;
+      top: -1px; left: 1.2rem;
+      background: #F5E090;
+      color: #080F1E;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.26rem 0.8rem;
+      border-radius: 0 0 4px 4px;
+    }
+    .mc-card-tag {
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
       color: #B48C28;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.45rem;
+      margin-top: 0.6rem;
     }
-    .encart-mc-title {
-      font-size: 1.05rem;
+    .mc-card-title {
+      font-size: 1rem;
       font-weight: 700;
       font-style: italic;
       color: #fff;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.7rem;
     }
-    .encart-mc-desc {
-      font-size: 0.8rem;
+    .mc-card-desc {
+      font-size: 0.82rem;
       font-weight: 300;
-      color: rgba(255,255,255,0.55);
-      line-height: 1.6;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 1.2rem;
+      flex: 1;
     }
-    .encart-mc-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.75rem;
-      flex-shrink: 0;
-    }
-    .encart-mc-price {
-      text-align: right;
-    }
-    .encart-mc-amount {
-      font-size: 1.8rem;
+    .mc-card-price {
+      font-size: 2rem;
       font-weight: 700;
       color: #F5E090;
       line-height: 1;
+      margin-bottom: 0.18rem;
     }
-    .encart-mc-eur {
-      font-size: 0.85rem;
+    .mc-card-eur {
+      font-size: 0.88rem;
       font-weight: 300;
       color: rgba(255,255,255,0.45);
-      margin-top: 0.15rem;
+      margin-bottom: 1rem;
     }
-    .encart-mc-btn {
-      display: inline-block;
-      padding: 0.6rem 1.4rem;
-      font-family: 'Raleway', sans-serif;
+    .mc-card-saving {
       font-size: 0.72rem;
+      font-weight: 600;
+      color: #F5E090;
+      background: rgba(245,224,144,0.08);
+      border-radius: 2px;
+      padding: 0.2rem 0.5rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    .mc-btn {
+      display: block;
+      width: 100%;
+      padding: 0.85rem 1.5rem;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      background: #F5E090;
-      color: #080F1E;
       border-radius: 2px;
       text-decoration: none;
-      transition: background 0.18s;
-      white-space: nowrap;
+      text-align: center;
+      transition: background 0.18s, color 0.18s;
     }
-    .encart-mc-btn:hover { background: #e8d07a; text-decoration: none; }
+    .mc-btn-solid { background: #F5E090; color: #080F1E; }
+    .mc-btn-solid:hover { background: #e8d07a; text-decoration: none; }
+    .mc-btn-outline { background: transparent; color: rgba(255,255,255,0.65); border: 1px solid rgba(255,255,255,0.2); }
+    .mc-btn-outline:hover { border-color: rgba(255,255,255,0.5); color: #fff; text-decoration: none; }
     @media (max-width: 600px) {
-      .encart-mc-inner { flex-direction: column; align-items: flex-start; }
-      .encart-mc-right { align-items: flex-start; }
-      .encart-mc-price { text-align: left; }
+      .mc-cards { grid-template-columns: 1fr; }
     }
 
     /* FOOTER */
@@ -315,21 +356,34 @@
 
   </div>
 
-  <!-- ENCART MASTERCLASS -->
-  <div class="encart-masterclass">
-    <div class="encart-mc-inner">
-      <div class="encart-mc-left">
-        <div class="encart-mc-eyebrow">Masterclasse · L'Art de Transmettre #1</div>
-        <div class="encart-mc-title">Pack Découverte</div>
-        <div class="encart-mc-desc">La Masterclasse + les 2 ouvrages. Un pack complet, de l'idée à la première session.</div>
+  <!-- SECTION MASTERCLASS -->
+  <div class="mc-section">
+    <span class="mc-section-label">Aller plus loin · L'Art de Transmettre #1</span>
+    <p class="mc-section-intro">Vous avez les ouvrages. La Masterclasse pose les fondations pédagogiques que les livres ne peuvent pas vous donner : audio, exercices interactifs, livrables guidés.</p>
+    <div class="mc-cards">
+
+      <!-- MASTERCLASSE SEULE -->
+      <div class="mc-card">
+        <p class="mc-card-tag">Masterclasse seule</p>
+        <h3 class="mc-card-title">Poser les Fondations</h3>
+        <p class="mc-card-desc">Les deux modules, le bonus, les trois livrables et les exercices interactifs.</p>
+        <div class="mc-card-price">150 CHF</div>
+        <div class="mc-card-eur">/ 160 €</div>
+        <a href="/masterclass1" class="mc-btn mc-btn-outline">En savoir plus</a>
       </div>
-      <div class="encart-mc-right">
-        <div class="encart-mc-price">
-          <div class="encart-mc-amount">110 CHF</div>
-          <div class="encart-mc-eur">/ 118 €</div>
-        </div>
-        <a href="/masterclass1" class="encart-mc-btn">En savoir plus</a>
+
+      <!-- PACK DÉCOUVERTE (RECOMMANDÉ) -->
+      <div class="mc-card featured">
+        <span class="mc-card-badge">Recommandé</span>
+        <p class="mc-card-tag">Pack</p>
+        <h3 class="mc-card-title">Pack Découverte</h3>
+        <p class="mc-card-desc">La Masterclasse <em>«&nbsp;L'Art de Transmettre #1&nbsp;»</em> + les 2 ouvrages. Un pack complet, de l'idée à la première session.</p>
+        <div class="mc-card-price">110 CHF</div>
+        <div class="mc-card-eur">/ 118 €</div>
+        <div class="mc-card-saving">Économisez 40 CHF / 43 €</div>
+        <a href="/masterclass1" class="mc-btn mc-btn-solid">En savoir plus</a>
       </div>
+
     </div>
   </div>
 
