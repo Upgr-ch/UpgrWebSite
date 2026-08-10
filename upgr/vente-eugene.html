@@ -124,6 +124,89 @@
       .upsell-modal { border-radius: 12px 12px 0 0; max-width: 100%; }
     }
 
+    /* ENCART MASTERCLASS */
+    .encart-masterclass {
+      max-width: 860px;
+      margin: 0 auto 0;
+      padding: 2rem 2rem 0;
+    }
+    .encart-mc-inner {
+      border: 1px solid rgba(245,224,144,0.25);
+      border-radius: 6px;
+      background: rgba(245,224,144,0.04);
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .encart-mc-left { min-width: 0; }
+    .encart-mc-eyebrow {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #B48C28;
+      margin-bottom: 0.4rem;
+    }
+    .encart-mc-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      font-style: italic;
+      color: #fff;
+      margin-bottom: 0.3rem;
+    }
+    .encart-mc-desc {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+    .encart-mc-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+    .encart-mc-price {
+      text-align: right;
+    }
+    .encart-mc-amount {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #F5E090;
+      line-height: 1;
+    }
+    .encart-mc-eur {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.45);
+      margin-top: 0.15rem;
+    }
+    .encart-mc-btn {
+      display: inline-block;
+      padding: 0.6rem 1.4rem;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: #F5E090;
+      color: #080F1E;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: background 0.18s;
+      white-space: nowrap;
+    }
+    .encart-mc-btn:hover { background: #e8d07a; text-decoration: none; }
+    @media (max-width: 600px) {
+      .encart-mc-inner { flex-direction: column; align-items: flex-start; }
+      .encart-mc-right { align-items: flex-start; }
+      .encart-mc-price { text-align: left; }
+    }
+
     /* FOOTER */
     footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 2.5rem 2rem; text-align: center; }
     .footer-inner { max-width: 860px; margin: 0 auto; font-size: 0.76rem; font-weight: 300; color: rgba(255,255,255,0.45); letter-spacing: 0.04em; }
@@ -230,6 +313,24 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- ENCART MASTERCLASS -->
+  <div class="encart-masterclass">
+    <div class="encart-mc-inner">
+      <div class="encart-mc-left">
+        <div class="encart-mc-eyebrow">Masterclasse · L'Art de Transmettre #1</div>
+        <div class="encart-mc-title">Pack Découverte</div>
+        <div class="encart-mc-desc">La Masterclasse + les 2 ouvrages. Un pack complet, de l'idée à la première session.</div>
+      </div>
+      <div class="encart-mc-right">
+        <div class="encart-mc-price">
+          <div class="encart-mc-amount">110 CHF</div>
+          <div class="encart-mc-eur">/ 118 €</div>
+        </div>
+        <a href="/masterclass1" class="encart-mc-btn">En savoir plus</a>
+      </div>
+    </div>
   </div>
 
   <footer>
