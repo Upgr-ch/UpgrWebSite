@@ -149,9 +149,12 @@
       margin-bottom: 1.5rem;
     }
     .mc-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
+      display: flex;
+      justify-content: center;
+    }
+    .mc-cards .mc-card {
+      max-width: 420px;
+      width: 100%;
     }
     .mc-card {
       border: 1px solid rgba(245,224,144,0.15);
@@ -361,16 +364,6 @@
     <span class="mc-section-label">Aller plus loin · L'Art de Transmettre #1</span>
     <p class="mc-section-intro">Vous avez les ouvrages. La Masterclasse pose les fondations pédagogiques que les livres ne peuvent pas vous donner : audio, exercices interactifs, livrables guidés.</p>
     <div class="mc-cards">
-
-      <!-- MASTERCLASSE SEULE -->
-      <div class="mc-card">
-        <p class="mc-card-tag">Masterclasse seule</p>
-        <h3 class="mc-card-title">Poser les Fondations</h3>
-        <p class="mc-card-desc">Les deux modules, le bonus, les trois livrables et les exercices interactifs.</p>
-        <div class="mc-card-price">150 CHF</div>
-        <div class="mc-card-eur">/ 160 €</div>
-        <a href="/masterclass1" class="mc-btn mc-btn-outline">En savoir plus</a>
-      </div>
 
       <!-- PACK DÉCOUVERTE (RECOMMANDÉ) -->
       <div class="mc-card featured">
