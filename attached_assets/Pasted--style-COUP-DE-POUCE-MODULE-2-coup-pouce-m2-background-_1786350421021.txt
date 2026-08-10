@@ -1,0 +1,107 @@
+<style>
+    /* --- COUP DE POUCE - MODULE 2 --- */
+    .coup-pouce-m2 {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 0;
+        margin: 20px 0 10px 0;
+        box-shadow: 0 2px 8px rgba(8, 15, 30, 0.05);
+        overflow: hidden;
+        border: 1px solid #e9ecf2;
+    }
+
+    /* BANDEAU BLEU NUIT AVEC LISERÉ DORÉ */
+    .coup-pouce-m2 .cp-banner {
+        background: #080F1E;
+        padding: 14px 32px 12px 32px;
+        border-bottom: 4px solid #D4AF37;
+        text-align: center;
+    }
+    .coup-pouce-m2 .cp-banner .cp-badge {
+        display: inline-block;
+        background: #D4AF37;
+        color: #080F1E;
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        padding: 2px 16px;
+        border-radius: 20px;
+        margin-bottom: 4px;
+    }
+    .coup-pouce-m2 .cp-banner .cp-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: -0.3px;
+        margin-bottom: 2px;
+    }
+
+    /* CORPS DU BLOC */
+    .coup-pouce-m2 .cp-body {
+        padding: 18px 24px 18px 24px;
+        background: #fafbff;
+    }
+    .coup-pouce-m2 .cp-body .cp-text {
+        font-size: 15px;
+        line-height: 1.7;
+        color: #1a2a3a;
+        text-align: left;
+    }
+    .coup-pouce-m2 .cp-body .cp-text p {
+        margin-bottom: 6px;
+        text-align: left;
+    }
+    .coup-pouce-m2 .cp-body .cp-text p:last-child {
+        margin-bottom: 0;
+    }
+    .coup-pouce-m2 .cp-body .cp-mail {
+        font-weight: 600;
+        color: #080F1E;
+        text-decoration: none;
+        border-bottom: 2px solid #D4AF37;
+        padding-bottom: 1px;
+        transition: all 0.2s;
+    }
+    .coup-pouce-m2 .cp-body .cp-mail:hover {
+        color: #D4AF37;
+        border-bottom-color: #080F1E;
+    }
+
+    @media (max-width: 480px) {
+        .coup-pouce-m2 .cp-banner {
+            padding: 12px 20px 10px 20px;
+        }
+        .coup-pouce-m2 .cp-banner .cp-title {
+            font-size: 16px;
+        }
+        .coup-pouce-m2 .cp-body {
+            padding: 14px 16px;
+        }
+        .coup-pouce-m2 .cp-body .cp-text {
+            font-size: 14px;
+        }
+    }
+</style>
+
+<!-- ============================================ -->
+<!-- COUP DE POUCE - MODULE 2                     -->
+<!-- ============================================ -->
+
+<div class="coup-pouce-m2">
+
+    <!-- BANDEAU BLEU NUIT -->
+    <div class="cp-banner">
+        <div class="cp-badge">* Coup de pouce *</div>
+        <div class="cp-title">Un regard sur votre architecture pédagogique</div>
+    </div>
+
+    <!-- CORPS -->
+    <div class="cp-body">
+        <div class="cp-text">
+            <p>Si vous voulez un avis sur votre Séquenceur, la structure de votre contenu, le rythme de vos séquences ou votre choix de modalité, écrivez-moi à <a href="mailto:kl@upgr.ch" class="cp-mail">kl@upgr.ch</a>.</p>
+            <p>Je réponds à tous les messages.</p>
+        </div>
+    </div>
+
+</div>
