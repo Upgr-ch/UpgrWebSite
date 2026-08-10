@@ -717,6 +717,14 @@ filtrer();
   if (!filePath.startsWith(ROOT)) { res.writeHead(403, NO_CACHE); return res.end('Forbidden'); }
   if (urlPath === '/' || urlPath === '') return serveIndex(res);
 
+  // Clean URL routes → fichiers HTML dans upgr/
+  const cleanRoutes = {
+    '/masterclass1':       'upgr/vente-masterclass1.html',
+    '/extrait-masterclass1': 'upgr/extrait-masterclass1.html',
+  };
+  const qs = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+  if (cleanRoutes[urlPath]) return serveFile(res, path.join(ROOT, cleanRoutes[urlPath]));
+
   fs.stat(filePath, (err, stat) => {
     if (!err && stat.isFile()) return serveFile(res, filePath);
     if (!err && stat.isDirectory()) {
