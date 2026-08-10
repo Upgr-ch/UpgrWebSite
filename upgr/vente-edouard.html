@@ -71,6 +71,32 @@
     /* SÉPARATEUR ENTRE LIVRES */
     .book-sep { text-align: center; margin: -1rem 0 3rem; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
 
+    /* SHIMMER BOUTON */
+    @keyframes btn-shimmer {
+      0%   { box-shadow: 0 0 0px rgba(245,224,144,0); border-color: rgba(255,255,255,0.2); }
+      50%  { box-shadow: 0 0 22px rgba(245,224,144,0.9), 0 0 6px rgba(245,224,144,0.5) inset; border-color: #F5E090; color: #F5E090; }
+      100% { box-shadow: 0 0 0px rgba(245,224,144,0); border-color: rgba(255,255,255,0.2); }
+    }
+    .pack-btn-shimmer { animation: btn-shimmer 3.5s ease-in-out infinite; }
+
+    /* GRILLE OFFRES */
+    .offers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 700px) { .offers-grid { grid-template-columns: 1fr; } }
+
+    /* PACK DÉCOUVERTE */
+    .pack-card { border: 1px solid #F5E090; border-radius: 4px; padding: 2rem; background: rgba(245,224,144,0.04); box-shadow: 0 0 32px rgba(245,224,144,0.07); position: relative; display: flex; flex-direction: column; }
+    .pack-card-badge { position: absolute; top: -1px; left: 1.2rem; background: #F5E090; color: #080F1E; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.24rem 0.75rem; border-radius: 0 0 4px 4px; }
+    .pack-card-tag { font-size: 0.62rem; font-weight: 300; letter-spacing: 0.32em; text-transform: uppercase; color: #B48C28; margin-bottom: 0.5rem; margin-top: 0.7rem; }
+    .pack-card-title { font-size: 1.05rem; font-weight: 700; font-style: italic; color: #fff; margin-bottom: 0.8rem; }
+    .pack-card-desc { font-size: 0.85rem; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.75); margin-bottom: 1rem; }
+    .pack-card-promo { background: rgba(245,224,144,0.08); border: 1px solid rgba(245,224,144,0.2); border-radius: 3px; padding: 0.65rem 1rem; margin-bottom: 1rem; }
+    .pack-card-promo strong { font-size: 0.8rem; font-weight: 700; color: #F5E090; display: block; margin-bottom: 0.15rem; }
+    .pack-card-promo-price { font-size: 2rem; font-weight: 700; color: #F5E090; line-height: 1; }
+    .pack-card-promo-eur { font-size: 0.88rem; font-weight: 300; color: rgba(255,255,255,0.5); margin-top: 0.15rem; margin-bottom: 0.3rem; }
+    .pack-card-promo-save { font-size: 0.75rem; font-weight: 600; color: #F5E090; }
+    .pack-card-note { font-size: 0.75rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.5); line-height: 1.55; margin-bottom: 1rem; }
+    .pack-card-disclaimer { font-size: 0.68rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.32); line-height: 1.5; margin-bottom: 1rem; }
+
     /* BUNDLE */
     .bundle { border: 1px solid rgba(245,224,144,0.28); border-radius: 4px; padding: 2.5rem 2.5rem; background: rgba(245,224,144,0.03); position: relative; }
     .bundle-badge { position: absolute; top: -1px; right: 1.8rem; background: #F5E090; color: #080F1E; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.2rem 0.7rem; border-radius: 0 0 4px 4px; }
@@ -202,24 +228,48 @@
       </div>
     </div>
 
-    <!-- BUNDLE -->
-    <div class="bundle">
-      <span class="bundle-badge">Recommandé</span>
-      <p class="bundle-tag">Offre groupée</p>
-      <h3 class="bundle-title">Les deux ouvrages ensemble</h3>
-      <p class="bundle-desc">L'un vous donne la structure pour clarifier et planifier. L'autre vous donne la posture pour exécuter. Utilisés ensemble, ils forment un système complet du moment où l'idée est encore floue jusqu'à la première action engagée. C'est la combinaison que nous recommandons à tous ceux qui veulent tirer le maximum de leurs conversations avec Édouard.</p>
-      <div class="bundle-row">
-        <div class="bundle-price">
-          <div>
-            <span class="price-amount" id="price-bundle">47 CHF</span>
-            <span class="price-strike" id="price-strike">52 CHF</span>
+    <div class="offers-grid">
+
+      <!-- BUNDLE -->
+      <div class="bundle">
+        <span class="bundle-badge">Recommandé</span>
+        <p class="bundle-tag">Offre groupée</p>
+        <h3 class="bundle-title">Les deux ouvrages ensemble</h3>
+        <p class="bundle-desc">L'un vous donne la structure pour clarifier et planifier. L'autre vous donne la posture pour exécuter. Utilisés ensemble, ils forment un système complet du moment où l'idée est encore floue jusqu'à la première action engagée. C'est la combinaison que nous recommandons à tous ceux qui veulent tirer le maximum de leurs conversations avec Édouard.</p>
+        <div class="bundle-row">
+          <div class="bundle-price">
+            <div>
+              <span class="price-amount" id="price-bundle">47 CHF</span>
+              <span class="price-strike" id="price-strike">52 CHF</span>
+            </div>
+            <div class="price-eur-equiv" id="price-eur-bundle">/ 50 € <span class="price-eur-strike">56 €</span></div>
+            <div class="price-currency" id="currency-bundle">Économisez 5 CHF / 6 €</div>
+            <p class="price-disclaimer">Prix en euros donné à titre indicatif, sur la base d'un équivalent en CHF. Le montant facturé peut varier selon le taux de change appliqué au moment du paiement.</p>
           </div>
-          <div class="price-eur-equiv" id="price-eur-bundle">/ 50 € <span class="price-eur-strike">56 €</span></div>
-          <div class="price-currency" id="currency-bundle">Économisez 5 CHF / 6 €</div>
-          <p class="price-disclaimer">Prix en euros donné à titre indicatif, sur la base d'un équivalent en CHF. Le montant facturé peut varier selon le taux de change appliqué au moment du paiement.</p>
+          <a href="https://buy.stripe.com/28EbJ18fp3utckE7TUgw00l" class="btn btn-solid" id="link-bundle">Commander</a>
         </div>
-        <a href="https://buy.stripe.com/28EbJ18fp3utckE7TUgw00l" class="btn btn-solid" id="link-bundle">Commander</a>
       </div>
+
+      <!-- PACK DÉCOUVERTE -->
+      <div class="pack-card">
+        <span class="pack-card-badge">Aller plus loin</span>
+        <p class="pack-card-tag">Pack</p>
+        <h3 class="pack-card-title">Pack Découverte</h3>
+        <p class="pack-card-desc">La MasterClasse <span style="text-decoration:underline;">«&nbsp;L'Art de Transmettre #1&nbsp;»</span> <span style="color:#F5E090;font-size:1.3em;font-weight:700;line-height:1;">+</span> Le livre <span style="text-decoration:underline;">«&nbsp;De l'idée au plan&nbsp;»</span> <span style="color:#F5E090;font-size:1.3em;font-weight:700;line-height:1;">+</span> Le Livre <span style="text-decoration:underline;">«&nbsp;Vos compétences humaines invisibles&nbsp;»</span>. <strong style="font-weight:700;color:#fff;">Les trois forment un pack complet, de l'idée à la première session.</strong></p>
+        <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:0.75rem 0;">
+          <a href="/masterclass1" class="btn btn-outline pack-btn-shimmer" style="display:inline-block;width:100%;text-align:center;">En savoir plus sur la Masterclasse</a>
+        </div>
+        <div class="pack-card-promo">
+          <strong>Masterclasse + 2 ouvrages, prix groupé</strong>
+          <div class="pack-card-promo-price">110 CHF</div>
+          <div class="pack-card-promo-eur">/ 118 €</div>
+          <div class="pack-card-promo-save">Economisez 40 CHF / 43 €</div>
+        </div>
+        <p class="pack-card-note">Vous avez déjà les ouvrages ? Ce que vous avez payé sera déduit au paiement. (votre code promotionnel vous a été envoyé par mail avec votre précédent achat)</p>
+        <p class="pack-card-disclaimer">Prix en euros donné à titre indicatif, sur la base d'un équivalent en CHF. Le montant facturé peut varier selon le taux de change appliqué au moment du paiement.</p>
+        <a href="/masterclass1" class="btn btn-solid" style="margin-top:auto;">Commander</a>
+      </div>
+
     </div>
 
   </div>
