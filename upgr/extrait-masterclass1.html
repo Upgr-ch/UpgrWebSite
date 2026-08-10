@@ -626,6 +626,52 @@
       letter-spacing: 0.04em;
     }
 
+    /* --- BILAN ARCHITECTE --- */
+    .bilan-container { background:#ffffff; border-radius:12px; padding:0; margin-bottom:20px; box-shadow:0 8px 30px rgba(8,15,30,0.10); overflow:hidden; border:1px solid #e9ecf2; }
+    .bilan-container .bilan-banner { background:#080F1E; padding:20px 32px 16px 32px; text-align:center; border-bottom:4px solid #D4AF37; }
+    .bilan-container .bilan-banner .bilan-badge { display:inline-block; background:#D4AF37; color:#080F1E; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; padding:3px 16px; border-radius:20px; margin-bottom:8px; }
+    .bilan-container .bilan-banner .bilan-title { font-size:22px; font-weight:700; color:#ffffff; letter-spacing:-0.3px; margin-bottom:2px; }
+    .bilan-container .bilan-banner .bilan-subtitle { font-size:14px; color:rgba(255,255,255,0.7); font-weight:300; }
+    .bilan-container .bilan-body { padding:28px 32px 32px 32px; background:#fafbff; }
+    .bilan-intro { background:#edf2f9; border-radius:10px; padding:12px 18px; margin-bottom:24px; border-left:4px solid #D4AF37; font-size:15px; line-height:1.6; color:#1a2a3a; text-align:center; }
+    .bilan-item { background:#ffffff; border-radius:10px; padding:14px 20px; margin-bottom:14px; box-shadow:0 2px 8px rgba(8,15,30,0.05); border-left:4px solid transparent; transition:border-color 0.2s; }
+    .bilan-item:hover { border-left-color:#D4AF37; }
+    .bilan-item .bilan-num { font-weight:700; color:#ffffff; font-size:14px; min-width:28px; height:28px; line-height:28px; text-align:center; background:#080F1E; border-radius:50%; flex-shrink:0; box-shadow:0 2px 8px rgba(8,15,30,0.15); display:inline-block; margin-right:10px; }
+    .bilan-item .bilan-text { font-size:14px; line-height:1.5; color:#1a2a3a; font-weight:500; display:inline; }
+    .bilan-item .bilan-options { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; padding-left:38px; }
+    .bilan-item .bilan-options .opt { display:flex; align-items:center; gap:4px; font-size:13px; color:#1a2a3a; background:#f7f8fc; padding:4px 12px 4px 8px; border-radius:20px; cursor:pointer; transition:all 0.2s; border:2px solid transparent; user-select:none; }
+    .bilan-item .bilan-options .opt:hover { background:#edf2f9; }
+    .bilan-item .bilan-options .opt input { accent-color:#080F1E; cursor:pointer; }
+    .bilan-item .bilan-options .opt.selected { border-color:#D4AF37; background:#fdf6e8; }
+    .bilan-item .bilan-options .opt .label { font-size:11px; color:#6b7a8f; font-weight:300; }
+    .btn-validate { display:inline-block; background:#080F1E; color:white; border:none; border-radius:8px; padding:14px 32px; font-size:16px; font-weight:700; cursor:pointer; transition:all 0.2s; width:100%; box-sizing:border-box; margin-top:10px; font-family:inherit; box-shadow:0 4px 12px rgba(8,15,30,0.2); }
+    .btn-validate:hover:not(:disabled) { background:#1a2a4a; transform:translateY(-2px); box-shadow:0 6px 20px rgba(8,15,30,0.3); }
+    .btn-validate:disabled { background:#9aabbf; cursor:not-allowed; transform:none; box-shadow:none; }
+    .resultat-box { margin-top:20px; padding:24px 28px; border-radius:12px; background:#ffffff; border:2px solid #D4AF37; display:none; box-shadow:0 4px 16px rgba(212,175,55,0.15); }
+    .resultat-box .result-header { display:flex; align-items:center; gap:16px; margin-bottom:12px; flex-wrap:wrap; justify-content:center; }
+    .resultat-box .result-header .result-badge { font-size:40px; }
+    .resultat-box .result-header .result-level { font-size:20px; font-weight:700; color:#080F1E; }
+    .resultat-box .result-header .result-score { font-size:14px; color:#6b7a8f; background:#edf2f9; padding:4px 14px; border-radius:20px; font-weight:600; }
+    .resultat-box .result-pouvoir { font-size:15px; background:#080F1E; color:#D4AF37; padding:8px 18px; border-radius:30px; display:inline-block; font-weight:600; margin:4px 0 10px 0; text-align:center; width:100%; box-sizing:border-box; }
+    .resultat-box .result-message { font-size:15px; line-height:1.6; color:#1a2a3a; text-align:justify; padding:12px 16px; background:#f7f8fc; border-radius:8px; border-left:4px solid #D4AF37; margin-bottom:12px; }
+    .resultat-box .result-detail { font-size:13px; color:#6b7a8f; text-align:center; border-top:1px solid #eef1f6; padding-top:12px; margin-top:8px; }
+    .btn-download-pdf { display:none; background:#D4AF37; color:#080F1E; border:none; border-radius:8px; padding:12px 28px; font-size:15px; font-weight:700; cursor:pointer; transition:all 0.2s; width:100%; box-sizing:border-box; margin-top:10px; font-family:inherit; box-shadow:0 4px 12px rgba(212,175,55,0.3); }
+    .btn-download-pdf:hover { background:#c4a032; transform:translateY(-2px); }
+    .btn-reset { display:inline-block; background:transparent; color:#080F1E; border:2px solid #080F1E; border-radius:8px; padding:10px 24px; font-size:14px; font-weight:600; cursor:pointer; transition:all 0.2s; width:100%; box-sizing:border-box; margin-top:8px; font-family:inherit; }
+    .btn-reset:hover { background:#080F1E; color:white; }
+
+    /* --- COUP DE POUCE M2 --- */
+    .coup-pouce-m2 { background:#ffffff; border-radius:12px; padding:0; margin:20px 0 10px 0; box-shadow:0 2px 8px rgba(8,15,30,0.05); overflow:hidden; border:1px solid #e9ecf2; }
+    .coup-pouce-m2 .cp-banner { background:#080F1E; padding:14px 32px 12px 32px; border-bottom:4px solid #D4AF37; text-align:center; }
+    .coup-pouce-m2 .cp-banner .cp-badge { display:inline-block; background:#D4AF37; color:#080F1E; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; padding:2px 16px; border-radius:20px; margin-bottom:4px; }
+    .coup-pouce-m2 .cp-banner .cp-title { font-size:18px; font-weight:700; color:#ffffff; letter-spacing:-0.3px; margin-bottom:2px; }
+    .coup-pouce-m2 .cp-body { padding:18px 24px; background:#fafbff; }
+    .coup-pouce-m2 .cp-body .cp-text { font-size:15px; line-height:1.7; color:#1a2a3a; }
+    .coup-pouce-m2 .cp-body .cp-text p { margin-bottom:6px; }
+    .coup-pouce-m2 .cp-body .cp-text p:last-child { margin-bottom:0; }
+    .coup-pouce-m2 .cp-body .cp-mail { font-weight:600; color:#080F1E; text-decoration:none; border-bottom:2px solid #D4AF37; padding-bottom:1px; transition:all 0.2s; }
+    .coup-pouce-m2 .cp-body .cp-mail:hover { color:#D4AF37; border-bottom-color:#080F1E; }
+
     @media (max-width: 600px) {
       header { padding: 0 1rem; }
       .header-center { display: none; }
@@ -869,36 +915,150 @@
 
   <!-- ===== BLOC 3 : AUTO-DIAGNOSTIC M2 ===== -->
   <div class="masterclass-container">
-    <div class="masterclass-banner">
-      <div class="banner-badge">Auto-diagnostic</div>
-      <div class="banner-title">Module 2 — L'Architecture et le Rythme</div>
-      <div class="banner-subtitle">Évaluez votre niveau de maîtrise avant de passer au Module 3</div>
+
+    <div class="bilan-container" id="bilanContainer">
+
+        <!-- BANDEAU -->
+        <div class="bilan-banner">
+            <div class="bilan-badge">✦ Auto-Diagnostic ✦</div>
+            <div class="bilan-title">Le Bilan de l'Architecte</div>
+            <div class="bilan-subtitle">Module 2 · L'Architecture et le Rythme</div>
+        </div>
+
+        <!-- CORPS -->
+        <div class="bilan-body">
+
+            <!-- INTRODUCTION -->
+            <div class="bilan-intro">
+                Évaluez votre progression sur les 6 piliers de l'architecture pédagogique.
+                <br>Répondez honnêtement à chaque affirmation sur une échelle de 1 à 5.
+            </div>
+
+            <!-- AFFIRMATIONS -->
+            <div id="questionsContainer">
+
+                <div class="bilan-item" id="q1">
+                    <div>
+                        <span class="bilan-num">1</span>
+                        <span class="bilan-text">Je sais découper mon contenu en séquences, avec une seule idée par séquence.</span>
+                    </div>
+                    <div class="bilan-options">
+                        <label class="opt"><input type="radio" name="q1" value="1"> 1 <span class="label">Pas du tout</span></label>
+                        <label class="opt"><input type="radio" name="q1" value="2"> 2 <span class="label">Peu</span></label>
+                        <label class="opt"><input type="radio" name="q1" value="3"> 3 <span class="label">Parfois</span></label>
+                        <label class="opt"><input type="radio" name="q1" value="4"> 4 <span class="label">Souvent</span></label>
+                        <label class="opt"><input type="radio" name="q1" value="5"> 5 <span class="label">Tout à fait</span></label>
+                    </div>
+                </div>
+
+                <div class="bilan-item" id="q2">
+                    <div>
+                        <span class="bilan-num">2</span>
+                        <span class="bilan-text">Je comprends pourquoi une séquence doit contenir une seule idée.</span>
+                    </div>
+                    <div class="bilan-options">
+                        <label class="opt"><input type="radio" name="q2" value="1"> 1 <span class="label">Pas du tout</span></label>
+                        <label class="opt"><input type="radio" name="q2" value="2"> 2 <span class="label">Peu</span></label>
+                        <label class="opt"><input type="radio" name="q2" value="3"> 3 <span class="label">Parfois</span></label>
+                        <label class="opt"><input type="radio" name="q2" value="4"> 4 <span class="label">Souvent</span></label>
+                        <label class="opt"><input type="radio" name="q2" value="5"> 5 <span class="label">Tout à fait</span></label>
+                    </div>
+                </div>
+
+                <div class="bilan-item" id="q3">
+                    <div>
+                        <span class="bilan-num">3</span>
+                        <span class="bilan-text">Je maîtrise l'alternance théorie/pratique dans mes sessions.</span>
+                    </div>
+                    <div class="bilan-options">
+                        <label class="opt"><input type="radio" name="q3" value="1"> 1 <span class="label">Pas du tout</span></label>
+                        <label class="opt"><input type="radio" name="q3" value="2"> 2 <span class="label">Peu</span></label>
+                        <label class="opt"><input type="radio" name="q3" value="3"> 3 <span class="label">Parfois</span></label>
+                        <label class="opt"><input type="radio" name="q3" value="4"> 4 <span class="label">Souvent</span></label>
+                        <label class="opt"><input type="radio" name="q3" value="5"> 5 <span class="label">Tout à fait</span></label>
+                    </div>
+                </div>
+
+                <div class="bilan-item" id="q4">
+                    <div>
+                        <span class="bilan-num">4</span>
+                        <span class="bilan-text">J'ai choisi ma modalité cible et j'ai adapté mes durées en conséquence.</span>
+                    </div>
+                    <div class="bilan-options">
+                        <label class="opt"><input type="radio" name="q4" value="1"> 1 <span class="label">Pas du tout</span></label>
+                        <label class="opt"><input type="radio" name="q4" value="2"> 2 <span class="label">Peu</span></label>
+                        <label class="opt"><input type="radio" name="q4" value="3"> 3 <span class="label">Parfois</span></label>
+                        <label class="opt"><input type="radio" name="q4" value="4"> 4 <span class="label">Souvent</span></label>
+                        <label class="opt"><input type="radio" name="q4" value="5"> 5 <span class="label">Tout à fait</span></label>
+                    </div>
+                </div>
+
+                <div class="bilan-item" id="q5">
+                    <div>
+                        <span class="bilan-num">5</span>
+                        <span class="bilan-text">Je sais gérer la fatigue cognitive de mes apprenants.</span>
+                    </div>
+                    <div class="bilan-options">
+                        <label class="opt"><input type="radio" name="q5" value="1"> 1 <span class="label">Pas du tout</span></label>
+                        <label class="opt"><input type="radio" name="q5" value="2"> 2 <span class="label">Peu</span></label>
+                        <label class="opt"><input type="radio" name="q5" value="3"> 3 <span class="label">Parfois</span></label>
+                        <label class="opt"><input type="radio" name="q5" value="4"> 4 <span class="label">Souvent</span></label>
+                        <label class="opt"><input type="radio" name="q5" value="5"> 5 <span class="label">Tout à fait</span></label>
+                    </div>
+                </div>
+
+                <div class="bilan-item" id="q6">
+                    <div>
+                        <span class="bilan-num">6</span>
+                        <span class="bilan-text">Mon Séquenceur de Cours est une vraie carte de navigation, pas une liste de sujets.</span>
+                    </div>
+                    <div class="bilan-options">
+                        <label class="opt"><input type="radio" name="q6" value="1"> 1 <span class="label">Pas du tout</span></label>
+                        <label class="opt"><input type="radio" name="q6" value="2"> 2 <span class="label">Peu</span></label>
+                        <label class="opt"><input type="radio" name="q6" value="3"> 3 <span class="label">Parfois</span></label>
+                        <label class="opt"><input type="radio" name="q6" value="4"> 4 <span class="label">Souvent</span></label>
+                        <label class="opt"><input type="radio" name="q6" value="5"> 5 <span class="label">Tout à fait</span></label>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- BOUTON VALIDER -->
+            <button class="btn-validate" id="submitBtn" onclick="calculerBilan()">📊 Voir mon bilan</button>
+
+            <!-- RÉSULTAT -->
+            <div class="resultat-box" id="resultBox">
+                <div class="result-header">
+                    <div class="result-badge" id="resultBadge">🏅</div>
+                    <div class="result-level" id="resultLevel">Architecte Confirmé</div>
+                    <div class="result-score" id="resultScore">22 / 30</div>
+                </div>
+                <div class="result-pouvoir" id="resultPouvoir">🧙 Pouvoir : Rythme Parfait</div>
+                <div class="result-message" id="resultMessage">Vous avez de solides bases.</div>
+                <div class="result-detail" id="resultDetail">Score cumulé Module 2 : 22/30</div>
+                <button class="btn-download-pdf" id="downloadBtn" onclick="telechargerPDF()">⬇ Télécharger mon bilan (PDF)</button>
+                <button class="btn-reset" onclick="resetBilan()">🔄 Recommencer le bilan</button>
+            </div>
+
+        </div>
+
     </div>
-    <div class="masterclass-body">
 
-      <div class="masterclass-box">
-        <div class="watermark"><span>Extrait</span></div>
-        <div class="box-label">Mode d'emploi</div>
-        <div class="box-content">
-          <p>Pour chaque affirmation, évaluez honnêtement votre niveau de maîtrise. Il n'y a pas de bonne ou mauvaise réponse : cet outil est au service de votre progression, pas de votre évaluation.</p>
-          <p class="note">Répondez à partir de votre projet de formation actuel, pas de ce que vous savez en théorie.</p>
+  </div>
+
+  <!-- ===== BLOC 4 : COUP DE POUCE M2 ===== -->
+  <div class="masterclass-container">
+    <div class="coup-pouce-m2">
+      <div class="cp-banner">
+        <div class="cp-badge">* Coup de pouce *</div>
+        <div class="cp-title">Un regard sur votre architecture pédagogique</div>
+      </div>
+      <div class="cp-body">
+        <div class="cp-text">
+          <p>Si vous voulez un avis sur votre Séquenceur, la structure de votre contenu, le rythme de vos séquences ou votre choix de modalité, écrivez-moi à <a href="mailto:kl@upgr.ch" class="cp-mail">kl@upgr.ch</a>.</p>
+          <p>Je réponds à tous les messages.</p>
         </div>
       </div>
-
-      <div class="masterclass-box" id="diag-box">
-        <div class="watermark"><span>Extrait</span></div>
-        <div class="box-label">Affirmations — Module 2</div>
-        <div class="box-content">
-          <div id="diag-items"></div>
-          <button class="btn-validate-sequenceur" id="btn-diag" onclick="validerDiag()" style="margin-top:18px;">Voir mon résultat</button>
-          <div class="validation-result" id="diag-result">
-            <div class="vr-titre" id="diag-result-titre"></div>
-            <div id="diag-result-detail"></div>
-            <div class="vr-score" id="diag-result-score"></div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -1031,84 +1191,124 @@
   }
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-  var diagItems = [
-    "Je suis capable d'expliquer pourquoi une séquence ne doit contenir qu'une seule idée centrale.",
-    "Je sais identifier dans mon contenu les séquences qui sont trop chargées.",
-    "Je comprends ce qu'est la surcharge cognitive et comment elle impacte mes apprenants.",
-    "Je suis capable de construire un rythme binaire (théorie / pratique) dans ma formation.",
-    "Je connais les durées recommandées selon ma modalité cible (présentiel, distanciel, hybride).",
-    "J'ai complété mon Séquenceur de Cours (livrable 02) avec au moins 5 séquences.",
-    "Je suis capable de distinguer un plan de cours d'un séquenceur de transmission."
-  ];
-
-  var niveaux = ['Non maîtrisé', 'En cours', 'Maîtrisé'];
-  var niveauColors = ['#c73b3b', '#D4AF37', '#2d8f5c'];
-
-  (function buildDiag() {
-    var container = document.getElementById('diag-items');
-    if (!container) return;
-    diagItems.forEach(function(item, i) {
-      var div = document.createElement('div');
-      div.style.cssText = 'margin-bottom:16px;padding:12px 16px;background:#f7f8fc;border-radius:8px;border-left:3px solid #e9ecf2;';
-      div.innerHTML =
-        '<div style="font-size:14px;font-weight:500;color:#1a2a3a;margin-bottom:10px;line-height:1.5;">' + (i+1) + '. ' + item + '</div>' +
-        '<div style="display:flex;gap:10px;flex-wrap:wrap;">' +
-        niveaux.map(function(n, ni) {
-          return '<label style="display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer;padding:5px 12px;border-radius:20px;border:1px solid #e9ecf2;background:#fff;transition:all 0.15s;">' +
-            '<input type="radio" name="diag_' + i + '" value="' + ni + '" style="accent-color:' + niveauColors[ni] + ';"> ' + n + '</label>';
-        }).join('') +
-        '</div>';
-      container.appendChild(div);
-    });
-  })();
-
-  function validerDiag() {
-    var scores = [];
-    var allAnswered = true;
-    for (var i = 0; i < diagItems.length; i++) {
-      var checked = document.querySelector('input[name="diag_' + i + '"]:checked');
-      if (!checked) { allAnswered = false; break; }
-      scores.push(parseInt(checked.value));
-    }
-    if (!allAnswered) { alert('Répondez à toutes les affirmations avant de voir votre résultat.'); return; }
-
-    var total = scores.reduce(function(a,b){ return a+b; }, 0);
-    var max = diagItems.length * 2;
-    var pct = Math.round(total / max * 100);
-
-    var result = document.getElementById('diag-result');
-    var titre = document.getElementById('diag-result-titre');
-    var detail = document.getElementById('diag-result-detail');
-    var score = document.getElementById('diag-result-score');
-
-    var nonMaitrises = scores.filter(function(s){ return s === 0; }).length;
-    var enCours     = scores.filter(function(s){ return s === 1; }).length;
-    var maitrises   = scores.filter(function(s){ return s === 2; }).length;
-
-    var niveau, conseil;
-    if (pct >= 80) {
-      niveau = '✅ Prêt pour le Module 3';
-      conseil = 'Vous avez bien intégré les fondations de l\'architecture pédagogique. Passez au Module 3.';
-    } else if (pct >= 50) {
-      niveau = '🔄 Consolidation recommandée';
-      conseil = 'Réécoutez les points signalés "En cours" avant de progresser vers le Module 3.';
-    } else {
-      niveau = '⚠️ Reprise du Module 2 conseillée';
-      conseil = 'Plusieurs points clés ne sont pas encore maîtrisés. Repassez les audios du Module 2.';
+    function calculerBilan() {
+        const questions = document.querySelectorAll('.bilan-item');
+        let total = 0;
+        let allAnswered = true;
+        questions.forEach((q) => {
+            const selected = q.querySelector('input[type="radio"]:checked');
+            if (selected) {
+                total += parseInt(selected.value);
+                q.querySelectorAll('.opt').forEach(label => label.classList.remove('selected'));
+                selected.closest('.opt').classList.add('selected');
+            } else { allAnswered = false; }
+        });
+        if (!allAnswered) { alert('Veuillez répondre à toutes les affirmations avant de valider.'); return; }
+        let badge, level, message, pouvoir;
+        if (total >= 26) {
+            badge = '🏅'; level = 'Maître Architecte';
+            message = 'Vous maîtrisez parfaitement l\'architecture et le rythme pédagogiques. Vous êtes prêt à construire des formations solides.';
+            pouvoir = '🧙 Pouvoir : Vision Structurelle — vous voyez la structure d\'une formation avant même de la construire.';
+        } else if (total >= 20) {
+            badge = '🏅'; level = 'Architecte Confirmé';
+            message = 'Vous avez de solides bases. Quelques ajustements vous permettront d\'atteindre l\'excellence.';
+            pouvoir = '🗡️ Pouvoir : Rythme Parfait — vous sentez instinctivement le bon rythme pour chaque séquence.';
+        } else if (total >= 14) {
+            badge = '🥉'; level = 'Apprenti Architecte';
+            message = 'Vous avez posé les premières pierres. Revenez sur les points qui vous ont le moins convaincu.';
+            pouvoir = '🛡️ Pouvoir : Clairvoyance Pédagogique — vous commencez à identifier les erreurs de séquençage.';
+        } else {
+            badge = '📖'; level = 'En chantier';
+            message = 'Prenez le temps de revisiter les modules où vous avez le moins confiance avant de vous lancer.';
+            pouvoir = '🕯️ Pouvoir : Lumière Naissante — vous commencez à voir clair, la route s\'ouvre devant vous.';
+        }
+        document.getElementById('resultBadge').textContent = badge;
+        document.getElementById('resultLevel').textContent = level;
+        document.getElementById('resultScore').textContent = total + ' / 30';
+        document.getElementById('resultPouvoir').textContent = pouvoir;
+        document.getElementById('resultMessage').textContent = message;
+        document.getElementById('resultDetail').textContent = 'Score cumulé Module 2 : ' + total + '/30';
+        document.getElementById('resultBox').style.display = 'block';
+        document.getElementById('downloadBtn').style.display = 'block';
+        document.getElementById('submitBtn').disabled = true;
+        window.bilanScore = total; window.bilanLevel = level;
+        window.bilanMessage = message; window.bilanBadge = badge; window.bilanPouvoir = pouvoir;
+        document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
-    titre.textContent = niveau;
-    detail.innerHTML =
-      '<div class="vr-ligne"><span class="vr-status ok">Maîtrisé</span><span>' + maitrises + ' affirmation' + (maitrises > 1 ? 's' : '') + '</span></div>' +
-      '<div class="vr-ligne"><span class="vr-status" style="color:#D4AF37;">En cours</span><span>' + enCours + ' affirmation' + (enCours > 1 ? 's' : '') + '</span></div>' +
-      '<div class="vr-ligne"><span class="vr-status ko">Non maîtrisé</span><span>' + nonMaitrises + ' affirmation' + (nonMaitrises > 1 ? 's' : '') + '</span></div>' +
-      '<div style="margin-top:10px;font-size:13px;color:#6b7a8f;font-style:italic;">' + conseil + '</div>';
-    score.textContent = pct + ' % · ' + total + ' / ' + max + ' points';
+    function resetBilan() {
+        document.querySelectorAll('input[type="radio"]').forEach(input => {
+            input.checked = false;
+            input.closest('.opt').classList.remove('selected');
+        });
+        document.getElementById('resultBox').style.display = 'none';
+        document.getElementById('downloadBtn').style.display = 'none';
+        document.getElementById('submitBtn').disabled = false;
+        window.bilanScore = null;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-    result.classList.add('open');
-    result.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
+    function addHeader(doc, pageWidth, margin, yPos) {
+        const headerY = margin / 2 + 2;
+        doc.setFontSize(9); doc.setFont('helvetica', 'bold'); doc.setTextColor('#080F1E');
+        doc.text('UpGrade Learning & Development', margin, headerY);
+        const rightText = 'L\'Art de Transmettre #1 - Poser les fondations';
+        doc.text(rightText, pageWidth - margin - doc.getTextWidth(rightText), headerY);
+        doc.setDrawColor('#eef1f6'); doc.setLineWidth(0.3);
+        doc.line(margin, headerY + 4, pageWidth - margin, headerY + 4);
+        return headerY + 8;
+    }
+
+    function telechargerPDF() {
+        if (typeof window.jspdf === 'undefined') { alert('Bibliothèque PDF non chargée. Rafraîchissez la page.'); return; }
+        if (!window.bilanScore && window.bilanScore !== 0) { alert('Veuillez d\'abord calculer votre bilan.'); return; }
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('p', 'mm', 'a4');
+        const pageWidth = 210, margin = 20;
+        let yPos = addHeader(doc, pageWidth, margin, margin + 10) + 6;
+        doc.setFillColor('#080F1E');
+        doc.rect(margin, yPos, pageWidth - margin * 2, 18, 'F');
+        doc.setDrawColor('#D4AF37'); doc.setLineWidth(0.8);
+        doc.line(margin, yPos + 18, pageWidth - margin, yPos + 18);
+        doc.setFontSize(9); doc.setFont('helvetica', 'bold'); doc.setTextColor('#D4AF37');
+        doc.text('✦ BILAN DE L\'ARCHITECTE ✦', pageWidth / 2, yPos + 5, { align: 'center' });
+        doc.setFontSize(12); doc.setTextColor('#ffffff');
+        doc.text('Auto-Diagnostic · Module 2', pageWidth / 2, yPos + 12.5, { align: 'center' });
+        yPos += 24;
+        doc.setFontSize(9); doc.setFont('helvetica', 'normal'); doc.setTextColor('#6b7a8f');
+        doc.text('L\'Architecture et le Rythme', pageWidth / 2, yPos, { align: 'center' }); yPos += 6;
+        const date = new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        doc.setFontSize(8); doc.setTextColor('#9aabbf');
+        doc.text('Date : ' + date, pageWidth / 2, yPos, { align: 'center' }); yPos += 8;
+        doc.setDrawColor('#eef1f6'); doc.line(margin, yPos, pageWidth - margin, yPos); yPos += 6;
+        doc.setFontSize(14); doc.setFont('helvetica', 'bold'); doc.setTextColor('#080F1E');
+        doc.text(window.bilanBadge + ' ' + window.bilanLevel, margin, yPos); yPos += 6;
+        doc.setFontSize(11); doc.setTextColor('#D4AF37');
+        doc.text('Score : ' + window.bilanScore + ' / 30', margin, yPos); yPos += 6;
+        doc.setFontSize(10); doc.setTextColor('#080F1E');
+        const pouvoirLines = doc.splitTextToSize(window.bilanPouvoir, pageWidth - margin * 2);
+        doc.text(pouvoirLines, margin, yPos); yPos += pouvoirLines.length * 5 + 4;
+        const msgLines = doc.splitTextToSize(window.bilanMessage, pageWidth - margin * 2);
+        doc.setFont('helvetica', 'normal'); doc.setTextColor('#1a2a3a');
+        doc.text(msgLines, margin, yPos); yPos += msgLines.length * 5 + 8;
+        doc.setDrawColor('#eef1f6'); doc.line(margin, yPos, pageWidth - margin, yPos); yPos += 6;
+        doc.setFont('helvetica', 'bold'); doc.setTextColor('#080F1E');
+        doc.text('Détail de vos réponses :', margin, yPos); yPos += 5;
+        const qs = ['1. Je sais découper mon contenu en séquences, avec une seule idée par séquence.','2. Je comprends pourquoi une séquence doit contenir une seule idée.','3. Je maîtrise l\'alternance théorie/pratique dans mes sessions.','4. J\'ai choisi ma modalité cible et j\'ai adapté mes durées en conséquence.','5. Je sais gérer la fatigue cognitive de mes apprenants.','6. Mon Séquenceur de Cours est une vraie carte de navigation, pas une liste de sujets.'];
+        document.querySelectorAll('.bilan-item').forEach((el, i) => {
+            if (yPos > 230) { doc.addPage(); yPos = addHeader(doc, pageWidth, margin, margin + 10) + 6; }
+            const val = (el.querySelector('input[type="radio"]:checked') || {}).value || 'Non répondu';
+            doc.setFontSize(9); doc.setFont('helvetica', 'normal'); doc.setTextColor('#1a2a3a');
+            doc.text(qs[i], margin, yPos); yPos += 4;
+            doc.setFont('helvetica', 'bold'); doc.setTextColor('#080F1E');
+            doc.text('Note : ' + val + '/5', margin + 4, yPos); yPos += 6;
+        });
+        doc.setFontSize(8); doc.setFont('helvetica', 'italic'); doc.setTextColor('#9aabbf');
+        doc.text('Bilan de l\'Architecte · Module 2 · L\'Art de Transmettre', pageWidth / 2, yPos + 10, { align: 'center' });
+        doc.save('Bilan_M2_Architecture_Rythme.pdf');
+    }
 </script>
 
 </body>
