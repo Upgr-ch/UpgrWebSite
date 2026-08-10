@@ -690,6 +690,10 @@
       <div class="sidebar-lesson-dot active"></div>
       <div class="sidebar-lesson-label">3.4 Votre séquenceur de transmission.</div>
     </div>
+    <div class="sidebar-lesson">
+      <div class="sidebar-lesson-dot"></div>
+      <div class="sidebar-lesson-label">3.5 Auto-diagnostic progressif M2.</div>
+    </div>
   </div>
 </aside>
 
@@ -857,6 +861,47 @@
   </div>
 
 
+  <!-- BANDEAU INTRO 3.5 -->
+  <div class="intro-banner">
+    <span class="intro-banner-text">3.5 Auto-diagnostic progressif M2. (5 min)</span>
+    <img src="/upgr/covers/masterclass1-logo.png" alt="L'Art de Transmettre #1" class="intro-banner-img"/>
+  </div>
+
+  <!-- ===== BLOC 3 : AUTO-DIAGNOSTIC M2 ===== -->
+  <div class="masterclass-container">
+    <div class="masterclass-banner">
+      <div class="banner-badge">Auto-diagnostic</div>
+      <div class="banner-title">Module 2 — L'Architecture et le Rythme</div>
+      <div class="banner-subtitle">Évaluez votre niveau de maîtrise avant de passer au Module 3</div>
+    </div>
+    <div class="masterclass-body">
+
+      <div class="masterclass-box">
+        <div class="watermark"><span>Extrait</span></div>
+        <div class="box-label">Mode d'emploi</div>
+        <div class="box-content">
+          <p>Pour chaque affirmation, évaluez honnêtement votre niveau de maîtrise. Il n'y a pas de bonne ou mauvaise réponse : cet outil est au service de votre progression, pas de votre évaluation.</p>
+          <p class="note">Répondez à partir de votre projet de formation actuel, pas de ce que vous savez en théorie.</p>
+        </div>
+      </div>
+
+      <div class="masterclass-box" id="diag-box">
+        <div class="watermark"><span>Extrait</span></div>
+        <div class="box-label">Affirmations — Module 2</div>
+        <div class="box-content">
+          <div id="diag-items"></div>
+          <button class="btn-validate-sequenceur" id="btn-diag" onclick="validerDiag()" style="margin-top:18px;">Voir mon résultat</button>
+          <div class="validation-result" id="diag-result">
+            <div class="vr-titre" id="diag-result-titre"></div>
+            <div id="diag-result-detail"></div>
+            <div class="vr-score" id="diag-result-score"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </div><!-- fin .reader -->
 </div><!-- fin .layout -->
 
@@ -983,6 +1028,86 @@
     scoreDiv.textContent = score + ' / 3 · ' + niveau;
     validationDiv.classList.add('open');
     validationDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+
+<script>
+  var diagItems = [
+    "Je suis capable d'expliquer pourquoi une séquence ne doit contenir qu'une seule idée centrale.",
+    "Je sais identifier dans mon contenu les séquences qui sont trop chargées.",
+    "Je comprends ce qu'est la surcharge cognitive et comment elle impacte mes apprenants.",
+    "Je suis capable de construire un rythme binaire (théorie / pratique) dans ma formation.",
+    "Je connais les durées recommandées selon ma modalité cible (présentiel, distanciel, hybride).",
+    "J'ai complété mon Séquenceur de Cours (livrable 02) avec au moins 5 séquences.",
+    "Je suis capable de distinguer un plan de cours d'un séquenceur de transmission."
+  ];
+
+  var niveaux = ['Non maîtrisé', 'En cours', 'Maîtrisé'];
+  var niveauColors = ['#c73b3b', '#D4AF37', '#2d8f5c'];
+
+  (function buildDiag() {
+    var container = document.getElementById('diag-items');
+    if (!container) return;
+    diagItems.forEach(function(item, i) {
+      var div = document.createElement('div');
+      div.style.cssText = 'margin-bottom:16px;padding:12px 16px;background:#f7f8fc;border-radius:8px;border-left:3px solid #e9ecf2;';
+      div.innerHTML =
+        '<div style="font-size:14px;font-weight:500;color:#1a2a3a;margin-bottom:10px;line-height:1.5;">' + (i+1) + '. ' + item + '</div>' +
+        '<div style="display:flex;gap:10px;flex-wrap:wrap;">' +
+        niveaux.map(function(n, ni) {
+          return '<label style="display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer;padding:5px 12px;border-radius:20px;border:1px solid #e9ecf2;background:#fff;transition:all 0.15s;">' +
+            '<input type="radio" name="diag_' + i + '" value="' + ni + '" style="accent-color:' + niveauColors[ni] + ';"> ' + n + '</label>';
+        }).join('') +
+        '</div>';
+      container.appendChild(div);
+    });
+  })();
+
+  function validerDiag() {
+    var scores = [];
+    var allAnswered = true;
+    for (var i = 0; i < diagItems.length; i++) {
+      var checked = document.querySelector('input[name="diag_' + i + '"]:checked');
+      if (!checked) { allAnswered = false; break; }
+      scores.push(parseInt(checked.value));
+    }
+    if (!allAnswered) { alert('Répondez à toutes les affirmations avant de voir votre résultat.'); return; }
+
+    var total = scores.reduce(function(a,b){ return a+b; }, 0);
+    var max = diagItems.length * 2;
+    var pct = Math.round(total / max * 100);
+
+    var result = document.getElementById('diag-result');
+    var titre = document.getElementById('diag-result-titre');
+    var detail = document.getElementById('diag-result-detail');
+    var score = document.getElementById('diag-result-score');
+
+    var nonMaitrises = scores.filter(function(s){ return s === 0; }).length;
+    var enCours     = scores.filter(function(s){ return s === 1; }).length;
+    var maitrises   = scores.filter(function(s){ return s === 2; }).length;
+
+    var niveau, conseil;
+    if (pct >= 80) {
+      niveau = '✅ Prêt pour le Module 3';
+      conseil = 'Vous avez bien intégré les fondations de l\'architecture pédagogique. Passez au Module 3.';
+    } else if (pct >= 50) {
+      niveau = '🔄 Consolidation recommandée';
+      conseil = 'Réécoutez les points signalés "En cours" avant de progresser vers le Module 3.';
+    } else {
+      niveau = '⚠️ Reprise du Module 2 conseillée';
+      conseil = 'Plusieurs points clés ne sont pas encore maîtrisés. Repassez les audios du Module 2.';
+    }
+
+    titre.textContent = niveau;
+    detail.innerHTML =
+      '<div class="vr-ligne"><span class="vr-status ok">Maîtrisé</span><span>' + maitrises + ' affirmation' + (maitrises > 1 ? 's' : '') + '</span></div>' +
+      '<div class="vr-ligne"><span class="vr-status" style="color:#D4AF37;">En cours</span><span>' + enCours + ' affirmation' + (enCours > 1 ? 's' : '') + '</span></div>' +
+      '<div class="vr-ligne"><span class="vr-status ko">Non maîtrisé</span><span>' + nonMaitrises + ' affirmation' + (nonMaitrises > 1 ? 's' : '') + '</span></div>' +
+      '<div style="margin-top:10px;font-size:13px;color:#6b7a8f;font-style:italic;">' + conseil + '</div>';
+    score.textContent = pct + ' % · ' + total + ' / ' + max + ' points';
+
+    result.classList.add('open');
+    result.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 </script>
 
