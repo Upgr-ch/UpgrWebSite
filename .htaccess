@@ -6,7 +6,7 @@ RewriteEngine On
 RewriteRule ^upgr/(politiquedecookies|confidentialite|mentionslegales|cgu|cgv)$ upgr/$1.html [L]
 
 # Masterclass pages
-RewriteRule ^masterclass1$ upgr/vente-masterclass1.html [L]
+RewriteRule ^masterclass1$ upgr/vente-masterclass1.html [QSA,L]
 RewriteRule ^extrait-masterclass1$ upgr/extrait-masterclass1.html [L]
 
 # SPA fallback for everything else
