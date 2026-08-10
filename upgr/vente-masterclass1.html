@@ -122,7 +122,7 @@
   <header>
     <div class="header-inner">
       <a href="/" class="logo">UpGrade</a>
-      <a href="/" class="back-link">← Retour</a>
+      <a href="/" class="back-link" id="back-btn">← Retour</a>
     </div>
   </header>
 
@@ -239,5 +239,17 @@
     </div>
   </footer>
 
+<script>
+  (function() {
+    var map = { eugene: '/upgr/vente-eugene', edouard: '/upgr/vente-edouard' };
+    var from = new URLSearchParams(window.location.search).get('from');
+    var btn = document.getElementById('back-btn');
+    if (!btn) return;
+    if (from && map[from]) { btn.href = map[from]; return; }
+    var ref = document.referrer;
+    if (ref.indexOf('vente-eugene') !== -1 || ref.indexOf('/eugene') !== -1) btn.href = map.eugene;
+    else if (ref.indexOf('vente-edouard') !== -1 || ref.indexOf('/edouard') !== -1) btn.href = map.edouard;
+  })();
+</script>
 </body>
 </html>
