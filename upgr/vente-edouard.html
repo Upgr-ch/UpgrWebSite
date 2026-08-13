@@ -126,7 +126,7 @@
     /* UPSELL MODAL */
     .upsell-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(4,8,18,0.88); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); align-items: center; justify-content: center; padding: 1.5rem; }
     .upsell-overlay.open { display: flex; }
-    .upsell-modal { background: #0d1628; border: 1px solid rgba(245,224,144,0.3); border-radius: 6px; width: 100%; max-width: 460px; display: flex; flex-direction: column; overflow: hidden; }
+    .upsell-modal { background: #0d1628; border: 1px solid rgba(245,224,144,0.3); border-radius: 6px; width: 100%; max-width: 460px; display: flex; flex-direction: column; overflow-y: auto; max-height: 90vh; }
     .upsell-head { padding: 1.3rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: space-between; }
     .upsell-pretitle { font-size: 0.62rem; font-weight: 300; letter-spacing: 0.32em; text-transform: uppercase; color: #B48C28; }
     .upsell-close { background: none; border: none; color: rgba(255,255,255,0.3); font-size: 1.4rem; cursor: pointer; line-height: 1; padding: 0 0.2rem; font-family: inherit; }
@@ -343,6 +343,7 @@
         <div class="upsell-saving">Économisez 40 CHF / 43 €</div>
         <p class="price-disclaimer" style="margin-bottom:1.1rem;">Prix en euros donné à titre indicatif, sur la base d'un équivalent en CHF. Le montant facturé peut varier selon le taux de change appliqué au moment du paiement.</p>
         <a href="/masterclass1?from=edouard" class="upsell-btn-bundle">Commander le Pack Découverte</a>
+        <a href="/masterclass1?from=edouard" style="display:block;text-align:center;margin-top:0.65rem;font-size:0.72rem;font-weight:300;color:rgba(255,255,255,0.45);text-decoration:none;border-bottom:1px solid rgba(255,255,255,0.18);padding-bottom:1px;width:fit-content;margin-left:auto;margin-right:auto;transition:color 0.18s;" onmouseover="this.style.color='#F5E090'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">En savoir plus sur la MasterClasse</a>
       </div>
       <!-- OFFRE 2 : Offre groupée (secondaire) -->
       <div class="upsell-divider">ou</div>
