@@ -72,11 +72,12 @@
     /* GRILLE LIVRES CÔTE À CÔTE */
     .books-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem; }
     @media (max-width: 700px) { .books-grid { grid-template-columns: 1fr; } }
-    .books-grid .book { flex-direction: column; margin-bottom: 0; }
+    .books-grid .book { flex-direction: column; margin-bottom: 0; position: relative; }
     .books-grid .book-cover-col { flex: none; padding: 2rem 2rem 1.5rem; }
     .books-grid .book-cover-col img { max-width: 130px; margin: 0 auto; }
     .books-grid .book-text-col { border-left: none; border-top: 1px solid rgba(245,224,144,0.08); padding: 1.8rem 1.8rem 1.6rem; }
     .books-grid .book-buy { flex-wrap: wrap; gap: 1rem; }
+    .book-badge { position: absolute; top: -1px; right: 1.2rem; background: #F5E090; color: #080F1E; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.24rem 0.75rem; border-radius: 0 0 4px 4px; }
 
     /* SÉPARATEUR ENTRE LIVRES */
     .book-sep { text-align: center; margin: -1rem 0 3rem; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
@@ -324,6 +325,7 @@
 
       <!-- LIVRE 1 -->
       <div class="book">
+        <span class="book-badge">Recommandé</span>
         <div class="book-cover-col">
           <img src="/upgr/covers/idee-au-plan.png" alt="De l'idée au plan"/>
         </div>
@@ -353,6 +355,7 @@
 
       <!-- LIVRE 2 -->
       <div class="book">
+        <span class="book-badge">Aller plus loin</span>
         <div class="book-cover-col">
           <img src="/upgr/covers/competences-invisibles.png" alt="Vos compétences humaines invisibles"/>
         </div>
