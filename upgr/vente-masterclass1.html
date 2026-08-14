@@ -100,6 +100,8 @@
     @keyframes shimmer { 0% { background-position: 200% 0; } to { background-position: -200% 0; } }
 
     .price-amount { font-size: 2.2rem; font-weight: 700; color: #F5E090; line-height: 1; }
+    .price-strike { font-size: 1rem; text-decoration: line-through; color: rgba(255,255,255,0.7); margin-left: 0.5rem; }
+    .price-eur-strike { text-decoration: line-through; color: rgba(255,255,255,0.32); margin-left: 0.3rem; font-size: 0.85rem; }
     .price-eur-equiv { font-size: 0.95rem; font-weight: 300; color: rgba(255,255,255,0.55); margin-top: 0.2rem; }
     .price-disclaimer { font-size: 0.72rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.4); line-height: 1.55; margin-top: 0.5rem; }
 
@@ -214,8 +216,8 @@
         <p class="price-card-desc">La MasterClasse <span style="text-decoration:underline;">«&nbsp;L'Art de Transmettre #1&nbsp;»</span> <span style="color:#F5E090;font-size:2em;font-weight:700;line-height:1;">+</span> Le livre <span style="text-decoration:underline;">«&nbsp;De l'idée au plan&nbsp;»</span> <span style="color:#F5E090;font-size:2em;font-weight:700;line-height:1;">+</span> Le Livre <span style="text-decoration:underline;">«&nbsp;Vos compétences humaines invisibles&nbsp;»</span>. <span style="font-weight:700;color:#fff;">Les trois forment un pack complet, de l'idée à la première session.</span></p>
         <div class="promo-banner">
           <strong>Masterclasse + 2 ouvrages, prix groupé</strong>
-          <div class="price-amount">110 CHF</div>
-          <div class="price-eur-equiv">/ 118 €</div>
+          <div class="price-amount">110 CHF <span class="price-strike">150 CHF</span></div>
+          <div class="price-eur-equiv">/ 118 € <span class="price-eur-strike">160 €</span></div>
           <span>Economisez 40 CHF / 43 €</span>
         </div>
         <p class="note-shimmer">Vous avez déjà les ouvrages ? Ce que vous avez payé sera déduit au paiement. (votre code promotionnel vous a été envoyé par mail avec votre précédent achat)</p>
