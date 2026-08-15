@@ -81,8 +81,8 @@
     .coup-de-pouce p + p { margin-top: 0.8rem; }
 
     /* PRICING */
-    .pricing { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-    @media (max-width: 640px) { .pricing { grid-template-columns: 1fr; } }
+    .pricing { display: flex; justify-content: center; }
+    .pricing .price-card { max-width: 520px; width: 100%; }
 
     .price-card { border: 1px solid rgba(245,224,144,0.15); border-radius: 4px; padding: 2rem; background: rgba(255,255,255,0.02); display: flex; flex-direction: column; position: relative; }
     .price-card.featured { border-color: #F5E090; background: rgba(245,224,144,0.04); box-shadow: 0 0 32px rgba(245,224,144,0.07); }
@@ -212,25 +212,14 @@
     <div class="pricing">
 
       <div class="price-card featured">
-        <span class="price-card-badge">Recommandé</span>
-        <p class="price-card-tag">Pack</p>
-        <h3 class="price-card-title">Pack Complet</h3>
-        <p class="price-card-desc">L'Art de Transmettre #1 <span style="color:#F5E090;font-size:1.3em;font-weight:700;line-height:1;">+</span> L'Art de Transmettre #2. Un système complet, de la structure à la transmission vivante.</p>
-        <div class="price-amount">340 CHF</div>
-        <div class="price-eur-equiv">/ 360 €</div>
-        <p class="note-shimmer">Vous avez déjà acheté la MC1 ? Ce que vous avez payé sera déduit au paiement. Votre code promotionnel vous a été envoyé par mail avec votre précédent achat.</p>
-        <p class="price-disclaimer">Prix en euros donné à titre indicatif, sur la base d'un équivalent en CHF. Le montant facturé peut varier selon le taux de change appliqué au moment du paiement.</p>
-        <a href="#" class="btn btn-solid">Commander</a>
-      </div>
-
-      <div class="price-card">
-        <p class="price-card-tag">Masterclasse seule</p>
-        <h3 class="price-card-title">L'Art de Transmettre #2 seul</h3>
+        <p class="price-card-tag">Masterclasse</p>
+        <h3 class="price-card-title">L'Art de Transmettre #2</h3>
         <p class="price-card-desc">Pour ceux qui ont déjà suivi la Masterclasse #1 et qui souhaitent aller plus loin dans l'animation de leur formation.</p>
         <div class="price-amount">240 CHF</div>
         <div class="price-eur-equiv">/ 250 €</div>
+        <p class="note-shimmer">Vous avez déjà acheté L'Art de Transmettre #1 ? Ce que vous avez payé sera déduit au paiement. Votre code promotionnel vous a été envoyé par mail avec votre précédent achat.</p>
         <p class="price-disclaimer">Prix en euros donné à titre indicatif, sur la base d'un équivalent en CHF. Le montant facturé peut varier selon le taux de change appliqué au moment du paiement.</p>
-        <a href="#" class="btn btn-outline">Commander</a>
+        <a href="#" class="btn btn-solid">Commander</a>
       </div>
 
     </div>
