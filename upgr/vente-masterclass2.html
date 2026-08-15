@@ -96,17 +96,18 @@
     .price-eur-equiv { font-size: 0.95rem; font-weight: 300; color: rgba(255,255,255,0.55); margin-top: 0.2rem; margin-bottom: 0.8rem; }
     .price-disclaimer { font-size: 0.72rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.4); line-height: 1.55; margin-top: 0.5rem; }
 
-    .price-breakdown { background: rgba(245,224,144,0.05); border: 1px solid rgba(245,224,144,0.22); border-radius: 4px; padding: 1.3rem 1.4rem; margin-top: 1rem; margin-bottom: 1rem; }
-    .price-breakdown-intro { font-size: 0.82rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.72); line-height: 1.65; margin-bottom: 1.1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
-    .price-breakdown-rows { display: flex; flex-direction: column; gap: 0; }
-    .price-breakdown-item { padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .price-breakdown-item:last-child { border-bottom: none; padding-bottom: 0; padding-top: 1rem; margin-top: 0.2rem; border-top: 1px solid rgba(245,224,144,0.2); }
-    .price-breakdown-label { font-size: 0.68rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 0.2rem; }
-    .price-breakdown-amount { font-size: 1.5rem; font-weight: 700; color: rgba(255,255,255,0.85); line-height: 1; }
-    .price-breakdown-eur { font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.35); margin-top: 0.1rem; }
-    .price-breakdown-item:last-child .price-breakdown-label { font-size: 0.95rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #F5E090; opacity: 1; background: rgba(245,224,144,0.08); border: 1px solid rgba(245,224,144,0.28); border-radius: 2px; padding: 0.55rem 0.85rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-    .price-breakdown-item:last-child .price-breakdown-amount { font-size: 2rem; color: #F5E090; }
-    .price-breakdown-item:last-child .price-breakdown-eur { color: rgba(245,224,144,0.45); }
+    .price-breakdown { background: rgba(245,224,144,0.04); border: 1px solid rgba(245,224,144,0.2); border-radius: 4px; padding: 1.3rem 1.4rem; margin-top: 1rem; margin-bottom: 1rem; }
+    .price-breakdown-intro { font-size: 0.82rem; font-weight: 300; font-style: italic; color: rgba(255,255,255,0.68); line-height: 1.65; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .price-breakdown-rows { display: flex; flex-direction: column; }
+    .price-breakdown-item { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .price-breakdown-item:last-child { border-bottom: none; margin-top: 0.5rem; padding: 0.65rem 0.9rem; border-top: none; background: rgba(245,224,144,0.08); border: 1px solid rgba(245,224,144,0.28); border-radius: 2px; }
+    .price-breakdown-left { display: flex; flex-direction: column; gap: 0.1rem; }
+    .price-breakdown-label { font-size: 0.78rem; font-weight: 400; color: rgba(255,255,255,0.65); line-height: 1.4; }
+    .price-breakdown-item:last-child .price-breakdown-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #F5E090; }
+    .price-breakdown-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.05rem; flex-shrink: 0; }
+    .price-breakdown-amount { font-size: 1.1rem; font-weight: 700; color: rgba(255,255,255,0.9); white-space: nowrap; }
+    .price-breakdown-item:last-child .price-breakdown-amount { font-size: 1.25rem; color: #F5E090; }
+    .price-breakdown-eur { font-size: 0.72rem; font-weight: 300; color: rgba(255,255,255,0.32); white-space: nowrap; }
 
     .btn { display: block; width: 100%; padding: 0.9rem 2rem; font-family: 'Raleway', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; text-align: center; transition: background 0.18s, color 0.18s; text-decoration: none; margin-top: 1.5rem; }
     .btn-outline { background: transparent; color: #F5E090; border: 1px solid rgba(245,224,144,0.5); }
@@ -226,17 +227,30 @@
           <p class="price-breakdown-intro">Cette masterclasse complète l'ensemble du programme engagé avec le Pack Découverte. Votre code promotionnel vous a été envoyé par mail avec votre précédent achat.</p>
           <div class="price-breakdown-rows">
             <div class="price-breakdown-item">
-              <div class="price-breakdown-label">Total du programme (Pack Découverte + Masterclasse #2)</div>
-              <div class="price-breakdown-amount">400 CHF</div>
-              <div class="price-breakdown-eur">/ 430 €</div>
+              <div class="price-breakdown-left">
+                <span class="price-breakdown-label">Total du programme (Pack Découverte + Masterclasse #2)</span>
+              </div>
+              <div class="price-breakdown-right">
+                <span class="price-breakdown-amount">400 CHF</span>
+                <span class="price-breakdown-eur">/ 430 €</span>
+              </div>
             </div>
             <div class="price-breakdown-item">
-              <div class="price-breakdown-label">Avantage code promo Pack Découverte</div>
-              <div class="price-breakdown-amount">110 CHF</div>
-              <div class="price-breakdown-eur">/ 118 €</div>
+              <div class="price-breakdown-left">
+                <span class="price-breakdown-label">Avantage code promo Pack Découverte</span>
+              </div>
+              <div class="price-breakdown-right">
+                <span class="price-breakdown-amount">− 110 CHF</span>
+                <span class="price-breakdown-eur">/ 118 €</span>
+              </div>
             </div>
             <div class="price-breakdown-item">
-              <div class="price-breakdown-label"><span>Solde à régler aujourd'hui</span><span>290 CHF</span></div>
+              <div class="price-breakdown-left">
+                <span class="price-breakdown-label">Solde à régler aujourd'hui</span>
+              </div>
+              <div class="price-breakdown-right">
+                <span class="price-breakdown-amount">290 CHF</span>
+              </div>
             </div>
           </div>
         </div>
