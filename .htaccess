@@ -9,6 +9,7 @@ RewriteRule ^upgr/(politiquedecookies|confidentialite|mentionslegales|cgu|cgv)$ 
 RewriteRule ^masterclass1$ upgr/vente-masterclass1.html [QSA,L]
 RewriteRule ^masterclass2$ upgr/vente-masterclass2.html [QSA,L]
 RewriteRule ^pack-masterclasses$ upgr/vente-pack-masterclasses.html [QSA,L]
+RewriteRule ^extrait-masterclass2$ upgr/extrait-masterclass2.html [QSA,L]
 RewriteRule ^extrait-masterclass1$ upgr/extrait-masterclass1.html [QSA,L]
 
 # SPA fallback for everything else

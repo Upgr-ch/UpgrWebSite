@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>L'Art de Transmettre #2 · Extrait | UpGrade</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: #ffffff;
+      color: #1a2a3a;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,15,30,0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      height: 54px;
+      gap: 1rem;
+    }
+
+    .logo { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #F5E090; text-decoration: none; flex-shrink: 0; }
+
+    .header-center { display: flex; align-items: center; gap: 0.5rem; min-width: 0; flex: 1; justify-content: center; }
+    .header-label { font-size: 0.6rem; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: #B48C28; white-space: nowrap; }
+    .header-sep { color: rgba(255,255,255,0.18); font-size: 0.65rem; }
+    .header-title-group { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+    .header-tagline { font-size: 0.62rem; font-weight: 700; font-style: italic; color: rgba(255,255,255,0.65); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .header-title { font-size: 0.8rem; font-weight: 600; font-style: italic; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .header-actions { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+    .back-link { font-size: 0.7rem; font-weight: 300; letter-spacing: 0.05em; color: rgba(255,255,255,0.38); text-decoration: none; white-space: nowrap; }
+    .back-link:hover { color: rgba(255,255,255,0.7); }
+
+    /* LAYOUT */
+    .layout { flex: 1; display: flex; flex-direction: row; align-items: stretch; }
+
+    /* SIDEBAR */
+    .sidebar { width: 260px; min-width: 260px; background: #fff; border-right: 1px solid #e9ecf2; display: flex; flex-direction: column; align-items: center; padding: 24px 16px 32px; gap: 0; position: sticky; top: 54px; height: calc(100vh - 54px); overflow-y: auto; }
+    .sidebar-logo { width: 72px; height: 72px; border-radius: 50%; background: #080F1E; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; overflow: hidden; flex-shrink: 0; }
+    .sidebar-logo-text { text-align: center; line-height: 1.1; }
+    .sidebar-logo-text .sl-upgrade { font-family: 'Raleway', sans-serif; font-size: 13px; font-weight: 700; font-style: italic; color: #F5E090; }
+    .sidebar-logo-text .sl-sub { font-family: 'Raleway', sans-serif; font-size: 6.5px; font-weight: 300; letter-spacing: 0.04em; color: #D4AF37; white-space: nowrap; }
+    .sidebar-author { font-family: 'Raleway', sans-serif; font-size: 13px; font-weight: 600; color: #080F1E; text-align: center; margin-bottom: 20px; line-height: 1.4; }
+    .sidebar-nav { display: flex; gap: 8px; width: 100%; margin-bottom: 14px; }
+    .sidebar-nav button { flex: 1; padding: 8px 0; font-family: 'Raleway', sans-serif; font-size: 12px; font-weight: 600; border-radius: 6px; border: 1px solid #e9ecf2; cursor: pointer; transition: background 0.15s; }
+    .sidebar-nav .btn-prev { background: #fff; color: #9aabbf; }
+    .sidebar-nav .btn-next { background: #080F1E; color: #fff; border-color: #080F1E; }
+    .sidebar-nav .btn-next:hover { background: #1a2a4a; }
+    .sidebar-progress-wrap { width: 100%; margin-bottom: 20px; }
+    .sidebar-progress-bar { width: 100%; height: 6px; background: #eef1f6; border-radius: 10px; overflow: hidden; margin-bottom: 4px; }
+    .sidebar-progress-bar-fill { height: 100%; background: #D4AF37; border-radius: 10px; width: 0%; }
+    .sidebar-progress-label { font-size: 11px; color: #9aabbf; text-align: center; font-family: 'Raleway', sans-serif; }
+    .sidebar-section { width: 100%; border-top: 1px solid #eef1f6; padding-top: 14px; }
+    .sidebar-section-title { font-family: 'Raleway', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #080F1E; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+    .sidebar-section-title svg { width: 12px; height: 12px; flex-shrink: 0; color: #9aabbf; }
+    .sidebar-lesson { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; cursor: default; }
+    .sidebar-lesson-dot { width: 16px; height: 16px; border-radius: 50%; border: none; flex-shrink: 0; margin-top: 2px; background: #080F1E; }
+    .sidebar-lesson-dot.active { background: #080F1E; }
+    .sidebar-lesson-label { font-family: 'Raleway', sans-serif; font-size: 12px; font-weight: 600; color: #080F1E; line-height: 1.4; }
+
+    /* READER */
+    .reader { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 2rem 1rem 4rem; gap: 2rem; background: #fff; min-width: 0; }
+
+    @media (max-width: 768px) { .sidebar { display: none; } .layout { flex-direction: column; } }
+
+    /* BLOCS MASTERCLASS */
+    .masterclass-container { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 750px; width: 100%; margin: 0 auto; padding: 0; }
+    .masterclass-banner { background: #080F1E; padding: 20px 32px 16px 32px; text-align: center; border-bottom: 4px solid #D4AF37; border-radius: 12px 12px 0 0; }
+    .masterclass-banner .banner-badge { display: inline-block; background: #D4AF37; color: #080F1E; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; padding: 3px 16px; border-radius: 20px; margin-bottom: 8px; }
+    .masterclass-banner .banner-title { font-size: 22px; font-weight: 700; color: #ffffff; letter-spacing: -0.3px; margin-bottom: 2px; }
+    .masterclass-banner .banner-subtitle { font-size: 14px; color: rgba(255,255,255,0.7); font-weight: 300; }
+    .masterclass-body { padding: 28px 32px 32px 32px; background: #fafbff; border-radius: 0 0 12px 12px; border: 1px solid #e9ecf2; border-top: none; }
+    .masterclass-box { background: #ffffff; border-radius: 10px; padding: 20px 24px; margin-bottom: 18px; box-shadow: 0 2px 8px rgba(8,15,30,0.05); border-left: 4px solid transparent; transition: border-color 0.2s; position: relative; overflow: hidden; }
+    .masterclass-box:hover { border-left-color: #D4AF37; }
+    .masterclass-box .watermark { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .masterclass-box .watermark span { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 100px; font-weight: 900; color: rgba(0,0,0,0.07); text-transform: uppercase; letter-spacing: 14px; transform: rotate(-30deg); user-select: none; white-space: nowrap; display: block; width: 100%; text-align: center; }
+    .masterclass-box .box-label, .masterclass-box .box-content { position: relative; z-index: 1; }
+    .masterclass-box .box-label { font-weight: 700; color: #080F1E; font-size: 13px; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+    .masterclass-box .box-content { font-size: 15px; line-height: 1.7; color: #1a2a3a; text-align: justify; }
+    .masterclass-box .box-content p { margin-bottom: 10px; }
+    .masterclass-box .box-content p:last-child { margin-bottom: 0; }
+    .masterclass-box .box-content .note { font-size: 13px; color: #6b7a8f; font-style: italic; }
+
+    /* FICHE SYNTHESE */
+    .fiche-synthese { background: #ffffff; border-radius: 12px; padding: 0; box-shadow: 0 8px 30px rgba(8,15,30,0.10); overflow: hidden; border: 1px solid #e9ecf2; position: relative; }
+    .fiche-synthese .fs-banner { background: #080F1E; padding: 20px 32px 16px 32px; text-align: center; border-bottom: 4px solid #D4AF37; position: relative; z-index: 1; }
+    .fiche-synthese .fs-banner .fs-badge { display: inline-block; background: #D4AF37; color: #080F1E; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; padding: 3px 16px; border-radius: 20px; margin-bottom: 8px; }
+    .fiche-synthese .fs-banner .fs-title { font-size: 24px; font-weight: 700; color: #ffffff; letter-spacing: -0.3px; margin-bottom: 2px; }
+    .fiche-synthese .fs-banner .fs-subtitle { font-size: 14px; color: rgba(255,255,255,0.7); font-weight: 300; }
+    .fiche-synthese .fs-body { padding: 28px 32px 32px 32px; background: #fafbff; position: relative; z-index: 1; }
+    .fs-intro { font-size: 15px; line-height: 1.6; color: #1a2a3a; text-align: center; margin-bottom: 24px; padding: 12px 20px; background: #edf2f9; border-radius: 8px; border-left: 4px solid #D4AF37; font-weight: 500; position: relative; overflow: hidden; }
+    .fs-intro .watermark { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .fs-intro .watermark span { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 60px; font-weight: 900; color: rgba(0,0,0,0.06); text-transform: uppercase; letter-spacing: 8px; transform: rotate(-30deg); user-select: none; white-space: nowrap; display: block; }
+    .fs-intro > *:not(.watermark) { position: relative; z-index: 1; }
+    .fs-point { display: flex; gap: 16px; margin-bottom: 18px; align-items: flex-start; background: #ffffff; padding: 16px 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(8,15,30,0.05); border-left: 4px solid transparent; transition: border-color 0.2s; position: relative; overflow: hidden; }
+    .fs-point:hover { border-left-color: #D4AF37; }
+    .fs-point .watermark { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .fs-point .watermark span { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 70px; font-weight: 900; color: rgba(0,0,0,0.05); text-transform: uppercase; letter-spacing: 8px; transform: rotate(-30deg); user-select: none; white-space: nowrap; display: block; }
+    .fs-point > *:not(.watermark) { position: relative; z-index: 1; }
+    .fs-point .fs-num { font-weight: 700; color: #ffffff; font-size: 16px; min-width: 32px; height: 32px; line-height: 32px; text-align: center; background: #080F1E; border-radius: 50%; flex-shrink: 0; box-shadow: 0 2px 8px rgba(8,15,30,0.15); margin-top: 2px; }
+    .fs-point .fs-content { flex: 1; }
+    .fs-point .fs-content .fs-point-title { font-weight: 700; color: #080F1E; font-size: 15px; margin-bottom: 4px; }
+    .fs-point .fs-content .fs-point-text { font-size: 14px; line-height: 1.6; color: #1a2a3a; text-align: justify; }
+    .fs-questions { margin-top: 24px; padding-top: 20px; border-top: 2px solid #eef1f6; position: relative; overflow: hidden; }
+    .fs-questions .watermark { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .fs-questions .watermark span { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 80px; font-weight: 900; color: rgba(0,0,0,0.05); text-transform: uppercase; letter-spacing: 10px; transform: rotate(-30deg); user-select: none; white-space: nowrap; display: block; }
+    .fs-questions > *:not(.watermark) { position: relative; z-index: 1; }
+    .fs-questions .fs-q-title { font-weight: 700; color: #080F1E; font-size: 16px; margin-bottom: 14px; text-align: center; letter-spacing: 0.5px; }
+    .fs-questions .fs-q-title span { display: inline-block; background: #080F1E; color: white; padding: 2px 14px; border-radius: 20px; font-size: 12px; letter-spacing: 0.8px; }
+    .fs-questions .fs-q-item { font-size: 14px; line-height: 1.6; color: #1a2a3a; padding: 8px 0 8px 28px; position: relative; text-align: justify; border-bottom: 1px solid #f0f2f5; }
+    .fs-questions .fs-q-item:last-child { border-bottom: none; }
+    .fs-questions .fs-q-item::before { content: "*"; position: absolute; left: 0; top: 8px; color: #D4AF37; font-size: 14px; }
+
+    /* INTRO BANNER */
+    .intro-banner { max-width: 750px; width: 100%; background: #fff; border-radius: 10px; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; box-shadow: 0 2px 12px rgba(8,15,30,0.12); }
+    .intro-banner-text { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; font-weight: 700; color: #080F1E; line-height: 1.35; }
+    .intro-banner-img { height: 72px; width: auto; flex-shrink: 0; }
+
+    /* CTA */
+    .cta-retour { max-width: 750px; width: 100%; text-align: center; }
+    .btn-commander { display: inline-block; background: #F5E090; color: #080F1E; font-family: 'Raleway', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.9rem 2.5rem; border-radius: 2px; text-decoration: none; transition: background 0.18s; }
+    .btn-commander:hover { background: #e8d07a; }
+    .cta-retour p { font-size: 0.78rem; font-weight: 300; color: rgba(0,0,0,0.45); margin-top: 0.75rem; letter-spacing: 0.04em; }
+
+    /* BILAN */
+    .bilan-container { background:#ffffff; border-radius:12px; padding:0; margin-bottom:20px; box-shadow:0 8px 30px rgba(8,15,30,0.10); overflow:hidden; border:1px solid #e9ecf2; }
+    .bilan-container .bilan-banner { background:#080F1E; padding:20px 32px 16px 32px; text-align:center; border-bottom:4px solid #D4AF37; }
+    .bilan-container .bilan-banner .bilan-badge { display:inline-block; background:#D4AF37; color:#080F1E; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; padding:3px 16px; border-radius:20px; margin-bottom:8px; }
+    .bilan-container .bilan-banner .bilan-title { font-size:22px; font-weight:700; color:#ffffff; letter-spacing:-0.3px; margin-bottom:2px; }
+    .bilan-container .bilan-banner .bilan-subtitle { font-size:14px; color:rgba(255,255,255,0.7); font-weight:300; }
+    .bilan-container .bilan-body { padding:28px 32px 32px 32px; background:#fafbff; }
+    .bilan-intro { background:#edf2f9; border-radius:10px; padding:12px 18px; margin-bottom:24px; border-left:4px solid #D4AF37; font-size:15px; line-height:1.6; color:#1a2a3a; text-align:center; }
+    .bilan-item { background:#ffffff; border-radius:10px; padding:14px 20px; margin-bottom:14px; box-shadow:0 2px 8px rgba(8,15,30,0.05); border-left:4px solid transparent; transition:border-color 0.2s; }
+    .bilan-item:hover { border-left-color:#D4AF37; }
+    .bilan-item .bilan-num { font-weight:700; color:#ffffff; font-size:14px; min-width:28px; height:28px; line-height:28px; text-align:center; background:#080F1E; border-radius:50%; flex-shrink:0; box-shadow:0 2px 8px rgba(8,15,30,0.15); display:inline-block; margin-right:10px; }
+    .bilan-item .bilan-text { font-size:14px; line-height:1.5; color:#1a2a3a; font-weight:500; display:inline; }
+    .bilan-item .bilan-options { display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; padding-left:38px; }
+    .bilan-item .bilan-options .opt { display:flex; align-items:center; gap:4px; font-size:13px; color:#1a2a3a; background:#f7f8fc; padding:4px 12px 4px 8px; border-radius:20px; cursor:pointer; transition:all 0.2s; border:2px solid transparent; user-select:none; }
+    .bilan-item .bilan-options .opt:hover { background:#edf2f9; }
+    .bilan-item .bilan-options .opt input { accent-color:#080F1E; cursor:pointer; }
+    .bilan-item .bilan-options .opt.selected { border-color:#D4AF37; background:#fdf6e8; }
+    .bilan-item .bilan-options .opt .label { font-size:11px; color:#6b7a8f; font-weight:300; }
+    .btn-validate { display:inline-block; background:#080F1E; color:white; border:none; border-radius:8px; padding:14px 32px; font-size:16px; font-weight:700; cursor:pointer; transition:all 0.2s; width:100%; box-sizing:border-box; margin-top:10px; font-family:inherit; box-shadow:0 4px 12px rgba(8,15,30,0.2); }
+    .btn-validate:hover:not(:disabled) { background:#1a2a4a; transform:translateY(-2px); box-shadow:0 6px 20px rgba(8,15,30,0.3); }
+    .btn-validate:disabled { background:#9aabbf; cursor:not-allowed; transform:none; box-shadow:none; }
+    .resultat-box { margin-top:20px; padding:24px 28px; border-radius:12px; background:#ffffff; border:2px solid #D4AF37; display:none; box-shadow:0 4px 16px rgba(212,175,55,0.15); }
+    .resultat-box .result-header { display:flex; align-items:center; gap:16px; margin-bottom:12px; flex-wrap:wrap; justify-content:center; }
+    .resultat-box .result-header .result-badge { font-size:40px; }
+    .resultat-box .result-header .result-level { font-size:20px; font-weight:700; color:#080F1E; }
+    .resultat-box .result-header .result-score { font-size:14px; color:#6b7a8f; background:#edf2f9; padding:4px 14px; border-radius:20px; font-weight:600; }
+    .resultat-box .result-pouvoir { font-size:15px; background:#080F1E; color:#D4AF37; padding:8px 18px; border-radius:30px; display:inline-block; font-weight:600; margin:4px 0 10px 0; text-align:center; width:100%; box-sizing:border-box; }
+    .resultat-box .result-message { font-size:15px; line-height:1.6; color:#1a2a3a; text-align:justify; padding:12px 16px; background:#f7f8fc; border-radius:8px; border-left:4px solid #D4AF37; margin-bottom:12px; }
+    .resultat-box .result-detail { font-size:13px; color:#6b7a8f; text-align:center; border-top:1px solid #eef1f6; padding-top:12px; margin-top:8px; }
+    .btn-download-pdf { display:none; background:#D4AF37; color:#080F1E; border:none; border-radius:8px; padding:12px 28px; font-size:15px; font-weight:700; cursor:pointer; transition:all 0.2s; width:100%; box-sizing:border-box; margin-top:10px; font-family:inherit; box-shadow:0 4px 12px rgba(212,175,55,0.3); }
+    .btn-download-pdf:hover { background:#c4a032; transform:translateY(-2px); }
+    .btn-reset { display:inline-block; background:transparent; color:#080F1E; border:2px solid #080F1E; border-radius:8px; padding:10px 24px; font-size:14px; font-weight:600; cursor:pointer; transition:all 0.2s; width:100%; box-sizing:border-box; margin-top:8px; font-family:inherit; }
+    .btn-reset:hover { background:#080F1E; color:white; }
+
+    /* COUP DE POUCE */
+    .coup-pouce-m2 { background:#ffffff; border-radius:12px; padding:0; margin:20px 0 10px 0; box-shadow:0 2px 8px rgba(8,15,30,0.05); overflow:hidden; border:1px solid #e9ecf2; }
+    .coup-pouce-m2 .cp-banner { background:#080F1E; padding:14px 32px 12px 32px; border-bottom:4px solid #D4AF37; text-align:center; }
+    .coup-pouce-m2 .cp-banner .cp-badge { display:inline-block; background:#D4AF37; color:#080F1E; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; padding:2px 16px; border-radius:20px; margin-bottom:4px; }
+    .coup-pouce-m2 .cp-banner .cp-title { font-size:18px; font-weight:700; color:#ffffff; letter-spacing:-0.3px; margin-bottom:2px; }
+    .coup-pouce-m2 .cp-body { padding:18px 24px; background:#fafbff; }
+    .coup-pouce-m2 .cp-body .cp-text { font-size:15px; line-height:1.7; color:#1a2a3a; }
+    .coup-pouce-m2 .cp-body .cp-text p { margin-bottom:6px; }
+    .coup-pouce-m2 .cp-body .cp-text p:last-child { margin-bottom:0; }
+    .coup-pouce-m2 .cp-body .cp-mail { font-weight:600; color:#080F1E; text-decoration:none; border-bottom:2px solid #D4AF37; padding-bottom:1px; transition:all 0.2s; }
+    .coup-pouce-m2 .cp-body .cp-mail:hover { color:#D4AF37; border-bottom-color:#080F1E; }
+
+    /* CONSTRUCTEUR D'ANALOGIE */
+    .constructeur-container { background:#ffffff; border-radius:16px; padding:0; margin-bottom:20px; box-shadow:0 8px 30px rgba(8,15,30,0.10); overflow:hidden; border:1px solid #e9ecf2; }
+    .constructeur-container .cc-banner { background:#080F1E; padding:20px 32px 16px 32px; text-align:center; border-bottom:4px solid #D4AF37; }
+    .constructeur-container .cc-banner .cc-badge { display:inline-block; background:#D4AF37; color:#080F1E; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; padding:3px 16px; border-radius:20px; margin-bottom:8px; }
+    .constructeur-container .cc-banner .cc-title { font-size:22px; font-weight:700; color:#ffffff; letter-spacing:-0.3px; margin-bottom:2px; }
+    .constructeur-container .cc-body { padding:28px 32px 32px 32px; background:#fafbff; text-align:left; }
+    .cc-intro { font-size:15px; line-height:1.7; color:#1a2a3a; text-align:left; margin-bottom:20px; padding:16px 22px; background:#edf2f9; border-radius:8px; border-left:4px solid #D4AF37; position:relative; overflow:hidden; }
+    .cc-intro strong { color:#080F1E; }
+    .cc-intro p { margin-bottom:6px; text-align:left; }
+    .cc-intro p:last-child { margin-bottom:0; }
+    .cc-intro .watermark { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:10; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .cc-intro .watermark span { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; font-size:110px; font-weight:900; color:rgba(0,0,0,0.12); text-transform:uppercase; letter-spacing:14px; transform:rotate(-30deg); user-select:none; white-space:nowrap; display:block; }
+    .cc-intro > *:not(.watermark) { position:relative; z-index:1; }
+    .cc-exemples { margin:16px 0 20px 0; position:relative; overflow:hidden; }
+    .cc-exemples .exemples-titre { font-size:14px; font-weight:700; color:#080F1E; margin-bottom:10px; }
+    .cc-exemples .exemples-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .cc-exemples .exemple-card { background:#f7f8fc; border-radius:10px; padding:12px 14px; border:1px solid #e9ecf2; border-left:3px solid #D4AF37; font-size:13px; line-height:1.5; color:#1a2a3a; }
+    .cc-exemples .exemple-card .ex-titre { font-weight:700; color:#080F1E; font-size:11px; text-transform:uppercase; letter-spacing:0.3px; margin-bottom:2px; display:inline-block; background:#e9ecf2; padding:0 8px; border-radius:4px; }
+    .cc-exemples .exemple-card .ex-texte { font-style:italic; margin-top:2px; }
+    .cc-exemples .exemple-card .ex-texte strong { font-style:normal; color:#D4AF37; }
+    .cc-exemples .watermark { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:10; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .cc-exemples .watermark span { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; font-size:130px; font-weight:900; color:rgba(0,0,0,0.12); text-transform:uppercase; letter-spacing:16px; transform:rotate(-30deg); user-select:none; white-space:nowrap; display:block; }
+    .cc-exemples > *:not(.watermark) { position:relative; z-index:1; }
+    .cc-sous-etape { background:#fafbff; border-radius:8px; padding:12px 16px; margin:8px 0 12px 0; border-left:3px solid #D4AF37; border:1px solid #eef1f6; }
+    .cc-sous-etape .sous-titre { font-size:13px; font-weight:700; color:#080F1E; margin-bottom:4px; }
+    .cc-sous-etape .sous-desc { font-size:13px; color:#6b7a8f; margin-bottom:6px; }
+    .cc-etape { background:#ffffff; border:2px solid #e9ecf2; border-radius:12px; padding:16px 20px; margin-bottom:16px; box-shadow:0 2px 6px rgba(8,15,30,0.04); transition:border-color 0.2s; position:relative; overflow:hidden; }
+    .cc-etape:hover { border-color:#D4AF37; }
+    .cc-etape .watermark { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:10; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .cc-etape .watermark span { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; font-size:110px; font-weight:900; color:rgba(0,0,0,0.12); text-transform:uppercase; letter-spacing:14px; transform:rotate(-30deg); user-select:none; white-space:nowrap; display:block; }
+    .cc-etape > *:not(.watermark) { position:relative; z-index:1; }
+    .cc-etape .etape-label { font-size:13px; font-weight:700; color:#080F1E; display:block; margin-bottom:4px; text-transform:uppercase; letter-spacing:0.5px; }
+    .cc-etape .etape-desc { font-size:13px; color:#6b7a8f; margin-bottom:6px; }
+    .cc-etape .etape-consigne { font-size:14px; font-weight:500; color:#080F1E; margin-bottom:6px; }
+    .cc-etape input[type="text"], .cc-etape textarea { width:100%; padding:10px 14px; font-size:14px; font-family:inherit; border:2px solid #e9ecf2; border-radius:8px; box-sizing:border-box; transition:border-color 0.2s; background:#ffffff; }
+    .cc-etape input[type="text"]:focus, .cc-etape textarea:focus { border-color:#080F1E; outline:none; }
+    .cc-etape textarea { resize:vertical; min-height:45px; }
+    .cc-chips { display:flex; flex-wrap:wrap; gap:6px; margin:6px 0 10px 0; }
+    .cc-chips .chip { display:inline-block; background:#edf2f9; color:#080F1E; padding:4px 14px; border-radius:20px; font-size:12px; font-weight:500; border:1px solid #e9ecf2; cursor:pointer; transition:all 0.2s; user-select:none; }
+    .cc-chips .chip:hover { background:#D4AF37; color:#080F1E; border-color:#D4AF37; transform:translateY(-1px); }
+    .cc-chips .chip:active { transform:scale(0.95); }
+    .cc-chips .chip-categorie { font-size:11px; font-weight:700; color:#6b7a8f; background:transparent; border:none; padding:4px 6px 4px 0; cursor:default; }
+    .cc-chips .chip-categorie:hover { background:transparent; transform:none; }
+    .cc-apercu { font-size:14px; color:#6b7a8f; font-style:italic; padding:8px 12px; background:#f7f8fc; border-radius:6px; margin-top:6px; border:1px dashed #e9ecf2; min-height:24px; }
+    .cc-apercu strong { color:#D4AF37; font-weight:600; }
+    .cc-astuce { font-size:12px; color:#6b7a8f; padding:6px 12px; background:#f7f8fc; border-radius:6px; margin-top:4px; border-left:3px solid #D4AF37; }
+    .cc-astuce strong { color:#080F1E; }
+    .cc-btn { display:inline-block; background:#D4AF37; color:#080F1E; border:none; border-radius:30px; padding:12px 36px; font-size:15px; font-weight:700; cursor:pointer; transition:all 0.3s ease; font-family:inherit; box-shadow:0 4px 16px rgba(212,175,55,0.2); width:100%; text-align:center; margin-top:4px; }
+    .cc-btn:hover { background:#c4a032; transform:translateY(-2px); box-shadow:0 6px 24px rgba(212,175,55,0.3); }
+    .cc-btn-secondary { display:inline-block; background:transparent; color:#080F1E; border:2px solid #080F1E; border-radius:30px; padding:10px 24px; font-size:14px; font-weight:600; cursor:pointer; transition:all 0.3s; font-family:inherit; margin-top:8px; width:100%; text-align:center; }
+    .cc-btn-secondary:hover { background:#080F1E; color:white; transform:translateY(-2px); }
+    .cc-resultat { background:#fdf6e8; border-radius:12px; padding:18px 24px; border-left:4px solid #D4AF37; margin:16px 0 12px 0; display:none; animation:fadeIn 0.4s ease; }
+    .cc-resultat.open { display:block; }
+    .cc-resultat .res-titre { font-size:13px; font-weight:700; color:#080F1E; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:8px; }
+    .cc-resultat .res-item { margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid rgba(212,175,55,0.15); }
+    .cc-resultat .res-item:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+    .cc-resultat .res-item .res-label { font-size:13px; font-weight:600; color:#080F1E; display:block; }
+    .cc-resultat .res-item .res-texte { font-size:14px; line-height:1.6; color:#1a2a3a; margin-top:2px; }
+    .cc-resultat .res-edit { margin-top:12px; padding-top:12px; border-top:2px solid #D4AF37; }
+    .cc-resultat .res-edit textarea { width:100%; padding:10px 14px; font-size:14px; font-family:inherit; border:2px solid #e9ecf2; border-radius:8px; resize:vertical; min-height:80px; box-sizing:border-box; transition:border-color 0.2s; background:#ffffff; }
+    .cc-resultat .res-edit textarea:focus { border-color:#080F1E; outline:none; }
+    .btn-dl-pdf { display:none; background:#D4AF37; color:#080F1E; border:none; border-radius:8px; padding:14px 32px; font-size:16px; font-weight:700; cursor:pointer; transition:all 0.2s; text-decoration:none; text-align:center; width:100%; box-sizing:border-box; margin-top:10px; font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; box-shadow:0 4px 12px rgba(212,175,55,0.3); }
+    .btn-dl-pdf:hover { background:#c4a032; transform:translateY(-2px); box-shadow:0 6px 20px rgba(212,175,55,0.4); }
+    @keyframes fadeIn { 0%{opacity:0;transform:translateY(10px)} 100%{opacity:1;transform:translateY(0)} }
+
+    @media (max-width: 600px) {
+      header { padding: 0 1rem; }
+      .header-center { display: none; }
+      .back-link { font-size: 0.65rem; }
+      .reader { padding: 1rem 0.5rem 3rem; gap: 1.5rem; }
+      .masterclass-banner { padding: 16px 20px 12px 20px; }
+      .masterclass-banner .banner-title { font-size: 18px; }
+      .masterclass-body { padding: 20px 16px 24px 16px; }
+      .fiche-synthese .fs-banner { padding: 16px 20px 12px 20px; }
+      .fiche-synthese .fs-banner .fs-title { font-size: 20px; }
+      .fiche-synthese .fs-body { padding: 20px 16px 24px 16px; }
+      .fs-point { padding: 12px 14px; gap: 12px; }
+      .constructeur-container .cc-banner { padding: 16px 20px 12px 20px; }
+      .constructeur-container .cc-body { padding: 20px 16px 24px 16px; }
+      .cc-exemples .exemples-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <!-- Google tag (gtag.js) --><script async src="https://www.googletagmanager.com/gtag/js?id=AW-18294385008"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-18294385008');</script>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="/">UpGrade</a>
+  <div class="header-center">
+    <span class="header-label">Extrait</span>
+    <span class="header-sep">·</span>
+    <div class="header-title-group">
+      <span class="header-title">L'Art de Transmettre #2</span>
+      <span class="header-tagline">Faire vivre la transmission</span>
+    </div>
+  </div>
+  <div class="header-actions">
+    <a id="back-btn" href="/masterclass2" class="back-link">← Retour</a>
+  </div>
+</header>
+
+<div class="layout">
+
+<!-- BARRE LATÉRALE -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-text">
+      <div class="sl-upgrade"><span style="color:#fff;">Up</span><span style="color:#D4AF37;">Grade</span></div>
+      <div class="sl-sub">Learning &amp; Development</div>
+    </div>
+  </div>
+  <div class="sidebar-author">UpGrade LD I Kévin<br>Lavergne</div>
+  <div class="sidebar-nav">
+    <button class="btn-prev" disabled>Précédent</button>
+    <button class="btn-next">Suivant</button>
+  </div>
+  <div class="sidebar-progress-wrap">
+    <div class="sidebar-progress-bar"><div class="sidebar-progress-bar-fill"></div></div>
+    <div class="sidebar-progress-label">0%</div>
+  </div>
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 4 6 8 10 4"/></svg>
+      EXTRAIT L'Art de Transmettre#2
+    </div>
+    <div class="sidebar-lesson">
+      <div class="sidebar-lesson-dot active"></div>
+      <div class="sidebar-lesson-label">7.4 Mettre en relation avec l'analogie la plus pertinente.</div>
+    </div>
+    <div class="sidebar-lesson">
+      <div class="sidebar-lesson-dot"></div>
+      <div class="sidebar-lesson-label">7.5 Auto-diagnostic progressif M7.</div>
+    </div>
+  </div>
+</aside>
+
+<div class="reader">
+
+  <!-- BANDEAU INTRO -->
+  <div class="intro-banner">
+    <span class="intro-banner-text">7.4 Mettre en relation avec l'analogie la plus pertinente. (15 min)</span>
+    <img src="/upgr/covers/masterclass2-logo.png" alt="L'Art de Transmettre #2" class="intro-banner-img"/>
+  </div>
+
+  <!-- ===== BLOC 1 : CONSTRUCTEUR D'ANALOGIE ===== -->
+  <div class="masterclass-container">
+    <div class="constructeur-container" id="constructeurApp">
+
+      <div class="cc-banner">
+        <div class="cc-badge">* Exercice 2 *</div>
+        <div class="cc-title">Le Constructeur d'Analogie</div>
+      </div>
+
+      <div class="cc-body">
+
+        <div class="cc-intro">
+          <div class="watermark"><span>Extrait</span></div>
+          <strong>Construisez votre analogie en 3 étapes.</strong>
+          <p>Vous avez identifié ce que vous transmettez et qui est difficile à faire comprendre (Exercice 1).</p>
+          <p>Vous allez maintenant construire une analogie pour aider vos apprenants à s'approprier ce savoir. L'analogie, c'est un pont entre ce qu'ils connaissent déjà et ce que vous voulez leur faire comprendre.</p>
+        </div>
+
+        <div class="cc-exemples">
+          <div class="watermark"><span>Extrait</span></div>
+          <div class="exemples-titre">* Exemples pour vous inspirer *</div>
+          <div class="exemples-grid">
+            <div class="exemple-card">
+              <div class="ex-titre">Gestion de conflit</div>
+              <div class="ex-texte">"Pour aider mes apprenants à comprendre la gestion de conflit, je vais leur dire que c'est comme <strong>le rodage d'un moteur</strong>."</div>
+            </div>
+            <div class="exemple-card">
+              <div class="ex-titre">Relation client</div>
+              <div class="ex-texte">"Pour aider mes apprenants à comprendre la relation client, je vais leur dire que c'est comme <strong>le pétrissage de la pâte</strong>."</div>
+            </div>
+            <div class="exemple-card">
+              <div class="ex-titre">Élaboration d'une stratégie</div>
+              <div class="ex-texte">"Pour aider mes apprenants à comprendre l'élaboration d'une stratégie, je vais leur dire que c'est comme <strong>monter un mur</strong>."</div>
+            </div>
+            <div class="exemple-card">
+              <div class="ex-titre">Gestion du temps</div>
+              <div class="ex-texte">"Pour aider mes apprenants à comprendre la gestion du temps, je vais leur dire que c'est comme <strong>une chaîne de production</strong>."</div>
+            </div>
+            <div class="exemple-card">
+              <div class="ex-titre">Choix de la farine (boulangerie)</div>
+              <div class="ex-texte">"Pour aider mes apprenants à comprendre le choix de la farine, je vais leur dire que c'est comme <strong>choisir une lame de scie</strong>."</div>
+            </div>
+            <div class="exemple-card">
+              <div class="ex-titre">Diagnostic de panne (mécanique)</div>
+              <div class="ex-texte">"Pour aider mes apprenants à comprendre le diagnostic de panne, je vais leur dire que c'est comme <strong>une fissure dans une vitre</strong>."</div>
+            </div>
+            <div class="exemple-card">
+              <div class="ex-titre">Température de l'eau (boulangerie)</div>
+              <div class="ex-texte">"Pour aider mes apprenants à comprendre la maîtrise de la température de l'eau, je vais leur dire que c'est comme <strong>la mise en température d'un moteur diesel</strong>."</div>
+            </div>
+            <div class="exemple-card">
+              <div class="ex-titre">Trempe de l'acier (forge)</div>
+              <div class="ex-texte">"Pour aider mes apprenants à comprendre la trempe de l'acier, je vais leur dire que c'est comme <strong>la cuisson du pain</strong>."</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ÉTAPE 1 -->
+        <div class="cc-etape" id="etape1">
+          <div class="watermark"><span>Extrait</span></div>
+          <span class="etape-label">Étape 1</span>
+          <div class="etape-desc">Trouvez l'analogie qui aidera vos apprenants à comprendre ce que vous transmettez.</div>
+
+          <div class="cc-sous-etape">
+            <div class="sous-titre">1a – Nommez ce que vous transmettez</div>
+            <div class="sous-desc">Qu'est-ce que vous devez transmettre et qui est difficile à faire comprendre ?</div>
+            <textarea id="sujet" rows="2" placeholder="Ex: la gestion de conflit, le choix de la farine, le diagnostic d'une panne, l'équilibre théorie-pratique..."></textarea>
+          </div>
+
+          <div class="cc-sous-etape">
+            <div class="sous-titre">1b – Explorez ce qui pourrait parler à vos apprenants</div>
+            <div class="sous-desc">Répondez à ces questions pour faire remonter des images, des scènes, des références.</div>
+            <div style="margin-bottom:8px;">
+              <div class="etape-consigne" style="font-size:13px;font-weight:600;">1. Qu'est-ce qui est difficile à comprendre ou à maîtriser pour eux ?</div>
+              <textarea id="blocage" rows="2" placeholder="Ex: ils ne voient pas comment appliquer, ils confondent les étapes, ils ne comprennent pas les enjeux..."></textarea>
+            </div>
+            <div style="margin-bottom:8px;">
+              <div class="etape-consigne" style="font-size:13px;font-weight:600;">2. Si vos apprenants devaient se représenter ce savoir, quelle image, scène ou situation leur viendrait en tête ?</div>
+              <textarea id="image" rows="2" placeholder="Ex: un épisode de The Office, la scène du T-Rex dans Jurassic Park, un morceau de jazz, une recette de cuisine..."></textarea>
+            </div>
+            <div>
+              <div class="etape-consigne" style="font-size:13px;font-weight:600;">3. Qu'est-ce que vos apprenants connaissent déjà et qui pourrait servir de pont ?</div>
+              <textarea id="pont" rows="2" placeholder="Ex: ils connaissent MacGyver, ils ont vu Le Parrain, ils écoutent du jazz, ils ont déjà monté un meuble..."></textarea>
+            </div>
+          </div>
+
+          <div class="cc-sous-etape">
+            <div class="sous-titre">1c – Formulez votre analogie</div>
+            <div class="sous-desc">Écrivez la phrase que vous utiliserez dans votre formation.</div>
+            <div style="font-size:13px;color:#6b7a8f;margin-bottom:4px;">Des amorces pour vous lancer (cliquez pour insérer) :</div>
+            <div class="cc-chips">
+              <span class="chip-categorie">Cinéma / Séries :</span>
+              <span class="chip" data-value="un épisode de The Office">un épisode de The Office</span>
+              <span class="chip" data-value="une intrigue de Game of Thrones">une intrigue de Game of Thrones</span>
+              <span class="chip" data-value="la scène du T-Rex dans Jurassic Park">la scène du T-Rex</span>
+              <span class="chip" data-value="MacGyver qui improvise">MacGyver qui improvise</span>
+              <span class="chip-categorie">Musique :</span>
+              <span class="chip" data-value="un morceau de jazz improvisé">un morceau de jazz improvisé</span>
+              <span class="chip" data-value="la construction d'une symphonie">la construction d'une symphonie</span>
+              <span class="chip" data-value="un riff de guitare qui reste en tête">un riff de guitare</span>
+              <span class="chip-categorie">Vie quotidienne :</span>
+              <span class="chip" data-value="la cuisson d'un œuf">la cuisson d'un œuf</span>
+              <span class="chip" data-value="monter un meuble en kit">monter un meuble en kit</span>
+              <span class="chip" data-value="le ménage de printemps">le ménage de printemps</span>
+              <span class="chip" data-value="un barbecue raté">un barbecue raté</span>
+              <span class="chip-categorie">Métiers / Gestes :</span>
+              <span class="chip" data-value="le rodage d'un moteur">le rodage d'un moteur</span>
+              <span class="chip" data-value="le pétrissage de la pâte">le pétrissage de la pâte</span>
+              <span class="chip" data-value="une fissure dans une vitre">une fissure dans une vitre</span>
+              <span class="chip" data-value="la trempe de l'acier">la trempe de l'acier</span>
+              <span class="chip" data-value="une chaîne de production">une chaîne de production</span>
+            </div>
+            <div class="etape-consigne" style="font-size:14px;margin-top:6px;">Écrivez votre analogie :</div>
+            <input type="text" id="analogieRef" placeholder="Ex: le rodage d'un moteur, pétrir de la pâte, MacGyver...">
+            <div class="cc-apercu" id="apercu">💡 Votre analogie apparaîtra ici : <strong>...</strong></div>
+          </div>
+        </div>
+
+        <!-- ÉTAPE 2 -->
+        <div class="cc-etape" id="etape2">
+          <div class="watermark"><span>Extrait</span></div>
+          <span class="etape-label">Étape 2</span>
+          <div class="etape-desc">Développez votre analogie pour en faire un outil pédagogique.</div>
+          <div style="margin-bottom:12px;">
+            <div class="etape-consigne">1. Qu'est-ce qui se <strong>ressemble</strong> entre ce que vous transmettez et votre analogie ?</div>
+            <textarea id="analogieSimilaire" rows="2" placeholder="Dans les deux cas,..."></textarea>
+            <div class="cc-astuce">💡 <strong>Exemple :</strong> "Dans les deux cas, il faut de la patience, des réglages progressifs, et on ne voit pas les résultats tout de suite."</div>
+          </div>
+          <div style="margin-bottom:12px;">
+            <div class="etape-consigne">2. Où l'analogie a-t-elle des <strong>limites</strong> ? Qu'est-ce qui n'est pas pareil ?</div>
+            <textarea id="analogieDifferent" rows="2" placeholder="La différence, c'est que..."></textarea>
+            <div class="cc-astuce">💡 <strong>Exemple :</strong> "La différence, c'est que dans un conflit, il y a des émotions et des personnes, pas juste un moteur."</div>
+          </div>
+          <div style="margin-bottom:12px;">
+            <div class="etape-consigne">3. Qu'est-ce que cette analogie permet de <strong>comprendre</strong> qu'ils ne voyaient pas avant ?</div>
+            <textarea id="analogieCompris" rows="2" placeholder="Cette analogie éclaire..."></textarea>
+            <div class="cc-astuce">💡 <strong>Exemple :</strong> "Cette analogie éclaire le fait qu'on ne peut pas forcer une résolution plus vite qu'elle ne le peut."</div>
+          </div>
+          <div>
+            <div class="etape-consigne">4. Quelle <strong>question</strong> poseriez-vous à vos apprenants pour vérifier qu'ils ont compris ?</div>
+            <textarea id="analogieTest" rows="2" placeholder="La question que je poserai..."></textarea>
+            <div class="cc-astuce">💡 <strong>Exemple :</strong> "Je leur demanderai : est-ce que vous êtes en train de forcer un moteur froid ?"</div>
+          </div>
+        </div>
+
+        <button class="cc-btn" id="btnAssembler">Assembler mon analogie</button>
+
+        <div class="cc-resultat" id="resultContainer">
+          <div class="res-titre">Mon analogie pédagogique</div>
+          <div class="res-item"><span class="res-label">Ce que je transmets</span><div class="res-texte" id="resSujet">...</div></div>
+          <div class="res-item"><span class="res-label">Mon analogie</span><div class="res-texte" id="resPhrase">...</div></div>
+          <div class="res-item"><span class="res-label">Ce qui se ressemble</span><div class="res-texte" id="resSimilaire">...</div></div>
+          <div class="res-item"><span class="res-label">Les limites de l'analogie</span><div class="res-texte" id="resDifferent">...</div></div>
+          <div class="res-item"><span class="res-label">Ce que ça éclaire</span><div class="res-texte" id="resCompris">...</div></div>
+          <div class="res-item" style="border-bottom:none;margin-bottom:0;padding-bottom:0;"><span class="res-label">Question pour vérifier la compréhension</span><div class="res-texte" id="resTest">...</div></div>
+          <div class="res-edit">
+            <label style="font-size:13px;font-weight:600;color:#080F1E;display:block;margin-bottom:4px;">Personnalisez votre analogie :</label>
+            <textarea id="resultEdit" rows="5"></textarea>
+          </div>
+          <button class="cc-btn-secondary" id="btnReessayer">Recommencer</button>
+        </div>
+
+        <button class="btn-dl-pdf" id="btnDownload">Télécharger mon analogie (PDF)</button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BLOC 2 : FICHE SYNTHÈSE ===== -->
+  <div class="masterclass-container">
+    <div class="fiche-synthese">
+      <div class="fs-banner">
+        <div class="fs-badge">✦ Fiche Synthèse ✦</div>
+        <div class="fs-title">Module 07 · Les Outils de l'Impact</div>
+        <div class="fs-subtitle">Module 7</div>
+      </div>
+      <div class="fs-body">
+        <div class="fs-intro">
+          <div class="watermark"><span>Extrait</span></div>
+          Après l'écoute de l'audio du Module 7, consolidez et retenez l'essentiel.
+        </div>
+
+        <div class="fs-point">
+          <div class="watermark"><span>Extrait</span></div>
+          <div class="fs-num">1</div>
+          <div class="fs-content">
+            <div class="fs-point-title">L'analogie traduit, elle ne simplifie pas</div>
+            <div class="fs-point-text">Elle pose quelque chose d'abstrait dans un monde que l'apprenant connaît déjà. Elle crée un pont entre le nouveau et le familier. Simplifier, c'est réduire. Traduire, c'est rendre accessible sans trahir.</div>
+          </div>
+        </div>
+
+        <div class="fs-point">
+          <div class="watermark"><span>Extrait</span></div>
+          <div class="fs-num">2</div>
+          <div class="fs-content">
+            <div class="fs-point-title">Trois critères pour une bonne analogie</div>
+            <div class="fs-point-text"><strong>Précise</strong> (un aspect spécifique, pas le concept entier), <strong>accessible</strong> (appuyée sur une expérience vécue par votre public), <strong>honnête</strong> (les limites de l'analogie sont explicitement posées).</div>
+          </div>
+        </div>
+
+        <div class="fs-point">
+          <div class="watermark"><span>Extrait</span></div>
+          <div class="fs-num">3</div>
+          <div class="fs-content">
+            <div class="fs-point-title">Le Binôme Miroir révèle les points de friction</div>
+            <div class="fs-point-text">Expliquer à voix haute — à un pair ou en s'enregistrant — met au jour exactement là où le concept résiste. Ces points de friction sont la matière première de vos meilleures analogies.</div>
+          </div>
+        </div>
+
+        <div class="fs-point">
+          <div class="watermark"><span>Extrait</span></div>
+          <div class="fs-num">4</div>
+          <div class="fs-content">
+            <div class="fs-point-title">Comprendre n'est pas savoir faire</div>
+            <div class="fs-point-text">Les méthodes actives comblent cet écart. On peut comprendre comment nager sans jamais avoir été dans l'eau. Choisissez vos méthodes en cohérence avec votre modalité cible.</div>
+          </div>
+        </div>
+
+        <div class="fs-questions">
+          <div class="watermark"><span>Extrait</span></div>
+          <div class="fs-q-title"><span>Questions de réflexion personnelle</span></div>
+          <div class="fs-q-item">Quel est ce que vous transmettez qui est le plus difficile à faire comprendre dans votre domaine — et quelle analogie avez-vous trouvée dans le Binôme Miroir ?</div>
+          <div class="fs-q-item">Y a-t-il une méthode que vous utilisez habituellement et qui n'est pas adaptée à votre modalité cible ?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BANDEAU INTRO 7.5 -->
+  <div class="intro-banner">
+    <span class="intro-banner-text">7.5 Auto-diagnostic progressif M7. (5 min)</span>
+    <img src="/upgr/covers/masterclass2-logo.png" alt="L'Art de Transmettre #2" class="intro-banner-img"/>
+  </div>
+
+  <!-- ===== BLOC 3 : AUTO-DIAGNOSTIC M7 ===== -->
+  <div class="masterclass-container">
+    <div class="bilan-container" id="bilanContainer">
+      <div class="bilan-banner">
+        <div class="bilan-badge">✦ Auto-Diagnostic ✦</div>
+        <div class="bilan-title">Le Bilan de l'Analogiste</div>
+        <div class="bilan-subtitle">Module 7 · Les Outils de l'Impact</div>
+      </div>
+      <div class="bilan-body">
+        <div class="bilan-intro">Évaluez votre progression sur les piliers des outils de la transmission.<br>Répondez honnêtement à chaque affirmation sur une échelle de 1 à 5.</div>
+        <div id="questionsContainer">
+          <div class="bilan-item" id="q1">
+            <div><span class="bilan-num">1</span><span class="bilan-text">Je sais identifier ce que je transmets qui est le plus difficile à faire comprendre.</span></div>
+            <div class="bilan-options">
+              <label class="opt"><input type="radio" name="q1" value="1"> 1 <span class="label">Pas du tout</span></label>
+              <label class="opt"><input type="radio" name="q1" value="2"> 2 <span class="label">Peu</span></label>
+              <label class="opt"><input type="radio" name="q1" value="3"> 3 <span class="label">Parfois</span></label>
+              <label class="opt"><input type="radio" name="q1" value="4"> 4 <span class="label">Souvent</span></label>
+              <label class="opt"><input type="radio" name="q1" value="5"> 5 <span class="label">Tout à fait</span></label>
+            </div>
+          </div>
+          <div class="bilan-item" id="q2">
+            <div><span class="bilan-num">2</span><span class="bilan-text">Je comprends la différence entre simplifier et traduire par l'analogie.</span></div>
+            <div class="bilan-options">
+              <label class="opt"><input type="radio" name="q2" value="1"> 1 <span class="label">Pas du tout</span></label>
+              <label class="opt"><input type="radio" name="q2" value="2"> 2 <span class="label">Peu</span></label>
+              <label class="opt"><input type="radio" name="q2" value="3"> 3 <span class="label">Parfois</span></label>
+              <label class="opt"><input type="radio" name="q2" value="4"> 4 <span class="label">Souvent</span></label>
+              <label class="opt"><input type="radio" name="q2" value="5"> 5 <span class="label">Tout à fait</span></label>
+            </div>
+          </div>
+          <div class="bilan-item" id="q3">
+            <div><span class="bilan-num">3</span><span class="bilan-text">Je suis capable de construire une analogie précise, accessible et honnête.</span></div>
+            <div class="bilan-options">
+              <label class="opt"><input type="radio" name="q3" value="1"> 1 <span class="label">Pas du tout</span></label>
+              <label class="opt"><input type="radio" name="q3" value="2"> 2 <span class="label">Peu</span></label>
+              <label class="opt"><input type="radio" name="q3" value="3"> 3 <span class="label">Parfois</span></label>
+              <label class="opt"><input type="radio" name="q3" value="4"> 4 <span class="label">Souvent</span></label>
+              <label class="opt"><input type="radio" name="q3" value="5"> 5 <span class="label">Tout à fait</span></label>
+            </div>
+          </div>
+          <div class="bilan-item" id="q4">
+            <div><span class="bilan-num">4</span><span class="bilan-text">J'utilise le Binôme Miroir ou l'enregistrement pour repérer mes points de friction.</span></div>
+            <div class="bilan-options">
+              <label class="opt"><input type="radio" name="q4" value="1"> 1 <span class="label">Pas du tout</span></label>
+              <label class="opt"><input type="radio" name="q4" value="2"> 2 <span class="label">Peu</span></label>
+              <label class="opt"><input type="radio" name="q4" value="3"> 3 <span class="label">Parfois</span></label>
+              <label class="opt"><input type="radio" name="q4" value="4"> 4 <span class="label">Souvent</span></label>
+              <label class="opt"><input type="radio" name="q4" value="5"> 5 <span class="label">Tout à fait</span></label>
+            </div>
+          </div>
+          <div class="bilan-item" id="q5">
+            <div><span class="bilan-num">5</span><span class="bilan-text">Je sais choisir mes méthodes actives en cohérence avec ma modalité cible.</span></div>
+            <div class="bilan-options">
+              <label class="opt"><input type="radio" name="q5" value="1"> 1 <span class="label">Pas du tout</span></label>
+              <label class="opt"><input type="radio" name="q5" value="2"> 2 <span class="label">Peu</span></label>
+              <label class="opt"><input type="radio" name="q5" value="3"> 3 <span class="label">Parfois</span></label>
+              <label class="opt"><input type="radio" name="q5" value="4"> 4 <span class="label">Souvent</span></label>
+              <label class="opt"><input type="radio" name="q5" value="5"> 5 <span class="label">Tout à fait</span></label>
+            </div>
+          </div>
+          <div class="bilan-item" id="q6">
+            <div><span class="bilan-num">6</span><span class="bilan-text">Je comprends que comprendre n'est pas la même chose que savoir faire.</span></div>
+            <div class="bilan-options">
+              <label class="opt"><input type="radio" name="q6" value="1"> 1 <span class="label">Pas du tout</span></label>
+              <label class="opt"><input type="radio" name="q6" value="2"> 2 <span class="label">Peu</span></label>
+              <label class="opt"><input type="radio" name="q6" value="3"> 3 <span class="label">Parfois</span></label>
+              <label class="opt"><input type="radio" name="q6" value="4"> 4 <span class="label">Souvent</span></label>
+              <label class="opt"><input type="radio" name="q6" value="5"> 5 <span class="label">Tout à fait</span></label>
+            </div>
+          </div>
+        </div>
+        <button class="btn-validate" id="submitBtn" onclick="calculerBilan()">📊 Voir mon bilan</button>
+        <div class="resultat-box" id="resultBox">
+          <div class="result-header">
+            <div class="result-badge" id="resultBadge">🏅</div>
+            <div class="result-level" id="resultLevel">Analogiste Confirmé</div>
+            <div class="result-score" id="resultScore">22 / 30</div>
+          </div>
+          <div class="result-pouvoir" id="resultPouvoir">🧙 Pouvoir : L'Analogie Parfaite</div>
+          <div class="result-message" id="resultMessage">Vous avez de solides bases.</div>
+          <div class="result-detail" id="resultDetail">Score cumulé Module 7 : 22/30</div>
+          <button class="btn-reset" onclick="resetBilan()">🔄 Recommencer le bilan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BLOC 4 : COUP DE POUCE ===== -->
+  <div class="masterclass-container">
+    <div class="coup-pouce-m2">
+      <div class="cp-banner">
+        <div class="cp-badge">* Coup de pouce *</div>
+        <div class="cp-title">Un regard sur votre analogie</div>
+      </div>
+      <div class="cp-body">
+        <div class="cp-text">
+          <p>Si vous voulez un avis sur votre analogie, vos points de friction, vos méthodes actives ou votre façon de l'utiliser en formation, écrivez-moi à <a href="mailto:kl@upgr.ch" class="cp-mail">kl@upgr.ch</a>.</p>
+          <p>Je réponds à tous les messages.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-retour">
+    <a href="/masterclass2" class="btn-commander" id="cta-btn">Accéder à la Masterclasse #2</a>
+    <p>L'Art de Transmettre #2 · Faire vivre la transmission · 4h de contenu</p>
+  </div>
+
+</div><!-- fin .reader -->
+</div><!-- fin .layout -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  // ===== CONSTRUCTEUR D'ANALOGIE =====
+  (function() {
+    "use strict";
+    var sujetTextarea   = document.getElementById('sujet');
+    var refInput        = document.getElementById('analogieRef');
+    var simTextarea     = document.getElementById('analogieSimilaire');
+    var diffTextarea    = document.getElementById('analogieDifferent');
+    var compTextarea    = document.getElementById('analogieCompris');
+    var testTextarea    = document.getElementById('analogieTest');
+    var btnAssembler    = document.getElementById('btnAssembler');
+    var resultContainer = document.getElementById('resultContainer');
+    var resSujet        = document.getElementById('resSujet');
+    var resPhrase       = document.getElementById('resPhrase');
+    var resSimilaire    = document.getElementById('resSimilaire');
+    var resDifferent    = document.getElementById('resDifferent');
+    var resCompris      = document.getElementById('resCompris');
+    var resTest         = document.getElementById('resTest');
+    var resultEdit      = document.getElementById('resultEdit');
+    var btnReessayer    = document.getElementById('btnReessayer');
+    var btnDownload     = document.getElementById('btnDownload');
+    var apercu          = document.getElementById('apercu');
+
+    document.querySelectorAll('.chip').forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        var value = this.getAttribute('data-value');
+        if (!value) return;
+        refInput.value = value;
+        refInput.focus();
+        mettreAJourApercu();
+        this.style.background = '#D4AF37';
+        this.style.borderColor = '#D4AF37';
+        setTimeout(function() { chip.style.background = ''; chip.style.borderColor = ''; }, 300);
+      });
+    });
+
+    function mettreAJourApercu() {
+      var ref = refInput.value.trim();
+      var sujet = sujetTextarea.value.trim();
+      if (ref) {
+        apercu.innerHTML = '💡 Pour aider mes apprenants à comprendre ' + (sujet || 'ce que je transmets') + ', je vais leur dire que c\'est comme ' + ref + '.';
+      } else {
+        apercu.innerHTML = '💡 Votre analogie apparaîtra ici : <strong>...</strong>';
+      }
+    }
+
+    refInput.addEventListener('input', mettreAJourApercu);
+    sujetTextarea.addEventListener('input', mettreAJourApercu);
+
+    btnAssembler.addEventListener('click', function() {
+      var sujet = sujetTextarea.value.trim();
+      var ref   = refInput.value.trim();
+      if (!sujet) { alert('Remplissez d\'abord "1a – Ce que vous transmettez".'); sujetTextarea.focus(); return; }
+      if (!ref)   { alert('Saisissez votre analogie à l\'Étape 1c.'); refInput.focus(); return; }
+
+      var phrase = 'Pour aider mes apprenants à comprendre ' + sujet + ', je vais leur dire que c\'est comme ' + ref + '.';
+      resSujet.textContent     = sujet;
+      resPhrase.textContent    = phrase;
+      resSimilaire.textContent = simTextarea.value.trim()  || '(non renseigné)';
+      resDifferent.textContent = diffTextarea.value.trim() || '(non renseigné)';
+      resCompris.textContent   = compTextarea.value.trim() || '(non renseigné)';
+      resTest.textContent      = testTextarea.value.trim() || '(non renseigné)';
+
+      resultEdit.value = 'Ce que je transmets : ' + sujet + '\n\n' +
+        'Mon analogie : ' + phrase + '\n\n' +
+        'Ce qui se ressemble : ' + (simTextarea.value.trim() || '(non renseigné)') + '\n\n' +
+        'Les limites de l\'analogie : ' + (diffTextarea.value.trim() || '(non renseigné)') + '\n\n' +
+        'Ce que ça éclaire : ' + (compTextarea.value.trim() || '(non renseigné)') + '\n\n' +
+        'Question pour vérifier : ' + (testTextarea.value.trim() || '(non renseigné)');
+
+      resultContainer.classList.add('open');
+      btnDownload.style.display = 'block';
+      resultContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    btnReessayer.addEventListener('click', function() {
+      resultContainer.classList.remove('open');
+      btnDownload.style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    btnDownload.addEventListener('click', function() {
+      if (typeof window.jspdf === 'undefined') { alert('La bibliothèque PDF n\'est pas chargée.'); return; }
+      var { jsPDF } = window.jspdf;
+      var doc = new jsPDF('p', 'mm', 'a4');
+      var pageWidth = 210, margin = 18, yPos = margin + 10;
+      var sujet = sujetTextarea.value.trim() || '(non renseigné)';
+      var ref   = refInput.value.trim() || '(non renseigné)';
+      var phrase = 'Pour aider mes apprenants à comprendre ' + sujet + ', je vais leur dire que c\'est comme ' + ref + '.';
+
+      doc.setFontSize(9); doc.setFont('times','bold'); doc.setTextColor('#080F1E');
+      doc.text("L'Art de Transmettre #2", margin, margin / 2 + 2);
+      var rText = 'Exercice 2'; doc.text(rText, pageWidth - margin - doc.getTextWidth(rText), margin / 2 + 2);
+      doc.setDrawColor('#eef1f6'); doc.setLineWidth(0.3); doc.line(margin, margin / 2 + 6, pageWidth - margin, margin / 2 + 6);
+      yPos = margin / 2 + 14;
+
+      doc.setFillColor('#080F1E'); doc.rect(margin, yPos, pageWidth - margin*2, 18, 'F');
+      doc.setDrawColor('#D4AF37'); doc.setLineWidth(0.8); doc.line(margin, yPos+18, pageWidth-margin, yPos+18);
+      doc.setFontSize(9); doc.setFont('times','bold'); doc.setTextColor('#D4AF37');
+      doc.text('* CONSTRUCTEUR D\'ANALOGIE *', pageWidth/2, yPos+5, {align:'center'});
+      doc.setFontSize(12); doc.setFont('times','bold'); doc.setTextColor('#ffffff');
+      doc.text('Mon analogie pédagogique', pageWidth/2, yPos+12.5, {align:'center'});
+      yPos += 24;
+
+      var sections = [
+        { label: 'Ce que je transmets', text: sujet },
+        { label: 'Mon analogie', text: phrase },
+        { label: 'Ce qui se ressemble', text: simTextarea.value.trim() || '(non renseigné)' },
+        { label: 'Les limites de l\'analogie', text: diffTextarea.value.trim() || '(non renseigné)' },
+        { label: 'Ce que ça éclaire', text: compTextarea.value.trim() || '(non renseigné)' },
+        { label: 'Question pour vérifier', text: testTextarea.value.trim() || '(non renseigné)' }
+      ];
+      sections.forEach(function(s) {
+        if (yPos > 240) { doc.addPage(); yPos = margin + 10; }
+        doc.setFont('times','bold'); doc.setFontSize(9); doc.setTextColor('#080F1E');
+        doc.text(s.label + ' :', margin, yPos); yPos += 4;
+        doc.setFont('times','normal'); doc.setFontSize(9); doc.setTextColor('#1a2a3a');
+        var lines = doc.splitTextToSize(s.text, pageWidth - margin*2);
+        doc.text(lines, margin, yPos); yPos += lines.length * 5 + 4;
+      });
+      doc.save('Constructeur_Analogie_MC2.pdf');
+    });
+  })();
+
+  // ===== AUTO-DIAGNOSTIC =====
+  function calculerBilan() {
+    var total = 0, allAnswered = true;
+    for (var i = 1; i <= 6; i++) {
+      var sel = document.querySelector('input[name="q' + i + '"]:checked');
+      if (!sel) { allAnswered = false; break; }
+      total += parseInt(sel.value);
+    }
+    if (!allAnswered) { alert('Répondez à toutes les affirmations avant de voir votre bilan.'); return; }
+
+    var badge, level, pouvoir, message;
+    if (total <= 12) {
+      badge = '🌱'; level = 'Apprenti Analogiste'; pouvoir = '🌱 Pouvoir : La Graine du Sens';
+      message = 'Vous êtes au début du chemin. L\'analogie n\'est pas encore un réflexe pour vous, mais vous avez identifié les zones à travailler. C\'est déjà beaucoup.';
+    } else if (total <= 20) {
+      badge = '🔨'; level = 'Artisan de la Transmission'; pouvoir = '🔨 Pouvoir : Le Pont Construit';
+      message = 'Vous comprenez les mécanismes. Il vous reste à les automatiser. Continuez à vous entraîner avec le Binôme Miroir.';
+    } else if (total <= 26) {
+      badge = '🏅'; level = 'Analogiste Confirmé'; pouvoir = '🏅 Pouvoir : L\'Analogie Précise';
+      message = 'Vous maîtrisez les outils de l\'impact. Vous savez construire une analogie solide et choisir vos méthodes actives. Passez à l\'application.';
+    } else {
+      badge = '⭐'; level = 'Maître Analogiste'; pouvoir = '⭐ Pouvoir : Le Pont Parfait';
+      message = 'Vous avez intégré les outils de la transmission vivante. Vos apprenants bénéficient d\'analogies précises, accessibles et honnêtes qui créent de vrais ponts.';
+    }
+
+    document.getElementById('resultBadge').textContent = badge;
+    document.getElementById('resultLevel').textContent = level;
+    document.getElementById('resultScore').textContent = total + ' / 30';
+    document.getElementById('resultPouvoir').textContent = pouvoir;
+    document.getElementById('resultMessage').textContent = message;
+    document.getElementById('resultDetail').textContent = 'Score cumulé Module 7 : ' + total + '/30';
+
+    var box = document.getElementById('resultBox');
+    box.style.display = 'block';
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function resetBilan() {
+    document.querySelectorAll('#questionsContainer input[type="radio"]').forEach(function(r) { r.checked = false; });
+    document.querySelectorAll('#questionsContainer .opt').forEach(function(o) { o.classList.remove('selected'); });
+    document.getElementById('resultBox').style.display = 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // opt selected highlight
+  document.querySelectorAll('.bilan-options .opt').forEach(function(opt) {
+    opt.addEventListener('click', function() {
+      var name = this.querySelector('input').name;
+      document.querySelectorAll('.bilan-options .opt input[name="' + name + '"]').forEach(function(r) {
+        r.closest('.opt').classList.remove('selected');
+      });
+      this.classList.add('selected');
+    });
+  });
+
+  // from param → retour
+  (function() {
+    var from = new URLSearchParams(window.location.search).get('from');
+    var map  = { 'masterclass2': '/masterclass2', 'pack-masterclasses': '/pack-masterclasses' };
+    var btn  = document.getElementById('back-btn');
+    if (btn && map[from]) btn.href = map[from];
+    var cta  = document.getElementById('cta-btn');
+    if (cta && map[from]) { cta.href = map[from]; cta.textContent = '← Retour à la page'; }
+  })();
+</script>
+
+</body>
+</html>
