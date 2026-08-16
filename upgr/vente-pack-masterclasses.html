@@ -112,6 +112,11 @@
     .btn { display: block; width: 100%; padding: 0.9rem 2rem; font-family: 'Raleway', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: none; border-radius: 2px; cursor: pointer; text-align: center; transition: background 0.18s, color 0.18s; text-decoration: none; margin-top: 1.5rem; }
     .btn-solid { background: #F5E090; color: #080F1E; }
     .btn-solid:hover { background: #e8d07a; text-decoration: none; }
+    .btn-outline { background: transparent; color: #F5E090; border: 1px solid rgba(245,224,144,0.6); margin-top: 0.6rem; }
+    .btn-outline:hover { background: rgba(245,224,144,0.08); border-color: #F5E090; text-decoration: none; }
+    .paiement-fois { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 0.9rem; }
+    .paiement-fois-badge { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #080F1E; background: #F5E090; border-radius: 2px; padding: 0.22rem 0.75rem; }
+    .paiement-fois-text { font-size: 0.75rem; font-weight: 300; color: rgba(255,255,255,0.6); }
 
     /* FOOTER */
     footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 2.5rem 2rem; text-align: center; }
@@ -269,10 +274,14 @@
           <div class="price-eur-equiv">/ 435 € <span class="price-eur-strike">540 €</span></div>
           <span>Economisez 97 CHF / 105 €</span>
         </div>
-        <div class="price-eur-equiv">Paiement en 2 ou 3 fois possible</div>
+        <div class="paiement-fois">
+          <span class="paiement-fois-badge">Paiement en 3 fois</span>
+          <span class="paiement-fois-text">disponible · sans frais</span>
+        </div>
         <span class="note-shimmer">Vous avez déjà acheté une offre chez nous ? Ce que vous avez payé sera déduit au paiement. Votre code promotionnel vous a été envoyé par mail.</span>
         <p class="price-disclaimer">Prix en euros donné à titre indicatif, sur la base d'un équivalent en CHF. Le montant facturé peut varier selon le taux de change appliqué au moment du paiement.</p>
         <a href="#" class="btn btn-solid">Commander</a>
+        <a href="#" class="btn btn-outline">Régler en 3 fois</a>
       </div>
     </div>
 
