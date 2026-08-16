@@ -222,7 +222,7 @@
 <script>
 (function () {
   var from = new URLSearchParams(window.location.search).get('from');
-  var map = { eugene: '/upgr/vente-eugene', edouard: '/upgr/vente-edouard' };
+  var map = { eugene: '/upgr/vente-eugene', edouard: '/upgr/vente-edouard', 'pack-masterclasses': '/pack-masterclasses' };
   var btn = document.getElementById('back-btn');
   if (btn && map[from]) btn.href = map[from];
   else if (btn && document.referrer) btn.href = document.referrer;

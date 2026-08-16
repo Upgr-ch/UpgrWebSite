@@ -704,7 +704,7 @@
     </div>
   </div>
   <div class="header-actions">
-    <a href="/masterclass1" class="back-link">← Retour</a>
+    <a id="back-btn" href="/masterclass1" class="back-link">← Retour</a>
   </div>
 </header>
 
@@ -1189,6 +1189,12 @@
     validationDiv.classList.add('open');
     validationDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
+  (function() {
+    var from = new URLSearchParams(window.location.search).get('from');
+    var map = { 'masterclass1': '/masterclass1', 'pack-masterclasses': '/pack-masterclasses' };
+    var btn = document.getElementById('back-btn');
+    if (btn && map[from]) btn.href = map[from];
+  })();
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
