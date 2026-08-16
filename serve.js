@@ -721,6 +721,7 @@ filtrer();
   const cleanRoutes = {
     '/masterclass1':       'upgr/vente-masterclass1.html',
    '/masterclass2':       'upgr/vente-masterclass2.html',
+   '/pack-masterclasses': 'upgr/vente-pack-masterclasses.html',
     '/extrait-masterclass1': 'upgr/extrait-masterclass1.html',
   };
   const qs = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
