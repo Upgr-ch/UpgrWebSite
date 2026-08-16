@@ -59,19 +59,14 @@
     .prog-divider-line { flex: 1; height: 1px; background: rgba(245,224,144,0.12); }
     .prog-divider-dot { width: 6px; height: 6px; background: rgba(245,224,144,0.3); border-radius: 50%; flex-shrink: 0; }
 
-    /* BOOKS */
-    .books-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3.5rem; }
-    @media (max-width: 700px) { .books-grid { grid-template-columns: 1fr; } }
-    .book { display: flex; flex-direction: column; border: 1px solid rgba(245,224,144,0.12); border-radius: 4px; background: rgba(255,255,255,0.02); overflow: hidden; position: relative; }
-    .book-badge { position: absolute; top: -1px; right: 1.2rem; background: #F5E090; color: #080F1E; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.24rem 0.75rem; border-radius: 0 0 4px 4px; }
-    .book-cover-col { padding: 2rem 2rem 1.5rem; display: flex; align-items: center; justify-content: center; }
-    .book-cover-col img { width: 100%; max-width: 130px; height: auto; display: block; margin: 0 auto; box-shadow: 0 8px 32px rgba(0,0,0,0.28); }
-    .book-text-col { border-top: 1px solid rgba(245,224,144,0.08); padding: 1.6rem 1.8rem; }
-    .book-title { font-size: 1.15rem; font-weight: 700; font-style: italic; line-height: 1.25; margin-bottom: 0.5rem; color: #F5E090; }
-    .book-meta { font-size: 0.68rem; font-weight: 300; letter-spacing: 0.12em; color: rgba(255,255,255,0.5); text-transform: uppercase; margin-bottom: 0.85rem; }
-    .book-desc { font-size: 0.88rem; font-weight: 300; line-height: 1.82; color: rgba(255,255,255,0.78); }
-    .book-desc p + p { margin-top: 0.7rem; }
-    .book-desc strong { color: rgba(255,255,255,0.95); font-weight: 500; }
+    /* BOOKS — compact */
+    .books-list { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 3rem; }
+    .book-row { display: flex; align-items: center; gap: 1.2rem; padding: 0.85rem 1.1rem; border: 1px solid rgba(245,224,144,0.1); border-radius: 3px; background: rgba(255,255,255,0.015); }
+    .book-row img { width: 44px; height: auto; flex-shrink: 0; box-shadow: 0 2px 10px rgba(0,0,0,0.35); border-radius: 1px; }
+    .book-row-text { display: flex; flex-direction: column; gap: 0.2rem; }
+    .book-row-badge { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #080F1E; background: #F5E090; padding: 0.15rem 0.5rem; border-radius: 1px; display: inline-block; width: fit-content; margin-bottom: 0.1rem; }
+    .book-row-title { font-size: 0.9rem; font-weight: 600; font-style: italic; color: rgba(255,255,255,0.92); line-height: 1.2; }
+    .book-row-meta { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.1em; color: rgba(255,255,255,0.38); text-transform: uppercase; }
 
     /* PROFILES */
     .profiles { margin-bottom: 3.5rem; }
@@ -201,36 +196,23 @@
 
     <!-- EBOOKS -->
     <span class="section-label">Ouvrages inclus</span>
-    <div class="books-grid">
-
-      <div class="book">
-        <span class="book-badge">Ebook</span>
-        <div class="book-cover-col">
-          <img src="/upgr/covers/idee-au-plan.png" alt="De l'idée au plan"/>
-        </div>
-        <div class="book-text-col">
-          <h2 class="book-title">De l'idée au plan</h2>
-          <p class="book-meta">80 pages · Numérique · Téléchargeable · Imprimable</p>
-          <div class="book-desc">
-            <p><strong>Clarifier vos idées floues pour les transformer en un plan simple et concret.</strong> Ce guide suit une logique en deux temps : structurer une transmission en 5 étapes depuis les objectifs jusqu'aux modalités d'évaluation, puis passer à l'action avec un rétroplanning et une première action dans les 48 heures.</p>
-          </div>
+    <div class="books-list">
+      <div class="book-row">
+        <img src="/upgr/covers/idee-au-plan.png" alt="De l'idée au plan"/>
+        <div class="book-row-text">
+          <span class="book-row-badge">Ebook</span>
+          <span class="book-row-title">De l'idée au plan</span>
+          <span class="book-row-meta">80 pages · Numérique · Téléchargeable · Imprimable</span>
         </div>
       </div>
-
-      <div class="book">
-        <span class="book-badge">Ebook</span>
-        <div class="book-cover-col">
-          <img src="/upgr/covers/competences-invisibles.png" alt="Vos compétences humaines invisibles"/>
-        </div>
-        <div class="book-text-col">
-          <h2 class="book-title">Vos compétences humaines invisibles</h2>
-          <p class="book-meta">120 pages · Numérique · Téléchargeable · Imprimable</p>
-          <div class="book-desc">
-            <p>Pour être vraiment différenciant dans votre projet, il y a un indispensable : <strong>Vous.</strong> Ce livre explore l'interconnexion directe entre votre mouvement corporel et le déploiement de vos compétences, votre cognition, votre créativité, votre communication.</p>
-          </div>
+      <div class="book-row">
+        <img src="/upgr/covers/competences-invisibles.png" alt="Vos compétences humaines invisibles"/>
+        <div class="book-row-text">
+          <span class="book-row-badge">Ebook</span>
+          <span class="book-row-title">Vos compétences humaines invisibles</span>
+          <span class="book-row-meta">120 pages · Numérique · Téléchargeable · Imprimable</span>
         </div>
       </div>
-
     </div>
 
     <!-- PROFILES -->
