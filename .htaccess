@@ -5,6 +5,9 @@ RewriteEngine On
 # Legal pages — internal rewrite to .html files (no directory redirect)
 RewriteRule ^upgr/(politiquedecookies|confidentialite|mentionslegales|cgu|cgv)$ upgr/$1.html [L]
 
+# Eugene SEO pre-render
+RewriteRule ^eugene$ eugene.html [QSA,L]
+
 # Masterclass pages
 RewriteRule ^masterclass1$ upgr/vente-masterclass1.html [QSA,L]
 RewriteRule ^masterclass2$ upgr/vente-masterclass2.html [QSA,L]
