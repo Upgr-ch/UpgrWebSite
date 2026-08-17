@@ -1,0 +1,87 @@
+Optimise UNIQUEMENT le SEO de la page d'accueil actuelle de https://www.upgr.ch/.
+
+Le site est déjà construit et le design est validé.
+
+IMPORTANT : ne modifie absolument pas l'apparence de la page d'accueil.
+
+Ne change pas :
+
+- le design
+- la mise en page
+- les couleurs
+- les polices
+- les images
+- les animations
+- les boutons
+- le header
+- le footer
+- les sections
+- la navigation
+- l'UX/UI
+
+Ta mission est uniquement d'optimiser le référencement naturel de la page d'accueil.
+
+Travaille notamment sur :
+
+- la balise Title
+- la meta description
+- le H1
+- les H2/H3 si nécessaire
+- la structure HTML sémantique
+- les mots-clés
+- les textes existants, uniquement si nécessaire pour améliorer le SEO
+- les attributs ALT des images
+- les liens internes
+- la balise canonical
+- Open Graph
+- les données structurées Schema.org pertinentes
+- les signaux SEO locaux pertinents
+
+OBJECTIF SEO
+
+Positionner la page d'accueil sur des recherches liées à UpGrade et notamment :
+
+- Learning & Development Suisse
+- Learning & Development Suisse romande
+- consultant Learning & Development Suisse
+- développement des compétences entreprise Suisse
+- stratégie Learning & Development entreprise
+- formation leadership entreprise Suisse
+- développement du leadership en entreprise Suisse
+- formation management entreprise Suisse
+- coaching dirigeants Suisse
+- coaching managers Suisse
+- développement des talents entreprise Suisse
+- transformation organisationnelle Suisse
+
+Identifie également les meilleurs mots-clés longue traîne en fonction du contenu réel de la page.
+
+IMPORTANT
+
+Intègre les mots-clés naturellement.
+
+Ne fais aucun keyword stuffing.
+
+Ne transforme pas la page en une page SEO remplie de texte.
+
+Le contenu doit rester élégant, professionnel et cohérent avec le positionnement actuel d'UpGrade.
+
+Si tu modifies les textes, fais uniquement les modifications nécessaires pour améliorer leur pertinence SEO, sans changer le message ni le style de la marque.
+
+RÈGLE ABSOLUE
+
+Après ton intervention, la page d'accueil doit avoir exactement le même aspect visuel qu'avant.
+
+Tu ne dois faire aucune refonte.
+
+Ne touche à aucune autre page du site.
+
+Optimise uniquement la page d'accueil pour Google.
+
+À la fin, indique-moi :
+
+- le Title choisi ;
+- la meta description ;
+- le H1 ;
+- les principaux mots-clés ciblés ;
+- les optimisations SEO effectuées.
