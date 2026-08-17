@@ -1,0 +1,14 @@
+Je veux corriger le référencement (SEO) de la page d'atterrissage située à l'URL upgr.ch/eugene, sans changer son apparence visuelle, son design, ses animations ou son comportement pour l'utilisateur. La forme actuelle doit rester strictement identique.
+
+Problème actuel : la page est construite entièrement en JavaScript côté client. Quand on regarde le code source HTML brut (sans exécuter le JavaScript), il n'y a aucun contenu visible — seulement un message "You need to enable JavaScript to run this app." et un titre générique. Résultat : Google ne peut pas indexer le contenu réel de la page pour la référencer sur des recherches pertinentes.
+
+Ce que je veux que tu fasses :
+
+Ajoute du rendu côté serveur (SSR) ou du pré-rendu (pre-rendering / static generation) pour cette page, afin que le HTML envoyé au premier chargement contienne déjà le texte réel affiché à l'écran — pas seulement après exécution du JavaScript. Utilise la méthode la plus adaptée à la stack technique déjà en place (regarde le framework utilisé avant de choisir : Next.js, Remix, Vite + prerender, etc.).
+Mets à jour les balises suivantes pour qu'elles reflètent le contenu réel de la page, au lieu du titre et de la description génériques actuels :
+<title> : un titre spécifique et descriptif du contenu réel de la page (pas "UpGrade | Learning & Development")
+<meta name="description"> : une description spécifique de 150-160 caractères qui résume ce que propose la page
+Garde les meta viewport et theme-color existantes telles quelles
+Vérifie que le texte principal de la page (titres, paragraphes, boutons visibles) est bien présent dans le HTML initial, avant toute hydratation JavaScript — pas seulement injecté dynamiquement après coup.
+Ne touche à aucun élément visuel : pas de changement de mise en page, de couleurs, de police, d'animations, de composants interactifs, ou de comportement de navigation. L'objectif est uniquement que le contenu textuel soit lisible par un moteur de recherche dès le premier chargement — l'expérience utilisateur doit rester identique à 100%.
+Une fois la modification faite, montre-moi ce que retourne le HTML brut de la page (par exemple via curl ou view-source) pour que je puisse vérifier que le texte apparaît bien sans JavaScript activé.
