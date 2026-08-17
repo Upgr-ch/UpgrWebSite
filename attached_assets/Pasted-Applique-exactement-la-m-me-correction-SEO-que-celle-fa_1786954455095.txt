@@ -1,0 +1,14 @@
+Applique exactement la même correction SEO que celle faite sur upgr.ch/eugene à la page upgr.ch/edouard — même méthode, même structure technique.
+
+Contexte : la page /edouard est actuellement construite en JavaScript pur (React). Le HTML brut renvoyé au premier chargement ne contient aucun texte indexable — seulement un titre générique et le message "Vous devez activer JavaScript pour utiliser cette application." Google ne peut donc rien indexer de cette page.
+
+Ce que je veux, à l'identique de ce qui a été fait sur /eugene :
+
+Ajoute une section de contenu pré-rendu dans le HTML statique (comme la section #seo-prerender créée pour /eugene), visible dans le code source sans exécution de JavaScript, avec un commentaire indiquant "Contenu pré-rendu pour l'indexation SEO. React remplace ce contenu au chargement."
+Mets à jour ces balises avec du contenu spécifique à la page /edouard (pas générique, pas copié depuis /eugene) :
+<title> : titre spécifique décrivant ce que fait cette page/app précisément
+<meta name="description"> : description de 150-160 caractères spécifique au contenu réel d'Edouard
+Structure du contenu pré-rendu (h1, h2, paragraphes, cartes) reflétant le sujet réel de cette page, pas un copier-coller d'Eugène
+Ne change rien à l'apparence ni au comportement de l'application pour l'utilisateur — uniquement le HTML pré-rendu ajouté pour le SEO, l'app React continue de fonctionner exactement pareil ensuite.
+Déploie réellement en production, pas seulement en environnement de développement — le déploiement précédent sur /eugene avait nécessité un rappel explicite pour confirmer que c'était bien poussé en ligne via le workflow GitHub Actions FTP → Infomaniak, pas juste committé.
+Une fois déployé, confirme avec un test direct : exécute curl -s https://upgr.ch/edouard et montre-moi le résultat exact (pas un résumé, le HTML brut complet ou au moins les 50 premières lignes), pour que je puisse vérifier que le contenu texte est bien présent, avec les headers HTTP (Server, Last-Modified, absence de cache CDN) comme cela avait été fait pour /eugene.
