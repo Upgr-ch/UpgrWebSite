@@ -720,6 +720,7 @@ filtrer();
   // Clean URL routes → fichiers HTML dans upgr/
   const cleanRoutes = {
     '/eugene':              'eugene.html',
+    '/edouard':             'edouard.html',
     '/masterclass1':        'upgr/vente-masterclass1.html',
     '/masterclass2':        'upgr/vente-masterclass2.html',
     '/pack-masterclasses':  'upgr/vente-pack-masterclasses.html',
