@@ -1,0 +1,210 @@
+Optimise UNIQUEMENT la page d'accueil actuelle de https://www.upgr.ch/.
+
+Le site est déjà construit et son design est validé.
+
+RÈGLE ABSOLUE
+
+NE MODIFIE PAS L'ASPECT DU SITE.
+
+Ne change absolument rien à :
+
+- la mise en page
+- la structure visuelle
+- les couleurs
+- les polices
+- les tailles
+- les images
+- les animations
+- les boutons
+- le header
+- le footer
+- le menu
+- les sections
+- l'UX/UI
+
+NE RECONSTRUIS PAS LE SITE.
+
+NE CRÉE PAS DE NOUVELLES PAGES.
+
+NE CRÉE PAS DE BLOG.
+
+NE CRÉE PAS DE NOUVEAUX ARTICLES.
+
+NE RAJOUTE PAS DE BLOCS DE CONTENU VISIBLES.
+
+Tu dois uniquement optimiser ce qui existe déjà.
+
+---
+
+OBJECTIF
+
+Optimiser la page d'accueil pour :
+
+1. Google et les moteurs de recherche classiques ;
+2. les moteurs de réponse et systèmes d'IA comme ChatGPT, Gemini, Perplexity, Claude et DeepSeek.
+
+L'objectif est que les moteurs comprennent clairement :
+
+- qui est UpGrade ;
+- ce que fait UpGrade ;
+- quels services UpGrade propose ;
+- pour quels types de clients ;
+- dans quelle zone géographique UpGrade intervient ;
+- quelles expertises sont associées à UpGrade.
+
+---
+
+SEO ON-PAGE
+
+À partir du contenu EXISTANT de la page, optimise si nécessaire :
+
+- Title
+- Meta description
+- H1
+- H2/H3 existants
+- structure HTML sémantique
+- attributs ALT
+- liens internes existants
+- ancres de liens
+- canonical
+- Open Graph
+
+Ne réécris pas massivement les textes.
+
+Ne crée pas de nouveau contenu visible.
+
+Si une modification textuelle est absolument nécessaire, modifie uniquement les textes existants et conserve leur longueur, leur style et leur sens autant que possible.
+
+---
+
+MOTS-CLÉS
+
+Optimise naturellement autour des recherches pertinentes pour UpGrade, notamment :
+
+- Learning & Development Suisse
+- Learning & Development Suisse romande
+- consultant Learning & Development Suisse
+- développement des compétences entreprise Suisse
+- stratégie Learning & Development entreprise
+- leadership entreprise Suisse
+- développement du leadership Suisse
+- formation management entreprise Suisse
+- coaching dirigeants Suisse
+- coaching managers Suisse
+- développement des talents entreprise Suisse
+- transformation organisationnelle Suisse
+
+Identifie également les variantes longue traîne pertinentes à partir du contenu réel déjà présent sur la page.
+
+IMPORTANT :
+
+Aucun keyword stuffing.
+
+Les mots-clés doivent être intégrés naturellement.
+
+---
+
+AI SEO / GEO
+
+Optimise la page afin qu'une IA puisse facilement identifier UpGrade comme une entreprise spécialisée dans ses domaines d'expertise.
+
+Utilise une structure HTML claire et sémantique.
+
+Les informations existantes doivent être facilement interprétables par une machine.
+
+Lorsque les informations sont déjà présentes sur la page, rends clairement identifiable :
+
+- le nom de l'entreprise : UpGrade
+- le site officiel : upgr.ch
+- la description de l'activité
+- les services
+- les domaines d'expertise
+- la zone géographique
+- les coordonnées
+- les profils de l'équipe si déjà présents
+
+NE CRÉE AUCUNE INFORMATION QUI N'EXISTE PAS.
+
+---
+
+DONNÉES STRUCTURÉES
+
+Ajoute ou améliore les données Schema.org appropriées, uniquement avec des informations réelles déjà disponibles.
+
+Utilise notamment si pertinent :
+
+- Organization
+- WebSite
+- Service
+- Person
+- BreadcrumbList
+
+Utilise LocalBusiness uniquement si cela correspond réellement à l'activité et aux informations disponibles.
+
+Ajoute les mêmes informations de manière cohérente entre le HTML visible et les données structurées.
+
+---
+
+ENTITÉ UpGrade
+
+L'objectif est de renforcer la compréhension de l'entité « UpGrade ».
+
+Assure une cohérence parfaite entre :
+
+UpGrade → upgr.ch → activité → services → localisation → équipe → réseaux sociaux existants.
+
+Ne crée aucun profil externe.
+
+Ne crée aucune mention artificielle.
+
+---
+
+TECHNIQUE
+
+Vérifie également :
+
+- indexabilité
+- robots.txt
+- sitemap.xml
+- canonical
+- vitesse de chargement
+- Core Web Vitals
+- images
+- HTML sémantique
+- liens internes
+- erreurs techniques pouvant empêcher l'indexation
+
+Tu peux corriger les problèmes techniques SEO, à condition que cela ne change pas le rendu visuel du site.
+
+---
+
+IMPORTANT
+
+Je NE VEUX PAS :
+
+❌ de blog
+❌ d'articles
+❌ de nouvelles pages
+❌ de nouvelles sections visibles
+❌ de refonte
+❌ de nouveau design
+❌ de nouveau texte important
+❌ de contenu artificiel
+❌ de faux avis
+❌ de fausses certifications
+❌ de fausses références
+❌ de fausses implantations géographiques
+
+Je veux uniquement :
+
+✅ SEO technique
+✅ SEO on-page
+✅ optimisation des éléments existants
+✅ données structurées
+✅ meilleure compréhension de l'entreprise par les moteurs de recherche et les moteurs IA
+✅ optimisation des mots-clés existants
+✅ optimisation de la page d'accueil
+
+À la fin, donne-moi un rapport très court indiquant exactement ce que tu as modifié.
+
+Le rendu visuel de la page d'accueil doit rester IDENTIQUE à avant ton intervention.
