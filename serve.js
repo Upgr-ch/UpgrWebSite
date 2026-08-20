@@ -89,22 +89,38 @@ async function detectZone(ip) {
 
 // ── Configuration produits ───────────────────────────────────────────────────
 // Chaque produit a un tag Systeme.io — ce tag déclenche l'automation d'envoi
-// du lien Proton Drive. Les liens/codes sont gérés dans Systeme.io (pas ici).
+// du lien Proton Drive. Les identifiants Stripe sont publics (contrairement aux
+// clés Stripe) et peuvent être remplacés par des variables d'environnement.
 const PRODUCTS = {
   [process.env.STRIPE_LINK_LIVRE1 || '__livre1__']: {
     nom:  "De l'idée au plan",
     desc: "Guide numérique · 80 pages · Téléchargeable · Imprimable",
-    tag:  'livre1-acheteur',
+    tag:  "De l'idée au plan- Acheteur",
   },
   [process.env.STRIPE_LINK_LIVRE2 || '__livre2__']: {
     nom:  "Vos compétences humaines invisibles",
     desc: "Guide numérique · 120 pages · Téléchargeable · Imprimable",
-    tag:  'livre2-acheteur',
+    tag:  'Vos Compétences Humaines-Acheteur',
   },
   [process.env.STRIPE_LINK_BUNDLE || '__bundle__']: {
     nom:  "Offre groupée — Les deux guides",
     desc: "De l'idée au plan + Vos compétences humaines invisibles",
-    tag:  'bundle-acheteur',
+    tag:  'Offre groupée-Acheteur',
+  },
+  [process.env.STRIPE_LINK_PACK_DECOUVERTE || 'plink_1U3zhJH51Bvzgbhu6NqTXcnF']: {
+    nom:  "Pack Découverte — Masterclasse #1 + 2 ebooks",
+    desc: "Masterclasse « L'Art de Transmettre #1 » + 2 ebooks",
+    tag:  'Pack Découverte-Acheteur',
+  },
+  [process.env.STRIPE_LINK_PACK_COMPLET || 'plink_1U50beH51BvzgbhuV4XYYi96']: {
+    nom:  "Pack Complet — 2 Masterclasses + 2 ebooks",
+    desc: "Masterclasses « L'Art de Transmettre #1 & #2 » + 2 ebooks",
+    tag:  'Pack Complet-Acheteur',
+  },
+  [process.env.STRIPE_LINK_PACK_COMPLET_3X || 'plink_1U52rNH51Bvzgbhua4CPgebq']: {
+    nom:  "Pack Complet — 2 Masterclasses + 2 ebooks",
+    desc: "Paiement en 3 fois · Masterclasses « L'Art de Transmettre #1 & #2 » + 2 ebooks",
+    tag:  'Pack Complet-Acheteur',
   },
 };
 
