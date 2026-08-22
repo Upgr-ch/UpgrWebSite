@@ -107,6 +107,28 @@ function stripeWebhookSecret() {
   return (key || '').trim();
 }
 
+const PACK_DECOUVERTE = {
+  nom:  "Pack Découverte — Masterclasse #1 + 2 ebooks",
+  desc: "Masterclasse « L'Art de Transmettre #1 » + 2 ebooks",
+  tag:  'Pack Découverte-Acheteur',
+};
+
+const PACK_COMPLET = {
+  nom:  "Pack Complet — 2 Masterclasses + 2 ebooks",
+  desc: "Masterclasses « L'Art de Transmettre #1 & #2 » + 2 ebooks",
+  tag:  'Pack Complet-Acheteur',
+};
+
+const PACK_COMPLET_3X = {
+  nom:  "Pack Complet — 2 Masterclasses + 2 ebooks",
+  desc: "Paiement en 3 fois · Masterclasses « L'Art de Transmettre #1 & #2 » + 2 ebooks",
+  tag:  'Pack Complet-Acheteur',
+};
+
+const LIVE_PACK_DECOUVERTE_LINK = 'plink_1U3zhJH51Bvzgbhu6NqTXcnF';
+const LIVE_PACK_COMPLET_LINK = 'plink_1U50beH51BvzgbhuV4XYYi96';
+const LIVE_PACK_COMPLET_3X_LINK = 'plink_1U52rNH51Bvzgbhua4CPgebq';
+
 const PRODUCTS = {
   [process.env.STRIPE_LINK_LIVRE1 || '__livre1__']: {
     nom:  "De l'idée au plan",
@@ -123,21 +145,15 @@ const PRODUCTS = {
     desc: "De l'idée au plan + Vos compétences humaines invisibles",
     tag:  'Offre groupée-Acheteur',
   },
-  [process.env.STRIPE_LINK_PACK_DECOUVERTE || 'plink_1U3zhJH51Bvzgbhu6NqTXcnF']: {
-    nom:  "Pack Découverte — Masterclasse #1 + 2 ebooks",
-    desc: "Masterclasse « L'Art de Transmettre #1 » + 2 ebooks",
-    tag:  'Pack Découverte-Acheteur',
-  },
-  [process.env.STRIPE_LINK_PACK_COMPLET || 'plink_1U50beH51BvzgbhuV4XYYi96']: {
-    nom:  "Pack Complet — 2 Masterclasses + 2 ebooks",
-    desc: "Masterclasses « L'Art de Transmettre #1 & #2 » + 2 ebooks",
-    tag:  'Pack Complet-Acheteur',
-  },
-  [process.env.STRIPE_LINK_PACK_COMPLET_3X || 'plink_1U52rNH51Bvzgbhua4CPgebq']: {
-    nom:  "Pack Complet — 2 Masterclasses + 2 ebooks",
-    desc: "Paiement en 3 fois · Masterclasses « L'Art de Transmettre #1 & #2 » + 2 ebooks",
-    tag:  'Pack Complet-Acheteur',
-  },
+  [process.env.STRIPE_LINK_PACK_DECOUVERTE || LIVE_PACK_DECOUVERTE_LINK]: PACK_DECOUVERTE,
+  [process.env.STRIPE_LINK_PACK_COMPLET || LIVE_PACK_COMPLET_LINK]: PACK_COMPLET,
+  [process.env.STRIPE_LINK_PACK_COMPLET_3X || LIVE_PACK_COMPLET_3X_LINK]: PACK_COMPLET_3X,
+
+  // Les liens Live restent des alias permanents, même si une variable locale
+  // pointe temporairement vers un lien Stripe de test.
+  [LIVE_PACK_DECOUVERTE_LINK]: PACK_DECOUVERTE,
+  [LIVE_PACK_COMPLET_LINK]: PACK_COMPLET,
+  [LIVE_PACK_COMPLET_3X_LINK]: PACK_COMPLET_3X,
 };
 
 // ── Systeme.io API ────────────────────────────────────────────────────────────
