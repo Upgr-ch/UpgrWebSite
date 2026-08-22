@@ -1,0 +1,111 @@
+Tu es un développeur expert SEO / React. Je veux que tu mettes à jour le code HTML pré-rendu (#seo-prerender) et les métadonnées SEO (<head>) de mes 3 pages : la page d'accueil (/), la page Eugène (/eugene) et la page Édouard (/edouard). 
+
+Conserve les scripts Google Analytics/Tag Manager déjà présents dans le <head>.
+
+Voici les modifications exactes à appliquer pour chaque page :
+
+---
+
+### 1. PAGE D'ACCUEIL ( / )
+
+Dans le <head> :
+- <title> : "Créer sa Formation B2C : Pédagogie & Viabilité | UpGrade L&D"
+- <meta name="description"> : "Passez de l'idée au programme concret. Structurez vos cours et validez la viabilité de votre projet de formation grâce à nos outils d'ingénierie B2C."
+- Supprime les balises et textes faisant référence au conseil B2B corporate / entreprises suisses.
+
+Dans le <div id="seo-prerender"> :
+Remplace la structure actuelle par :
+<main>
+  <h1>UpGrade L&D : Concevoir, structurer et valider votre projet de formation</h1>
+  <p>Une méthode d'ingénierie pédagogique et de cadrage économique pour transformer votre expertise en une offre de formation viable et structurée.</p>
+
+  <section aria-labelledby="section-eugene">
+    <h2 id="section-eugene">Ingénierie Pédagogique : Concevoir un programme de formation clair</h2>
+    <p>Ne laissez pas vos connaissances sous forme de notes éparses. Structurer un cours nécessite une méthode rigoureuse pour passer du savoir brut à une progression pédagogique assimilable.</p>
+    <h3>De l'expertise au plan de cours structuré</h3>
+    <p>Définissez l'intention pédagogique, le profil de vos apprenants et les objectifs opérationnels avant de rédiger le moindre contenu.</p>
+    <h3>Le Séquenceur de Cours et la Fiche Fondatrice</h3>
+    <p>Organisez vos modules étape par étape grâce à des outils conçus pour bâtir des dispositifs d'apprentissage fluides et professionnels.</p>
+    <a href="/eugene">Découvrir l'outil Pédagogique (Eugène)</a>
+  </section>
+
+  <section aria-labelledby="section-edouard">
+    <h2 id="section-edouard">Viabilité du Projet : Valider le modèle économique de sa formation</h2>
+    <p>Créer un bon cours ne suffit pas : encore faut-il s'assurer de sa faisabilité sur le marché B2C et de la rentabilité de votre modèle avant de vous lancer.</p>
+    <h3>Passer de l'idée au projet sans risque financier</h3>
+    <p>Confrontez vos hypothèses de départ à la réalité des chiffres, des flux et de la structure nécessaire pour exécuter votre offre.</p>
+    <h3>Fixer le juste prix et sécuriser sa marge</h3>
+    <p>Analysez la viabilité de votre positionnement pour éviter l'échec économique et construire une activité d'enseignement durable.</p>
+    <a href="/edouard">Effectuer le diagnostic de viabilité (Édouard)</a>
+  </section>
+
+  <section aria-labelledby="section-offres">
+    <h2 id="section-offres">Les Ressources &amp; Packs UpGrade L&D</h2>
+    <p>Accédez aux e-books méthodologiques, masterclasses d'ingénierie et trames d'exécution pour concrétiser vos livrables.</p>
+  </section>
+</main>
+
+---
+
+### 2. PAGE EUGÈNE ( /eugene )
+
+Dans le <head> :
+- <title> : "Créer son Plan de Formation : Eugène | UpGrade L&D"
+- <meta name="description"> : "Eugène vous guide pour créer votre plan de formation en 30 min — même sans base en pédagogie. Structuration claire et fiche fondatrice. Gratuit."
+- Ajoute la balise : <link rel="canonical" href="https://www.upgr.ch/eugene" />
+- Ajoute le script JSON-LD WebApplication :
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Eugène — Majordome Pédagogique",
+  "url": "https://www.upgr.ch/eugene",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "All",
+  "description": "Outil d'ingénierie pédagogique pour créer et séquencer un plan de formation B2C.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CHF" }
+}
+</script>
+
+Dans le <div id="seo-prerender"> :
+- Conserve les classes CSS existantes.
+- Remplace le <h1> par : <h1>Comment transformer son savoir-faire en formation sans se perdre dans la théorie</h1>
+- DANS LE BLOC #methode : Change les balises <h2> à l'intérieur des cartes (.seo-card) en <h3> :
+  - <h3>Valider l'intention pédagogique</h3>
+  - <h3>Rédiger la Fiche Fondatrice</h3>
+  - <h3>Séquencer le programme en modules</h3>
+  - <h3>Formuler les objectifs opérationnels</h3>
+
+---
+
+### 3. PAGE ÉDOUARD ( /edouard )
+
+Dans le <head> :
+- <title> : "Viabilité Projet de Formation : Édouard | UpGrade L&D"
+- <meta name="description"> : "Testez la viabilité et la rentabilité de votre projet de formation B2C. Diagnostic exigeant en 10 étapes pour passer de l'idée au plan concret."
+- Ajoute la balise : <link rel="canonical" href="https://www.upgr.ch/edouard" />
+- Ajoute le script JSON-LD WebApplication :
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Édouard — Diagnostic Viabilité",
+  "url": "https://www.upgr.ch/edouard",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All",
+  "description": "Diagnostic de viabilité et de rentabilité économique pour projets de formation indépendants.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CHF" }
+}
+</script>
+
+Dans le <div id="seo-prerender"> :
+- Conserve les classes CSS existantes.
+- Remplace le <h1> par : <h1>Comment savoir si votre projet de formation est viable avant de vous lancer</h1>
+- DANS LE BLOC #diagnostic : Change les balises <h2> à l'intérieur des cartes (.seo-card) en <h3> :
+  - <h3>Diagnostic de structure</h3>
+  - <h3>Analyse des flux et du marché</h3>
+  - <h3>Confrontation aux réalités économiques</h3>
+  - <h3>Indice de viabilité final</h3>
+- MODIFICATION CRITIQUE DU LIEN CTA : Change le bouton bas de page <a class="seo-cta" href="https://edouard-consultant.ch/"> par <a class="seo-cta" href="/edouard#start">. Le lien doit rester en interne sur upgr.ch.
+
+Mets à jour les fichiers React / HTML correspondants et confirme-moi quand c'est appliqué.
