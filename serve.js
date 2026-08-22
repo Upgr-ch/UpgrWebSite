@@ -91,6 +91,22 @@ async function detectZone(ip) {
 // Chaque produit a un tag Systeme.io — ce tag déclenche l'automation d'envoi
 // du lien Proton Drive. Les identifiants Stripe sont publics (contrairement aux
 // clés Stripe) et peuvent être remplacés par des variables d'environnement.
+const STRIPE_TEST_MODE = process.env.STRIPE_TEST_MODE === 'true';
+
+function stripeSecretKey() {
+  const key = STRIPE_TEST_MODE
+    ? process.env.STRIPE_TEST_SECRET_KEY
+    : process.env.STRIPE_SECRET_KEY;
+  return (key || '').trim();
+}
+
+function stripeWebhookSecret() {
+  const key = STRIPE_TEST_MODE
+    ? process.env.STRIPE_TEST_WEBHOOK_SECRET
+    : process.env.STRIPE_WEBHOOK_SECRET;
+  return (key || '').trim();
+}
+
 const PRODUCTS = {
   [process.env.STRIPE_LINK_LIVRE1 || '__livre1__']: {
     nom:  "De l'idée au plan",
@@ -254,7 +270,7 @@ async function patchContactSystemeIO(contactId, produit, montant, devise, date) 
 
 async function traiterWebhookStripe(rawBody, signature) {
   const crypto = require('crypto');
-  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
+  const webhookSecret = stripeWebhookSecret();
 
   // Vérification HMAC manuelle (ne dépend pas de STRIPE_SECRET_KEY)
   let event;
@@ -374,7 +390,7 @@ http.createServer((req, res) => {
   if (urlPath === '/admin/payment-links' && req.method === 'GET') {
     (async () => {
       const https = require('https');
-      const key = (process.env.STRIPE_SECRET_KEY || '').trim();
+      const key = stripeSecretKey();
       const keyPrefix = key ? key.substring(0, 14) + '...' : 'ABSENTE';
       const stripeGet = (p) => new Promise((resolve) => {
         const r = https.get('https://api.stripe.com' + p, {
@@ -763,7 +779,7 @@ filtrer();
   });
 }).listen(PORT, HOST, () => {
   console.log(`Serving on http://${HOST}:${PORT}`);
-  if (!process.env.STRIPE_SECRET_KEY)     console.warn('⚠️  STRIPE_SECRET_KEY non défini — webhook inactif');
-  if (!process.env.STRIPE_WEBHOOK_SECRET) console.warn('⚠️  STRIPE_WEBHOOK_SECRET non défini — webhook inactif');
+  if (!stripeSecretKey())     console.warn(`⚠️  ${STRIPE_TEST_MODE ? 'STRIPE_TEST_SECRET_KEY' : 'STRIPE_SECRET_KEY'} non défini — Stripe inactif`);
+  if (!stripeWebhookSecret()) console.warn(`⚠️  ${STRIPE_TEST_MODE ? 'STRIPE_TEST_WEBHOOK_SECRET' : 'STRIPE_WEBHOOK_SECRET'} non défini — webhook inactif`);
   if (!process.env.SYSTEMEIO_API_KEY)     console.warn('⚠️  SYSTEMEIO_API_KEY non défini — Systeme.io inactif');
 });

@@ -42,3 +42,9 @@ externalPort = 80
 [deployment]
 deploymentTarget = "autoscale"
 run = ["node", "serve.js"]
+
+[userenv]
+
+[userenv.development]
+STRIPE_LINK_PACK_DECOUVERTE = "plink_1U7I4HH51BvzgbhuVmapbhHj"
+STRIPE_TEST_MODE = "true"
