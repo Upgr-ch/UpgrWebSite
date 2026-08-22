@@ -1,1 +1,2 @@
 - [Systeme.io tags](systemeio-tags.md) — rename existing tags in place so their identifiers and automations remain intact.
+- [Stripe test-mode isolation](stripe-test-isolation.md) — keep development tests on dedicated Stripe test credentials and links.
