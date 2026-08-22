@@ -1,3 +1,3 @@
 - [Systeme.io tags](systemeio-tags.md) — rename existing tags in place so their identifiers and automations remain intact.
 - [Stripe test-mode isolation](stripe-test-isolation.md) — keep development tests on dedicated Stripe test credentials and links.
-- [React SEO prerender](react-seo-prerender.md) — keep SEO markup outside React’s mount point so hydration cannot remove it.
+- [React SEO prerender](react-seo-prerender.md) — keep initial SEO content visitor-visible and let React replace it naturally after hydration.
