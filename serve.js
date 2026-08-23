@@ -650,7 +650,7 @@ filtrer();
       const email = params.get('email') || '';
       const [contactRes, fieldsRes] = await Promise.all([
         email ? systemeApiCall('GET', `/contacts?email=${encodeURIComponent(email)}&limit=10`, null) : Promise.resolve({ status: 0, body: {} }),
-        systemeApiCall('GET', '/contact-fields?limit=50', null),
+        systemeApiCall('GET', '/contact_fields?limit=50', null),
       ]);
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
       res.end(JSON.stringify({
