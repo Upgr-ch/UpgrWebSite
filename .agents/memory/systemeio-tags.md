@@ -14,3 +14,9 @@ Applying a buyer tag to a controlled contact successfully triggered the Systeme.
 **Why:** A successful tag write alone does not prove that the downstream workflow grants access; a controlled contact test validates the full Systeme.io step.
 
 **How to apply:** Test buyer tags with a controlled contact before relying on a paid checkout, and verify both the workflow email and the training access.
+
+The `GET /tags?name=...` request can return the complete tag list rather than an exact-name-filtered result. Selecting the first returned item can therefore assign an unrelated tag (observed: `Pack Complet-Acheteur`).
+
+**Why:** A 204 response for the tag write alone does not prove the intended tag was chosen or retained; it can silently launch the wrong automation.
+
+**How to apply:** Select tags by exact `name` from the returned list, then re-fetch the contact and confirm the intended tag before declaring a workflow test successful. Before PATCHing custom contact fields, ensure their slugs exist in Systeme.io; missing slugs return HTTP 422.
