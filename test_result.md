@@ -101,3 +101,38 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+## user_problem_statement: "Faire arriver chaque acheteur dans le bon workflow Systeme.io"
+## backend:
+##   - task: "Routage des tags acheteur Systeme.io"
+##     implemented: true
+##     working: true
+##     file: "serve.js"
+##     stuck_count: 0
+##     priority: "high"
+##     needs_retesting: false
+##     status_history:
+##       - working: "NA"
+##         agent: "main"
+##         comment: "La sélection des tags est maintenant strictement basée sur le nom exact et une relecture du contact confirme le tag après écriture. Les PATCH vers des champs personnalisés absents ont été retirés."
+##       - working: true
+##         agent: "main"
+##         comment: "Les deux parcours contrôlés ont été relancés. Chaque contact conserve uniquement son tag acheteur cible et aucune étape de mise à jour de champ personnalisé n'est exécutée."
+##       - working: true
+##         agent: "testing"
+##         comment: "Le contrôle navigateur en lecture seule a validé le chargement de la page d'accueil et l'absence d'erreur JavaScript."
+## frontend: []
+## metadata:
+##   created_by: "main_agent"
+##   version: "1.0"
+##   test_sequence: 2
+##   run_ui: true
+## test_plan:
+##   current_focus:
+##     - "Routage des tags acheteur Systeme.io"
+##   stuck_tasks: []
+##   test_all: false
+##   test_priority: "high_first"
+## agent_communication:
+##   - agent: "main"
+##     message: "Les parcours contrôlés et le contrôle navigateur sont validés."

@@ -188,9 +188,20 @@ function systemeApiCall(method, endpoint, body) {
   });
 }
 
+function findExactSystemeTag(tagsResponse, tagName) {
+  const tags = Array.isArray(tagsResponse && tagsResponse.items) ? tagsResponse.items : [];
+  return tags.find(tag => tag && tag.name === tagName);
+}
+
+function contactHasTag(contact, tagId, tagName) {
+  const tags = Array.isArray(contact && contact.tags) ? contact.tags : [];
+  return tags.some(tag => (
+    tag && (String(tag.id) === String(tagId) || tag.name === tagName)
+  ));
+}
+
 async function ajouterContactSystemeIO({ email, prenom, nom, tagName }) {
   const apiKey = process.env.SYSTEMEIO_API_KEY || '';
-  console.log(`[debug] SYSTEMEIO_API_KEY longueur=${apiKey.length} vide=${!apiKey}`);
   if (!apiKey) {
     console.warn('⚠️  SYSTEMEIO_API_KEY non défini — contact non ajouté dans Systeme.io');
     return;
@@ -220,7 +231,8 @@ async function ajouterContactSystemeIO({ email, prenom, nom, tagName }) {
   // 2. Récupérer ou créer le tag
   const tagsRes = await systemeApiCall('GET', `/tags?name=${encodeURIComponent(tagName)}&limit=10`, null);
   console.log(`[debug] GET /tags status=${tagsRes.status} body=${JSON.stringify(tagsRes.body)}`);
-  let tagId = tagsRes.body && tagsRes.body.items && tagsRes.body.items[0] && tagsRes.body.items[0].id;
+  let tag = findExactSystemeTag(tagsRes.body, tagName);
+  let tagId = tag && tag.id;
 
   if (!tagId) {
     const newTagRes = await systemeApiCall('POST', '/tags', { name: tagName });
@@ -229,7 +241,8 @@ async function ajouterContactSystemeIO({ email, prenom, nom, tagName }) {
     // Si tag déjà existant (422), refaire un GET pour trouver l'id
     if (!tagId) {
       const retryRes = await systemeApiCall('GET', `/tags?name=${encodeURIComponent(tagName)}&limit=10`, null);
-      tagId = retryRes.body && retryRes.body.items && retryRes.body.items.find(t => t.name === tagName) && retryRes.body.items.find(t => t.name === tagName).id;
+      tag = findExactSystemeTag(retryRes.body, tagName);
+      tagId = tag && tag.id;
     }
   }
 
@@ -246,44 +259,20 @@ async function ajouterContactSystemeIO({ email, prenom, nom, tagName }) {
     return;
   }
 
+  // Systeme.io peut répondre 204 même si un mauvais tag a été sélectionné. Une
+  // relecture évite de considérer l'automatisation comme déclenchée à tort.
+  const verificationRes = await systemeApiCall('GET', `/contacts?email=${encodeURIComponent(email)}&limit=10`, null);
+  const contact = verificationRes.body && verificationRes.body.items &&
+    verificationRes.body.items.find(item => item && String(item.id) === String(contactId));
+  if (verificationRes.status >= 400 || !contactHasTag(contact, tagId, tagName)) {
+    throw new Error(`verification du tag "${tagName}" impossible pour ${email}`);
+  }
+
   console.log(`✅ Systeme.io : contact ${email} tagué "${tagName}" (contact #${contactId})`);
   return contactId;
 }
 
 // ── Traitement webhook Stripe ─────────────────────────────────────────────────
-async function patchContactSystemeIO(contactId, produit, montant, devise, date) {
-  return new Promise((resolve) => {
-    const https = require('https');
-    const body = JSON.stringify({
-      fields: [
-        { slug: 'dernier_produit',     value: produit },
-        { slug: 'dernier_montant',     value: `${montant} ${devise}` },
-        { slug: 'derniere_date_achat', value: date },
-      ]
-    });
-    const options = {
-      hostname: 'api.systeme.io',
-      path: `/api/contacts/${contactId}`,
-      method: 'PATCH',
-      headers: {
-        'X-API-Key': process.env.SYSTEMEIO_API_KEY || '',
-        'Content-Type': 'application/merge-patch+json',
-        'accept': 'application/json',
-        'Content-Length': Buffer.byteLength(body),
-      },
-    };
-    const req = https.request(options, (res) => {
-      let r = ''; res.on('data', d => r += d);
-      res.on('end', () => {
-        console.log(`[debug] PATCH /contacts/${contactId} status=${res.statusCode} body=${r}`);
-        resolve({ status: res.statusCode });
-      });
-    });
-    req.on('error', e => { console.warn('PATCH contact error:', e.message); resolve({ status: 0 }); });
-    req.write(body); req.end();
-  });
-}
-
 async function traiterWebhookStripe(rawBody, signature) {
   const crypto = require('crypto');
   const webhookSecret = stripeWebhookSecret();
@@ -330,7 +319,6 @@ async function traiterWebhookStripe(rawBody, signature) {
 
   const devise  = (session.currency || 'eur').toUpperCase();
   const montant = (session.amount_total / 100).toFixed(2);
-  const dateAchat = new Date().toISOString();
 
   // 1. Sauvegarder la vente en base de données
   try {
@@ -346,12 +334,7 @@ async function traiterWebhookStripe(rawBody, signature) {
   }
 
   // 2. Ajouter le contact + tag dans Systeme.io → déclenche l'automation
-  const contactId = await ajouterContactSystemeIO({ email, prenom, nom, tagName: produit.tag });
-
-  // 3. Mettre à jour le profil contact avec les infos d'achat (champs personnalisés)
-  if (contactId) {
-    await patchContactSystemeIO(contactId, produit.nom, montant, devise, dateAchat.slice(0, 10));
-  }
+  await ajouterContactSystemeIO({ email, prenom, nom, tagName: produit.tag });
 
   console.log(`✅ Vente traitée : ${produit.nom} · ${montant} ${devise} · ${email}`);
   console.log(`   → Tag Systeme.io "${produit.tag}" appliqué — automation en cours d'envoi`);
@@ -700,7 +683,6 @@ filtrer();
       const fakeSessionId = 'cs_test_' + Date.now() + '_' + Math.random().toString(36).slice(2,8);
       const montant  = '29.00';
       const devise   = 'CHF';
-      const dateAchat = new Date().toISOString().slice(0, 10);
       const log = [];
       try {
         const dbRes = await db.query(
@@ -715,14 +697,6 @@ filtrer();
         contactId = await ajouterContactSystemeIO({ email, prenom, nom, tagName: produit.tag });
         log.push({ etape: '2-SystemeIO-tag', ok: true, contactId, tag: produit.tag });
       } catch(e) { log.push({ etape: '2-SystemeIO-tag', ok: false, error: e.message }); }
-      if (contactId) {
-        try {
-          const patch = await patchContactSystemeIO(contactId, produit.nom, montant, devise, dateAchat);
-          log.push({ etape: '3-SystemeIO-patch', ok: patch.status < 300, status: patch.status });
-        } catch(e) { log.push({ etape: '3-SystemeIO-patch', ok: false, error: e.message }); }
-      } else {
-        log.push({ etape: '3-SystemeIO-patch', ok: false, note: 'contactId absent — patch ignoré' });
-      }
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
       res.end(JSON.stringify({ email, produit: produit.nom, tag: produit.tag, fakeSessionId, log }, null, 2));
     })().catch(e => { res.writeHead(500); res.end(e.message); });
