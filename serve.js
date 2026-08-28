@@ -740,6 +740,21 @@ filtrer();
   if (!filePath.startsWith(ROOT)) { res.writeHead(403, NO_CACHE); return res.end('Forbidden'); }
   if (urlPath === '/' || urlPath === '') return serveIndex(res);
 
+  // URLs canoniques sans slash final → éviter que le fallback ne serve
+  // accidentellement index.html pour /eugene/ et /edouard/.
+  const trailingSlashRedirects = {
+    '/eugene/': '/eugene',
+    '/edouard/': '/edouard',
+  };
+  if (trailingSlashRedirects[urlPath]) {
+    const query = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+    res.writeHead(301, {
+      ...NO_CACHE,
+      Location: trailingSlashRedirects[urlPath] + query,
+    });
+    return res.end();
+  }
+
   // Clean URL routes → fichiers HTML dans upgr/
   const cleanRoutes = {
     '/eugene':              'eugene.html',
