@@ -3,11 +3,11 @@
   var replacements = {
     '/eugene': {
       from: 'Essayer Eugène gratuitement',
-      to: 'Essayez Eugène Accès Libre, Illimité, Sans paiement'
+      to: 'Essayez Eugène : Accès Libre, Illimité, Sans paiement.'
     },
     '/edouard': {
       from: 'Essayer Édouard gratuitement',
-      to: 'Essayez Édouard, Accès Libre, Illimité, Sans paiement'
+      to: 'Essayez Édouard : Accès Libre, Illimité, Sans paiement'
     }
   };
   var replacement = replacements[page];
