@@ -356,6 +356,30 @@ function serveIndex(res) {
   serveFile(res, path.join(ROOT, 'index.html'));
 }
 
+function serveNotFound(res) {
+  res.writeHead(404, {
+    ...NO_CACHE,
+    'Content-Type': 'text/html; charset=utf-8',
+    'X-Robots-Tag': 'noindex',
+  });
+  res.end(`<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <title>Page introuvable | UpGrade</title>
+</head>
+<body>
+  <main>
+    <h1>Page introuvable</h1>
+    <p>Cette page n’existe pas ou a été déplacée.</p>
+    <p><a href="/">Revenir à l’accueil</a></p>
+  </main>
+</body>
+</html>`);
+}
+
 const CORS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, OPTIONS',
@@ -363,8 +387,27 @@ const CORS = {
 };
 
 http.createServer((req, res) => {
-  const urlPath = decodeURIComponent((req.url || '/').split('?')[0]);
+  const requestUrl = req.url || '/';
+  const urlPath = decodeURIComponent(requestUrl.split('?')[0]);
   const safe = path.normalize(urlPath).replace(/^(\.\.[\/\\])+/, '');
+  const query = requestUrl.includes('?') ? requestUrl.slice(requestUrl.indexOf('?')) : '';
+  const forwardedHost = String(req.headers['x-forwarded-host'] || req.headers.host || '').split(',')[0].trim();
+  const hostname = forwardedHost.replace(/:\d+$/, '').toLowerCase();
+  const forwardedProto = String(req.headers['x-forwarded-proto'] || '').split(',')[0].trim().toLowerCase();
+
+  // Une seule origine publique : HTTPS + www. Ne pas rediriger les POST
+  // (webhook Stripe notamment) ni les domaines de prévisualisation Replit.
+  if (
+    (req.method === 'GET' || req.method === 'HEAD') &&
+    (hostname === 'upgr.ch' || hostname === 'www.upgr.ch') &&
+    (hostname !== 'www.upgr.ch' || forwardedProto === 'http')
+  ) {
+    res.writeHead(301, {
+      ...NO_CACHE,
+      Location: `https://www.upgr.ch${requestUrl}`,
+    });
+    return res.end();
+  }
 
   // ── Webhook Stripe ─────────────────────────────────────────────────────────
   if (urlPath === '/webhook/stripe' && req.method === 'POST') {
@@ -740,22 +783,7 @@ filtrer();
   if (!filePath.startsWith(ROOT)) { res.writeHead(403, NO_CACHE); return res.end('Forbidden'); }
   if (urlPath === '/' || urlPath === '') return serveIndex(res);
 
-  // URLs canoniques sans slash final → éviter que le fallback ne serve
-  // accidentellement index.html pour /eugene/ et /edouard/.
-  const trailingSlashRedirects = {
-    '/eugene/': '/eugene',
-    '/edouard/': '/edouard',
-  };
-  if (trailingSlashRedirects[urlPath]) {
-    const query = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
-    res.writeHead(301, {
-      ...NO_CACHE,
-      Location: trailingSlashRedirects[urlPath] + query,
-    });
-    return res.end();
-  }
-
-  // Clean URL routes → fichiers HTML dans upgr/
+  // Routes publiques canoniques → fichiers HTML sources.
   const cleanRoutes = {
     '/eugene':              'eugene.html',
     '/edouard':             'edouard.html',
@@ -764,24 +792,83 @@ filtrer();
     '/pack-masterclasses':  'upgr/vente-pack-masterclasses.html',
     '/extrait-masterclass2':'upgr/extrait-masterclass2.html',
     '/extrait-masterclass1':'upgr/extrait-masterclass1.html',
+    '/upgr/vente-eugene':    'upgr/vente-eugene.html',
+    '/upgr/vente-edouard':   'upgr/vente-edouard.html',
+    '/upgr/extrait-idee-au-plan': 'upgr/extrait-idee-au-plan.html',
+    '/upgr/extrait-vos-competences-invisibles': 'upgr/extrait-vos-competences-invisibles.html',
+    '/mentions-legales':     'mentions-legales.html',
+    '/politique-de-cookies': 'cookies.html',
+    '/cgu':                  'cgu.html',
+    '/cgv':                  'cgv.html',
+    '/confidentialite':      'confidentialite.html',
   };
-  const qs = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : '';
+
+  // Anciennes URLs et accès directs aux fichiers → URLs publiques uniques.
+  const legacyRedirects = {
+    '/index.html': '/',
+    '/eugene.html': '/eugene',
+    '/edouard.html': '/edouard',
+    '/upgr/vente-masterclass1': '/masterclass1',
+    '/upgr/vente-masterclass1.html': '/masterclass1',
+    '/upgr/vente-masterclass2': '/masterclass2',
+    '/upgr/vente-masterclass2.html': '/masterclass2',
+    '/upgr/vente-pack-masterclasses': '/pack-masterclasses',
+    '/upgr/vente-pack-masterclasses.html': '/pack-masterclasses',
+    '/upgr/extrait-masterclass1': '/extrait-masterclass1',
+    '/upgr/extrait-masterclass1.html': '/extrait-masterclass1',
+    '/upgr/extrait-masterclass2': '/extrait-masterclass2',
+    '/upgr/extrait-masterclass2.html': '/extrait-masterclass2',
+    '/upgr/vente-eugene.html': '/upgr/vente-eugene',
+    '/upgr/vente-edouard.html': '/upgr/vente-edouard',
+    '/upgr/extrait-idee-au-plan.html': '/upgr/extrait-idee-au-plan',
+    '/upgr/extrait-vos-competences-invisibles.html': '/upgr/extrait-vos-competences-invisibles',
+    '/mentions-legales.html': '/mentions-legales',
+    '/cookies.html': '/politique-de-cookies',
+    '/cgu.html': '/cgu',
+    '/cgv.html': '/cgv',
+    '/confidentialite.html': '/confidentialite',
+    '/upgr/mentionslegales': '/mentions-legales',
+    '/upgr/mentionslegales.html': '/mentions-legales',
+    '/upgr/mentionslegales/index.html': '/mentions-legales',
+    '/upgr/politiquedecookies': '/politique-de-cookies',
+    '/upgr/politiquedecookies.html': '/politique-de-cookies',
+    '/upgr/politiquedecookies/index.html': '/politique-de-cookies',
+    '/upgr/cgu': '/cgu',
+    '/upgr/cgu.html': '/cgu',
+    '/upgr/cgu/index.html': '/cgu',
+    '/upgr/cgv': '/cgv',
+    '/upgr/cgv.html': '/cgv',
+    '/upgr/cgv/index.html': '/cgv',
+    '/upgr/confidentialite': '/confidentialite',
+    '/upgr/confidentialite.html': '/confidentialite',
+    '/upgr/confidentialite/index.html': '/confidentialite',
+  };
+  if (legacyRedirects[urlPath]) {
+    res.writeHead(301, {
+      ...NO_CACHE,
+      Location: legacyRedirects[urlPath] + query,
+    });
+    return res.end();
+  }
+
+  // Convention globale : aucune route publique connue ne se termine par un
+  // slash, à l’exception de la racine. Une route inconnue reste une vraie 404.
+  if (urlPath.length > 1 && urlPath.endsWith('/')) {
+    const withoutSlash = urlPath.replace(/\/+$/, '');
+    const target = legacyRedirects[withoutSlash] || (cleanRoutes[withoutSlash] ? withoutSlash : null);
+    if (!target) return serveNotFound(res);
+    res.writeHead(301, {
+      ...NO_CACHE,
+      Location: target + query,
+    });
+    return res.end();
+  }
+
   if (cleanRoutes[urlPath]) return serveFile(res, path.join(ROOT, cleanRoutes[urlPath]));
 
   fs.stat(filePath, (err, stat) => {
     if (!err && stat.isFile()) return serveFile(res, filePath);
-    if (!err && stat.isDirectory()) {
-      const indexPath = path.join(filePath, 'index.html');
-      return fs.stat(indexPath, (e2, s2) => {
-        if (!e2 && s2.isFile()) return serveFile(res, indexPath);
-        return serveIndex(res);
-      });
-    }
-    const htmlPath = filePath + '.html';
-    fs.stat(htmlPath, (e2, s2) => {
-      if (!e2 && s2.isFile()) return serveFile(res, htmlPath);
-      return serveIndex(res);
-    });
+    return serveNotFound(res);
   });
 }).listen(PORT, HOST, () => {
   console.log(`Serving on http://${HOST}:${PORT}`);

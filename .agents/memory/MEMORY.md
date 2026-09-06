@@ -1,3 +1,4 @@
 - [Systeme.io tags](systemeio-tags.md) — rename existing tags in place so their identifiers and automations remain intact.
 - [Stripe test-mode isolation](stripe-test-isolation.md) — keep development tests on dedicated Stripe test credentials and links.
 - [React SEO prerender](react-seo-prerender.md) — keep initial SEO content visitor-visible and let React replace it naturally after hydration.
+- [Canonical domain](canonical-domain.md) — use HTTPS www as the sole public SEO origin; verify apex/www hosting before production redirects.
