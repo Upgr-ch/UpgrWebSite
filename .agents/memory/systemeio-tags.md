@@ -20,3 +20,9 @@ The `GET /tags?name=...` request can return the complete tag list rather than an
 **Why:** A 204 response for the tag write alone does not prove the intended tag was chosen or retained; it can silently launch the wrong automation.
 
 **How to apply:** Select tags by exact `name` from the returned list, then re-fetch the contact and confirm the intended tag before declaring a workflow test successful. Before PATCHing custom contact fields, ensure their slugs exist in Systeme.io; missing slugs return HTTP 422.
+
+Systeme.io can refuse new tag creation when the account’s tag allowance is reached. Persona lead forms should reuse the existing persona tag—in particular, Édouard leads use the existing `Édouard` tag shared with the chat.
+
+**Why:** Creating a separate lead-magnet tag failed even though contact creation and existing-tag assignment remained available; reusing the established persona tag also preserves the current chat workflow.
+
+**How to apply:** Before adding a new lead tag, look for an exact existing persona tag and confirm the contact has it after submission. Only create another tag when a distinct automation truly requires it and the account allows it.
