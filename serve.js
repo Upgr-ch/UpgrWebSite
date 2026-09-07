@@ -273,33 +273,6 @@ async function ajouterContactSystemeIO({ email, prenom, nom, tagName }) {
   return contactId;
 }
 
-function readJsonBody(req, maxBytes = 10 * 1024) {
-  return new Promise((resolve, reject) => {
-    const chunks = [];
-    let size = 0;
-
-    req.on('data', chunk => {
-      size += chunk.length;
-      if (size > maxBytes) {
-        reject(Object.assign(new Error('payload_trop_volumineux'), { statusCode: 413 }));
-        req.destroy();
-        return;
-      }
-      chunks.push(chunk);
-    });
-
-    req.on('end', () => {
-      try {
-        resolve(JSON.parse(Buffer.concat(chunks).toString('utf8') || '{}'));
-      } catch (error) {
-        reject(Object.assign(new Error('json_invalide'), { statusCode: 400 }));
-      }
-    });
-
-    req.on('error', reject);
-  });
-}
-
 // ── Traitement webhook Stripe ─────────────────────────────────────────────────
 async function traiterWebhookStripe(rawBody, signature) {
   const crypto = require('crypto');
@@ -453,44 +426,6 @@ http.createServer((req, res) => {
         res.end(JSON.stringify({ error: err.message }));
       }
     });
-    return;
-  }
-
-  // ── Lead magnet Édouard → contacts Systeme.io ──────────────────────────────
-  if (urlPath === '/api/leads/edouard' && req.method === 'POST') {
-    (async () => {
-      try {
-        const body = await readJsonBody(req);
-        const email = String(body.email || '').trim().toLowerCase();
-
-        // Champ leurre antispam : une soumission automatisée reçoit une réponse
-        // neutre sans créer de contact.
-        if (body.website) {
-          res.writeHead(200, { ...NO_CACHE, 'Content-Type': 'application/json; charset=utf-8' });
-          return res.end(JSON.stringify({ ok: true }));
-        }
-
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) {
-          res.writeHead(400, { ...NO_CACHE, 'Content-Type': 'application/json; charset=utf-8' });
-          return res.end(JSON.stringify({ ok: false, error: 'email_invalide' }));
-        }
-
-        const contactId = await ajouterContactSystemeIO({
-          email,
-          tagName: 'Édouard',
-        });
-        if (!contactId) throw new Error('contact_non_enregistre');
-
-        res.writeHead(201, { ...NO_CACHE, 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify({ ok: true }));
-      } catch (error) {
-        if (res.headersSent || res.writableEnded) return;
-        const status = error.statusCode || 503;
-        console.error('Capture lead Édouard impossible :', error.message);
-        res.writeHead(status, { ...NO_CACHE, 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify({ ok: false, error: 'capture_indisponible' }));
-      }
-    })();
     return;
   }
 
