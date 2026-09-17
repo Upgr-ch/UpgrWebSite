@@ -82,7 +82,8 @@
     @keyframes eugene-border-shimmer{0%{background-position:0 0,200% 0}to{background-position:0 0,-200% 0}}
     .eugene-visual,.edouard-visual{display:grid;place-items:center}
     .eugene-icon,.edouard-icon{display:grid;place-items:center;width:104px;height:104px;object-fit:cover;border-radius:50%;border:1px solid rgba(245,224,144,.55);box-shadow:0 5px 14px rgba(0,0,0,.2)}
-    .edouard-icon{color:var(--gold);font-size:3.2rem;font-style:italic;font-weight:700;background:radial-gradient(circle at 35% 30%,rgba(246,220,141,.2),rgba(8,15,30,.9) 68%)}
+    .edouard-icon{background:radial-gradient(circle at 35% 30%,rgba(246,220,141,.2),rgba(8,15,30,.9) 68%);overflow:hidden}
+    .edouard-icon svg{width:100%;height:100%}
     .eugene-copy .section-heading{margin-bottom:.45rem;font-size:clamp(1.45rem,2.8vw,2rem)}
     .eugene-copy .powered{margin:.3rem 0 .8rem}
     .eugene-discover,.edouard-discover{display:block;width:max-content;max-width:100%;margin:0 .5rem .25rem auto;color:var(--gold);font-size:clamp(.95rem,1.8vw,1.15rem);font-weight:700;letter-spacing:.1em;text-align:right;text-transform:uppercase;background:linear-gradient(90deg,#b58d26 0%,#f6dc8d 30%,#fff 50%,#f6dc8d 70%,#b58d26 100%);background-size:250% 100%;animation:shimmer-heading 8s linear infinite;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
@@ -113,15 +114,18 @@
     .form-status{min-height:1.4rem;margin-top:.7rem!important;color:var(--gold)!important;font-size:.8rem!important}
     .honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
     .references{display:flex;flex-wrap:wrap;gap:.5rem}
-    .reference{padding:.5rem .7rem;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.68);font-size:.72rem;letter-spacing:.03em}
+    .reference{display:inline-block;padding:.5rem .7rem;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.68);font-size:.72rem;letter-spacing:.03em;transition:border-color .2s,color .2s,background .2s}
+    .reference:hover{border-color:rgba(245,224,144,.5);background:rgba(245,224,144,.06);color:var(--gold);text-decoration:none}
     .about{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;padding:1.5rem;border-left:2px solid var(--gold);background:rgba(255,255,255,.02)}
     .about p{color:var(--muted);line-height:1.8}
     .faq{display:grid;grid-template-columns:1fr 1fr;gap:.5rem 1.5rem}
     details{border-bottom:1px solid rgba(255,255,255,.12);padding:.8rem 0}
     summary{color:#fff;cursor:pointer;font-size:.94rem;font-weight:600}
     details p{padding-top:.7rem;color:var(--muted);font-size:.9rem;line-height:1.75}
-    .passage{text-align:center;padding-top:4rem;padding-bottom:5rem}
-    .passage p{max-width:620px;margin:1rem auto;color:var(--muted);font-size:1.1rem;line-height:1.9}
+    .passage{text-align:center;padding:2rem 1.25rem 2.5rem}
+    .passage h2{font-size:clamp(1.35rem,2.8vw,2rem);font-style:italic}
+    .passage p{max-width:620px;margin:.45rem auto;color:var(--muted);font-size:.86rem;line-height:1.5}
+    .passage .btn{margin-top:.65rem;padding:.55rem .85rem;font-size:.62rem}
     .site-footer{border-top:1px solid rgba(255,255,255,.07);padding:2rem 1.25rem;text-align:center}
     .footer-inner{max-width:1000px;margin:auto;color:rgba(255,255,255,.45);font-size:.76rem;letter-spacing:.04em}
     .footer-inner a{color:rgba(255,255,255,.55)}
@@ -321,7 +325,35 @@
       <a class="edouard-discover" href="/edouard">Découvrez Édouard</a>
       <div class="edouard-horizontal">
         <div class="edouard-visual">
-          <div class="edouard-icon" aria-hidden="true">É</div>
+          <div class="edouard-icon" aria-hidden="true">
+            <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="edouardBrainGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#F5E090" stop-opacity=".18"/>
+                  <stop offset="60%" stop-color="#F5E090" stop-opacity=".05"/>
+                  <stop offset="100%" stop-color="#F5E090" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <circle cx="120" cy="120" r="110" fill="url(#edouardBrainGlow)"/>
+              <g fill="none" stroke="#F5E090" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M120 28 C 74 28, 42 62, 42 108 C 42 132, 50 152, 64 168 C 70 196, 96 214, 120 214 C 144 214, 170 196, 176 168 C 190 152, 198 132, 198 108 C 198 62, 166 28, 120 28 Z" opacity=".85"/>
+                <path d="M120 32 L120 210" opacity=".45" stroke-dasharray="3 4"/>
+                <path d="M85 58 Q 66 78, 78 100 T 70 142 T 90 178" opacity=".85"/>
+                <path d="M62 92 Q 80 102, 74 122 T 92 154" opacity=".7"/>
+                <path d="M104 64 Q 96 90, 108 112 T 96 148 T 108 184" opacity=".75"/>
+                <path d="M155 58 Q 174 78, 162 100 T 170 142 T 150 178" opacity=".85"/>
+                <path d="M178 92 Q 160 102, 166 122 T 148 154" opacity=".7"/>
+                <path d="M136 64 Q 144 90, 132 112 T 144 148 T 132 184" opacity=".75"/>
+                <circle cx="80" cy="100" r="2.2" fill="#F5E090"/>
+                <circle cx="160" cy="100" r="2.2" fill="#F5E090"/>
+                <circle cx="105" cy="130" r="2.2" fill="#F5E090"/>
+                <circle cx="135" cy="130" r="2.2" fill="#F5E090"/>
+                <circle cx="92" cy="162" r="2" fill="#F5E090"/>
+                <circle cx="148" cy="162" r="2" fill="#F5E090"/>
+                <circle cx="120" cy="180" r="2" fill="#F5E090"/>
+              </g>
+            </svg>
+          </div>
         </div>
         <div class="edouard-copy">
           <p class="edouard-powered">Pour ceux qui veulent commercialiser leur savoir.</p>
@@ -425,46 +457,51 @@
       </div>
     </section>
 
-    <section class="section">
-      <div class="section-intro"><span class="section-label">Ils nous ont fait confiance</span></div>
+    <section class="section" id="references">
+      <div class="section-bridge" aria-label="Ils nous ont fait confiance">
+        <span class="section-bridge-title">Ils nous ont fait confiance</span>
+      </div>
       <div class="references">
-        <span class="reference">Hilton Conférence Center Geneva</span>
-        <span class="reference">Win Sport School Geneva</span>
-        <span class="reference">Company Cup</span>
-        <span class="reference">Sportsvision.lu</span>
-        <span class="reference">David Lloyd Club Geneva</span>
+        <a class="reference" href="https://www.hilton.com/en/hotels/gvacchi-hilton-geneva-hotel-and-conference-centre/" target="_blank" rel="noopener noreferrer">Hilton Conférence Center Geneva</a>
+        <a class="reference" href="https://www.win-sport-school.com/ecole-sport-geneve" target="_blank" rel="noopener noreferrer">Win Sport School Geneva</a>
+        <a class="reference" href="https://www.company-cup.fr" target="_blank" rel="noopener noreferrer">Company Cup</a>
+        <a class="reference" href="https://www.sportsvision.lu" target="_blank" rel="noopener noreferrer">Sportsvision.lu</a>
+        <a class="reference" href="https://www.davidlloyd.ch/fr-ch/clubs/country-club-geneva/" target="_blank" rel="noopener noreferrer">David Lloyd Club Geneva</a>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="a-propos">
+      <div class="section-bridge" aria-label="À propos">
+        <span class="section-bridge-title">À propos</span>
+      </div>
       <div class="about">
         <div>
-          <span class="section-label light">À propos</span>
           <p>Mon profil LinkedIn est public. Vous pouvez y voir mon parcours, mes publications et me contacter directement.</p>
         </div>
         <a class="btn" href="https://www.linkedin.com/in/k%C3%A9vin-lavergne-9b3473194/" target="_blank" rel="noopener noreferrer">Voir le profil LinkedIn</a>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="faq">
       <div class="section-intro">
         <span class="section-label">Questions fréquentes</span>
         <h2 class="section-heading">FAQ</h2>
       </div>
       <div class="faq">
-        <details><summary>Je n’ai jamais enseigné. Est ce que cela me concerne ?</summary><p>Oui. La masterclass ne demande pas de devenir enseignant. Elle montre le passage. Et Eugène vous aide à mettre de l’ordre dans votre savoir.</p></details>
-        <details><summary>Combien de temps cela prend ?</summary><p>Les modules sont courts. Le bonus dure 35 minutes. Eugène met de l’ordre dans votre savoir en moins d’une heure. Édouard analyse la viabilité de votre projet en moins d’une heure. Vous avancez à votre rythme.</p></details>
-        <details><summary>Eugène est il vraiment gratuit ?</summary><p>Oui. Essayez Eugène, accès libre, illimité, sans paiement. Le résultat est immédiat. Vous pouvez l’essayer avant même de rejoindre la masterclass.</p></details>
-        <details><summary>Édouard est il vraiment gratuit ?</summary><p>Oui. Essayez Édouard, accès libre, illimité, sans paiement. Sans carte bancaire, accès immédiat, diagnostic confidentiel.</p></details>
-        <details><summary>Quelle est la différence entre Eugène et Édouard ?</summary><p>Eugène met de l’ordre dans votre savoir pour le transmettre. Édouard teste la viabilité de votre projet business avant de vous lancer.</p></details>
-        <details><summary>Quelle est la différence entre le Pack Découverte et le Pack Complet ?</summary><p>Le Pack Découverte vous donne les fondations. Le Pack Complet réunit les deux masterclasses et les deux ebooks.</p></details>
-        <details><summary>Le prix est il justifié ?</summary><p>Le Pack Découverte, les ebooks, l’accès à Eugène et la possibilité de poser vos questions. Le Pack Complet propose un tarif préférentiel pour les deux masterclasses.</p></details>
-        <details><summary>J’ai déjà acheté les ebooks, que se passe t il ?</summary><p>Le montant payé est déduit au paiement.</p></details>
-        <details><summary>J’ai déjà acheté le Pack Découverte, puis je passer au Pack Complet ?</summary><p>Oui. Ce que vous avez payé sera déduit au paiement.</p></details>
+        <details><summary>Je n’ai jamais transmis. Est-ce que ce programme me concerne&nbsp;?</summary><p>Oui. Vous n’avez pas besoin d’une formation en pédagogie. Le programme vous aide à partir de votre savoir, à construire une progression et à préparer votre première session.</p></details>
+        <details><summary>Que contient la Masterclasse #1&nbsp;?</summary><p>Deux heures de contenu, 35 minutes de bonus, de l’audio, des exercices interactifs et trois livrables pour poser les fondations&nbsp;: la Fiche Fondatrice, le Séquenceur de Cours et la Proposition de Valeur Initiale.</p></details>
+        <details><summary>Que contient la Masterclasse #2&nbsp;?</summary><p>Quatre heures de contenu, 50 minutes de bonus, de l’audio, des exercices interactifs et trois livrables pour faire vivre la transmission, construire vos outils d’impact et établir votre verdict de rentabilité.</p></details>
+        <details><summary>Que contient le Pack Découverte&nbsp;?</summary><p>La Masterclasse #1 et les deux ebooks «&nbsp;De l’idée au plan&nbsp;» et «&nbsp;Vos compétences humaines invisibles&nbsp;». Le pack est proposé à 110 CHF / 118 €.</p></details>
+        <details><summary>Que contient le Pack Complet&nbsp;?</summary><p>Les deux masterclasses et les deux ebooks, de l’idée à la première session animée. Le pack est proposé à 405 CHF / 435 €, avec un paiement en trois fois disponible sans frais.</p></details>
+        <details><summary>Eugène est-il vraiment gratuit&nbsp;?</summary><p>Oui. Eugène est accessible librement, sans paiement et sans limite. Il vous aide à clarifier votre savoir et à construire votre plan de formation en moins d’une heure.</p></details>
+        <details><summary>Édouard est-il vraiment gratuit&nbsp;?</summary><p>Oui. Édouard est accessible librement, sans carte bancaire. Il teste la viabilité de votre projet business en moins d’une heure et vous donne un diagnostic confidentiel.</p></details>
+        <details><summary>Quelle est la différence entre Eugène et Édouard&nbsp;?</summary><p>Eugène met de l’ordre dans votre savoir pour le transmettre. Édouard teste la viabilité de votre projet business avant de vous lancer.</p></details>
+        <details><summary>Et si j’ai déjà acheté un ebook ou une offre&nbsp;?</summary><p>Ce que vous avez déjà payé peut être déduit au paiement. Votre code promotionnel vous a été envoyé par email avec votre précédent achat.</p></details>
+        <details><summary>Est-ce que je peux poser des questions pendant le programme&nbsp;?</summary><p>Oui. Vous pouvez nous contacter pour clarifier un point, un livrable ou un module. Nous mettons un point d’honneur à répondre à tous les messages.</p></details>
       </div>
     </section>
 
-    <section class="section passage">
+    <section class="section passage" id="passage">
       <h2>Vous avez quelque chose à transmettre.</h2>
       <p>L’Art de Transmettre ouvre le passage.</p>
       <a class="btn btn-solid" href="#inscription">Rester informé</a>
