@@ -1,0 +1,236 @@
+Tu vas créer une page glossaire optimisée pour le SEO organique et le SEO IA 
+(Generative Engine Optimization). Cette page doit être un actif de référencement 
+majeur pour le site UpGrade L&D (https://www.upgr.ch).
+
+⚠️ CONTRAINTE ABSOLUE — INTÉGRITÉ DU SITE ⚠️
+
+Le site doit conserver EXACTEMENT son aspect visuel et ses fonctionnalités 
+actuelles. Aucune modification ne doit être apportée :
+- au design existant (couleurs, typographies, espacements, composants UI)
+- à la navigation (menu, footer, breadcrumbs)
+- aux fonctionnalités existantes (formulaires, paiements, liens, animations)
+- aux performances actuelles
+
+La nouvelle page glossaire doit s'intégrer dans la charte graphique et 
+technique existante sans rien altérer. Si un composant existe déjà 
+(header, footer, boutons, cards), réutilise-le tel quel. Ne crée aucun 
+nouveau style global. Toute nouvelle classe CSS doit être scopée à la page 
+glossaire (ex: préfixe .glossaire-) pour éviter toute régression visuelle.
+
+Avant toute modification, inspecte le code existant pour identifier :
+- le framework utilisé (Next.js, Nuxt, Astro, autre)
+- la structure des composants partagés
+- les styles globaux et variables CSS
+- le système de routing
+Puis adapte-toi à l'existant — ne l'impose pas.
+
+---
+
+CONTEXTE
+UpGrade L&D est un organisme de formation suisse qui aide les experts à 
+transmettre leur savoir-faire sans avoir été formés à la pédagogie. La page 
+principale est /l-art-de-transmettre (masterclasse + 2 ebooks). Le glossaire 
+doit devenir un hub sémantique qui capte la longue traîne et sert de source 
+citée par les IA (Google AI Overviews, ChatGPT, Perplexity, Copilot).
+
+OBJECTIF DE LA PAGE
+Créer /glossaire-transmission : une page qui définit 15 à 20 termes clés de la 
+transmission, structurée pour être extraite par les moteurs de recherche et 
+citée par les LLM.
+
+---
+
+1. STRUCTURE HTML
+
+- URL : /glossaire-transmission
+- Title : "Glossaire de la transmission — Définitions clés pour experts | UpGrade"
+- Meta description : "Transmission, andragogie, charge cognitive, séquence 
+  pédagogique : définitions claires et sourcées pour les experts qui doivent 
+  transmettre leur savoir-faire."
+- H1 : "Glossaire de la transmission"
+- Introduction de 2 phrases : à qui s'adresse ce glossaire, comment il est 
+  organisé
+- Sommaire alphabétique cliquable (ancres vers chaque terme)
+- Sections H2 par lettre de l'alphabet (A, B, C...)
+- Chaque terme = H3 formulé en question : "Qu'est-ce que X ?"
+- Chaque H3 a un id unique : #charge-cognitive, #andragogie, etc.
+
+POUR CHAQUE TERME (structure obligatoire) :
+1. Définition directe en 1 phrase (la phrase la plus citable, autonome)
+2. Développement de 100 à 300 mots
+3. Un exemple concret
+4. Un lien interne vers /l-art-de-transmettre ou un article associé
+
+---
+
+2. CONTENU — 15 TERMES À RÉDIGER
+
+Termes génériques :
+- Transmission de savoir-faire
+- Art de transmettre
+- Andragogie
+- Charge cognitive
+- Séquence pédagogique
+- Objectif d'apprentissage
+- Évaluation formative
+- Apprenant adulte
+- Ancrage mémoriel
+- Feedback pédagogique
+
+Termes propriétaires UpGrade (contenu non-commodity, crucial pour le SEO IA) :
+- Le Passage
+- Fiche Fondatrice
+- Séquenceur de Cours
+- Courbe d'attention
+- Posture de transmission
+
+Rédige chaque définition de manière :
+- Autonome (extractible seule par une IA)
+- Factuelle et dense (pas de remplissage)
+- Avec une première phrase qui résume l'essentiel
+- Avec un exemple concret et actionnable
+
+---
+
+3. DONNÉES STRUCTURÉES (JSON-LD dans le <head>)
+
+A. DefinedTermSet + DefinedTerm pour chaque terme :
+
+{
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "name": "Glossaire de la transmission — UpGrade",
+  "url": "https://www.upgr.ch/glossaire-transmission",
+  "hasDefinedTerm": [
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://www.upgr.ch/glossaire-transmission#charge-cognitive",
+      "name": "Charge cognitive",
+      "description": "...",
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "name": "Glossaire de la transmission — UpGrade",
+        "url": "https://www.upgr.ch/glossaire-transmission"
+      }
+    }
+    // ... répéter pour chaque terme
+  ]
+}
+
+B. BreadcrumbList :
+Accueil > Ressources > Glossaire de la transmission
+
+C. WebPage avec speakable pour les assistants vocaux.
+
+---
+
+4. MAILLAGE INTERNE
+
+- Chaque entrée du glossaire pointe vers /l-art-de-transmettre (ou un article 
+  de blog associé) avec une ancre textuelle descriptive (pas "cliquez ici")
+- Ajouter un lien retour vers le sommaire en fin de chaque entrée
+- La page /l-art-de-transmettre doit contenir un lien vers /glossaire-transmission
+- Croiser les termes entre eux quand c'est pertinent
+
+⚠️ Les liens ajoutés sur /l-art-de-transmettre doivent respecter le design 
+existant : utiliser les composants de lien déjà présents dans le site, ne pas 
+introduire de nouveau style.
+
+---
+
+5. FICHIER llms.txt
+
+Créer à la racine du site (https://www.upgr.ch/llms.txt) un fichier Markdown 
+qui référence les pages principales :
+
+# UpGrade L&D
+
+> Formation pour experts qui doivent transmettre leur savoir-faire sans avoir 
+> été formés à la pédagogie.
+
+## Pages principales
+
+- [L'Art de Transmettre](https://www.upgr.ch/l-art-de-transmettre): Masterclasse 
+  pour construire une transmission efficace
+- [Glossaire de la transmission](https://www.upgr.ch/glossaire-transmission): 
+  Définitions des concepts clés
+
+## Ressources
+
+- [Ebook — Fiche Fondatrice](...)
+- [Ebook — Séquenceur de Cours](...)
+
+---
+
+6. SEO TECHNIQUE
+
+- Balise robots : index, follow
+- Ajouter la page au sitemap XML
+- Balises Open Graph et Twitter Card
+- Core Web Vitals : vérifier vitesse, stabilité visuelle, responsive
+- Navigation mobile adaptée (sommaire alphabétique compact)
+- Langue : fr-CH (Suisse romande)
+
+---
+
+7. CRITÈRES DE QUALITÉ SEO IA
+
+La page doit respecter ces règles :
+- Chaque définition commence par une phrase autonome et citable
+- Pas de jargon non défini dans les définitions
+- Format question/réponse pour chaque terme
+- Densité factuelle élevée, zéro remplissage
+- Termes propriétaires mis en avant (Le Passage, Fiche Fondatrice, etc.)
+- Contenu unique et non-commodity
+
+---
+
+8. MÉTHODE DE TRAVAIL (OBLIGATOIRE)
+
+Étape 1 — AUDIT
+Inspecte le code existant du site. Identifie :
+- Framework et version
+- Structure des dossiers (pages, composants, styles)
+- Composants partagés réutilisables (header, footer, layout, boutons)
+- Système de styles (CSS modules, Tailwind, styled-components, SCSS...)
+- Routing et conventions de nommage
+- Présente-moi un résumé AVANT de coder quoi que ce soit.
+
+Étape 2 — PLAN
+Propose un plan d'intégration :
+- Fichiers à créer
+- Fichiers à modifier (minimal)
+- Composants réutilisés vs nouveaux
+- Impact visuel = zéro
+
+Étape 3 — VALIDATION
+Attends ma validation avant de passer au code.
+
+Étape 4 — IMPLÉMENTATION
+Implémente la page en respectant strictement l'existant. Ne touche à aucun 
+fichier global (styles globaux, layout principal, config) sans mon accord 
+explicite.
+
+Étape 5 — VÉRIFICATION
+Après implémentation, vérifie :
+- Le rendu visuel est identique sur les autres pages
+- Aucune fonctionnalité existante n'est cassée
+- La nouvelle page est cohérente avec la charte
+- Les schemas JSON-LD sont valides
+- Le sitemap et llms.txt sont corrects
+
+---
+
+9. LIVRABLE ATTENDU
+
+- La page /glossaire-transmission complète (HTML/composant selon le stack)
+- Le JSON-LD intégré dans le <head> de la page
+- Le contenu rédactionnel complet des 15 termes
+- Les balises title, meta description, H1, H2, H3
+- Le fichier llms.txt à la racine
+- Le sitemap.xml mis à jour
+- Un lien discret vers le glossaire depuis /l-art-de-transmettre (sans 
+  casser le design)
+
+Commence par l'Étape 1 (AUDIT) et présente-moi ton analyse avant toute 
+modification.
