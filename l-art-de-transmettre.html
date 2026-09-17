@@ -43,14 +43,15 @@
     .section-heading{margin-bottom:1rem}
     .section-copy{color:var(--muted)}
     .strong-card{border:1px solid rgba(245,224,144,.42);background:linear-gradient(135deg,rgba(245,224,144,.1),rgba(255,255,255,.018));box-shadow:0 16px 55px rgba(0,0,0,.18)}
-    .discovery{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:stretch}
-    .discovery-copy,.offer-card{padding:2rem}
+    .discovery{display:block}
+    .discovery-copy{padding:2rem}
     .discovery-copy p{margin-top:1rem;color:var(--muted);font-size:1rem;line-height:1.85}
-    .offer-card{border:1px solid var(--line);background:rgba(255,255,255,.025)}
-    .offer-card .offer-name{margin-bottom:.6rem;color:var(--gold);font-size:1.3rem;font-weight:600}
-    .offer-card .price{margin:1rem 0;color:var(--gold);font-size:2.5rem;font-weight:700;line-height:1}
-    .offer-card .price small{color:var(--muted);font-size:.9rem;font-weight:300}
-    .offer-card p{color:var(--muted);font-size:.9rem;line-height:1.75}
+    .discovery-pricing{margin-top:2.5rem;padding:2rem 0 0;border-top:1px solid rgba(245,224,144,.25)}
+    .discovery-pricing .offer-name{margin-bottom:.6rem;color:var(--gold);font-size:1.15rem;font-weight:600}
+    .discovery-pricing .price{margin:1rem 0;color:var(--gold);font-size:2.5rem;font-weight:700;line-height:1}
+    .discovery-pricing .price small{color:var(--muted);font-size:.9rem;font-weight:300}
+    .discovery-pricing p{color:var(--muted);font-size:.9rem;line-height:1.75}
+    .course-book-price{display:block;margin-top:.25rem;color:var(--gold);font-size:.78rem;font-weight:600;letter-spacing:.04em}
     .btn{display:inline-block;margin-top:1.4rem;padding:.85rem 1.35rem;border:1px solid var(--gold);color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-align:center;text-transform:uppercase;transition:background .2s,color .2s}
     .btn:hover{background:var(--gold);color:var(--navy);text-decoration:none}
     .btn-solid{background:var(--gold);color:var(--navy)}
@@ -138,10 +139,10 @@
     .payment-text{color:rgba(255,255,255,.6);font-size:.75rem}
     .note-shimmer{display:block;margin:1rem 0;color:var(--gold);font-size:.82rem;font-style:italic;font-weight:500;line-height:1.6;background:linear-gradient(90deg,#b58d26 0%,#f6dc8d 30%,#fff 50%,#f6dc8d 70%,#b58d26 100%);background-size:250% 100%;animation:shimmer-heading 8s linear infinite;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
     @media(max-width:820px){
-      .hero{grid-template-columns:1fr;gap:2rem;padding-top:4rem}.hero-art{min-height:260px;order:-1}.hero-copy{max-width:680px}.discovery,.two-col,.form-wrap{grid-template-columns:1fr}.course-programme.four{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}.faq{grid-template-columns:1fr}.section{padding-top:4rem;padding-bottom:4rem}
+      .hero{grid-template-columns:1fr;gap:2rem;padding-top:4rem}.hero-art{min-height:260px;order:-1}.hero-copy{max-width:680px}.two-col,.form-wrap{grid-template-columns:1fr}.course-programme.four{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}.faq{grid-template-columns:1fr}.section{padding-top:4rem;padding-bottom:4rem}
     }
     @media(max-width:560px){
-      .hero{padding:4rem 1rem 4rem}.section{padding-left:1rem;padding-right:1rem}.screens,.situations{grid-template-columns:1fr}.course-programme,.course-programme.four{grid-template-columns:1fr}.course-book{flex-wrap:wrap}.course-book .btn{width:100%;text-align:center}.discovery-copy,.offer-card,.feature-card,.form-wrap,.course-support,.course-pricing{padding:1.35rem}.btn{width:100%}.btn-secondary{margin-left:0}.mobile-cta{display:block;position:fixed;z-index:30;bottom:0;left:0;width:100%;padding:.7rem;background:rgba(8,15,30,.95);border-top:1px solid rgba(245,224,144,.25);text-align:center}.mobile-cta a{display:block;margin:0;padding:.7rem;background:var(--gold);color:var(--navy);font-size:.7rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase}.site-footer{padding-bottom:5rem}
+      .hero{padding:4rem 1rem 4rem}.section{padding-left:1rem;padding-right:1rem}.screens,.situations{grid-template-columns:1fr}.course-programme,.course-programme.four{grid-template-columns:1fr}.course-book{flex-wrap:wrap}.course-book .btn{width:100%;text-align:center}.discovery-copy,.feature-card,.form-wrap,.course-support,.course-pricing{padding:1.35rem}.discovery-pricing{padding-top:1.35rem}.btn{width:100%}.btn-secondary{margin-left:0}.mobile-cta{display:block;position:fixed;z-index:30;bottom:0;left:0;width:100%;padding:.7rem;background:rgba(8,15,30,.95);border-top:1px solid rgba(245,224,144,.25);text-align:center}.mobile-cta a{display:block;margin:0;padding:.7rem;background:var(--gold);color:var(--navy);font-size:.7rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase}.site-footer{padding-bottom:5rem}
     }
   </style>
 </head>
