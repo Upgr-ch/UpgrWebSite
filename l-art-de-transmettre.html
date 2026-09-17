@@ -76,6 +76,7 @@
     .form-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;align-items:center;padding:1.4rem;border:1px solid rgba(245,224,144,.12);background:rgba(255,255,255,.012)}
     .form-wrap h2{margin-bottom:.7rem}
     .form-wrap .form-intro{margin-top:0;color:rgba(255,255,255,.82);font-size:1rem;line-height:1.75}
+    .form-wrap .form-disclaimer{font-style:italic}
     .form-wrap p{margin-top:.8rem;color:var(--muted);line-height:1.8}
     .lead-form{padding:1.15rem;border:1px solid rgba(255,255,255,.08);background:rgba(8,15,30,.25)}
     .field{margin-bottom:1rem}
@@ -87,7 +88,7 @@
     .lead-form button{width:100%;padding:.78rem;border:1px solid rgba(245,224,144,.45);background:rgba(245,224,144,.08);color:var(--gold);font:inherit;font-size:.7rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s}
     .lead-form button:hover{background:rgba(245,224,144,.16);color:#fff}
     .lead-form button:disabled{cursor:wait;opacity:.65}
-    .form-note{margin-top:.8rem!important;color:rgba(255,255,255,.43)!important;font-size:.72rem;line-height:1.5!important}
+    .form-note{margin-top:.8rem!important;color:rgba(255,255,255,.43)!important;font-size:.72rem;font-style:italic;line-height:1.5!important}
     .form-status{min-height:1.4rem;margin-top:.7rem!important;color:var(--gold)!important;font-size:.8rem!important}
     .honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
     .references{display:flex;flex-wrap:wrap;gap:.5rem}
@@ -263,7 +264,7 @@
         <div>
           <h2>Pas prêt à décider maintenant&nbsp;?</h2>
           <p class="form-intro">Laissez votre email pour recevoir les prochaines informations sur la masterclass.</p>
-          <p>Vous pouvez vous désinscrire à tout moment. Vos données ne sont ni revendues ni partagées.</p>
+          <p class="form-disclaimer">Vous pouvez vous désinscrire à tout moment. Vos données ne sont ni revendues ni partagées.</p>
         </div>
         <form class="lead-form" id="transmission-form">
           <div class="field">
