@@ -860,6 +860,7 @@ filtrer();
     '/eugene':              'eugene.html',
     '/edouard':             'edouard.html',
     '/l-art-de-transmettre': 'l-art-de-transmettre.html',
+    '/glossaire-transmission': 'glossaire-transmission.html',
     '/ebook':               'ebook.html',
     '/masterclass1':        'upgr/vente-masterclass1.html',
     '/masterclass2':        'upgr/vente-masterclass2.html',

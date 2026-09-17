@@ -1,0 +1,17 @@
+# UpGrade L&D
+
+> Formation pour experts qui doivent transmettre leur savoir-faire sans avoir été formés à la pédagogie.
+
+## Pages principales
+
+- [Accueil](https://www.upgr.ch/): UpGrade L&D et ses ressources pour structurer une transmission utile.
+- [L'Art de Transmettre](https://www.upgr.ch/l-art-de-transmettre): Masterclasses et ebooks pour construire une transmission efficace.
+- [Glossaire de la transmission](https://www.upgr.ch/glossaire-transmission): Définitions des concepts clés de la transmission, de l’andragogie et de la conception pédagogique.
+- [Eugène](https://www.upgr.ch/eugene): Assistant libre pour clarifier un savoir et construire un plan de formation.
+- [Édouard](https://www.upgr.ch/edouard): Assistant libre pour tester la viabilité d’un projet business.
+
+## Ressources
+
+- [Ebook](https://www.upgr.ch/ebook): Deux guides numériques pour clarifier une idée et identifier ses compétences humaines.
+- [Masterclasse 1](https://www.upgr.ch/masterclass1): Poser les fondations d’une transmission.
+- [Masterclasse 2](https://www.upgr.ch/masterclass2): Faire vivre une transmission et construire ses outils d’impact.
