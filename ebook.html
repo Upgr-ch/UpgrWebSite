@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ebooks | UpGrade L&amp;D</title>
+  <meta name="description" content="Deux ebooks pour clarifier vos idées, structurer votre projet et passer à l’action."/>
+  <link rel="canonical" href="https://www.upgr.ch/ebook"/>
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png?v=20260907"/>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--navy:#080f1e;--gold:#f5e090;--gold-deep:#b48c28;--white:rgba(255,255,255,.9);--muted:rgba(255,255,255,.72)}
+    body{min-height:100vh;background:var(--navy);color:#fff;font-family:Raleway,sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:var(--gold);text-decoration:none}
+    a:hover{text-decoration:underline}
+    :focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+    header{position:fixed;top:0;left:0;width:100%;z-index:10;background:rgba(8,15,30,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .header-inner{max-width:920px;margin:auto;padding:1.05rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .logo{color:var(--gold);font-size:1.1rem;font-weight:700;font-style:italic}
+    .back-link{padding:.45rem .7rem;border:1px solid rgba(245,224,144,.35);color:rgba(255,255,255,.7);font-size:.66rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+    .back-link:hover{background:rgba(245,224,144,.07);color:var(--gold);text-decoration:none}
+    .hero{max-width:920px;margin:auto;padding:8rem 1.5rem 3.5rem}
+    .eyebrow{display:block;margin-bottom:1rem;color:var(--gold-deep);font-size:.68rem;font-weight:600;letter-spacing:.32em;text-transform:uppercase}
+    h1{max-width:760px;margin-bottom:1.2rem;color:var(--gold);font-size:clamp(2rem,5vw,3.6rem);font-style:italic;line-height:1.08}
+    .hero-sub{max-width:680px;color:var(--muted);font-size:1.05rem;font-weight:300;line-height:1.85}
+    .gold-line{height:1px;margin:2.5rem 0 0;border:0;background:linear-gradient(90deg,var(--gold),transparent)}
+    .content{max-width:920px;margin:auto;padding:0 1.5rem 5rem}
+    .books-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem}
+    .book{position:relative;display:flex;flex-direction:column;overflow:hidden;border:1px solid rgba(245,224,144,.16);background:rgba(255,255,255,.02)}
+    .book-badge{position:absolute;top:-1px;right:1rem;padding:.23rem .7rem;border-radius:0 0 3px 3px;background:var(--gold);color:var(--navy);font-size:.56rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+    .book-cover{display:flex;align-items:center;justify-content:center;padding:2rem 1.5rem 1.25rem;background:rgba(8,15,30,.65)}
+    .book-cover img{width:130px;height:auto;box-shadow:0 8px 28px rgba(0,0,0,.3)}
+    .book-body{display:flex;flex:1;flex-direction:column;padding:1.6rem 1.5rem 1.4rem;border-top:1px solid rgba(245,224,144,.1)}
+    .book-title{margin-bottom:.7rem;color:var(--gold);font-size:1.35rem;font-style:italic;line-height:1.2}
+    .book-title a{color:inherit}
+    .book-title a:hover{color:#fff;text-decoration:none}
+    .book-meta{margin-bottom:1rem;color:rgba(255,255,255,.62);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase}
+    .book-desc{color:var(--muted);font-size:.88rem;font-weight:300;line-height:1.75}
+    .book-desc p{margin-bottom:.8rem}
+    .book-desc p:last-child{margin-bottom:0}
+    .book-desc strong{color:#fff;font-weight:600}
+    .book-points{margin:.8rem 0;padding:0;list-style:none}
+    .book-points li{position:relative;margin-bottom:.4rem;padding-left:1rem;color:rgba(255,255,255,.76);font-size:.84rem;line-height:1.65}
+    .book-points li::before{content:'—';position:absolute;left:0;color:var(--gold-deep)}
+    .book-buy{display:flex;align-items:flex-end;flex-wrap:wrap;gap:.65rem;margin-top:auto;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.08)}
+    .price{margin-right:auto;color:var(--gold);font-size:1.45rem;font-weight:700;line-height:1}
+    .price small{display:block;margin-top:.35rem;color:rgba(255,255,255,.55);font-size:.76rem;font-weight:300}
+    .btn{display:inline-block;padding:.62rem .85rem;border:1px solid rgba(245,224,144,.45);color:var(--gold);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-align:center;text-transform:uppercase;transition:background .2s,color .2s}
+    .btn:hover{background:rgba(245,224,144,.08);color:#fff;text-decoration:none}
+    .btn-solid{background:var(--gold);color:var(--navy)}
+    .btn-solid:hover{background:#e8d27f;color:var(--navy)}
+    .bundle{margin-top:1.5rem;padding:1.6rem;border:1px solid rgba(245,224,144,.5);background:rgba(245,224,144,.035)}
+    .bundle-label{margin-bottom:.55rem;color:var(--gold-deep);font-size:.62rem;letter-spacing:.25em;text-transform:uppercase}
+    .bundle h2{margin-bottom:.6rem;color:#fff;font-size:1.35rem;font-weight:600}
+    .bundle p{max-width:700px;color:var(--muted);font-size:.9rem;font-weight:300;line-height:1.75}
+    .bundle-row{display:flex;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:1.1rem}
+    .bundle-price{color:var(--gold);font-size:1.7rem;font-weight:700}
+    .bundle-price span{margin-left:.35rem;color:rgba(255,255,255,.5);font-size:.82rem;font-weight:300;text-decoration:line-through}
+    .bundle-price small{display:block;margin-top:.3rem;color:rgba(255,255,255,.58);font-size:.75rem;font-weight:300}
+    .return-wrap{text-align:center;margin-top:2.5rem}
+    .return-wrap .btn{font-size:.6rem}
+    footer{border-top:1px solid rgba(255,255,255,.07);padding:1.8rem 1.5rem;text-align:center}
+    .footer-inner{color:rgba(255,255,255,.45);font-size:.72rem;line-height:1.8}
+    .footer-inner a{color:rgba(255,255,255,.55)}
+    .footer-inner a:hover{color:var(--gold)}
+    @media(max-width:700px){
+      .books-grid{grid-template-columns:1fr}
+      .hero{padding-top:7rem}
+    }
+    @media(max-width:520px){
+      .header-inner{align-items:flex-start;flex-direction:column}
+      .back-link{align-self:stretch;text-align:center}
+      .hero{padding-top:10rem}
+      .content{padding-left:1rem;padding-right:1rem}
+      .book-body{padding:1.4rem 1.1rem 1.2rem}
+      .book-buy{align-items:stretch;flex-direction:column}
+      .price{margin-right:0;margin-bottom:.2rem}
+      .book-buy .btn,.bundle-row .btn{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="/">UpGrade</a>
+      <a class="back-link" href="/l-art-de-transmettre">← Retour à L’Art de Transmettre</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="eyebrow">EBOOKS</span>
+      <h1>Des idées claires. Un plan concret. Une mise en mouvement.</h1>
+      <p class="hero-sub">Deux ouvrages complémentaires pour clarifier votre projet, structurer vos idées et transformer votre savoir en premières actions concrètes.</p>
+      <hr class="gold-line"/>
+    </section>
+
+    <section class="content" aria-label="Les ebooks">
+      <div class="books-grid">
+        <article class="book">
+          <span class="book-badge">Ebook</span>
+          <div class="book-cover">
+            <img src="/upgr/covers/idee-au-plan.png" alt="Couverture de l’ebook De l’idée au plan" width="130"/>
+          </div>
+          <div class="book-body">
+            <h2 class="book-title">De l’idée au plan</h2>
+            <p class="book-meta">80 pages · Numérique · Téléchargeable · Imprimable</p>
+            <div class="book-desc">
+              <p><strong>Clarifiez vos idées floues pour les transformer en un plan simple et concret.</strong> Ce guide est pensé pour celles et ceux qui ont une idée ou un projet, mais ne savent pas encore comment le structurer pour le rendre actionnable.</p>
+              <p>Il suit une logique en deux temps :</p>
+              <ul class="book-points">
+                <li>Pour un <strong>projet business</strong>, identifiez les angles morts et les points à traiter avant de vous lancer.</li>
+                <li>Pour une <strong>transmission</strong>, construisez un plan de formation depuis les objectifs jusqu’aux modalités d’évaluation.</li>
+              </ul>
+              <p>La section <strong>« Agir »</strong> ajoute un rétroplanning, des responsabilités claires et une première action concrète à engager dans les 48 heures.</p>
+            </div>
+            <div class="book-buy">
+              <div class="price">26 CHF<small>/ 28 €</small></div>
+              <a class="btn" href="/upgr/extrait-idee-au-plan?from=ebook">Voir un extrait</a>
+              <a class="btn btn-solid" href="https://buy.stripe.com/00w4gzdzJd5398s8XYgw00j" target="_blank" rel="noopener noreferrer">Commander</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="book">
+          <span class="book-badge">Ebook</span>
+          <div class="book-cover">
+            <img src="/upgr/covers/competences-invisibles.png" alt="Couverture de l’ebook Vos compétences humaines invisibles" width="130"/>
+          </div>
+          <div class="book-body">
+            <h2 class="book-title">Vos compétences humaines invisibles</h2>
+            <p class="book-meta">120 pages · Numérique · Téléchargeable · Imprimable</p>
+            <div class="book-desc">
+              <p>Pour être vraiment différenciant dans votre projet, il y a un indispensable : <strong>vous.</strong></p>
+              <p><strong>Ce qui transforme un projet en résultats concrets et en chiffre d’affaires</strong>, c’est de mettre les idées en mouvement. Ce livre explore l’interconnexion entre votre mouvement corporel, votre cognition, votre créativité et votre communication.</p>
+              <p>Il vous montre comment le corps devient un acteur essentiel pour piloter votre projet.</p>
+            </div>
+            <div class="book-buy">
+              <div class="price">26 CHF<small>/ 28 €</small></div>
+              <a class="btn" href="/upgr/extrait-vos-competences-invisibles?from=ebook">Voir un extrait</a>
+              <a class="btn btn-solid" href="https://buy.stripe.com/6oUdR9fHR7KJ70kfmmgw00k" target="_blank" rel="noopener noreferrer">Commander</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <section class="bundle" aria-labelledby="bundle-title">
+        <p class="bundle-label">Offre groupée</p>
+        <h2 id="bundle-title">Les deux ouvrages ensemble</h2>
+        <p>L’un vous donne la structure pour clarifier et planifier. L’autre vous donne la posture pour exécuter. Utilisés ensemble, ils forment un système complet, de l’idée encore floue jusqu’à la première action engagée.</p>
+        <div class="bundle-row">
+          <div class="bundle-price">47 CHF <span>52 CHF</span><small>/ 50 € · Économisez 5 CHF / 6 €</small></div>
+          <a class="btn btn-solid" href="https://buy.stripe.com/28EbJ18fp3utckE7TUgw00l" target="_blank" rel="noopener noreferrer">Commander les deux ebooks</a>
+        </div>
+      </section>
+
+      <div class="return-wrap">
+        <a class="btn" href="/l-art-de-transmettre">← Retour à L’Art de Transmettre</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      © UpGrade Learning &amp; Development ·
+      <a href="/mentions-legales">Mentions légales</a> ·
+      <a href="/confidentialite">Confidentialité</a> ·
+      <a href="/politique-de-cookies">Politique de cookies</a> ·
+      <a href="/cgu">CGU</a> ·
+      <a href="/cgv">CGV</a>
+    </div>
+  </footer>
+</body>
+</html>

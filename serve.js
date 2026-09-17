@@ -860,6 +860,7 @@ filtrer();
     '/eugene':              'eugene.html',
     '/edouard':             'edouard.html',
     '/l-art-de-transmettre': 'l-art-de-transmettre.html',
+    '/ebook':               'ebook.html',
     '/masterclass1':        'upgr/vente-masterclass1.html',
     '/masterclass2':        'upgr/vente-masterclass2.html',
     '/pack-masterclasses':  'upgr/vente-pack-masterclasses.html',
@@ -880,6 +881,7 @@ filtrer();
   const legacyRedirects = {
     '/index.html': '/',
     '/eugene.html': '/eugene',
+    '/ebook.html': '/ebook',
     '/edouard.html': '/edouard',
     '/upgr/vente-masterclass1': '/masterclass1',
     '/upgr/vente-masterclass1.html': '/masterclass1',
