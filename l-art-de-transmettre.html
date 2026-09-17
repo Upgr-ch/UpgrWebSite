@@ -46,6 +46,14 @@
     .discovery{display:block}
     .discovery-copy{padding:1.75rem}
     .discovery-copy p{margin-top:.8rem;color:var(--muted);font-size:.98rem;line-height:1.75}
+    .masterclass-summary{margin:1.5rem 0 1.75rem;padding:1rem 1.1rem;border:1px solid rgba(245,224,144,.2);background:rgba(245,224,144,.025)}
+    .masterclass-summary h3{margin-bottom:.85rem;color:var(--gold);font-size:1.1rem;font-style:italic}
+    .masterclass-details{display:grid;grid-template-columns:repeat(5,1fr);gap:.7rem}
+    .masterclass-detail{display:flex;flex-direction:column;gap:.15rem;color:rgba(255,255,255,.78);font-size:.76rem;line-height:1.4}
+    .masterclass-detail strong{color:#fff;font-size:.86rem}
+    .masterclass-detail small{color:rgba(255,255,255,.48);font-size:.68rem}
+    .masterclass-summary-price{margin-top:1rem;color:var(--gold);font-size:1.25rem;font-weight:700}
+    .masterclass-summary-price span{color:rgba(245,224,144,.7);font-size:.85rem;font-weight:400}
     .discovery-pricing{margin-top:2rem;padding:1.5rem 0 0;border-top:1px solid rgba(245,224,144,.2)}
     .discovery-pricing .offer-name{margin-bottom:.6rem;color:var(--gold);font-size:1.15rem;font-weight:600}
     .discovery-pricing .price{margin:1rem 0;color:var(--gold);font-size:2.5rem;font-weight:700;line-height:1}
@@ -149,7 +157,7 @@
       .hero{grid-template-columns:1fr;gap:1.5rem;padding-top:3.5rem;padding-bottom:3.5rem}.hero-art{min-height:210px;order:-1}.hero-art svg{width:min(100%,250px)}.hero-copy{max-width:680px}.two-col,.form-wrap{grid-template-columns:1fr}.eugene-horizontal{grid-template-columns:100px 1fr;gap:1rem;padding:1rem}.eugene-icon{width:88px;height:88px}.course-programme.four{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}.faq{grid-template-columns:1fr}.section{padding-top:3.5rem;padding-bottom:3.5rem}
     }
     @media(max-width:560px){
-      h1{font-size:clamp(2.35rem,13vw,4rem)}h2{font-size:clamp(1.55rem,8vw,2.2rem)}.hero{padding:2.75rem 1rem 3.25rem}.hero-art{min-height:165px}.hero-art svg{width:190px}.section{padding:2.75rem 1rem}.section-intro{margin-bottom:1.35rem}.situations{grid-template-columns:1fr}.course-programme,.course-programme.four{grid-template-columns:1fr}.course-book{align-items:flex-start;flex-wrap:wrap;gap:.7rem}.course-book img{width:34px}.course-book-text{min-width:calc(100% - 3.25rem)}.course-book .btn{width:100%;text-align:center}.discovery-copy,.feature-card,.form-wrap,.course-support,.course-pricing{padding:1.15rem}.discovery-pricing{padding-top:1.15rem}.eugene-horizontal{grid-template-columns:1fr;gap:.7rem;padding:1rem;text-align:center}.eugene-visual{margin-bottom:0}.eugene-icon{width:88px;height:88px}.eugene-copy .section-label{margin-bottom:.45rem}.eugene-copy .btn{margin-top:.9rem}.payment-note{flex-wrap:wrap}.btn{width:100%}.btn-secondary{margin-left:0}.about{gap:1rem}.mobile-cta{display:block;position:fixed;z-index:30;bottom:0;left:0;width:100%;padding:.55rem;background:rgba(8,15,30,.96);border-top:1px solid rgba(245,224,144,.25);text-align:center}.mobile-cta a{display:block;margin:0;padding:.65rem;background:var(--gold);color:var(--navy);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.site-footer{padding-bottom:4.5rem}
+      h1{font-size:clamp(2.35rem,13vw,4rem)}h2{font-size:clamp(1.55rem,8vw,2.2rem)}.hero{padding:2.75rem 1rem 3.25rem}.hero-art{min-height:165px}.hero-art svg{width:190px}.section{padding:2.75rem 1rem}.section-intro{margin-bottom:1.35rem}.situations{grid-template-columns:1fr}.course-programme,.course-programme.four{grid-template-columns:1fr}.masterclass-details{grid-template-columns:repeat(2,minmax(0,1fr))}.course-book{align-items:flex-start;flex-wrap:wrap;gap:.7rem}.course-book img{width:34px}.course-book-text{min-width:calc(100% - 3.25rem)}.course-book .btn{width:100%;text-align:center}.discovery-copy,.feature-card,.form-wrap,.course-support,.course-pricing{padding:1.15rem}.discovery-pricing{padding-top:1.15rem}.eugene-horizontal{grid-template-columns:1fr;gap:.7rem;padding:1rem;text-align:center}.eugene-visual{margin-bottom:0}.eugene-icon{width:88px;height:88px}.eugene-copy .section-label{margin-bottom:.45rem}.eugene-copy .btn{margin-top:.9rem}.payment-note{flex-wrap:wrap}.btn{width:100%}.btn-secondary{margin-left:0}.about{gap:1rem}.mobile-cta{display:block;position:fixed;z-index:30;bottom:0;left:0;width:100%;padding:.55rem;background:rgba(8,15,30,.96);border-top:1px solid rgba(245,224,144,.25);text-align:center}.mobile-cta a{display:block;margin:0;padding:.65rem;background:var(--gold);color:var(--navy);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.site-footer{padding-bottom:4.5rem}
     }
   </style>
 </head>
@@ -201,13 +209,24 @@
       <div class="discovery strong-card">
         <div class="discovery-copy">
           <p>La transmission est un métier à part entière, qui s'apprend comme les autres. Que vous vouliez ou deviez transmettre votre savoir, vous connaissez votre sujet. Cette masterclasse vous donne les outils pour le faire.</p>
+          <div class="masterclass-summary">
+            <h3>Masterclasse L'Art de Transmettre #1</h3>
+            <div class="masterclass-details">
+              <span class="masterclass-detail"><strong>2 h</strong><small>de contenu</small></span>
+              <span class="masterclass-detail"><strong>35 min</strong><small>de bonus</small></span>
+              <span class="masterclass-detail"><strong>Audio</strong></span>
+              <span class="masterclass-detail"><strong>Exercices interactifs</strong></span>
+              <span class="masterclass-detail"><strong>3 livrables</strong></span>
+            </div>
+            <div class="masterclass-summary-price">98 CHF <span>/ 104 €</span></div>
+          </div>
           <div class="course-programme">
             <div class="course-item"><small>Module 1</small><strong>Pourquoi transmettez-vous ?</strong><p>Votre style, votre public, votre intention. Vous produisez votre Fiche Fondatrice.</p></div>
             <div class="course-item"><small>Module 2</small><strong>Construire la progression</strong><p>Une séquence, une idée. Vous construisez votre Séquenceur de Cours.</p></div>
             <div class="course-item"><small>Bonus · 35 min</small><strong>Commercialiser sans pression</strong><p>Pour ceux qui envisagent une offre. Vous produisez votre Proposition de Valeur Initiale.</p></div>
           </div>
           <a class="btn" href="/extrait-masterclass1">Accéder à un extrait gratuit</a>
-          <span class="course-section-label">Ebooks inclus</span>
+          <span class="course-section-label">Ce qui est inclus</span>
           <div class="course-books">
             <div class="course-book">
               <img src="/upgr/covers/idee-au-plan.png" alt="De l'idée au plan" loading="lazy" width="44"/>
