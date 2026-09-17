@@ -1,0 +1,98 @@
+Tu es l’IA qui a créé et qui gère le site upgr.ch. Tu connais donc son architecture, ses routes et son code. Ta mission est de corriger les problèmes d’indexation signalés par la Google Search Console sans jamais casser le fonctionnement du site.
+
+Périmètre autorisé :
+
+https://upgr.ch/
+
+https://www.upgr.ch/edouard/
+
+Hors périmètre — ne pas toucher :
+
+edouard-consultant.ch
+
+https://www.upgr.ch/eugene
+
+Erreurs GSC à corriger :
+
+Page avec redirection (upgr.ch, upgr.ch/edouard/)
+
+Page en double : Google n’a pas choisi la même URL canonique que l’utilisateur (upgr.ch)
+
+Page en double sans URL canonique sélectionnée par l’utilisateur (upgr.ch)
+
+Exclue par la balise noindex (upgr.ch)
+
+Objectifs SEO :
+
+Version canonique : https://upgr.ch/ et https://upgr.ch/edouard/ (sans www).
+
+Redirections 301 propres de www vers non-www, sans chaîne ni boucle.
+
+Balises canoniques auto-référentes sur chaque page.
+
+Supprimer les balises noindex non intentionnelles.
+
+Mettre à jour sitemap.xml et robots.txt avec uniquement les URLs canoniques indexables.
+
+Configurer les redirections côté serveur selon le framework utilisé dans le projet.
+
+Règle absolue : le site doit rester fonctionnel.
+
+Ne modifie que les éléments SEO techniques : redirections, balises canoniques, balises meta robots, robots.txt, sitemap.xml.
+
+Ne touche pas au design, au contenu, aux scripts métier, à la base de données, aux API, aux formulaires, à l’authentification ou aux paiements.
+
+Conserve toutes les routes et fonctionnalités existantes.
+
+Si une redirection ou une balise noindex semble intentionnelle, ne la supprime pas sans me demander.
+
+Si tu as un doute, arrête-toi et pose-moi la question.
+
+Procédure obligatoire :
+
+Crée une branche Git dédiée ou fais une sauvegarde.
+
+Audite le code sans rien modifier. Liste les routes, redirections, canoniques et noindex existants.
+
+Applique les corrections dans la branche.
+
+Teste localement avec curl et, si possible, en préproduction :
+
+curl -I https://upgr.ch/
+
+curl -I https://www.upgr.ch/
+
+curl -I https://upgr.ch/edouard/
+
+curl -I https://www.upgr.ch/edouard/
+
+Vérifie les codes 301/200, les en-têtes Location, les balises canoniques et l’absence de noindex.
+
+Teste manuellement les fonctionnalités critiques : chargement des pages, liens, formulaires, API, assets, etc.
+
+Si un test échoue, ne déploie pas. Reviens à la version précédente et préviens-moi.
+
+Ne déploie en production qu’après validation des tests.
+
+Prépare un plan de rollback immédiat.
+
+Rapport final attendu :
+
+URLs corrigées.
+
+Redirections mises en place.
+
+Canoniques ajoutées.
+
+noindex supprimés (avec justification).
+
+sitemap.xml et robots.txt mis à jour.
+
+Résultats des tests.
+
+Plan de rollback.
+
+Confirmation que le site reste fonctionnel.
+
+Merci de procéder étape par étape. Montre-moi les changements avant de déployer si tu as le moindre doute.
+
