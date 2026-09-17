@@ -46,14 +46,14 @@
     .discovery{display:block}
     .discovery-copy{padding:1.75rem}
     .discovery-copy p{margin-top:.8rem;color:var(--muted);font-size:.98rem;line-height:1.75}
-    .masterclass-summary{margin:1.5rem 0 1.75rem;padding:1rem 1.1rem;border:1px solid rgba(245,224,144,.2);background:rgba(245,224,144,.025)}
-    .masterclass-summary h3{margin-bottom:.85rem;color:var(--gold);font-size:1.1rem;font-style:italic}
+    .masterclass-module-block{margin:1.5rem 0 1.75rem;padding:1rem 1.1rem;border:1px solid rgba(245,224,144,.2);background:rgba(245,224,144,.025)}
+    .masterclass-block-title{margin-bottom:.85rem;color:var(--gold);font-size:1.1rem;font-style:italic}
     .masterclass-details{display:grid;grid-template-columns:repeat(5,1fr);gap:.7rem}
     .masterclass-detail{display:flex;flex-direction:column;gap:.15rem;color:rgba(255,255,255,.78);font-size:.76rem;line-height:1.4}
     .masterclass-detail strong{color:#fff;font-size:.86rem}
     .masterclass-detail small{color:rgba(255,255,255,.48);font-size:.68rem}
-    .masterclass-summary-price{margin-top:1rem;color:var(--gold);font-size:1.25rem;font-weight:700}
-    .masterclass-summary-price span{color:rgba(245,224,144,.7);font-size:.85rem;font-weight:400}
+    .masterclass-block-price{margin-top:1rem;color:var(--gold);font-size:1.25rem;font-weight:700}
+    .masterclass-block-price span{color:rgba(245,224,144,.7);font-size:.85rem;font-weight:400}
     .discovery-pricing{margin-top:2rem;padding:1.5rem 0 0;border-top:1px solid rgba(245,224,144,.2)}
     .discovery-pricing .offer-name{margin-bottom:.6rem;color:var(--gold);font-size:1.15rem;font-weight:600}
     .discovery-pricing .price{margin:1rem 0;color:var(--gold);font-size:2.5rem;font-weight:700;line-height:1}
@@ -209,8 +209,13 @@
       <div class="discovery strong-card">
         <div class="discovery-copy">
           <p>La transmission est un métier à part entière, qui s'apprend comme les autres. Que vous vouliez ou deviez transmettre votre savoir, vous connaissez votre sujet. Cette masterclasse vous donne les outils pour le faire.</p>
-          <div class="masterclass-summary">
-            <h3>Masterclasse L'Art de Transmettre #1</h3>
+          <div class="masterclass-module-block">
+            <h3 class="masterclass-block-title">Masterclasse L'Art de Transmettre #1</h3>
+            <div class="course-programme">
+              <div class="course-item"><small>Module 1</small><strong>Pourquoi transmettez-vous ?</strong><p>Votre style, votre public, votre intention. Vous produisez votre Fiche Fondatrice.</p></div>
+              <div class="course-item"><small>Module 2</small><strong>Construire la progression</strong><p>Une séquence, une idée. Vous construisez votre Séquenceur de Cours.</p></div>
+              <div class="course-item"><small>Bonus · 35 min</small><strong>Commercialiser sans pression</strong><p>Pour ceux qui envisagent une offre. Vous produisez votre Proposition de Valeur Initiale.</p></div>
+            </div>
             <div class="masterclass-details">
               <span class="masterclass-detail"><strong>2 h</strong><small>de contenu</small></span>
               <span class="masterclass-detail"><strong>35 min</strong><small>de bonus</small></span>
@@ -218,15 +223,10 @@
               <span class="masterclass-detail"><strong>Exercices interactifs</strong></span>
               <span class="masterclass-detail"><strong>3 livrables</strong></span>
             </div>
-            <div class="masterclass-summary-price">98 CHF <span>/ 104 €</span></div>
-          </div>
-          <div class="course-programme">
-            <div class="course-item"><small>Module 1</small><strong>Pourquoi transmettez-vous ?</strong><p>Votre style, votre public, votre intention. Vous produisez votre Fiche Fondatrice.</p></div>
-            <div class="course-item"><small>Module 2</small><strong>Construire la progression</strong><p>Une séquence, une idée. Vous construisez votre Séquenceur de Cours.</p></div>
-            <div class="course-item"><small>Bonus · 35 min</small><strong>Commercialiser sans pression</strong><p>Pour ceux qui envisagent une offre. Vous produisez votre Proposition de Valeur Initiale.</p></div>
+            <div class="masterclass-block-price">98 CHF <span>/ 104 €</span></div>
           </div>
           <a class="btn" href="/extrait-masterclass1">Accéder à un extrait gratuit</a>
-          <span class="course-section-label">Ce qui est inclus</span>
+          <span class="course-section-label">Ebooks inclus</span>
           <div class="course-books">
             <div class="course-book">
               <img src="/upgr/covers/idee-au-plan.png" alt="De l'idée au plan" loading="lazy" width="44"/>
@@ -254,7 +254,7 @@
         </div>
         <div class="course-pricing discovery-pricing">
           <p class="course-pricing-tag">Pack découverte · Masterclasse + 2 Ebooks</p>
-          <h3>La Masterclasse « L'Art de Transmettre #1 » + 2 Ebooks</h3>
+          <h3>Masterclasse + 2 Ebooks</h3>
           <p>La masterclasse et les deux ebooks. <strong>Les trois forment un pack complet, de l'idée à la première session.</strong></p>
           <div class="price">110 CHF <span>150 CHF</span></div>
           <div class="price-eur">/ 118 € <span>160 €</span></div>
