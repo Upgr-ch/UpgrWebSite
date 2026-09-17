@@ -29,8 +29,8 @@
     h1{max-width:660px;color:var(--gold);font-size:clamp(2.6rem,6.5vw,5.2rem);font-style:italic;line-height:1.02;letter-spacing:-.045em}
     .shimmer-heading{background:linear-gradient(90deg,#b58d26 0%,#f6dc8d 30%,#fff 50%,#f6dc8d 70%,#b58d26 100%);background-size:250% 100%;animation:shimmer-heading 8s linear infinite;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
     @keyframes shimmer-heading{0%{background-position:200% 0}to{background-position:-200% 0}}
-    h2{color:var(--gold);font-size:clamp(1.6rem,2.9vw,2.35rem);font-style:italic;line-height:1.1}
-    h3{color:#fff;font-size:1.08rem;line-height:1.2}
+    h2{color:var(--gold);font-size:clamp(1.5rem,2.6vw,2.15rem);font-style:italic;line-height:1.1}
+    h3{color:#fff;font-size:1.04rem;line-height:1.2}
     .powered{margin:.65rem 0 1.5rem;color:var(--gold-deep);font-size:.75rem;font-style:italic;letter-spacing:.08em}
     .hero-copy p,.section-copy p{max-width:660px;color:var(--muted);font-size:1rem;font-weight:300;line-height:1.8}
     .hero-copy p+p{margin-top:.9rem}
@@ -47,7 +47,7 @@
     .discovery-copy{padding:1.75rem}
     .discovery-copy p{margin-top:.8rem;color:var(--muted);font-size:.98rem;line-height:1.75}
     .masterclass-module-block{margin:1.5rem 0 1.75rem;padding:1rem 1.1rem;border:1px solid rgba(245,224,144,.2);background:rgba(245,224,144,.025)}
-    .masterclass-block-title{margin-bottom:.85rem;color:var(--gold);font-size:1.02rem;font-style:italic}
+    .masterclass-block-title{margin-bottom:.85rem;color:var(--gold);font-size:.98rem;font-style:italic}
     .masterclass-details{display:grid;grid-template-columns:repeat(5,1fr);gap:.7rem}
     .masterclass-detail{display:flex;flex-direction:column;gap:.15rem;color:rgba(255,255,255,.78);font-size:.76rem;line-height:1.4}
     .masterclass-detail strong{color:#fff;font-size:.86rem}
@@ -93,9 +93,9 @@
     #edouard.section{padding-top:1.5rem;padding-bottom:1.5rem}
     #pack-complet.section{padding-top:1.5rem}
     .section-bridge{max-width:1040px;margin:auto;padding:.9rem 1.25rem;display:flex;align-items:center;gap:1rem}
-    .section-bridge-spacious{padding-top:2.35rem;padding-bottom:2.35rem}
+    .section-bridge-spacious{padding-top:1.25rem;padding-bottom:3rem}
     .section-bridge::before,.section-bridge::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(245,224,144,.38),transparent)}
-    .section-bridge-title{flex:0 0 auto;color:var(--gold);font-size:clamp(1rem,2vw,1.28rem);font-style:italic;font-weight:700;letter-spacing:.05em;text-align:center}
+    .section-bridge-title{flex:0 0 auto;color:var(--gold);font-size:clamp(1.1rem,2.2vw,1.4rem);font-style:italic;font-weight:700;letter-spacing:.05em;text-align:center}
     .form-wrap{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;align-items:center;padding:.75rem;border:1px solid rgba(245,224,144,.12);background:rgba(255,255,255,.012)}
     .form-wrap h2{margin-bottom:.3rem;font-size:clamp(1.6rem,2.5vw,1.9rem)}
     .form-wrap .form-intro{margin-top:0;color:rgba(255,255,255,.82);font-size:.78rem;line-height:1.35}
@@ -106,7 +106,7 @@
     .field label{display:block;margin-bottom:0;color:rgba(255,255,255,.8);font-size:.68rem;font-weight:600}
     .field input[type="email"]{width:100%;padding:.48rem .6rem;border:1px solid rgba(255,255,255,.18);border-radius:2px;background:rgba(255,255,255,.04);color:#fff;font:inherit}
     .field input[type="email"]:focus{outline:2px solid var(--gold);outline-offset:2px}
-    .consent{display:flex;align-items:flex-start;gap:.5rem;color:rgba(255,255,255,.64);font-size:.68rem;line-height:1.3}
+    .consent{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.85rem;color:rgba(255,255,255,.64);font-size:.68rem;line-height:1.3}
     .consent input{margin-top:.22rem;accent-color:var(--gold)}
     .lead-form button{width:100%;padding:.45rem;border:1px solid rgba(245,224,144,.45);background:rgba(245,224,144,.08);color:var(--gold);font:inherit;font-size:.66rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s}
     .lead-form button:hover{background:rgba(245,224,144,.16);color:#fff}
@@ -114,7 +114,7 @@
     .form-note{margin-top:.35rem!important;color:rgba(255,255,255,.43)!important;font-size:.6rem;font-style:italic;line-height:1.2!important}
     .form-status{min-height:1.4rem;margin-top:.7rem!important;color:var(--gold)!important;font-size:.8rem!important}
     .honeypot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-    .references{display:flex;flex-wrap:wrap;gap:.5rem}
+    .references{display:flex;flex-wrap:wrap;gap:.5rem;padding:1.5rem;border-left:2px solid var(--gold);background:rgba(255,255,255,.02)}
     .reference{display:inline-block;padding:.5rem .7rem;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.68);font-size:.72rem;letter-spacing:.03em;transition:border-color .2s,color .2s,background .2s}
     .reference:hover{border-color:rgba(245,224,144,.5);background:rgba(245,224,144,.06);color:var(--gold);text-decoration:none}
     .about{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;padding:1.5rem;border-left:2px solid var(--gold);background:rgba(255,255,255,.02)}
@@ -180,7 +180,7 @@
       .hero{grid-template-columns:1fr;gap:1.5rem;padding-top:3.5rem;padding-bottom:3.5rem}.hero-art{min-height:210px;order:-1}.hero-art svg{width:min(100%,250px)}.hero-copy{max-width:680px}.two-col,.form-wrap{grid-template-columns:1fr}.eugene-horizontal,.edouard-horizontal{grid-template-columns:100px 1fr;gap:1rem;padding:1rem}.eugene-icon,.edouard-icon{width:88px;height:88px}.course-programme.four{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}.faq{grid-template-columns:1fr}.section{padding-top:3.5rem;padding-bottom:3.5rem}
     }
     @media(max-width:560px){
-      h1{font-size:clamp(2.35rem,13vw,4rem)}h2{font-size:clamp(1.55rem,8vw,2.2rem)}.hero{padding:2.75rem 1rem 3.25rem}.hero-art{min-height:165px}.hero-art svg{width:190px}.section{padding:2.75rem 1rem}.section-intro{margin-bottom:1.35rem}.situations{grid-template-columns:1fr}.course-programme,.course-programme.four{grid-template-columns:1fr}.masterclass-details{grid-template-columns:repeat(2,minmax(0,1fr))}.course-book{align-items:flex-start;flex-wrap:wrap;gap:.7rem}.course-book img{width:34px}.course-book-text{min-width:calc(100% - 3.25rem)}.course-book .btn{width:100%;text-align:center}.discovery-copy,.feature-card,.form-wrap,.course-support,.course-pricing{padding:1.15rem}.discovery-pricing{padding-top:1.15rem}.eugene-horizontal,.edouard-horizontal{grid-template-columns:1fr;gap:.7rem;padding:1rem;text-align:center}.eugene-visual,.edouard-visual{margin-bottom:0}.eugene-icon,.edouard-icon{width:88px;height:88px}.eugene-copy .section-label{margin-bottom:.45rem}.eugene-copy .btn,.edouard-copy .btn{margin-top:.9rem}.payment-note{flex-wrap:wrap}.btn{width:100%}.btn-secondary{margin-left:0}.about{gap:1rem}.mobile-cta{display:block;position:fixed;z-index:30;bottom:0;left:0;width:100%;padding:.55rem;background:rgba(8,15,30,.96);border-top:1px solid rgba(245,224,144,.25);text-align:center}.mobile-cta a{display:block;margin:0;padding:.65rem;background:var(--gold);color:var(--navy);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.site-footer{padding-bottom:4.5rem}
+       h1{font-size:clamp(2.35rem,13vw,4rem)}h2{font-size:clamp(1.45rem,7.5vw,2rem)}.hero{padding:2.75rem 1rem 3.25rem}.hero-art{min-height:165px}.hero-art svg{width:190px}.section{padding:2.75rem 1rem}.section-intro{margin-bottom:1.35rem}.situations{grid-template-columns:1fr}.course-programme,.course-programme.four{grid-template-columns:1fr}.masterclass-details{grid-template-columns:repeat(2,minmax(0,1fr))}.course-book{align-items:flex-start;flex-wrap:wrap;gap:.7rem}.course-book img{width:34px}.course-book-text{min-width:calc(100% - 3.25rem)}.course-book .btn{width:100%;text-align:center}.discovery-copy,.feature-card,.form-wrap,.course-support,.course-pricing{padding:1.15rem}.discovery-pricing{padding-top:1.15rem}.eugene-horizontal,.edouard-horizontal{grid-template-columns:1fr;gap:.7rem;padding:1rem;text-align:center}.eugene-visual,.edouard-visual{margin-bottom:0}.eugene-icon,.edouard-icon{width:88px;height:88px}.eugene-copy .section-label{margin-bottom:.45rem}.eugene-copy .btn,.edouard-copy .btn{margin-top:.9rem}.payment-note{flex-wrap:wrap}.btn{width:100%}.btn-secondary{margin-left:0}.about{gap:1rem}.mobile-cta{display:block;position:fixed;z-index:30;bottom:0;left:0;width:100%;padding:.55rem;background:rgba(8,15,30,.96);border-top:1px solid rgba(245,224,144,.25);text-align:center}.mobile-cta a{display:block;margin:0;padding:.65rem;background:var(--gold);color:var(--navy);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.site-footer{padding-bottom:4.5rem}
     }
   </style>
 </head>
