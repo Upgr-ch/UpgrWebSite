@@ -24,19 +24,14 @@
     a{color:var(--gold);text-decoration:none}
     a:hover{text-decoration:underline}
     :focus-visible{outline:2px solid var(--gold);outline-offset:4px}
-    .site-header{position:fixed;z-index:20;top:0;left:0;width:100%;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(8,15,30,.94);backdrop-filter:blur(14px)}
-    .header-inner{max-width:1160px;margin:auto;padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
-    .brand{font-size:1.05rem;font-weight:700;font-style:italic;letter-spacing:.02em;white-space:nowrap}
-    .brand small{display:block;margin-top:-.2rem;color:var(--gold);font-size:.48rem;font-style:normal;letter-spacing:.22em;text-transform:uppercase}
-    .nav{display:flex;align-items:center;justify-content:flex-end;gap:1.15rem;flex-wrap:wrap}
-    .nav a{color:rgba(255,255,255,.68);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase}
-    .nav a:hover,.nav a[aria-current="page"]{color:var(--gold);text-decoration:none}
-    .hero{max-width:1160px;margin:auto;padding:9.5rem 1.5rem 6rem;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:4rem}
+    .hero{max-width:1160px;margin:auto;padding:5rem 1.5rem 6rem;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:4rem}
     .eyebrow{display:inline-block;margin-bottom:1.5rem;padding:.35rem .8rem;border:1px solid rgba(245,224,144,.42);color:var(--gold);font-size:.68rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase}
     h1{max-width:720px;color:var(--gold);font-size:clamp(2.8rem,7vw,6rem);font-style:italic;line-height:1.02;letter-spacing:-.04em}
+    .shimmer-heading{background:linear-gradient(90deg,#b58d26 0%,#f6dc8d 30%,#fff 50%,#f6dc8d 70%,#b58d26 100%);background-size:250% 100%;animation:shimmer-heading 8s linear infinite;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    @keyframes shimmer-heading{0%{background-position:200% 0}to{background-position:-200% 0}}
     h2{color:var(--gold);font-size:clamp(1.8rem,3.5vw,3rem);font-style:italic;line-height:1.1}
     h3{color:#fff;font-size:1.15rem;line-height:1.2}
-    .powered{margin:.8rem 0 2rem;color:var(--gold-deep);font-size:.75rem;letter-spacing:.25em;text-transform:uppercase}
+    .powered{margin:.8rem 0 2rem;color:var(--gold-deep);font-size:.75rem;font-style:italic;letter-spacing:.08em}
     .hero-copy p,.section-copy p{max-width:680px;color:var(--muted);font-size:1.05rem;font-weight:300;line-height:1.9}
     .hero-copy p+p{margin-top:1.1rem}
     .hero-art{display:flex;align-items:center;justify-content:center;min-height:360px}
@@ -105,35 +100,57 @@
     .footer-inner a{color:rgba(255,255,255,.55)}
     .footer-inner a:hover{color:var(--gold)}
     .mobile-cta{display:none}
+    .course-section-label{display:block;margin:2.8rem 0 1.4rem;padding-bottom:.6rem;border-bottom:1px solid rgba(245,224,144,.2);color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase}
+    .course-programme{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-bottom:1rem;border:1px solid rgba(245,224,144,.1);border-radius:4px;overflow:hidden;background:rgba(245,224,144,.1)}
+    .course-programme.four{grid-template-columns:repeat(4,1fr)}
+    .course-item{padding:1.5rem 1.6rem;background:var(--navy)}
+    .course-item small{display:block;margin-bottom:.4rem;color:var(--gold-deep);font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+    .course-item strong{display:block;margin-bottom:.35rem;color:#fff;font-size:.92rem;line-height:1.3}
+    .course-item p{color:rgba(255,255,255,.78);font-size:.82rem;font-weight:300;line-height:1.75}
+    .course-part{margin-top:2rem;color:var(--gold-deep);font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+    .course-part::after{content:'';display:inline-block;width:30%;height:1px;margin:0 0 .2rem .75rem;background:rgba(180,140,40,.2)}
+    .course-books{display:flex;flex-direction:column;gap:.75rem;margin-bottom:2rem}
+    .course-book{display:flex;align-items:center;gap:1.2rem;padding:.85rem 1.1rem;border:1px solid rgba(245,224,144,.1);border-radius:3px;background:rgba(255,255,255,.015)}
+    .course-book img{width:44px;height:auto;flex-shrink:0;box-shadow:0 2px 10px rgba(0,0,0,.35);border-radius:1px}
+    .course-book-text{display:flex;flex-direction:column;gap:.2rem;flex:1}
+    .course-book-text strong{color:rgba(255,255,255,.92);font-size:.9rem;font-style:italic}
+    .course-book-text small{color:rgba(255,255,255,.38);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase}
+    .course-book .btn{width:auto;margin-top:0;padding:.38rem 1rem;font-size:.66rem;white-space:nowrap}
+    .course-profiles{display:flex;flex-direction:column;gap:.8rem}
+    .course-profile{padding:1.2rem 1.5rem;border-left:2px solid rgba(245,224,144,.35);background:rgba(255,255,255,.02)}
+    .course-profile p{color:rgba(255,255,255,.92);font-size:.97rem;font-weight:300;line-height:1.85}
+    .course-profile strong{color:#fff;font-weight:600}
+    .course-note{margin-top:1.5rem;padding:1rem 1.5rem;border-left:2px solid rgba(255,255,255,.1);color:rgba(255,255,255,.65);font-size:.9rem;font-style:italic;line-height:1.8}
+    .course-support{margin-top:2rem;padding:1.8rem 2rem;border:1px solid rgba(245,224,144,.12);border-radius:4px;background:rgba(255,255,255,.02)}
+    .course-support p{color:rgba(255,255,255,.92);font-size:.97rem;font-weight:300;line-height:1.85}
+    .course-support p+p{margin-top:.8rem}
+    .course-pricing{max-width:620px;margin:0 auto;padding:2rem;border:1px solid var(--gold);background:rgba(245,224,144,.04);box-shadow:0 0 32px rgba(245,224,144,.07)}
+    .course-pricing-tag{margin-bottom:.55rem;color:var(--gold-deep);font-size:.62rem;font-weight:300;letter-spacing:.22em;text-transform:uppercase}
+    .course-pricing h3{margin-bottom:.9rem;font-size:1.05rem}
+    .course-pricing p{color:rgba(255,255,255,.82);font-size:.87rem;font-weight:300;line-height:1.8}
+    .course-pricing .price{margin:.7rem 0;color:var(--gold);font-size:2.6rem;font-weight:700;line-height:1}
+    .course-pricing .price span{margin-left:.5rem;color:rgba(255,255,255,.45);font-size:1.1rem;text-decoration:line-through}
+    .course-pricing .price-eur{margin-top:.2rem;color:rgba(255,255,255,.55);font-size:.95rem}
+    .course-pricing .price-eur span{margin-left:.3rem;color:rgba(255,255,255,.28);font-size:.85rem;text-decoration:line-through}
+    .course-pricing .saving{display:block;margin-top:.35rem;color:rgba(255,255,255,.78);font-size:.75rem}
+    .payment-note{display:flex;align-items:center;gap:.5rem;margin:1rem 0}
+    .payment-badge{padding:.22rem .75rem;border-radius:2px;background:var(--gold);color:var(--navy);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    .payment-text{color:rgba(255,255,255,.6);font-size:.75rem}
+    .note-shimmer{display:block;margin:1rem 0;color:var(--gold);font-size:.82rem;font-style:italic;font-weight:500;line-height:1.6;background:linear-gradient(90deg,#b58d26 0%,#f6dc8d 30%,#fff 50%,#f6dc8d 70%,#b58d26 100%);background-size:250% 100%;animation:shimmer-heading 8s linear infinite;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
     @media(max-width:820px){
-      .nav{gap:.65rem}.nav a{font-size:.58rem}.hero{grid-template-columns:1fr;gap:2rem;padding-top:8rem}.hero-art{min-height:260px;order:-1}.hero-copy{max-width:680px}.discovery,.two-col,.form-wrap{grid-template-columns:1fr}.about{grid-template-columns:1fr}.faq{grid-template-columns:1fr}.section{padding-top:4rem;padding-bottom:4rem}
+      .hero{grid-template-columns:1fr;gap:2rem;padding-top:4rem}.hero-art{min-height:260px;order:-1}.hero-copy{max-width:680px}.discovery,.two-col,.form-wrap{grid-template-columns:1fr}.course-programme.four{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}.faq{grid-template-columns:1fr}.section{padding-top:4rem;padding-bottom:4rem}
     }
     @media(max-width:560px){
-      .header-inner{align-items:flex-start}.brand small{letter-spacing:.15em}.nav{max-width:210px}.nav a{font-size:.52rem}.hero{padding:7rem 1rem 4rem}.section{padding-left:1rem;padding-right:1rem}.screens,.situations{grid-template-columns:1fr}.discovery-copy,.offer-card,.feature-card,.form-wrap{padding:1.35rem}.btn{width:100%}.btn-secondary{margin-left:0}.mobile-cta{display:block;position:fixed;z-index:30;bottom:0;left:0;width:100%;padding:.7rem;background:rgba(8,15,30,.95);border-top:1px solid rgba(245,224,144,.25);text-align:center}.mobile-cta a{display:block;margin:0;padding:.7rem;background:var(--gold);color:var(--navy);font-size:.7rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase}.site-footer{padding-bottom:5rem}
+      .hero{padding:4rem 1rem 4rem}.section{padding-left:1rem;padding-right:1rem}.screens,.situations{grid-template-columns:1fr}.course-programme,.course-programme.four{grid-template-columns:1fr}.course-book{flex-wrap:wrap}.course-book .btn{width:100%;text-align:center}.discovery-copy,.offer-card,.feature-card,.form-wrap,.course-support,.course-pricing{padding:1.35rem}.btn{width:100%}.btn-secondary{margin-left:0}.mobile-cta{display:block;position:fixed;z-index:30;bottom:0;left:0;width:100%;padding:.7rem;background:rgba(8,15,30,.95);border-top:1px solid rgba(245,224,144,.25);text-align:center}.mobile-cta a{display:block;margin:0;padding:.7rem;background:var(--gold);color:var(--navy);font-size:.7rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase}.site-footer{padding-bottom:5rem}
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-      <a class="brand" href="/">UpGrade<small>Learning &amp; Development</small></a>
-      <nav class="nav" aria-label="Navigation principale">
-        <a href="/">Accueil</a>
-        <a href="/#positionnement">Notre mission</a>
-        <a href="/#offres">Solutions</a>
-        <a href="/l-art-de-transmettre" aria-current="page">MasterClasse : L’Art de Transmettre</a>
-        <a href="/eugene">Eugène Majordome Pédagogique</a>
-        <a href="/edouard">Édouard Consultant Viabilité Business</a>
-        <a href="/#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
   <main>
     <section class="hero" id="accueil">
       <div class="hero-copy">
         <span class="eyebrow">L’ART DE TRANSMETTRE</span>
-        <h1>L’Art de Transmettre</h1>
+        <h1 class="shimmer-heading">L’Art de Transmettre</h1>
         <p class="powered">Powered by UpGrade L&amp;D</p>
         <p>Vous avez quelque chose. Un savoir, une pratique, une manière de faire. Vous l’avez acquis sur le terrain, par l’usage, par les années. Et un jour, vous êtes amené à le partager.</p>
         <p>Vous l’avez fait.<br>Ou vous ne l’avez jamais fait.<br>Peut être bien. Peut être mal. Peut être les deux.</p>
@@ -157,25 +174,59 @@
 
     <section class="section" id="pack-decouverte">
       <div class="section-intro">
-        <span class="section-label light">Priorité principale</span>
-        <h2 class="section-heading">Pack Découverte</h2>
+        <h2 class="section-heading">La Masterclasse « L'Art de Transmettre #1 » + 2 Ebooks</h2>
         <p class="powered">Powered by UpGrade L&amp;D</p>
       </div>
       <div class="discovery strong-card">
         <div class="discovery-copy">
-          <h3>L’Art de Transmettre #1, poser les fondations</h3>
-          <p>La transmission est un métier à part entière, qui s’apprend comme les autres. Que vous vouliez ou deviez transmettre votre savoir, vous connaissez votre sujet. Cette masterclasse vous donne les outils pour le faire.</p>
+          <h3>L'Art de Transmettre #1</h3>
+          <p class="offer-name">Poser les Fondations</p>
+          <p>La transmission est un métier à part entière, qui s'apprend comme les autres. Que vous vouliez ou deviez transmettre votre savoir, vous connaissez votre sujet. Cette masterclasse vous donne les outils pour le faire.</p>
+          <div class="course-programme">
+            <div class="course-item"><small>Module 1</small><strong>Pourquoi transmettez-vous ?</strong><p>Votre style, votre public, votre intention. Vous produisez votre Fiche Fondatrice.</p></div>
+            <div class="course-item"><small>Module 2</small><strong>Construire la progression</strong><p>Une séquence, une idée. Vous construisez votre Séquenceur de Cours.</p></div>
+            <div class="course-item"><small>Bonus · 35 min</small><strong>Commercialiser sans pression</strong><p>Pour ceux qui envisagent une offre. Vous produisez votre Proposition de Valeur Initiale.</p></div>
+          </div>
+          <a class="btn" href="/extrait-masterclass1">Accéder à un extrait gratuit</a>
+          <span class="course-section-label">Ebooks inclus</span>
+          <div class="course-books">
+            <div class="course-book">
+              <img src="/upgr/covers/idee-au-plan.png" alt="De l'idée au plan" loading="lazy" width="44"/>
+              <div class="course-book-text"><strong>De l'idée au plan</strong><small>80 pages · Numérique · Téléchargeable · Imprimable</small></div>
+              <a class="btn" href="/upgr/extrait-idee-au-plan?from=masterclass1">Voir un extrait</a>
+            </div>
+            <div class="course-book">
+              <img src="/upgr/covers/competences-invisibles.png" alt="Vos compétences humaines invisibles" loading="lazy" width="44"/>
+              <div class="course-book-text"><strong>Vos compétences humaines invisibles</strong><small>120 pages · Numérique · Téléchargeable · Imprimable</small></div>
+              <a class="btn" href="/upgr/extrait-vos-competences-invisibles?from=masterclass1">Voir un extrait</a>
+            </div>
+          </div>
+          <span class="course-section-label">À qui s'adresse cette masterclasse</span>
+          <div class="course-profiles">
+            <div class="course-profile"><p><strong>Les experts qui doivent transmettre sans avoir jamais appris à le faire.</strong> Ils maîtrisent leur métier, ils ont des années d'expérience, mais quand ils doivent expliquer à d'autres ce qu'ils font, ils se sentent démunis.</p></div>
+            <div class="course-profile"><p><strong>Ceux qui animent déjà des sessions mais sans cadre structuré.</strong> Ils improvisent, parfois ça marche, parfois les gens décrochent, et ils ne savent pas comment faire mieux.</p></div>
+            <div class="course-profile"><p><strong>Ceux qui veulent se lancer mais qui se sentent illégitimes</strong>, qui attendent d'être prêts et qui ne le sont jamais.</p></div>
+          </div>
+          <div class="course-note">Ce que ces trois profils ont en commun : un savoir réel, une envie de le partager, et un besoin d'outils pour le faire. Ils n'ont pas de formation en pédagogie et ils n'en veulent pas.<br><br>Cette masterclasse n'est pas pour ceux qui cherchent une certification, ni pour ceux qui ont déjà un système qui fonctionne.</div>
+          <div class="course-support">
+            <span class="course-section-label">Coup de pouce</span>
+            <p>Si vous avez besoin d'un regard sur votre progression dans L'Art de Transmettre #1, si vous voulez clarifier un point, un livrable ou poser une question sur un module, vous pourrez nous contacter.</p>
+            <p>Nous mettons un point d'honneur à répondre à tous les messages.</p>
+          </div>
           <div class="screens">
             <figure class="screen-placeholder"><img src="/screenshots/masterclass1-ebooks.jpg" alt="Aperçu des ressources du Pack Découverte" loading="lazy"/><figcaption>Votre Fiche Fondatrice, votre public et votre intention.</figcaption></figure>
             <figure class="screen-placeholder"><img src="/screenshots/masterclass1-ebooks.jpg" alt="Aperçu des livrables du Pack Découverte" loading="lazy"/><figcaption>Un Séquenceur de Cours et une Proposition de Valeur Initiale.</figcaption></figure>
           </div>
         </div>
         <div class="offer-card">
-          <p class="offer-name">Masterclasse + 2 ouvrages</p>
-          <p>La Masterclasse « L’Art de Transmettre #1 », De l’idée au plan et Vos compétences humaines invisibles.</p>
-          <div class="price">110 CHF <small>prix groupé</small></div>
-          <p>Les trois forment un pack complet, de l’idée à la première session.</p>
-          <a class="btn btn-solid" href="/masterclass1">Voir le Pack Découverte</a>
+          <p class="offer-name">La Masterclasse « L'Art de Transmettre #1 » + 2 Ebooks</p>
+          <p>La Masterclasse <u>« L'Art de Transmettre #1 »</u> + Le livre <u>« De l'idée au plan »</u> + Le Livre <u>« Vos compétences humaines invisibles »</u>. <strong>Les trois forment un pack complet, de l'idée à la première session.</strong></p>
+          <div class="price">110 CHF <small><s>150 CHF</s></small></div>
+          <p>/ 118 € <s>160 €</s></p>
+          <p>Economisez 40 CHF / 43 €</p>
+          <p class="note-shimmer">Vous avez déjà les ouvrages ? Ce que vous avez payé sera déduit au paiement. (votre code promotionnel vous a été envoyé par mail avec votre précédent achat)</p>
+          <a class="btn btn-solid" href="https://buy.stripe.com/5kQfZh2V5e97ckEa22gw00m">Commander</a>
+          <a class="btn btn-secondary" href="/masterclass1">Voir la page complète</a>
           <a class="btn btn-secondary" href="/extrait-masterclass1">Voir un extrait</a>
           <p class="disclaimer">Prix en euros donné à titre indicatif, sur la base d’un équivalent en CHF. Le montant facturé peut varier selon le taux de change appliqué au moment du paiement.</p>
         </div>
@@ -198,7 +249,6 @@
 
     <section class="section" id="eugene">
       <div class="section-intro">
-        <span class="section-label">Priorité 1 secondaire</span>
         <h2 class="section-heading">Eugène, majordome pédagogique</h2>
         <p class="powered">Accès Libre, Illimité, Sans paiement.</p>
       </div>
@@ -248,21 +298,69 @@
 
     <section class="section" id="pack-complet">
       <div class="section-intro">
-        <span class="section-label">Priorité 2 secondaire</span>
-        <h2 class="section-heading">Pack Complet</h2>
-        <p class="section-copy">Les deux masterclasses L’Art de Transmettre #1 et #2, avec les deux ebooks.</p>
+        <h2 class="section-heading">L’Art de Transmettre #1 et #2</h2>
+        <p class="section-copy">Deux masterclasses pour maîtriser l'ensemble du processus : poser les fondations de votre formation, puis la faire vivre. De l'idée au premier groupe, avec les outils, les livrables et le soutien pour aller jusqu'au bout.</p>
       </div>
-      <div class="two-col">
-        <div class="feature-card">
-          <h3>De l’idée à la première session animée</h3>
-          <p>Les deux masterclasses, les deux ebooks, tous les outils et livrables pour aller jusqu’au bout.</p>
-          <div class="price">405 CHF</div>
-          <p>Paiement en 3 fois disponible, sans frais.</p>
-          <p class="disclaimer">Prix en euros donné à titre indicatif, sur la base d’un équivalent en CHF. Le montant facturé peut varier selon le taux de change appliqué au moment du paiement.</p>
-          <a class="btn" href="/masterclass2">Voir le Pack Complet</a>
-          <a class="btn btn-solid btn-secondary" href="https://buy.stripe.com/dRm9ATcvFe970BWeiigw00n">Commander</a>
+      <div class="feature-card">
+        <div class="course-part">L'Art de Transmettre #1 · Poser les Fondations</div>
+        <div class="course-programme">
+          <div class="course-item"><small>Module 1</small><strong>Pourquoi transmettez-vous ?</strong><p>Votre style, votre public, votre intention. Vous produisez votre Fiche Fondatrice.</p></div>
+          <div class="course-item"><small>Module 2</small><strong>Construire la progression</strong><p>Une séquence, une idée. Vous construisez votre Séquenceur de Cours.</p></div>
+          <div class="course-item"><small>Bonus · 35 min</small><strong>Commercialiser sans pression</strong><p>Pour ceux qui envisagent une offre. Vous produisez votre Proposition de Valeur Initiale.</p></div>
         </div>
-        <figure class="screen-placeholder"><img src="/screenshots/masterclass2-pricing.jpg" alt="Aperçu du Pack Complet" loading="lazy"/><figcaption>L’Art de Transmettre #1 et #2, avec les deux ebooks inclus.</figcaption></figure>
+        <a class="btn" href="/extrait-masterclass1?from=pack-masterclasses">Voir un extrait</a>
+        <p class="course-part">L'Art de Transmettre #2 · Faire vivre la transmission</p>
+        <div class="course-programme four">
+          <div class="course-item"><small>Module 6</small><strong>Le Pouls de la Transmission</strong><p>Lire l'énergie d'un groupe, en présentiel, en distanciel ou en hybride. Savoir quand accélérer, ralentir, relancer.</p></div>
+          <div class="course-item"><small>Module 7</small><strong>Les Outils de l'Impact</strong><p>L'art de l'analogie, le récit pédagogique, les méthodes actives. Vous construisez votre boîte à outils personnelle.</p></div>
+          <div class="course-item"><small>Module 8</small><strong>Validation et Clôture</strong><p>Le feedback en trois temps, l'évaluation comme miroir, le rituel de clôture. Vous sécurisez les acquis.</p></div>
+          <div class="course-item"><small>Bonus · 50 min</small><strong>Le Verdict de Rentabilité</strong><p>La balance temps/revenus, le seuil de rentabilité, votre verdict Go/No-Go.</p></div>
+        </div>
+        <a class="btn" href="/extrait-masterclass2?from=pack-masterclasses">Voir un extrait</a>
+
+        <span class="course-section-label">Ouvrages inclus</span>
+        <div class="course-books">
+          <div class="course-book">
+            <img src="/upgr/covers/idee-au-plan.png" alt="De l'idée au plan" loading="lazy" width="44"/>
+            <div class="course-book-text"><strong>De l'idée au plan</strong><small>80 pages · Numérique · Téléchargeable · Imprimable</small></div>
+            <a class="btn" href="/upgr/extrait-idee-au-plan?from=pack-masterclasses">Voir un extrait</a>
+          </div>
+          <div class="course-book">
+            <img src="/upgr/covers/competences-invisibles.png" alt="Vos compétences humaines invisibles" loading="lazy" width="44"/>
+            <div class="course-book-text"><strong>Vos compétences humaines invisibles</strong><small>120 pages · Numérique · Téléchargeable · Imprimable</small></div>
+            <a class="btn" href="/upgr/extrait-vos-competences-invisibles?from=pack-masterclasses">Voir un extrait</a>
+          </div>
+        </div>
+
+        <span class="course-section-label">À qui s'adresse ce programme</span>
+        <div class="course-profiles">
+          <div class="course-profile"><p><strong>Les experts qui doivent transmettre sans avoir jamais appris à le faire.</strong> Ils maîtrisent leur métier, ils ont des années d'expérience, mais quand ils doivent expliquer à d'autres ce qu'ils font, ils se sentent démunis.</p></div>
+          <div class="course-profile"><p><strong>Ceux qui animent déjà des sessions mais sans cadre structuré.</strong> Ils improvisent, parfois ça marche, parfois les gens décrochent, et ils ne savent pas comment faire mieux.</p></div>
+          <div class="course-profile"><p><strong>Ceux qui veulent se lancer mais qui se sentent illégitimes</strong>, qui attendent d'être prêts et qui ne le sont jamais.</p></div>
+        </div>
+        <div class="course-note">Ce programme n'est pas pour ceux qui cherchent une certification, ni pour ceux qui ont déjà un système qui fonctionne.</div>
+
+        <div class="course-support">
+          <span class="course-section-label">Coup de pouce</span>
+          <p>Si vous avez besoin d'un regard sur votre progression, si vous voulez clarifier un point, un livrable ou poser une question sur un module, vous pourrez nous contacter à tout moment du programme.</p>
+          <p>Nous mettons un point d'honneur à répondre à tous les messages.</p>
+        </div>
+
+        <span class="course-section-label">Tarif</span>
+        <div class="course-pricing">
+          <p class="course-pricing-tag">Pack complet · 2 Masterclasses « L'Art de Transmettre #1 et #2 » + 2 Ebooks</p>
+          <h3>L'Art de Transmettre #1 + #2 + 2 ebooks</h3>
+          <p>Les deux masterclasses + les deux ebooks. De l'idée à la première session animée, avec tous les outils, livrables et ouvrages pour aller jusqu'au bout.</p>
+          <div class="price">405 CHF <span>502 CHF</span></div>
+          <div class="price-eur">/ 435 € <span>540 €</span></div>
+          <span class="saving">Economisez 97 CHF / 105 €</span>
+          <div class="payment-note"><span class="payment-badge">Paiement en 3 fois</span><span class="payment-text">disponible · sans frais</span></div>
+          <span class="note-shimmer">Vous avez déjà acheté une offre chez nous ? Ce que vous avez payé sera déduit au paiement. Votre code promotionnel vous a été envoyé par mail.</span>
+          <p class="disclaimer">Prix en euros donné à titre indicatif, sur la base d'un équivalent en CHF. Le montant facturé peut varier selon le taux de change appliqué au moment du paiement.</p>
+          <a class="btn btn-solid" href="https://buy.stripe.com/dRm9ATcvFe970BWeiigw00n">Commander</a>
+          <a class="btn btn-solid" href="https://buy.stripe.com/aFa9AT67h3ut1G00rsgw00o">Commander et régler en 3 fois</a>
+          <a class="btn" href="/pack-masterclasses">Voir la page complète</a>
+        </div>
       </div>
     </section>
 
@@ -279,7 +377,6 @@
 
     <section class="section" id="edouard">
       <div class="section-intro">
-        <span class="section-label">Priorité 3 secondaire</span>
         <h2 class="section-heading">Édouard, consultant viabilité business</h2>
         <p class="powered">Pour ceux qui veulent commercialiser leur savoir.</p>
       </div>
