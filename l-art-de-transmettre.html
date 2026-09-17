@@ -203,15 +203,39 @@
       </div>
       <div class="hero-art" aria-label="Illustration symbolisant la transmission" role="img">
         <svg viewBox="0 0 420 420" aria-hidden="true">
-          <defs><linearGradient id="passageGold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f5e090"/><stop offset="1" stop-color="#b48c28"/></linearGradient></defs>
-          <circle cx="210" cy="210" r="160" fill="none" stroke="url(#passageGold)" stroke-width="1" opacity=".35"/>
-          <circle cx="210" cy="210" r="118" fill="none" stroke="url(#passageGold)" stroke-width="1" opacity=".45"/>
-          <path d="M130 210c0-60 35-105 80-105s80 45 80 105-35 105-80 105-80-45-80-105Z" fill="none" stroke="#f5e090" stroke-width="2" opacity=".8"/>
-          <path d="M165 210c0-35 20-63 45-63s45 28 45 63-20 63-45 63-45-28-45-63Z" fill="none" stroke="#f5e090" stroke-width="2" opacity=".6"/>
-          <path d="M60 210h300M210 60v300" stroke="#f5e090" stroke-width="1" opacity=".22"/>
-          <circle cx="210" cy="210" r="14" fill="#f5e090"/>
-          <circle cx="210" cy="210" r="30" fill="none" stroke="#f5e090" opacity=".4"/>
-          <path d="M105 132c35-26 70-39 105-39s70 13 105 39M105 288c35 26 70 39 105 39s70-13 105-39" fill="none" stroke="#f5e090" stroke-width="1" stroke-dasharray="5 8" opacity=".45"/>
+          <defs>
+            <linearGradient id="passageGold" x1="0" y1="0" x2="1" y2="1">
+              <stop stop-color="#fff4bd"/>
+              <stop offset=".5" stop-color="#f5e090"/>
+              <stop offset="1" stop-color="#b48c28"/>
+            </linearGradient>
+            <radialGradient id="knowledgeGlow" cx="50%" cy="50%" r="50%">
+              <stop stop-color="#f5e090" stop-opacity=".2"/>
+              <stop offset="1" stop-color="#f5e090" stop-opacity="0"/>
+            </radialGradient>
+            <marker id="knowledgeArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M0 0 10 5 0 10Z" fill="#f5e090"/>
+            </marker>
+          </defs>
+          <circle cx="210" cy="205" r="166" fill="none" stroke="url(#passageGold)" stroke-width="1" stroke-dasharray="2 12" opacity=".3"/>
+          <circle cx="210" cy="205" r="132" fill="url(#knowledgeGlow)" opacity=".65"/>
+          <circle cx="92" cy="130" r="21" fill="none" stroke="url(#passageGold)" stroke-width="2" opacity=".9"/>
+          <path d="M55 238c2-36 17-64 37-64s35 28 37 64" fill="none" stroke="url(#passageGold)" stroke-width="2" stroke-linecap="round" opacity=".85"/>
+          <circle cx="328" cy="130" r="21" fill="none" stroke="url(#passageGold)" stroke-width="2" opacity=".9"/>
+          <path d="M291 238c2-36 17-64 37-64s35 28 37 64" fill="none" stroke="url(#passageGold)" stroke-width="2" stroke-linecap="round" opacity=".85"/>
+          <path d="M124 166c24 0 39 12 55 29 11 12 19 15 31 15" fill="none" stroke="#f5e090" stroke-width="2" stroke-linecap="round" marker-end="url(#knowledgeArrow)" opacity=".85"/>
+          <path d="M296 166c-24 0-39 12-55 29-11 12-19 15-31 15" fill="none" stroke="#f5e090" stroke-width="2" stroke-linecap="round" marker-end="url(#knowledgeArrow)" opacity=".85"/>
+          <circle cx="151" cy="178" r="5" fill="#f5e090"/>
+          <circle cx="269" cy="178" r="5" fill="#f5e090"/>
+          <circle cx="180" cy="204" r="4" fill="#f5e090" opacity=".8"/>
+          <circle cx="240" cy="204" r="4" fill="#f5e090" opacity=".8"/>
+          <path d="M210 279V222" fill="none" stroke="#f5e090" stroke-width="2" stroke-linecap="round" marker-end="url(#knowledgeArrow)"/>
+          <circle cx="210" cy="197" r="11" fill="none" stroke="#f5e090" stroke-width="2"/>
+          <path d="M210 178v-16M210 216v16M191 197h-16M229 197h16M196 183l-11-11M224 183l11-11" stroke="#f5e090" stroke-width="1.5" stroke-linecap="round" opacity=".8"/>
+          <path d="M102 298c39-20 73-20 108 0v57c-35-20-69-20-108 0Z" fill="rgba(245,224,144,.04)" stroke="url(#passageGold)" stroke-width="2"/>
+          <path d="M318 298c-39-20-73-20-108 0v57c35-20 69-20 108 0Z" fill="rgba(245,224,144,.04)" stroke="url(#passageGold)" stroke-width="2"/>
+          <path d="M210 298v57M125 311c26-9 51-7 72 3M295 311c-26-9-51-7-72 3" fill="none" stroke="#f5e090" stroke-width="1" opacity=".65"/>
+          <path d="M133 330c20-5 40-4 59 3M287 330c-20-5-40-4-59 3" fill="none" stroke="#f5e090" stroke-width="1" opacity=".4"/>
         </svg>
       </div>
     </section>
