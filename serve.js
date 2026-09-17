@@ -126,6 +126,8 @@ const PACK_COMPLET_3X = {
   tag:  'Pack Complet-Acheteur',
 };
 
+const TRANSMISSION_INFO_TAG = 'Pas prêt à décider';
+
 const LIVE_PACK_DECOUVERTE_LINK = 'plink_1U3zhJH51Bvzgbhu6NqTXcnF';
 const LIVE_PACK_COMPLET_LINK = 'plink_1U50beH51BvzgbhuV4XYYi96';
 const LIVE_PACK_COMPLET_3X_LINK = 'plink_1U52rNH51Bvzgbhua4CPgebq';
@@ -199,6 +201,40 @@ function contactHasTag(contact, tagId, tagName) {
   return tags.some(tag => (
     tag && (String(tag.id) === String(tagId) || tag.name === tagName)
   ));
+}
+
+function readJsonBody(req, maxBytes = 10 * 1024) {
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    let size = 0;
+
+    req.on('data', chunk => {
+      size += chunk.length;
+      if (size > maxBytes) {
+        reject(Object.assign(new Error('payload_trop_volumineux'), { statusCode: 413 }));
+        req.destroy();
+        return;
+      }
+      chunks.push(chunk);
+    });
+
+    req.on('end', () => {
+      try {
+        resolve(JSON.parse(Buffer.concat(chunks).toString('utf8') || '{}'));
+      } catch {
+        reject(Object.assign(new Error('json_invalide'), { statusCode: 400 }));
+      }
+    });
+
+    req.on('error', reject);
+  });
+}
+
+async function enregistrerContactSystemeIO({ email, tagName }) {
+  const apiKey = process.env.SYSTEMEIO_API_KEY || '';
+  if (!apiKey) throw new Error('systemeio_non_configure');
+  if (!tagName) throw new Error('tag_systemeio_requis');
+  return ajouterContactSystemeIO({ email, tagName });
 }
 
 async function ajouterContactSystemeIO({ email, prenom, nom, tagName }) {
@@ -426,6 +462,42 @@ http.createServer((req, res) => {
         res.end(JSON.stringify({ error: err.message }));
       }
     });
+    return;
+  }
+
+  // ── Inscription aux informations « L'Art de Transmettre » ────────────────
+  if (urlPath === '/api/l-art-de-transmettre/subscribe' && req.method === 'POST') {
+    (async () => {
+      try {
+        const body = await readJsonBody(req);
+        const email = String(body.email || '').trim().toLowerCase();
+
+        if (body.website) {
+          res.writeHead(200, { ...NO_CACHE, 'Content-Type': 'application/json; charset=utf-8' });
+          return res.end(JSON.stringify({ ok: true }));
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) {
+          res.writeHead(400, { ...NO_CACHE, 'Content-Type': 'application/json; charset=utf-8' });
+          return res.end(JSON.stringify({ ok: false, error: 'email_invalide' }));
+        }
+
+        if (body.consent !== true) {
+          res.writeHead(400, { ...NO_CACHE, 'Content-Type': 'application/json; charset=utf-8' });
+          return res.end(JSON.stringify({ ok: false, error: 'consent_requis' }));
+        }
+
+        await enregistrerContactSystemeIO({ email, tagName: TRANSMISSION_INFO_TAG });
+        res.writeHead(201, { ...NO_CACHE, 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: true }));
+      } catch (error) {
+        if (res.headersSent || res.writableEnded) return;
+        const status = error.statusCode || 503;
+        console.error('Inscription L\'Art de Transmettre impossible :', error.message);
+        res.writeHead(status, { ...NO_CACHE, 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: false, error: 'inscription_indisponible' }));
+      }
+    })();
     return;
   }
 
@@ -787,6 +859,7 @@ filtrer();
   const cleanRoutes = {
     '/eugene':              'eugene.html',
     '/edouard':             'edouard.html',
+    '/l-art-de-transmettre': 'l-art-de-transmettre.html',
     '/masterclass1':        'upgr/vente-masterclass1.html',
     '/masterclass2':        'upgr/vente-masterclass2.html',
     '/pack-masterclasses':  'upgr/vente-pack-masterclasses.html',
