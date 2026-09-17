@@ -29,8 +29,8 @@
     h1{max-width:660px;color:var(--gold);font-size:clamp(2.6rem,6.5vw,5.2rem);font-style:italic;line-height:1.02;letter-spacing:-.045em}
     .shimmer-heading{background:linear-gradient(90deg,#b58d26 0%,#f6dc8d 30%,#fff 50%,#f6dc8d 70%,#b58d26 100%);background-size:250% 100%;animation:shimmer-heading 8s linear infinite;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
     @keyframes shimmer-heading{0%{background-position:200% 0}to{background-position:-200% 0}}
-    h2{color:var(--gold);font-size:clamp(1.7rem,3.2vw,2.65rem);font-style:italic;line-height:1.1}
-    h3{color:#fff;font-size:1.15rem;line-height:1.2}
+    h2{color:var(--gold);font-size:clamp(1.6rem,2.9vw,2.35rem);font-style:italic;line-height:1.1}
+    h3{color:#fff;font-size:1.08rem;line-height:1.2}
     .powered{margin:.65rem 0 1.5rem;color:var(--gold-deep);font-size:.75rem;font-style:italic;letter-spacing:.08em}
     .hero-copy p,.section-copy p{max-width:660px;color:var(--muted);font-size:1rem;font-weight:300;line-height:1.8}
     .hero-copy p+p{margin-top:.9rem}
@@ -47,7 +47,7 @@
     .discovery-copy{padding:1.75rem}
     .discovery-copy p{margin-top:.8rem;color:var(--muted);font-size:.98rem;line-height:1.75}
     .masterclass-module-block{margin:1.5rem 0 1.75rem;padding:1rem 1.1rem;border:1px solid rgba(245,224,144,.2);background:rgba(245,224,144,.025)}
-    .masterclass-block-title{margin-bottom:.85rem;color:var(--gold);font-size:1.1rem;font-style:italic}
+    .masterclass-block-title{margin-bottom:.85rem;color:var(--gold);font-size:1.02rem;font-style:italic}
     .masterclass-details{display:grid;grid-template-columns:repeat(5,1fr);gap:.7rem}
     .masterclass-detail{display:flex;flex-direction:column;gap:.15rem;color:rgba(255,255,255,.78);font-size:.76rem;line-height:1.4}
     .masterclass-detail strong{color:#fff;font-size:.86rem}
@@ -93,8 +93,9 @@
     #edouard.section{padding-top:1.5rem;padding-bottom:1.5rem}
     #pack-complet.section{padding-top:1.5rem}
     .section-bridge{max-width:1040px;margin:auto;padding:.9rem 1.25rem;display:flex;align-items:center;gap:1rem}
+    .section-bridge-spacious{padding-top:2.35rem;padding-bottom:2.35rem}
     .section-bridge::before,.section-bridge::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(245,224,144,.38),transparent)}
-    .section-bridge-title{flex:0 0 auto;color:var(--gold);font-size:clamp(1.05rem,2.2vw,1.4rem);font-style:italic;font-weight:700;letter-spacing:.05em;text-align:center}
+    .section-bridge-title{flex:0 0 auto;color:var(--gold);font-size:clamp(1rem,2vw,1.28rem);font-style:italic;font-weight:700;letter-spacing:.05em;text-align:center}
     .form-wrap{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;align-items:center;padding:.75rem;border:1px solid rgba(245,224,144,.12);background:rgba(255,255,255,.012)}
     .form-wrap h2{margin-bottom:.3rem;font-size:clamp(1.6rem,2.5vw,1.9rem)}
     .form-wrap .form-intro{margin-top:0;color:rgba(255,255,255,.82);font-size:.78rem;line-height:1.35}
@@ -118,6 +119,8 @@
     .reference:hover{border-color:rgba(245,224,144,.5);background:rgba(245,224,144,.06);color:var(--gold);text-decoration:none}
     .about{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;padding:1.5rem;border-left:2px solid var(--gold);background:rgba(255,255,255,.02)}
     .about p{color:var(--muted);line-height:1.8}
+    #references.section,#a-propos.section{padding-top:1.35rem;padding-bottom:1.35rem}
+    #references .section-bridge,#a-propos .section-bridge{padding-top:.55rem;padding-bottom:.55rem}
     .faq{display:grid;grid-template-columns:1fr 1fr;gap:.5rem 1.5rem}
     details{border-bottom:1px solid rgba(255,255,255,.12);padding:.8rem 0}
     summary{color:#fff;cursor:pointer;font-size:.94rem;font-weight:600}
@@ -125,7 +128,8 @@
     .passage{text-align:center;padding:2rem 1.25rem 2.5rem}
     .passage h2{font-size:clamp(1.35rem,2.8vw,2rem);font-style:italic}
     .passage p{max-width:620px;margin:.45rem auto;color:var(--muted);font-size:.86rem;line-height:1.5}
-    .passage .btn{margin-top:.65rem;padding:.55rem .85rem;font-size:.62rem}
+    .passage .btn{margin-top:.65rem;padding:.48rem .75rem;border-color:rgba(245,224,144,.42);background:rgba(245,224,144,.07);color:var(--gold);font-size:.58rem}
+    .passage .btn:hover{background:rgba(245,224,144,.14);color:#fff}
     .site-footer{border-top:1px solid rgba(255,255,255,.07);padding:2rem 1.25rem;text-align:center}
     .footer-inner{max-width:1000px;margin:auto;color:rgba(255,255,255,.45);font-size:.76rem;letter-spacing:.04em}
     .footer-inner a{color:rgba(255,255,255,.55)}
