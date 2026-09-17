@@ -78,16 +78,18 @@
     .feature-card p{margin-top:.8rem;color:var(--muted);line-height:1.75}
     .feature-art{display:grid;place-items:center;min-height:150px;margin-bottom:1rem;border-bottom:1px solid rgba(245,224,144,.14);background:radial-gradient(circle at center,rgba(245,224,144,.07),transparent 62%)}
     .feature-art svg{width:112px;height:112px}
-    .eugene-horizontal{display:grid;grid-template-columns:120px 1fr;gap:1.25rem;align-items:center;padding:1rem 1.25rem;border:1.5px solid transparent;border-radius:2px;background:linear-gradient(var(--navy),var(--navy)) padding-box,linear-gradient(90deg,rgba(181,141,38,.35) 0%,rgba(246,220,141,.8) 30%,#fff 50%,rgba(246,220,141,.8) 70%,rgba(181,141,38,.35) 100%) border-box;background-size:100% 100%,250% 100%;animation:eugene-border-shimmer 8s linear infinite}
+    .eugene-horizontal,.edouard-horizontal{display:grid;grid-template-columns:120px 1fr;gap:1.25rem;align-items:center;padding:1rem 1.25rem;border:1.5px solid transparent;border-radius:2px;background:linear-gradient(var(--navy),var(--navy)) padding-box,linear-gradient(90deg,rgba(181,141,38,.35) 0%,rgba(246,220,141,.8) 30%,#fff 50%,rgba(246,220,141,.8) 70%,rgba(181,141,38,.35) 100%) border-box;background-size:100% 100%,250% 100%;animation:eugene-border-shimmer 8s linear infinite}
     @keyframes eugene-border-shimmer{0%{background-position:0 0,200% 0}to{background-position:0 0,-200% 0}}
-    .eugene-visual{display:grid;place-items:center}
-    .eugene-icon{display:block;width:104px;height:104px;object-fit:cover;border-radius:50%;border:1px solid rgba(245,224,144,.55);box-shadow:0 5px 14px rgba(0,0,0,.2)}
+    .eugene-visual,.edouard-visual{display:grid;place-items:center}
+    .eugene-icon,.edouard-icon{display:grid;place-items:center;width:104px;height:104px;object-fit:cover;border-radius:50%;border:1px solid rgba(245,224,144,.55);box-shadow:0 5px 14px rgba(0,0,0,.2)}
+    .edouard-icon{color:var(--gold);font-size:3.2rem;font-style:italic;font-weight:700;background:radial-gradient(circle at 35% 30%,rgba(246,220,141,.2),rgba(8,15,30,.9) 68%)}
     .eugene-copy .section-heading{margin-bottom:.45rem;font-size:clamp(1.45rem,2.8vw,2rem)}
     .eugene-copy .powered{margin:.3rem 0 .8rem}
-    .eugene-discover{display:inline-block;margin-bottom:.45rem;color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:linear-gradient(90deg,#b58d26 0%,#f6dc8d 30%,#fff 50%,#f6dc8d 70%,#b58d26 100%);background-size:250% 100%;animation:shimmer-heading 8s linear infinite;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-    .eugene-lead{max-width:720px;color:var(--muted);font-size:.95rem;line-height:1.7}
+    .eugene-discover,.edouard-discover{display:inline-block;margin-bottom:.45rem;color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:linear-gradient(90deg,#b58d26 0%,#f6dc8d 30%,#fff 50%,#f6dc8d 70%,#b58d26 100%);background-size:250% 100%;animation:shimmer-heading 8s linear infinite;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .eugene-lead,.edouard-lead{max-width:720px;color:var(--muted);font-size:.95rem;line-height:1.7}
     #eugene.section{padding-bottom:1.5rem}
     #inscription.section{padding-top:1.5rem;padding-bottom:1.5rem}
+    #edouard.section{padding-top:1.5rem;padding-bottom:1.5rem}
     #pack-complet.section{padding-top:1.5rem}
     .section-bridge{max-width:1040px;margin:auto;padding:.9rem 1.25rem;display:flex;align-items:center;gap:1rem}
     .section-bridge::before,.section-bridge::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(245,224,144,.38),transparent)}
@@ -315,6 +317,20 @@
       </div>
     </section>
 
+    <section class="section" id="edouard">
+      <div class="edouard-horizontal">
+        <div class="edouard-visual">
+          <div class="edouard-icon" aria-hidden="true">É</div>
+        </div>
+        <div class="edouard-copy">
+          <a class="edouard-discover" href="/edouard">Découvrez Édouard</a>
+          <p class="edouard-powered">Pour ceux qui veulent commercialiser leur savoir.</p>
+          <p class="edouard-lead">Édouard crash teste la viabilité d’un projet business en moins d’une heure.</p>
+          <a class="btn" href="/edouard">En savoir plus sur Édouard</a>
+        </div>
+      </div>
+    </section>
+
     <div class="section-bridge" aria-label="Envie d’aller plus loin dès maintenant ?">
       <span class="section-bridge-title">Envie d’aller plus loin dès maintenant&nbsp;?</span>
     </div>
@@ -417,17 +433,6 @@
         <span class="reference">Company Cup</span>
         <span class="reference">Sportsvision.lu</span>
         <span class="reference">David Lloyd Club Geneva</span>
-      </div>
-    </section>
-
-    <section class="section" id="edouard">
-      <div class="section-intro">
-        <h2 class="section-heading">Édouard, consultant viabilité business</h2>
-        <p class="powered">Pour ceux qui veulent commercialiser leur savoir.</p>
-      </div>
-      <div class="feature-card">
-        <p>Édouard crash teste la viabilité d’un projet business en moins d’une heure.</p>
-        <a class="btn" href="/edouard">En savoir plus sur Édouard</a>
       </div>
     </section>
 
