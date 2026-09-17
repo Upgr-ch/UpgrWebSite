@@ -92,8 +92,8 @@
     #inscription.section{padding-top:1.5rem;padding-bottom:1.5rem}
     #edouard.section{padding-top:1.5rem;padding-bottom:1.5rem}
     #pack-complet.section{padding-top:1.5rem}
-    .section-bridge{max-width:1040px;margin:auto;padding:.9rem 1.25rem;display:flex;align-items:center;gap:1rem}
-    .section-bridge-spacious{padding-top:1.25rem;padding-bottom:3rem}
+    .section-bridge{max-width:1040px;margin:auto;padding:1.25rem 1.25rem;display:flex;align-items:center;gap:1rem}
+    .section-bridge-spacious{padding-top:1.25rem;padding-bottom:1.25rem}
     .section-bridge::before,.section-bridge::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(245,224,144,.38),transparent)}
     .section-bridge-title{flex:0 0 auto;color:var(--gold);font-size:clamp(1.5rem,2.6vw,2.15rem);font-style:italic;font-weight:700;letter-spacing:.05em;text-align:center}
     .form-wrap{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;align-items:center;padding:.75rem;border:1px solid rgba(245,224,144,.12);background:rgba(255,255,255,.012)}
@@ -121,6 +121,9 @@
     .about p{color:var(--muted);line-height:1.8}
     #references.section,#a-propos.section{padding-top:1.35rem;padding-bottom:1.35rem}
     #references .section-bridge,#a-propos .section-bridge{padding-top:.55rem;padding-bottom:.55rem}
+    .section-before-bridge{padding-bottom:2rem}
+    #edouard.section-before-bridge,#inscription.section-before-bridge,#references.section-before-bridge{padding-bottom:2rem}
+    #pack-decouverte.section-after-bridge,#pack-complet.section-after-bridge,#references.section-after-bridge,#a-propos.section-after-bridge{padding-top:2rem}
     .faq{display:grid;grid-template-columns:1fr 1fr;gap:.5rem 1.5rem}
     details{border-bottom:1px solid rgba(255,255,255,.12);padding:.8rem 0}
     summary{color:#fff;cursor:pointer;font-size:.94rem;font-weight:600}
@@ -213,7 +216,7 @@
       </div>
     </section>
 
-    <section class="section">
+      <section class="section section-before-bridge">
       <div class="section-intro">
         <h2 class="section-heading">Un savoir à partager. Un passage à construire.</h2>
       </div>
@@ -226,10 +229,11 @@
       </div>
     </section>
 
-    <section class="section" id="pack-decouverte">
-      <div class="section-bridge" aria-label="Pour démarrer">
-        <span class="section-bridge-title">Pour démarrer</span>
-      </div>
+    <div class="section-bridge" aria-label="Pour démarrer">
+      <span class="section-bridge-title">Pour démarrer</span>
+    </div>
+
+    <section class="section section-after-bridge" id="pack-decouverte">
       <div class="section-intro">
         <h2 class="section-heading">La Masterclasse « L'Art de Transmettre #1 » + 2 Ebooks</h2>
       </div>
@@ -310,7 +314,7 @@
       </div>
     </section>
 
-    <section class="section" id="edouard">
+    <section class="section section-before-bridge" id="edouard">
       <a class="edouard-discover" href="/edouard">Découvrez Édouard</a>
       <div class="edouard-horizontal">
         <div class="edouard-visual">
@@ -352,11 +356,11 @@
       </div>
     </section>
 
-    <div class="section-bridge section-bridge-spacious" aria-label="Envie d’aller plus loin dès maintenant ?">
+    <div class="section-bridge" aria-label="Envie d’aller plus loin dès maintenant ?">
       <span class="section-bridge-title">Envie d’aller plus loin dès maintenant&nbsp;?</span>
     </div>
 
-    <section class="section" id="pack-complet">
+    <section class="section section-after-bridge" id="pack-complet">
       <div class="section-intro">
         <h2 class="section-heading">L’Art de Transmettre #1 et #2</h2>
         <p class="section-copy">Deux masterclasses pour maîtriser l'ensemble du processus : poser les fondations de votre formation, puis la faire vivre. De l'idée au premier groupe, avec les outils, les livrables et le soutien pour aller jusqu'au bout.</p>
@@ -448,7 +452,7 @@
       </div>
     </section>
 
-    <section class="section" id="inscription">
+    <section class="section section-before-bridge" id="inscription">
       <div class="form-wrap">
         <div>
           <h2>Pas prêt à décider maintenant&nbsp;?</h2>
@@ -472,10 +476,11 @@
       </div>
     </section>
 
-    <section class="section" id="references">
-      <div class="section-bridge" aria-label="Ils nous ont fait confiance">
-        <span class="section-bridge-title">Ils nous ont fait confiance</span>
-      </div>
+    <div class="section-bridge" aria-label="Ils nous ont fait confiance">
+      <span class="section-bridge-title">Ils nous ont fait confiance</span>
+    </div>
+
+    <section class="section section-after-bridge section-before-bridge" id="references">
       <div class="references">
         <a class="reference" href="https://www.hilton.com/en/hotels/gvacchi-hilton-geneva-hotel-and-conference-centre/" target="_blank" rel="noopener noreferrer">Hilton Conférence Center Geneva</a>
         <a class="reference" href="https://www.win-sport-school.com/ecole-sport-geneve" target="_blank" rel="noopener noreferrer">Win Sport School Geneva</a>
@@ -485,10 +490,11 @@
       </div>
     </section>
 
-    <section class="section" id="a-propos">
-      <div class="section-bridge" aria-label="À propos">
-        <span class="section-bridge-title">À propos</span>
-      </div>
+    <div class="section-bridge" aria-label="À propos">
+      <span class="section-bridge-title">À propos</span>
+    </div>
+
+    <section class="section section-after-bridge" id="a-propos">
       <div class="about">
         <div>
           <p>Mon profil LinkedIn est public. Vous pouvez y voir mon parcours, mes publications et me contacter directement.</p>
@@ -512,6 +518,7 @@
         <details><summary>Quelle est la différence entre Eugène et Édouard&nbsp;?</summary><p>Eugène met de l’ordre dans votre savoir pour le transmettre. Édouard teste la viabilité de votre projet business avant de vous lancer.</p></details>
         <details><summary>Et si j’ai déjà acheté un ebook ou une offre&nbsp;?</summary><p>Ce que vous avez déjà payé peut être déduit au paiement. Votre code promotionnel vous a été envoyé par email avec votre précédent achat.</p></details>
         <details><summary>Est-ce que je peux poser des questions pendant le programme&nbsp;?</summary><p>Oui. Vous pouvez nous contacter pour clarifier un point, un livrable ou un module. Nous mettons un point d’honneur à répondre à tous les messages.</p></details>
+        <details><summary>Un financement ou une prise en charge est-il possible&nbsp;?</summary><p>Non. Aucun financement d’aucune sorte n’est possible. Le paiement doit être effectué directement par le participant.</p></details>
       </div>
     </section>
 
