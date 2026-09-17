@@ -1,0 +1,331 @@
+PROMPT POUR REPLIT : PAGE « L’ART DE TRANSMETTRE »
+
+Contexte
+
+Tu construis une page pour UpGrade L&D.
+Nom de la page : L’Art de Transmettre.
+URL cible : /l-art-de-transmettre.
+Charte graphique : celle d’UpGrade (site existant upgr.ch).
+Stack : celle du projet existant. Ne change rien à l’architecture. Reste cohérent avec le reste du site.
+
+Objectif
+
+Créer une page narrative et commerciale pour L’Art de Transmettre. La page doit :
+
+1. Intégrer exactement le texte validé ci-dessous.
+2. Mettre en valeur les offres dans cet ordre de priorité :
+   - Pack Découverte : priorité principale
+   - Eugène, majordome pédagogique : priorité 1 secondaire
+   - Pack Complet : priorité 2 secondaire
+   - Édouard, consultant viabilité business : priorité 3 secondaire
+3. Reprendre les textes et l’iconographie des pages dédiées existantes.
+4. Prévoir des emplacements pour captures d’écran des formations.
+5. Créer des illustrations dans le style du site.
+6. Être RGPD-LPD compliant.
+7. Rester fonctionnel : navigation, liens, responsive, accessibilité.
+
+Contraintes de ton et de style
+
+Ton premium, sobre, sans urgence, sans marketing agressif.
+Pas de témoignages.
+Pas de formulations négatives.
+Pas de champ lexical de l’expertise ni de l’accompagnement.
+Pas de langage d’IA marketing.
+Pas de « Il y a ceux ».
+Pas de « méthode », « structuré », « méthodologique » dans les titres visibles.
+Pas de traits cadratins ni de tirets utilisés comme séparateurs dans le texte visible. Utilise deux points, des virgules, ou des points.
+
+Consigne importante à l’IA
+
+Avant de construire la page, va lire les pages dédiées existantes du site :
+
+- la page du Pack Découverte pour le Pack Découverte
+- /eugene pour Eugène
+- la page du Pack Complet pour le Pack Complet
+- /edouard pour Édouard
+
+Reprends les textes et l’iconographie de ces pages dédiées si nécessaire, en les adaptant au ton de la présente page. Ne réinvente pas les descriptions ni les icônes. Utilise ce qui existe déjà sur le site.
+
+Texte à intégrer
+
+Héro
+
+L’ART DE TRANSMETTRE
+Powered by UpGrade L&D
+
+Vous avez quelque chose. Un savoir, une pratique, une manière de faire. Vous l’avez acquis sur le terrain, par l’usage, par les années. Et un jour, vous êtes amené à le partager.
+
+Vous l’avez fait.
+Ou vous ne l’avez jamais fait.
+Peut être bien. Peut être mal. Peut être les deux.
+
+Vous avez senti ce moment où l’attention se pose. Et celui où elle se retire. Vous avez vu des yeux s’allumer. Et d’autres se fermer. Vous avez cherché vos mots. Vous en avez trouvé certains. D’autres sont restés hors de portée.
+
+Ce qui compte, c’est le passage. Quelque chose doit passer de vous à eux. Et ce passage, c’est à vous de le rendre possible grâce à L’Art de Transmettre.
+
+[Illustration symbolisant la transmission, à créer.]
+
+Section priorité principale : Pack Découverte
+
+Placée juste après le héro. Mise en valeur forte, la plus visible de la page.
+
+Titre : Pack Découverte
+Powered by UpGrade L&D
+
+Description : reprendre la page dédiée du Pack Découverte. Résumé court.
+
+Tarif : reprendre le tarif exact de la page dédiée du Pack Découverte.
+
+[Emplacement pour captures d’écran des modules et des livrables.]
+
+CTA principal : Voir le Pack Découverte → lien vers la page dédiée
+CTA secondaire : Voir un extrait → lien vers l’extrait existant
+
+Mention tarifaire sous le CTA :
+Prix en euros donné à titre indicatif, sur la base d’un équivalent en CHF. Le montant facturé peut varier selon le taux de change appliqué au moment du paiement.
+
+Section : Des situations que vous connaissez peut être
+
+Certains n’ont encore jamais transmis. Ils sentent qu’ils ont quelque chose à partager, sans savoir quand ni comment. Ils veulent être prêts.
+
+D’autres ont été amenés à transmettre sans l’avoir choisi. Ils connaissent leur sujet. Ils découvrent le passage.
+
+D’autres animent déjà. Ils sentent que ça fonctionne, parfois. Ils ne savent pas pourquoi. Ils voudraient le savoir.
+
+Il en est qui regardent leur savoir et se demandent ce qu’il pourrait devenir. Une formation. Un atelier. Une offre. Quelque chose qui vit.
+
+Et puis il y a ceux qui attendent. Un diplôme, une légitimité, un signal. Le signal ne vient pas. Il ne vient jamais.
+
+Section priorité 1 secondaire : Eugène, majordome pédagogique
+
+Placée après la section précédente. Mise en valeur moyenne, juste après le Pack Découverte.
+
+Titre : Eugène, majordome pédagogique
+Accroche : Accès Libre, Illimité, Sans paiement.
+
+Description : reprendre la page dédiée /eugene, texte et iconographie. Résumé court : Eugène met de l’ordre dans ce que vous avez en tête et vous guide jusqu’à un plan de formation, en moins d’une heure.
+
+[Emplacement pour illustration ou capture d’écran de l’outil.]
+
+CTA principal : Essayez Eugène → lien vers /eugene
+
+Section : Pas prêt à décider maintenant ?
+
+Laissez votre email pour recevoir les prochaines informations sur la masterclass.
+
+Email :
+[Champ email, validation HTML5]
+
+[Bouton] Rester informé
+
+Case à cocher RGPD-LPD obligatoire avant envoi :
+« J’accepte que mon email soit utilisé pour recevoir des informations sur la masterclass. »
+
+Mention sous le bouton :
+Vous pouvez vous désinscrire à tout moment. Vos données ne sont ni revendues ni partagées.
+
+Section priorité 2 secondaire : Pack Complet
+
+Placée après le formulaire email. Mise en valeur moyenne.
+
+Titre : Pack Complet
+
+Description : reprendre la page dédiée du Pack Complet, texte et iconographie. Résumé court : les deux masterclasses L’Art de Transmettre #1 et #2, avec les deux ebooks.
+
+Tarif : 405 CHF
+Paiement en 3 fois disponible, sans frais.
+
+CTA principal : Voir le Pack Complet → lien vers la page dédiée
+CTA secondaire : Commander → lien vers le tunnel d’achat existant
+
+Mention tarifaire sous le CTA :
+Prix en euros donné à titre indicatif, sur la base d’un équivalent en CHF. Le montant facturé peut varier selon le taux de change appliqué au moment du paiement.
+
+Section : Ils nous ont fait confiance
+
+- Hilton Conférence Center Geneva
+- Win Sport School Geneva
+- Company Cup
+- Sportsvision.lu
+- David Lloyd Club Geneva
+
+Section priorité 3 secondaire : Édouard, consultant viabilité business
+
+Placée après les références. Section secondaire, lien discret.
+
+Titre : Édouard, consultant viabilité business
+Accroche : Pour ceux qui veulent commercialiser leur savoir.
+
+Description : reprendre la page dédiée /edouard, texte et iconographie. Résumé court : Édouard crash teste la viabilité d’un projet business en moins d’une heure.
+
+CTA discret, lien textuel : En savoir plus sur Édouard → lien vers /edouard
+
+Section À propos
+
+Placée avant « Le passage » ou juste après « Édouard ».
+
+À propos
+
+Mon profil LinkedIn est public :
+[lien vers le profil LinkedIn de Kévin Lavergne]
+Vous pouvez y voir mon parcours, mes publications et me contacter directement.
+
+Section : Le passage
+
+Vous avez quelque chose à transmettre.
+L’Art de Transmettre ouvre le passage.
+
+[Barre sticky sur mobile avec le bouton d’inscription email.]
+
+FAQ
+
+Placée avant « Le passage » ou juste après « À propos ».
+
+Je n’ai jamais enseigné. Est ce que cela me concerne ?
+Oui. La masterclass ne demande pas de devenir enseignant. Elle montre le passage. Et Eugène vous aide à mettre de l’ordre dans votre savoir.
+
+Combien de temps cela prend ?
+Les modules sont courts. Le bonus dure 35 minutes. Eugène met de l’ordre dans votre savoir en moins d’une heure. Édouard analyse la viabilité de votre projet en moins d’une heure. Vous avancez à votre rythme.
+
+Eugène est il vraiment gratuit ?
+Oui. Essayez Eugène, accès libre, illimité, sans paiement. Le résultat est immédiat. Vous pouvez l’essayer avant même de rejoindre la masterclass.
+
+Édouard est il vraiment gratuit ?
+Oui. Essayez Édouard, accès libre, illimité, sans paiement. Sans carte bancaire, accès immédiat, diagnostic confidentiel.
+
+Quelle est la différence entre Eugène et Édouard ?
+Eugène met de l’ordre dans votre savoir pour le transmettre. Édouard teste la viabilité de votre projet business avant de vous lancer.
+
+Quelle est la différence entre le Pack Découverte et le Pack Complet ?
+Le Pack Découverte vous donne les fondations. Le Pack Complet réunit les deux masterclasses et les deux ebooks. Reprendre la description exacte des pages dédiées.
+
+Est ce que je peux être remboursé ?
+Si vous proposez une garantie, indiquez la. Sinon, retirez cette question.
+
+Le prix est il justifié ?
+Le Pack Découverte, les ebooks, l’accès à Eugène et la possibilité de poser vos questions. Le Pack Complet propose un tarif préférentiel pour les deux masterclasses.
+
+J’ai déjà acheté les ebooks, que se passe t il ?
+Le montant payé est déduit au paiement.
+
+J’ai déjà acheté le Pack Découverte, puis je passer au Pack Complet ?
+Oui. Ce que vous avez payé sera déduit au paiement.
+
+Navigation et intégration site
+
+Sur la page d’accueil
+
+Ajouter un onglet dans le menu principal :
+MasterClasse : L’Art de Transmettre
+
+Position : entre « Solutions » et « Eugène Majordome Pédagogique ».
+
+Ordre du menu :
+
+1. Accueil
+2. Notre mission
+3. Solutions
+4. MasterClasse : L’Art de Transmettre
+5. Eugène Majordome Pédagogique
+6. Édouard Consultant Viabilité Business
+7. Contact
+
+Section « Nos solutions » de la page d’accueil
+
+Ajouter une entrée dans la section Nos solutions de la page d’accueil, pour renvoyer vers la page MasterClasse : L’Art de Transmettre. Cette entrée doit reprendre le style des autres entrées de la section, avec la même iconographie et la même mise en forme.
+
+Liens vers les pages dédiées
+
+Tous les CTA doivent pointer vers :
+
+- Pack Découverte → l’URL existante
+- Eugène → /eugene
+- Pack Complet → l’URL existante
+- Édouard → /edouard
+- LinkedIn de Kévin Lavergne → l’URL du profil
+- Extrait → l’URL de l’extrait existant
+- Commande → le tunnel d’achat existant
+
+Vérifie que chaque lien fonctionne et ne renvoie pas de 404.
+
+Design et charte graphique
+
+Respecter la charte UpGrade : couleurs, typographies, espacements, boutons, arrondis.
+Reprendre les composants existants du site : header, footer, boutons, cartes.
+Reprendre l’iconographie existante des pages dédiées.
+Style premium, sobre, respiration entre les sections.
+Illustrations : créer des illustrations SVG ou PNG légères, dans le style graphique du site.
+Emplacements pour captures d’écran : prévoir des <figure> avec <img> et <figcaption>, responsive, avec loading="lazy".
+Accessibilité : contrastes suffisants, alt sur toutes les images, navigation clavier, focus visibles.
+
+Footer
+
+Le footer doit être identique à celui des autres pages du site. Reprendre exactement :
+
+- les liens existants : Politique de cookies, Politique de confidentialité, Mentions légales, CVG, CGU ;
+- la mention de copyright : © Kévin Lavergne | UpGrade | 2015 - 2026 | Tous droits réservés ;
+- la structure, les espacements et le style du footer existant.
+
+Ne pas créer de footer spécifique pour cette page. Réutiliser le composant footer global du site.
+
+RGPD-LPD compliance
+
+Bandeau cookies conforme RGPD et LPD suisse : consentement, refus, paramétrage.
+Case à cocher obligatoire avant l’envoi du formulaire email.
+Lien vers la politique de confidentialité dans le footer et sous le formulaire.
+Mention : Vous pouvez vous désinscrire à tout moment. Vos données ne sont ni revendues ni partagées.
+Ne pas charger de scripts tiers sans consentement.
+Ne pas stocker l’email sans opt in explicite.
+Hébergement et traitement des données conformes à la LPD suisse et au RGPD européen.
+Droit d’accès, de rectification et de suppression des données mentionné dans la politique de confidentialité.
+
+Fonctionnalités attendues
+
+Formulaire email fonctionnel avec validation côté client et côté serveur.
+Double opt in recommandé.
+Bouton « Rester informé » avec état de chargement, message de succès, message d’erreur.
+Barre sticky sur mobile avec le bouton d’inscription email.
+Tous les CTA visibles et cliquables sur mobile et desktop.
+Pas de popup intrusive.
+
+Livrables attendus
+
+1. Page /l-art-de-transmettre construite et fonctionnelle.
+2. Menu d’accueil mis à jour avec l’onglet « MasterClasse : L’Art de Transmettre ».
+3. Section « Nos solutions » de la page d’accueil mise à jour avec une entrée vers la page.
+4. Illustrations créées et intégrées.
+5. Emplacements pour captures d’écran prêts à recevoir les images.
+6. Formulaire email opérationnel et RGPD-LPD compliant.
+7. Tous les CTA pointant vers les bonnes URLs.
+8. Site fonctionnel après ajout : navigation, liens, responsive, performances.
+9. Footer identique à celui des autres pages.
+
+Ce qu’il ne faut pas faire
+
+Ne pas inventer de témoignages.
+Ne pas ajouter de compte à rebours, de rareté artificielle, d’urgence.
+Ne pas utiliser de vocabulaire marketing agressif.
+Ne pas modifier les autres pages du site sans nécessité.
+Ne pas casser l’existant.
+Ne pas utiliser de traits cadratins ni de tirets comme séparateurs dans le texte visible.
+
+Ordre des sections sur la page
+
+1. Héro avec titre, texte d’ouverture et illustration
+2. Pack Découverte, priorité principale, mise en valeur forte
+3. Des situations que vous connaissez peut être
+4. Eugène, majordome pédagogique, priorité 1 secondaire, mise en valeur moyenne
+5. Pas prêt à décider maintenant ? Formulaire email
+6. Pack Complet, priorité 2 secondaire, mise en valeur moyenne
+7. Ils nous ont fait confiance
+8. Édouard, consultant viabilité business, priorité 3 secondaire, section discrète
+9. À propos, avec lien vers le LinkedIn de Kévin Lavergne
+10. FAQ
+11. Le passage
+12. Footer
+
+Deux points à vérifier avant de lancer Replit :
+
+1. Le tarif exact du Pack Découverte : tu m’avais donné 110 CHF pour la Masterclass #1 seule et 405 CHF pour le Pack Complet. Le Pack Découverte correspond à quoi exactement ?
+
+2. L’URL exacte de la page du Pack Découverte, du Pack Complet, et l’URL de ton profil LinkedIn, pour que Replit pointe au bon endroit.
