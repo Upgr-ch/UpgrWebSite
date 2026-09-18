@@ -19,8 +19,8 @@
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--navy:#080f1e;--gold:#f5e090;--gold-deep:#b48c28;--white:rgba(255,255,255,.9);--muted:rgba(255,255,255,.68);--line:rgba(245,224,144,.16)}
-    html{scroll-behavior:smooth}
-    body{background:var(--navy);color:#fff;font-family:Raleway,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6}
+    html{scroll-behavior:smooth;overflow-x:hidden}
+    body{background:var(--navy);color:#fff;font-family:Raleway,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
     a{color:var(--gold);text-decoration:none}
     a:hover{text-decoration:underline}
     :focus-visible{outline:2px solid var(--gold);outline-offset:4px}
@@ -64,7 +64,7 @@
     .discovery-pricing .price small{color:var(--muted);font-size:.9rem;font-weight:300}
     .discovery-pricing p{color:var(--muted);font-size:.9rem;line-height:1.75}
     .course-book-price{display:block;margin-top:.25rem;color:var(--gold);font-size:.78rem;font-weight:600;letter-spacing:.04em}
-    .btn{display:inline-block;margin-top:1.1rem;padding:.75rem 1.1rem;border:1px solid var(--gold);color:var(--gold);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-align:center;text-transform:uppercase;transition:background .2s,color .2s}
+    .btn{display:inline-block;max-width:100%;margin-top:1.1rem;padding:.75rem 1.1rem;border:1px solid var(--gold);color:var(--gold);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-align:center;text-transform:uppercase;overflow-wrap:anywhere;transition:background .2s,color .2s}
     .btn:hover{background:var(--gold);color:var(--navy);text-decoration:none}
     .btn-solid{background:var(--gold);color:var(--navy)}
     .btn-solid:hover{background:#e8d27f;color:var(--navy)}
@@ -87,7 +87,7 @@
     .eugene-copy .section-heading{margin-bottom:.45rem;font-size:clamp(1.45rem,2.8vw,2rem)}
     .eugene-copy .powered{margin:.3rem 0 .8rem}
      .eugene-discover,.edouard-discover{display:block;width:max-content;max-width:100%;margin:0 .5rem .25rem auto;color:var(--gold);font-size:clamp(1.1rem,2.2vw,1.4rem);font-weight:700;letter-spacing:.1em;text-align:right;text-transform:uppercase;background:linear-gradient(90deg,#b58d26 0%,#f6dc8d 30%,#fff 50%,#f6dc8d 70%,#b58d26 100%);background-size:250% 100%;animation:shimmer-heading 8s linear infinite;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-     .eugene-actions,.edouard-actions{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;width:100%;margin-top:1.1rem}
+     .eugene-actions,.edouard-actions{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;width:100%;min-width:0;margin-top:1.1rem}
      .eugene-actions .btn,.edouard-actions .btn{margin-top:0}
      .eugene-actions .eugene-discover,.edouard-actions .edouard-discover{margin:0}
     .eugene-lead,.edouard-lead{max-width:720px;color:var(--muted);font-size:.95rem;line-height:1.7}
@@ -101,19 +101,19 @@
     .section-bridge-title{flex:0 0 auto;color:var(--gold);font-size:clamp(1.5rem,2.6vw,2.15rem);font-style:italic;font-weight:700;letter-spacing:.05em;text-align:center}
     .section-bridge-title-stack{display:flex;flex:0 1 auto;max-width:min(78vw,760px);flex-direction:column;align-items:center;gap:.2rem;line-height:1.15}
     .section-bridge-subtitle{display:block;color:rgba(255,255,255,.62);font-size:.68rem;font-style:italic;font-weight:400;letter-spacing:.04em;line-height:1.35;text-transform:none}
-    .form-wrap{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;align-items:center;padding:.75rem;border:1px solid rgba(245,224,144,.12);background:rgba(255,255,255,.012)}
+    .form-wrap{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;align-items:center;min-width:0;padding:.75rem;border:1px solid rgba(245,224,144,.12);background:rgba(255,255,255,.012)}
     .form-wrap h2{margin-bottom:.3rem;font-size:clamp(1.6rem,2.5vw,1.9rem)}
     .form-wrap .form-intro{margin-top:0;color:rgba(255,255,255,.82);font-size:.78rem;line-height:1.35}
     .form-wrap .form-disclaimer{font-style:italic}
     .form-wrap p{margin-top:.3rem;color:var(--muted);font-size:.7rem;line-height:1.3}
-    .lead-form{padding:.65rem;border:1px solid rgba(255,255,255,.08);background:rgba(8,15,30,.25)}
+    .lead-form{min-width:0;padding:.65rem;border:1px solid rgba(255,255,255,.08);background:rgba(8,15,30,.25)}
     .field{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:.45rem;margin-bottom:.45rem}
     .field label{display:block;margin-bottom:0;color:rgba(255,255,255,.8);font-size:.68rem;font-weight:600}
     .field input[type="email"]{width:100%;padding:.48rem .6rem;border:1px solid rgba(255,255,255,.18);border-radius:2px;background:rgba(255,255,255,.04);color:#fff;font:inherit}
     .field input[type="email"]:focus{outline:2px solid var(--gold);outline-offset:2px}
     .consent{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.85rem;color:rgba(255,255,255,.64);font-size:.68rem;line-height:1.3}
     .consent input{margin-top:.22rem;accent-color:var(--gold)}
-    .lead-form button{width:100%;padding:.45rem;border:1px solid rgba(245,224,144,.45);background:rgba(245,224,144,.08);color:var(--gold);font:inherit;font-size:.66rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s}
+    .lead-form button{width:100%;max-width:100%;padding:.45rem;border:1px solid rgba(245,224,144,.45);background:rgba(245,224,144,.08);color:var(--gold);font:inherit;font-size:.66rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;overflow-wrap:anywhere;cursor:pointer;transition:background .2s,color .2s}
     .lead-form button:hover{background:rgba(245,224,144,.16);color:#fff}
     .lead-form button:disabled{cursor:wait;opacity:.65}
     .form-note{margin-top:.35rem!important;color:rgba(255,255,255,.43)!important;font-size:.6rem;font-style:italic;line-height:1.2!important}
@@ -122,7 +122,7 @@
     .references{display:flex;flex-wrap:wrap;gap:.5rem;padding:1.5rem;border-left:2px solid var(--gold);background:rgba(255,255,255,.02)}
     .reference{display:inline-block;padding:.5rem .7rem;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.68);font-size:.72rem;letter-spacing:.03em;transition:border-color .2s,color .2s,background .2s}
     .reference:hover{border-color:rgba(245,224,144,.5);background:rgba(245,224,144,.06);color:var(--gold);text-decoration:none}
-    .about{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;padding:1.5rem;border-left:2px solid var(--gold);background:rgba(255,255,255,.02)}
+    .about{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;min-width:0;padding:1.5rem;border-left:2px solid var(--gold);background:rgba(255,255,255,.02)}
     .about p{color:var(--muted);line-height:1.8}
     #references.section,#a-propos.section{padding-top:1.35rem;padding-bottom:1.35rem}
     #references .section-bridge,#a-propos .section-bridge{padding-top:.55rem;padding-bottom:.55rem}
