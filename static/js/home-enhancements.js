@@ -26,6 +26,33 @@
     solutionsLink.parentElement.insertBefore(link, solutionsLink.nextSibling);
   }
 
+  function addMobileNavigationLink() {
+    var menuButton = document.querySelector('button[aria-label="Menu"]');
+    var nav = menuButton && menuButton.closest('nav');
+    var mobileMenu = nav && nav.nextElementSibling;
+    var mobileMenuList = mobileMenu && mobileMenu.querySelector('.flex.flex-col');
+
+    if (!mobileMenuList || mobileMenuList.querySelector('a[data-transmission-mobile-nav]')) {
+      return;
+    }
+
+    var referenceButton = Array.prototype.slice.call(
+      mobileMenuList.querySelectorAll('button')
+    ).find(function (element) {
+      return element.textContent.trim() === 'Solutions';
+    }) || mobileMenuList.querySelector('button');
+
+    if (!referenceButton) return;
+
+    var link = document.createElement('a');
+    link.href = LINK_HREF;
+    link.textContent = LINK_TEXT;
+    link.dataset.transmissionMobileNav = 'true';
+    link.className = referenceButton.className;
+    link.setAttribute('aria-label', LINK_TEXT);
+    referenceButton.insertAdjacentElement('afterend', link);
+  }
+
   function addSolutionCard() {
     var offers = document.getElementById('offres');
     if (!offers || offers.querySelector('[data-transmission-card]')) return;
@@ -58,6 +85,7 @@
 
   function enhance() {
     addNavigationLinks();
+    addMobileNavigationLink();
     addSolutionCard();
   }
 
