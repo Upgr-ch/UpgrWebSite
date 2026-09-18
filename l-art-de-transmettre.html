@@ -192,6 +192,15 @@
     @media(max-width:560px){
        h1{font-size:clamp(2.35rem,13vw,4rem)}h2{font-size:clamp(1.45rem,7.5vw,2rem)}.hero{padding:2.75rem 1rem 3.25rem}.hero-art{min-height:165px}.hero-art svg{width:190px}.section{padding:2.75rem 1rem}.section-intro{margin-bottom:1.35rem}.situations{grid-template-columns:1fr}.course-programme,.course-programme.four{grid-template-columns:1fr}.masterclass-details{grid-template-columns:repeat(2,minmax(0,1fr))}.course-book{align-items:flex-start;flex-wrap:wrap;gap:.7rem}.course-book img{width:34px}.course-book-text{min-width:calc(100% - 3.25rem)}.course-book .btn{width:100%;text-align:center}.discovery-copy,.feature-card,.form-wrap,.course-support,.course-pricing{padding:1.15rem}.discovery-pricing{padding-top:1.15rem}.eugene-horizontal,.edouard-horizontal{grid-template-columns:1fr;gap:.7rem;padding:1rem;text-align:center}.eugene-visual,.edouard-visual{margin-bottom:0}.eugene-icon,.edouard-icon{width:88px;height:88px}.eugene-copy .section-label{margin-bottom:.45rem}.eugene-copy .btn,.edouard-copy .btn{margin-top:.9rem}.eugene-actions .btn,.edouard-actions .btn{margin-top:0}.payment-note{flex-wrap:wrap}.btn{width:100%}.btn-secondary{margin-left:0}.about{gap:1rem}.mobile-cta{display:block;position:fixed;z-index:30;bottom:0;left:0;width:100%;padding:.55rem;background:rgba(8,15,30,.96);border-top:1px solid rgba(245,224,144,.25);text-align:center}.mobile-cta a{display:block;margin:0;padding:.65rem;background:var(--gold);color:var(--navy);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.site-footer{padding-bottom:4.5rem}
     }
+     @media(max-width:560px){
+       .section-bridge-title{flex:0 1 auto;min-width:0;max-width:100%;overflow-wrap:anywhere}
+       .section-bridge-title-stack{max-width:100%}
+       .eugene-copy,.edouard-copy,.form-wrap>*,.about>*{min-width:0}
+       .eugene-discover,.edouard-discover{width:auto;max-width:100%;overflow-wrap:anywhere}
+       .field{grid-template-columns:1fr;align-items:start}
+       .field input[type="email"]{min-width:0}
+       .lead-form button,.mobile-cta a{white-space:normal;line-height:1.35}
+     }
   </style>
 </head>
 <body>
