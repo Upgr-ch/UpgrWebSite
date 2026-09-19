@@ -134,18 +134,18 @@ const LIVE_PACK_COMPLET_3X_LINK = 'plink_1U52rNH51Bvzgbhua4CPgebq';
 
 const PRODUCTS = {
   [process.env.STRIPE_LINK_LIVRE1 || '__livre1__']: {
-    nom:  "De l'idée au plan",
+    nom:  "De l'Idée au Plan",
     desc: "Guide numérique · 80 pages · Téléchargeable · Imprimable",
-    tag:  "De l'idée au plan- Acheteur",
+    tag:  "De l'Idée au Plan- Acheteur",
   },
   [process.env.STRIPE_LINK_LIVRE2 || '__livre2__']: {
-    nom:  "Vos compétences humaines invisibles",
+    nom:  "Vos Compétences Humaines Invisibles",
     desc: "Guide numérique · 120 pages · Téléchargeable · Imprimable",
     tag:  'Vos Compétences Humaines-Acheteur',
   },
   [process.env.STRIPE_LINK_BUNDLE || '__bundle__']: {
     nom:  "Offre groupée — Les deux guides",
-    desc: "De l'idée au plan + Vos compétences humaines invisibles",
+    desc: "De l'Idée au Plan + Vos Compétences Humaines Invisibles",
     tag:  'Offre groupée-Acheteur',
   },
   [process.env.STRIPE_LINK_PACK_DECOUVERTE || LIVE_PACK_DECOUVERTE_LINK]: PACK_DECOUVERTE,
@@ -644,7 +644,7 @@ tbody tr:last-child td{border-bottom:none}
     <div class="f-group"><label>Produit</label>
       <select id="fProduit" onchange="filtrer()">
         <option value="">Tous les produits</option>
-        <option value="livre1">De l'idée au plan</option>
+        <option value="livre1">De l'Idée au Plan</option>
         <option value="livre2">Compétences humaines</option>
         <option value="bundle">Offre groupée</option>
       </select>
