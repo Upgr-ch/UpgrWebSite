@@ -116,13 +116,13 @@ const PACK_DECOUVERTE = {
 
 const PACK_COMPLET = {
   nom:  "Pack Complet — 2 Masterclasses + 2 ebooks",
-  desc: "Masterclasses « L'Art de Transmettre #1 » et « Faire vivre la transmission » + 2 ebooks",
+  desc: "Masterclasses « L'Art de Transmettre #1 » et « Master Classe \"L'Art de Transmettre #2 : Faire vivre la transmission\" » + 2 ebooks",
   tag:  'Pack Complet-Acheteur',
 };
 
 const PACK_COMPLET_3X = {
   nom:  "Pack Complet — 2 Masterclasses + 2 ebooks",
-  desc: "Paiement en 3 fois · Masterclasses « L'Art de Transmettre #1 » et « Faire vivre la transmission » + 2 ebooks",
+  desc: "Paiement en 3 fois · Masterclasses « L'Art de Transmettre #1 » et « Master Classe \"L'Art de Transmettre #2 : Faire vivre la transmission\" » + 2 ebooks",
   tag:  'Pack Complet-Acheteur',
 };
 
