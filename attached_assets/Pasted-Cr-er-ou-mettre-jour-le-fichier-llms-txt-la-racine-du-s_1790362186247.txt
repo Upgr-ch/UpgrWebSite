@@ -1,0 +1,157 @@
+Créer ou mettre à jour le fichier llms.txt à la racine du site UpGrade L&D 
+(https://www.upgr.ch). Ce fichier doit être accessible à l'URL :
+https://www.upgr.ch/llms.txt
+
+⚠️ CONTRAINTE ABSOLUE — INTÉGRITÉ DU SITE ⚠️
+
+Le site doit conserver EXACTEMENT son aspect visuel et ses fonctionnalités 
+actuelles. Aucune modification ne doit être apportée :
+- au design existant
+- à la navigation
+- aux fonctionnalités existantes
+- au JSON-LD des pages existantes
+- au contenu visible
+
+Cette tâche concerne UNIQUEMENT la création ou la mise à jour du fichier 
+llms.txt. Aucune autre modification.
+
+---
+
+CONTEXTE
+
+Le site UpGrade L&D propose des formations pour les professionnels qui doivent 
+transmettre leur savoir-faire sans avoir été formés à la pédagogie. Le fichier 
+llms.txt est un standard émergent qui aide les modèles de langage (ChatGPT, 
+Perplexity, Claude, etc.) à identifier les pages les plus importantes d'un site.
+
+Il doit être placé à la racine du site et accessible publiquement.
+
+LISTE NOIRE DE MOTS INTERDITS (à respecter strictement) :
+- expert
+- experts
+- expertise
+- accompagnement
+- coach
+- coaching
+- métier (dans le contexte de la transmission ou de la reconversion)
+
+---
+
+TÂCHES À RÉALISER
+
+1. VÉRIFIER L'ÉTAT ACTUEL
+
+Avant toute création :
+- Vérifie si un fichier llms.txt existe déjà à la racine du projet
+- Si oui, affiche son contenu complet
+- Si non, indique-le
+
+2. CRÉER OU METTRE À JOUR llms.txt
+
+Créer (ou remplacer) le fichier llms.txt avec le contenu suivant :
+
+# UpGrade L&D
+
+> Organisme de formation suisse qui aide les professionnels à transmettre 
+> leur savoir-faire sans avoir été formés à la pédagogie. Méthode testée, 
+> livrables concrets, applicable immédiatement.
+
+## Pages principales
+
+- [L'Art de Transmettre](https://www.upgr.ch/l-art-de-transmettre): Masterclasse + 2 ebooks pour construire une transmission efficace. Structurer un savoir-faire, séquencer un contenu, préparer sa première session.
+- [Glossaire de la transmission](https://www.upgr.ch/glossaire-transmission): Définitions des concepts clés de la transmission — charge cognitive, andragogie, séquence pédagogique.
+
+## Formations
+
+- [Masterclasse L'Art de Transmettre #1 — Poser les fondations](https://www.upgr.ch/masterclass1): Construire la progression d'une formation, produire sa Fiche Fondatrice et son Séquenceur de Cours.
+- [Pack découverte — Masterclasse #1 + 2 ebooks](https://www.upgr.ch/l-art-de-transmettre): Ensemble complet pour préparer une première session.
+- [Pack complet — 2 masterclasses + 2 ebooks](https://www.upgr.ch/pack-masterclasses): Programme complet, de l'idée à la première session animée.
+
+## Ebooks
+
+- [De l'Idée au Plan](https://www.upgr.ch/ebook): 80 pages. Mode d'emploi pour clarifier un projet et structurer une démarche de transmission.
+- [Vos Compétences Humaines Invisibles](https://www.upgr.ch/ebook): 120 pages. Rôle du corps, de la pensée, de la créativité et de la communication dans la mise en œuvre d'un projet.
+
+## Assistants
+
+- [Eugène — assistant pédagogique](https://www.upgr.ch/eugene): Aide à clarifier un savoir et à construire un plan de formation. Accès libre, illimité, sans paiement.
+- [Édouard — assistant business](https://www.upgr.ch/edouard): Teste la viabilité d'un projet business. Accès libre, illimité, sans paiement.
+
+## Optional
+
+- [Sitemap](https://www.upgr.ch/sitemap.xml): Liste complète des pages indexables du site.
+- [Site principal](https://www.upgr.ch): Page d'accueil d'UpGrade L&D.
+
+3. VÉRIFIER L'ACCESSIBILITÉ
+
+Après création :
+- Vérifie que https://www.upgr.ch/llms.txt répond en HTTP 200
+- Vérifie que le Content-Type est text/plain ou text/markdown
+- Vérifie que le contenu s'affiche correctement
+
+---
+
+FORMAT DU FICHIER llms.txt
+
+Le format doit respecter la spécification llms.txt :
+- Titre principal (H1) avec le nom de l'organisation
+- Courte description (blockquote, 1-2 phrases)
+- Sections H2 avec listes de liens au format markdown
+- Un lien = [Nom de la page](URL): description courte
+
+---
+
+MÉTHODE DE TRAVAIL
+
+Étape 1 — AUDIT
+- Vérifie si llms.txt existe déjà
+- Affiche son contenu actuel s'il existe
+- Identifie le système de fichiers (racine du serveur, dossier public, autre)
+- Confirme-moi où le fichier doit être placé pour être accessible à 
+  https://www.upgr.ch/llms.txt
+
+Étape 2 — PLAN
+Présente-moi :
+- Le contenu proposé du nouveau llms.txt
+- L'emplacement exact du fichier
+- La méthode de mise à jour (création ou remplacement)
+Attends ma validation.
+
+Étape 3 — IMPLÉMENTATION
+- Crée ou remplace le fichier llms.txt
+- Ne touche à AUCUN autre fichier
+
+Étape 4 — VÉRIFICATION
+- Confirme que le fichier est accessible à https://www.upgr.ch/llms.txt
+- Confirme le Content-Type retourné
+- Affiche le contenu final
+- Vérifie qu'aucun mot de la liste noire n'est présent
+
+Étape 5 — COMMIT
+- Commit dédié : "SEO: création/mise à jour du fichier llms.txt"
+- Push uniquement ce commit
+- Ne pousse pas les documents joints ni la branche de sauvegarde
+
+Étape 6 — RAPPORT
+- Confirmation de la création
+- URL d'accès
+- Content-Type
+- Contenu complet
+- Vérification liste noire
+
+---
+
+LIVRABLE ATTENDU
+
+- Fichier llms.txt accessible à https://www.upgr.ch/llms.txt
+- Content-Type correct (text/plain ou text/markdown)
+- Contenu structuré selon le format llms.txt standard
+- Aucun mot de la liste noire
+- Aucune autre modification du site
+- Commit dédié poussé
+
+⚠️ Ne déclenche PAS la publication Replit. Je republierai manuellement 
+après validation.
+
+Commence par l'Étape 1 (AUDIT) et présente-moi tes observations avant toute 
+modification.
