@@ -1,6 +1,7 @@
 # UpGrade L&D
 
-> Formation pour experts qui doivent transmettre leur savoir-faire sans avoir été formés à la pédagogie.
+> Formation pour les professionnels qui doivent transmettre leur savoir-faire
+> sans avoir été formés à la pédagogie.
 
 ## Pages principales
 
@@ -15,3 +16,8 @@
 - [Ebook](https://www.upgr.ch/ebook): Deux guides numériques pour clarifier une idée et identifier ses compétences humaines.
 - [Masterclasse 1](https://www.upgr.ch/masterclass1): Poser les fondations d’une transmission.
 - [Masterclasse L'Art de Transmettre #2 : Faire vivre la transmission](https://www.upgr.ch/masterclass2): Faire vivre une transmission et construire ses outils d’impact.
+- [Pack complet — 2 masterclasses + 2 ebooks](https://www.upgr.ch/pack-masterclasses): Programme complet, de l'idée à la première session animée, avec paiement en 3 fois disponible sans frais.
+
+## Optional
+
+- [Sitemap](https://www.upgr.ch/sitemap.xml): Liste complète des pages indexables du site.
