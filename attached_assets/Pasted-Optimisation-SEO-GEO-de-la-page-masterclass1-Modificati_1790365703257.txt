@@ -1,0 +1,262 @@
+Optimisation SEO + GEO de la page /masterclass1. Modifications sur 
+masterclass1.html uniquement. Aucun autre fichier.
+
+⚠️ CONTRAINTE ABSOLUE — INTÉGRITÉ DU SITE ⚠️
+
+Le site doit conserver EXACTEMENT son aspect visuel et ses fonctionnalités 
+actuelles :
+- Design intact (couleurs, typographies, espacements)
+- Navigation intacte
+- Fonctionnalités intactes (Stripe, formulaires, liens)
+- Aucune modification du CSS
+
+Seules les modifications listées ci-dessous sont autorisées.
+
+---
+
+LISTE NOIRE DE MOTS INTERDITS (à respecter strictement) :
+- expert, experts, expertise
+- accompagnement, coach, coaching
+- métier (contexte transmission/reconversion)
+
+---
+
+TÂCHE 1 — REFORMULATIONS (corps visible)
+
+Trois occurrences à remplacer dans le corps visible. NE PAS toucher au reste.
+
+T1A. Ligne ~155 — Section "La transmission est un métier..."
+AVANT : "La transmission est un métier à part entière, qui s'apprend comme les autres."
+APRÈS : "La transmission est une compétence à part entière, qui s'apprend comme les autres."
+
+T1B. Ligne ~227 — Profil cible 1
+AVANT : "<strong>Les experts qui doivent transmettre sans avoir jamais appris à le faire.</strong> Ils maîtrisent leur métier, ils ont des années d'expérience, mais quand ils doivent expliquer à d'autres ce qu'ils font, ils se sentent démunis."
+APRÈS : "<strong>Ceux qui ont un savoir à partager et qui ne savent pas comment faire.</strong> Ils connaissent leur sujet, ils ont des années d'expérience, mais quand ils doivent expliquer à d'autres ce qu'ils font, ils se sentent démunis."
+
+⚠️ Le reste de la phrase reste INCHANGÉ.
+
+T1C. Vérifie qu'il n'y a AUCUNE autre occurrence de ces mots dans le fichier.
+Si tu en trouves, ARRÊTE-TOI et signale-les-moi AVANT de modifier.
+
+---
+
+TÂCHE 2 — JSON-LD (dans le <head>)
+
+Ajouter un bloc JSON-LD @graph complet. Récupérer les informations exactes 
+depuis le contenu visible de la page.
+
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Course",
+      "@id": "https://www.upgr.ch/masterclass1#course",
+      "name": "L'Art de Transmettre #1 — Poser les fondations",
+      "description": "[Récupérer la description exacte visible sur la page]",
+      "url": "https://www.upgr.ch/masterclass1",
+      "provider": {"@id": "https://www.upgr.ch/#organization"},
+      "offers": {
+        "@type": "Offer",
+        "name": "Pack découverte — Masterclasse #1 + 2 ebooks",
+        "category": "Paid",
+        "priceCurrency": "CHF",
+        "price": "110.00",
+        "availability": "https://schema.org/InStock",
+        "url": "https://www.upgr.ch/masterclass1"
+      },
+      "teaches": [
+        "Construire une progression de formation",
+        "Produire une Fiche Fondatrice",
+        "Construire un Séquenceur de Cours",
+        "Formuler une Proposition de Valeur Initiale"
+      ],
+      "inLanguage": "fr-CH",
+      "educationalLevel": "Professional",
+      "audience": {
+        "@type": "EducationalAudience",
+        "educationalRole": "Professional"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.upgr.ch/#organization",
+      "name": "UpGrade L&D",
+      "url": "https://www.upgr.ch",
+      "description": "Organisme de formation suisse dédié à la transmission des savoir-faire et à la conception de formations.",
+      "logo": "https://www.upgr.ch/attached_assets/0_logo_upgrade_copie_1788816221792.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rue Peillonnex 10",
+        "addressLocality": "Chêne-Bourg",
+        "postalCode": "1225",
+        "addressCountry": "CH"
+      },
+      "areaServed": "CH",
+      "knowsLanguage": ["fr-CH", "fr"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.upgr.ch/masterclass1#breadcrumbs",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Accueil","item":"https://www.upgr.ch/"},
+        {"@type":"ListItem","position":2,"name":"L'Art de Transmettre","item":"https://www.upgr.ch/l-art-de-transmettre"},
+        {"@type":"ListItem","position":3,"name":"Masterclasse #1 — Poser les fondations","item":"https://www.upgr.ch/masterclass1"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.upgr.ch/masterclass1#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "À qui s'adresse la Masterclasse L'Art de Transmettre #1 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La masterclasse s'adresse à celles et ceux qui ont un savoir à partager et qui ne savent pas comment faire. Elle est conçue pour préparer une première session de transmission, sans formation préalable en pédagogie."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Que contient la Masterclasse L'Art de Transmettre #1 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La masterclasse contient 2 heures de contenu audio, 35 minutes de bonus, des exercices interactifs et 3 livrables : la Fiche Fondatrice, le Séquenceur de Cours et la Proposition de Valeur Initiale."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Faut-il être formateur pour suivre cette masterclasse ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. La masterclasse est conçue pour celles et ceux qui n'ont jamais appris à transmettre. Aucun prérequis pédagogique n'est nécessaire."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Combien coûte la Masterclasse L'Art de Transmettre #1 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "La masterclasse est vendue uniquement dans le Pack découverte à 110 CHF, qui inclut la Masterclasse #1 et les 2 ebooks De l'Idée au Plan et Vos Compétences Humaines Invisibles. Le pack est également proposé à 118 €."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quels sont les livrables produits pendant la masterclasse ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Trois livrables sont produits : la Fiche Fondatrice (intention, public, style), le Séquenceur de Cours (progression en modules) et la Proposition de Valeur Initiale (pour ceux qui envisagent une offre)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Peut-on obtenir un financement ou une prise en charge ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. Aucun financement d'aucune sorte n'est possible. Le paiement doit être effectué directement par le participant."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Que se passe-t-il si j'ai déjà acheté un ebook ou une offre ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ce que vous avez déjà payé peut être déduit au paiement. Un code promotionnel vous a été envoyé par email avec votre précédent achat."
+          }
+        }
+      ]
+    }
+  ]
+}
+
+⚠️ Vérifie qu'AUCUN mot de la liste noire n'apparaît dans le JSON-LD.
+
+---
+
+TÂCHE 3 — FAQ VISIBLE (nouvelle section en fin de page)
+
+Ajouter une section FAQ visible à la fin du contenu, AVANT le footer, avec 
+les mêmes 7 questions/réponses. Utiliser un style minimaliste cohérent avec 
+le design existant (pas de nouveau CSS global — classes scopées si besoin).
+
+Structure HTML :
+
+<section class="faq-masterclass1">
+  <h2>Questions fréquentes</h2>
+  <details><summary>[question 1]</summary><p>[réponse 1]</p></details>
+  ... (répéter pour les 7 questions)
+</section>
+
+⚠️ Le contenu des questions/réponses DOIT être identique au JSON-LD 
+(règle Google : le schema doit refléter le contenu visible).
+
+---
+
+TÂCHE 4 — OPEN GRAPH + TWITTER CARD
+
+Ajouter dans le <head> :
+
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://www.upgr.ch/masterclass1"/>
+<meta property="og:site_name" content="UpGrade L&amp;D"/>
+<meta property="og:locale" content="fr_CH"/>
+<meta property="og:title" content="[même que <title>]"/>
+<meta property="og:description" content="[même que la meta description]"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[même que <title>]"/>
+<meta name="twitter:description" content="[même que la meta description]"/>
+
+⚠️ Utilise le title actuel (56 car.) et la meta description actuelle (137 car.) 
+tels quels. Ne les modifie PAS.
+
+---
+
+TÂCHE 5 — LIEN VERS LE GLOSSAIRE
+
+Ajouter un lien discret vers /glossaire-transmission dans une section 
+existante (par exemple, à côté des autres liens internes). Utiliser une 
+classe CSS existante, aucune nouvelle classe.
+
+Texte du lien : "Consulter le glossaire de la transmission"
+
+---
+
+MÉTHODE DE TRAVAIL
+
+Étape 1 — AUDIT
+Fais un grep complet pour "expert", "experts", "expertise", "accompagnement", 
+"coach", "coaching", "métier". Compare avec ma liste (T1A, T1B). Signale 
+toute occurrence supplémentaire AVANT de modifier.
+
+Étape 2 — PLAN
+Présente-moi :
+- Le diff exact des 3 reformulations
+- Le JSON-LD complet (après avoir récupéré les infos exactes du visible)
+- L'emplacement de la FAQ visible
+- Les balises OG + Twitter
+- Le lien vers le glossaire
+Attends ma validation.
+
+Étape 3 — IMPLÉMENTATION
+Applique les 5 tâches. Aucun autre fichier touché.
+
+Étape 4 — VÉRIFICATION
+- Grep final : ZÉRO occurrence de mots interdits
+- Validation JSON-LD (test avec https://validator.schema.org/)
+- Test Rich Results : Course détecté, FAQ détectée
+- Confirmation que le design est intact
+
+Étape 5 — COMMIT
+Commit dédié : "SEO+GEO: optimisation /masterclass1 (JSON-LD, FAQ, OG, nettoyage)"
+Push uniquement ce commit. Ne pousse pas les documents joints.
+
+Étape 6 — RAPPORT
+- Diff exact
+- JSON-LD final
+- Contenu FAQ visible
+- Confirmation ZÉRO mot interdit
+- Confirmation aucun autre fichier touché
+
+⚠️ Ne déclenche PAS la publication Replit. Je republierai manuellement.
+
+Commence par l'Étape 1 (AUDIT).
