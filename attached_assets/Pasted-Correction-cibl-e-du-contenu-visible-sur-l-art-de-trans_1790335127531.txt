@@ -1,0 +1,104 @@
+Correction ciblée du contenu visible sur l-art-de-transmettre.html uniquement.
+
+⚠️ CONTRAINTE ABSOLUE — INTÉGRITÉ DU SITE ⚠️
+
+Le site doit conserver EXACTEMENT son aspect visuel et ses fonctionnalités 
+actuelles :
+- Design intact (couleurs, typographies, espacements, composants UI)
+- Navigation intacte (menu, footer, breadcrumbs)
+- Fonctionnalités intactes (formulaire, Stripe, liens, animations)
+- JSON-LD INTACT (Course, ItemList, Organization, BreadcrumbList, FAQPage)
+- Métadonnées du <head> INTACTES (title, description, OG, Twitter)
+
+Seul le contenu textuel de 4 occurrences dans le corps visible doit être 
+modifié. Aucun autre changement.
+
+---
+
+LISTE NOIRE DE MOTS INTERDITS (à respecter strictement) :
+- expert
+- experts
+- expertise
+- accompagnement
+- coach
+- coaching
+- métier (dans le contexte de la transmission)
+
+---
+
+MODIFICATIONS À APPLIQUER
+
+Les 2 occurrences ci-dessous apparaissent 2 fois chacune dans le corps de la 
+page (une dans la section « pack #1 » et une dans la section « pack #1 + #2 »).
+
+1. DANS LES PROFILS CIBLES (À REMPLACER 2 FOIS)
+
+AVANT :
+"<strong>Les experts qui doivent transmettre sans avoir jamais appris à le 
+faire.</strong> Ils maîtrisent leur métier, ils ont des années d'expérience, 
+mais quand ils doivent expliquer à d'autres ce qu'ils font, ils se sentent 
+démunis."
+
+APRÈS :
+"<strong>Ceux qui ont un savoir à partager et qui ne savent pas comment 
+faire.</strong> Ils connaissent leur sujet, ils ont des années d'expérience, 
+mais quand ils doivent expliquer à d'autres ce qu'ils font, ils se sentent 
+démunis."
+
+⚠️ Modifier UNIQUEMENT les deux portions en gras et la phrase « Ils maîtrisent 
+leur métier » → « Ils connaissent leur sujet ». Le reste de la phrase 
+(« ils ont des années d'expérience, mais quand ils doivent expliquer à 
+d'autres ce qu'ils font, ils se sentent démunis ») reste INCHANGÉ.
+
+2. NE PAS TOUCHER AUX AUTRES PROFILS
+
+Les 2 autres profils cibles (« Ceux qui animent déjà des sessions… » et « Ceux 
+qui veulent se lancer mais qui se sentent illégitimes… ») ne contiennent 
+aucun mot interdit. NE PAS LES MODIFIER.
+
+3. NE PAS TOUCHER AUX 98 CHF VISIBLES
+
+Les mentions « 98 CHF / 104 € » dans les blocs masterclass restent telles 
+quelles.
+
+4. NE PAS TOUCHER AU JSON-LD
+
+Le JSON-LD @graph (Course, ItemList, Organization, BreadcrumbList, FAQPage) 
+doit rester identique octet pour octet à celui du commit 91f5aad. Notamment, 
+la description du Course garde « maîtriser la posture de transmission ».
+
+---
+
+MÉTHODE DE TRAVAIL
+
+Étape 1 — Confirme que tu as bien compris :
+- 2 occurrences à modifier (dans les profils cibles des 2 sections)
+- Total : 4 modifications textuelles (2 « Les experts » + 2 « maîtrisent »)
+- Aucun autre changement
+
+Présente-moi le diff exact que tu vas appliquer. Attends ma validation.
+
+Étape 2 — Applique les modifications.
+
+Étape 3 — Vérifie :
+- Les 2 occurrences sont bien modifiées
+- Les autres profils sont intacts
+- Le JSON-LD est identique octet pour octet à 91f5aad
+- Les métadonnées du <head> sont intactes
+- Aucun mot de la liste noire n'apparaît dans le corps visible
+- Aucune modification visuelle autre que les 2 phrases ciblées
+
+Étape 4 — Commit dédié :
+"SEO: retrait des termes 'experts' et 'maîtrisent' du contenu visible"
+Push uniquement ce commit. Ne pousse pas les documents joints ni la branche 
+de sauvegarde.
+
+Étape 5 — Rapport final :
+- Diff exact avant/après
+- Confirmation JSON-LD intact
+- Confirmation métadonnées intactes
+- Confirmation qu'aucun mot interdit n'apparaît plus dans le corps visible
+- Confirmation qu'aucune modification visuelle n'a eu lieu en dehors des 2 
+  phrases ciblées
+
+⚠️ Ne déclenche PAS la publication Replit. Je republierai manuellement.
