@@ -1,0 +1,178 @@
+Correction ciblée du glossaire /glossaire-transmission. Le fichier est 
+glossaire-transmission.html (ou équivalent). Modifications de métadonnées, 
+JSON-LD et contenu visible UNIQUEMENT. Aucun autre fichier.
+
+⚠️ CONTRAINTE ABSOLUE — INTÉGRITÉ DU SITE ⚠️
+
+Le site doit conserver EXACTEMENT son aspect visuel et ses fonctionnalités 
+actuelles :
+- Design intact (couleurs, typographies, espacements)
+- Navigation intacte
+- Fonctionnalités intactes
+- Structure HTML intacte
+- Aucune autre modification
+
+Seuls les remplacements textuels listés ci-dessous sont autorisés.
+
+---
+
+LISTE NOIRE DE MOTS INTERDITS (à respecter strictement) :
+- expert
+- experts
+- expertise
+- accompagnement
+- coach
+- coaching
+- métier (dans le contexte transmission/reconversion)
+
+---
+
+MODIFICATIONS À APPLIQUER
+
+=== A. BALISE HTML ===
+
+A1. Changer lang :
+AVANT : <html lang="fr-CH">
+APRÈS : <html lang="fr">
+
+=== B. MÉTADONNÉES (dans le <head>) ===
+
+B1. <title>
+AVANT : Glossaire de la transmission — Définitions clés pour experts | UpGrade
+APRÈS : Glossaire de la transmission — Définitions clés pour transmettre | UpGrade
+
+B2. <meta name="description">
+AVANT : Transmission, andragogie, charge cognitive, séquence pédagogique : définitions claires et sourcées pour les experts qui doivent transmettre leur savoir-faire.
+APRÈS : Transmission, andragogie, charge cognitive, séquence pédagogique : définitions claires et sourcées pour celles et ceux qui doivent transmettre leur savoir-faire.
+
+B3. <meta property="og:title">
+AVANT : Glossaire de la transmission — UpGrade
+APRÈS : Glossaire de la transmission — Définitions clés pour transmettre | UpGrade
+
+B4. <meta property="og:description">
+AVANT : Les concepts essentiels pour transformer un savoir-faire en transmission claire, utile et mémorable.
+APRÈS : Transmission, andragogie, charge cognitive, séquence pédagogique : définitions claires et sourcées pour celles et ceux qui doivent transmettre leur savoir-faire.
+
+B5. <meta name="twitter:title">
+AVANT : Glossaire de la transmission — UpGrade
+APRÈS : Glossaire de la transmission — Définitions clés pour transmettre | UpGrade
+
+B6. <meta name="twitter:description">
+AVANT : Les concepts essentiels pour transformer un savoir-faire en transmission claire, utile et mémorable.
+APRÈS : Transmission, andragogie, charge cognitive, séquence pédagogique : définitions claires et sourcées pour celles et ceux qui doivent transmettre leur savoir-faire.
+
+=== C. JSON-LD ===
+
+C1. WebPage.name
+AVANT : "Glossaire de la transmission — Définitions clés pour experts | UpGrade"
+APRÈS : "Glossaire de la transmission — Définitions clés pour transmettre | UpGrade"
+
+C2. WebPage.description
+AVANT : "Transmission, andragogie, charge cognitive, séquence pédagogique : définitions claires et sourcées pour les experts qui doivent transmettre leur savoir-faire."
+APRÈS : "Transmission, andragogie, charge cognitive, séquence pédagogique : définitions claires et sourcées pour celles et ceux qui doivent transmettre leur savoir-faire."
+
+C3. DefinedTerm "Posture de transmission" — description
+AVANT : "La posture de transmission est la manière dont un expert se positionne pour guider l'apprentissage sans confondre expertise et démonstration."
+APRÈS : "La posture de transmission est la manière dont celui qui transmet se positionne pour guider l'apprentissage sans confondre maîtrise du sujet et démonstration."
+
+C4. DefinedTerm "Transmission de savoir-faire" — description
+AVANT : "Le transmettre demande donc de rendre visible ce qui est devenu automatique pour l'expert."
+APRÈS : "Le transmettre demande donc de rendre visible ce qui est devenu automatique pour celui qui transmet."
+
+=== D. CORPS VISIBLE ===
+
+D1. Introduction (glossaire-introduction, 1ère phrase)
+AVANT : Ce glossaire s'adresse aux experts, formateurs et professionnels qui doivent transformer un savoir-faire en transmission claire, utile et mémorable.
+APRÈS : Ce glossaire s'adresse à celles et ceux qui doivent transformer un savoir-faire en transmission claire, utile et mémorable.
+
+D2. Entrée "Art de transmettre"
+AVANT : L'expert connaît souvent son sujet de manière compacte : plusieurs années d'expérience se présentent à lui comme une évidence.
+APRÈS : Celui qui transmet connaît souvent son sujet de manière compacte : plusieurs années d'expérience se présentent à lui comme une évidence.
+
+D3. Entrée "Art de transmettre"
+AVANT : Il demande aussi de renoncer à certaines démonstrations d'expertise pour consacrer l'attention à ce qui aidera réellement l'autre à agir.
+APRÈS : Il demande aussi de renoncer à certaines démonstrations de maîtrise pour consacrer l'attention à ce qui aidera réellement l'autre à agir.
+
+D4. Entrée "Le Passage"
+AVANT : Un expert peut connaître parfaitement une pratique sans parvenir à la rendre accessible.
+APRÈS : Une personne peut connaître parfaitement une pratique sans parvenir à la rendre accessible.
+
+D5. Entrée "Posture de transmission"
+AVANT : La posture de transmission est la manière dont un expert se positionne pour guider l'apprentissage sans confondre expertise et démonstration.
+APRÈS : La posture de transmission est la manière dont celui qui transmet se positionne pour guider l'apprentissage sans confondre maîtrise du sujet et démonstration.
+
+D6. Entrée "Posture de transmission"
+AVANT : Un expert qui cherche à prouver sa maîtrise risque de multiplier les détails, de répondre trop vite ou de reprendre la parole dès qu'un participant hésite.
+APRÈS : Celui qui transmet et qui cherche à prouver sa maîtrise risque de multiplier les détails, de répondre trop vite ou de reprendre la parole dès qu'un participant hésite.
+
+D7. Entrée "Séquenceur de Cours"
+AVANT : Les experts commencent souvent par accumuler des thèmes, des exemples et des ressources.
+APRÈS : Ceux qui transmettent commencent souvent par accumuler des thèmes, des exemples et des ressources.
+
+D8. Entrée "Transmission de savoir-faire"
+AVANT : Le transmettre demande donc de rendre visible ce qui est devenu automatique pour l'expert.
+APRÈS : Le transmettre demande donc de rendre visible ce qui est devenu automatique pour celui qui transmet.
+
+D9. Entrée "Transmission de savoir-faire"
+AVANT : La transmission peut prendre la forme d'un cours, d'un accompagnement, d'un atelier ou d'une documentation ; dans tous les cas, sa réussite se mesure à la capacité de l'autre à agir avec davantage d'autonomie.
+APRÈS : La transmission peut prendre la forme d'un cours, d'un atelier ou d'une documentation ; dans tous les cas, sa réussite se mesure à la capacité de l'autre à agir avec davantage d'autonomie.
+
+D10. Entrée "Transmission de savoir-faire"
+AVANT : Un savoir-faire transmis n'est pas une copie de l'expert : c'est une compétence que l'apprenant peut adapter.
+APRÈS : Un savoir-faire transmis n'est pas une copie de celui qui transmet : c'est une compétence que l'apprenant peut adapter.
+
+D11. Entrée "Transmission de savoir-faire" — lien en bas
+AVANT : <a href="/l-art-de-transmettre">Transformer son expertise en transmission</a>
+APRÈS : <a href="/l-art-de-transmettre">Transformer son savoir-faire en transmission</a>
+
+=== E. VÉRIFICATION ===
+
+Après les modifications, effectue une recherche exhaustive (grep) dans TOUT le 
+fichier pour les termes suivants :
+- expert
+- experts
+- expertise
+- accompagnement
+- coach
+- coaching
+- métier (dans le contexte transmission/reconversion)
+
+Confirme que :
+- AUCUNE occurrence de "expert", "experts", "expertise" ne subsiste
+- AUCUNE occurrence de "coach", "coaching" ne subsiste
+- "accompagnement" n'apparaît pas dans le contexte formation/transmission
+- Toutes les occurrences sont bien remplacées
+
+ATTENTION : il peut y avoir des occurrences que je n'ai pas listées (mots 
+cachés dans des balises, attributs, etc.). Fais une recherche complète et 
+signale toute occurrence restante AVANT de committer.
+
+---
+
+MÉTHODE DE TRAVAIL
+
+Étape 1 — AUDIT
+Fais un grep complet du fichier pour les mots interdits.
+Compare avec ma liste (A à D). Signale-moi toute occurrence supplémentaire 
+que je n'aurais pas listée.
+
+Étape 2 — APPLICATION
+Applique toutes les modifications A à D.
+Présente-moi le diff exact.
+
+Étape 3 — VÉRIFICATION
+Grep final pour confirmer qu'aucun mot interdit ne subsiste.
+
+Étape 4 — COMMIT
+Commit dédié :
+"SEO: nettoyage mots interdits dans le glossaire (métadonnées + visible)"
+Push uniquement ce commit.
+
+Étape 5 — RAPPORT
+- Diff exact avant/après
+- Confirmation grep final = 0 occurrence de mots interdits
+- Confirmation JSON-LD préservé (DefinedTermSet, Breadcrumb, WebPage intacts)
+- Confirmation aucune modification visuelle en dehors des textes ciblés
+- Confirmation qu'aucun autre fichier n'a été touché
+
+⚠️ Ne déclenche PAS la publication Replit. Je republierai manuellement.
