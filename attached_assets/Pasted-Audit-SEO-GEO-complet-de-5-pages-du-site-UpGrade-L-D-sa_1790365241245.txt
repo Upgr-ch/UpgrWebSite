@@ -1,0 +1,90 @@
+Audit SEO + GEO complet de 5 pages du site UpGrade L&D, sans AUCUNE 
+modification. Phase d'audit uniquement.
+
+⚠️ PHASE D'AUDIT UNIQUEMENT — NE MODIFIE AUCUN FICHIER
+
+Pages à auditer :
+1. /ebook
+2. /masterclass1
+3. /pack-masterclasses
+4. /eugene
+5. /edouard
+
+---
+
+POUR CHAQUE PAGE, relève :
+
+A. MÉTADONNÉES (dans le <head>)
+   - <title> : texte exact + nombre de caractères
+   - <meta name="description"> : texte exact + nombre de caractères
+   - og:title et og:description
+   - twitter:title et twitter:description
+   - canonical
+   - lang de la balise <html>
+   - <meta name="robots"> (index/noindex)
+
+B. JSON-LD
+   - Y a-t-il un bloc JSON-LD ?
+   - Si oui, liste les @type présents dans le @graph
+   - Si non, indique "Aucun JSON-LD"
+
+C. STRUCTURE Hn
+   - Nombre de H1 (doit être 1 seul)
+   - Liste des H2
+   - Liste des H3
+
+D. MOTS INTERDITS (dans le visible ET les métadonnées ET le JSON-LD)
+   Recherche les termes :
+   - expert, experts, expertise
+   - accompagnement, coach, coaching
+   - métier (contexte transmission/reconversion)
+   Indique le nombre d'occurrences par page + emplacement exact.
+
+E. IMAGES
+   - Nombre total d'images
+   - Combien ont un attribut alt ?
+
+F. MAILLAGE INTERNE
+   - Liste des liens internes sortants (vers d'autres pages UpGrade)
+
+G. FAQ
+   - Y a-t-il une FAQ visible ? (balises <details>, <summary> ou équivalent)
+   - Si oui, combien de questions ?
+   - Y a-t-il un schema FAQPage associé ?
+
+H. ÉLÉMENTS GEO SPÉCIFIQUES
+   - Y a-t-il des définitions autonomes (phrases citables) ?
+   - Y a-t-il des données chiffrées / statistiques ?
+   - Y a-t-il des termes propriétaires UpGrade ? (Le Passage, Fiche 
+     Fondatrice, Séquenceur de Cours, etc.)
+   - Y a-t-il un lien vers /glossaire-transmission ?
+   - Y a-t-il un lien vers /l-art-de-transmettre ?
+
+---
+
+RAPPORT ATTENDU
+
+TABLEAU RÉCAPITULATIF :
+
+| Page | Title (car.) | Meta (car.) | JSON-LD | H1 unique | Mots interdits | FAQ | Indexable |
+
+DÉTAIL PAR PAGE :
+
+Pour chaque page, fournis un bloc avec :
+- Titre et description actuels (texte exact)
+- Types JSON-LD présents
+- Problèmes identifiés (métadonnées, structure, mots interdits)
+- Opportunités GEO (FAQ manquante, définitions autonomes, schema à ajouter)
+- Priorité d'optimisation : Haute / Moyenne / Basse + justification
+
+---
+
+⚠️ CONTRAINTES
+
+- NE MODIFIE AUCUN FICHIER
+- Tu présentes uniquement l'audit
+- Pas de recommandations d'implémentation pour l'instant (juste l'état des 
+  lieux + priorités)
+- Sois exhaustif et factuel
+
+Commence par les 5 pages et présente le rapport complet.
