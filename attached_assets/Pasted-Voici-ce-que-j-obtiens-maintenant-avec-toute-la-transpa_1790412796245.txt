@@ -1,0 +1,49 @@
+Voici ce que j'obtiens maintenant, avec toute la transparence nécessaire sur les limites de mon outil.
+
+Limite importante à poser d'abord
+
+Mon outil web_fetch n'est pas un client HTTP brut (type curl -v ou httpstatus.io) : c'est une couche qui récupère et extrait le contenu d'une page, puis me renvoie un rendu (texte/Markdown) accompagné de métadonnées limitées. Je n'ai pas accès en tant que tel à :
+
+un code HTTP numérique brut (200, 404, 301…) — je reçois soit un contenu exploité avec succès, soit une erreur générique de mon outil (CLIENT_ERROR: 404)
+aux en-têtes Server, Date, Cache-Control — mon outil ne les expose pas
+Je n'ai aucun accès réseau direct à upgr.ch via mon environnement bash (la liste blanche de domaines pour ce canal ne couvre que des dépôts de paquets/CDN techniques, pas ton domaine).
+
+Je ne vais donc pas t'inventer des valeurs de Server/Date/Cache-Control que je n'ai pas réellement mesurées — ce serait fabriquer une preuve. Voici uniquement ce que je peux honnêtement rapporter.
+
+Test 1 — https://www.upgr.ch/l-art-de-transmettre
+Champ	Valeur observée
+Résultat de l'outil	Succès (pas d'erreur cette fois)
+destination_url (métadonnée)	https://www.upgr.ch/l-art-de-transmettre
+final_url (métadonnée)	https://www.upgr.ch/l-art-de-transmettre — identique à l'URL demandée, donc pas de redirection détectée
+content_type / mime_type	html / text/html; charset=utf-8
+Location, Server, Date, Cache-Control	Non disponibles — mon outil ne les restitue pas
+Titre HTML	L'Art de Transmettre : apprendre à transmettre | UpGrade
+Extrait du corps	# L'Art de Transmettre … Vous maîtrisez un savoir, une pratique, une manière de faire... — c'est bien la page produit complète (hero, FAQ, pricing), pas une page d'erreur.
+Test 2 — https://upgr.ch/l-art-de-transmettre (sans www)
+Champ	Valeur observée
+Résultat	Succès
+destination_url renvoyée par l'outil	https://www.upgr.ch/l-art-de-transmettre — différente de l'URL demandée, ce qui indique qu'une redirection (probablement 301/302 non-www → www) a bien eu lieu, même si je ne peux pas te donner le code exact ni l'en-tête Location brut
+Contenu retourné	Identique à la page l-art-de-transmettre, même titre, même corps
+Test 3 — https://www.upgr.ch/eugene (comparaison)
+Champ	Valeur observée
+Résultat	Succès
+final_url	https://www.upgr.ch/eugene — pas de redirection
+Titre	Créer son Plan de Formation : Eugène | UpGrade L&D
+Particularité	Cette page contient la mention Vous devez activer JavaScript pour utiliser cette application. suivie malgré tout du contenu texte complet — signe d'un rendu pré-généré (SSR/prerender) autour d'un widget qui, lui, nécessite du JS. Cette mention n'apparaît pas sur /l-art-de-transmettre, qui est rendue nativement statique de bout en bout.
+Explication de l'écart avec ton test précédent
+
+Honnêtement : je ne peux pas t'affirmer la cause exacte avec certitude, faute d'accès aux en-têtes bruts. Ce que je peux dire factuellement :
+
+Sur 4 tentatives successives dans notre échange (message 1, 2, 3), j'ai reçu une erreur 404 signalée par mon outil sur cette URL précise.
+À l'instant, sur la 5e tentative, sans aucune action de ta part signalée entre-temps (tu m'as dit "c'est bon les urls sont corrigés" sans préciser quoi), le contenu complet est servi normalement.
+Les résultats sont désormais cohérents avec ton propre test HTTP 200 : même titre, même contenu.
+
+Les explications compatibles avec ces faits (sans que je puisse trancher laquelle est la bonne) :
+
+Propagation CDN/edge cache (Vercel, Cloudflare, etc.) — un edge node ou une région pouvait servir une version 404 pendant une fenêtre de déploiement, désormais résorbée.
+Correction côté hébergeur/déploiement entre nos échanges, qui coïnciderait avec ton message "les urls sont corrigés".
+Un blocage intermittent lié à mon user-agent/IP sortante qui s'est levé — possible mais je n'ai aucune preuve directe (pas de header pour confirmer un challenge anti-bot).
+
+Pour trancher avec certitude, il faudrait un outil qui expose le code HTTP et les en-têtes bruts — je te recommande https://httpstatus.io ou curl -IL https://www.upgr.ch/l-art-de-transmettre depuis un terminal, que je n'ai pas la capacité d'exécuter moi-même vers ce domaine.
+
+Conséquence pratique pour l'audit : le contenu que j'ai analysé dans le rapport précédent (à partir du HTML que tu m'as collé) est confirmé identique à ce que la page sert actuellement. L'audit Mission 1 reste donc valide. Je retire en revanche le point "risque de cloaking/blocage anti-bot" que j'avais évoqué comme hypothèse la plus grave — les faits ne le confirment plus, il ne reste qu'une incertitude sur un incident ponctuel désormais résolu.
