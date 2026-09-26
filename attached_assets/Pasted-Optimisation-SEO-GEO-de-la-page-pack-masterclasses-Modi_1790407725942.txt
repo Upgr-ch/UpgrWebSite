@@ -1,0 +1,162 @@
+Optimisation SEO + GEO de la page /pack-masterclasses. Modifications sur 
+le fichier source de cette page uniquement. Aucun autre fichier.
+
+⚠️ CONTRAINTE ABSOLUE — INTÉGRITÉ DU SITE ⚠️
+
+Le site doit conserver EXACTEMENT son aspect visuel et ses fonctionnalités :
+- Design intact (couleurs, typographies, espacements)
+- Navigation intacte
+- Fonctionnalités intactes (Stripe, formulaires, liens)
+- Aucune modification du CSS global
+
+Seules les modifications listées ci-dessous sont autorisées.
+
+---
+
+LISTE NOIRE DE MOTS INTERDITS :
+- expert, experts, expertise
+- accompagnement, coach, coaching
+- métier (contexte transmission/reconversion)
+
+---
+
+TÂCHE 1 — REFORMULATIONS (corps visible)
+
+T1A. Profil cible — "Les experts qui doivent transmettre..."
+AVANT : "<strong>Les experts qui doivent transmettre sans avoir jamais appris à le faire.</strong> Ils maîtrisent leur métier, ils ont des années d'expérience, mais quand ils doivent expliquer à d'autres ce qu'ils font, ils se sentent démunis."
+APRÈS : "<strong>Ceux qui ont un savoir à partager et qui ne savent pas comment faire.</strong> Ils connaissent leur sujet, ils ont des années d'expérience, mais quand ils doivent expliquer à d'autres ce qu'ils font, ils se sentent démunis."
+
+⚠️ Le reste de la phrase reste INCHANGÉ.
+
+T1B. Vérifie qu'il n'y a AUCUNE autre occurrence de ces mots dans le fichier.
+Si tu en trouves, ARRÊTE-TOI et signale-les-moi.
+
+---
+
+TÂCHE 2 — TITLE ET META DESCRIPTION
+
+T2A. Title (actuel 144 car., à ramener à ~58 car.)
+AVANT : "L'Art de Transmettre #1 & Masterclasse L'Art de Transmettre #2 : Faire vivre la transmission · Pack Complet 2 Masterclasses + 2 Ebooks"
+APRÈS : "Pack complet L'Art de Transmettre : 2 masterclasses + 2 ebooks | UpGrade"
+
+Vérifie la longueur exacte (objectif 55–60 car.).
+
+T2B. Meta description (actuelle 148 car.)
+AVANT : "Accédez au pack complet L'Art de Transmettre : deux masterclasses et deux ebooks pour concevoir des formations structurées, vivantes et engageantes."
+APRÈS : Conserve la meta description actuelle SI elle ne dépasse pas 155 car. Sinon, propose une version raccourcie.
+
+Vérifie la longueur exacte.
+
+---
+
+TÂCHE 3 — JSON-LD (@graph dans le <head>)
+
+Créer un bloc JSON-LD @graph avec :
+
+A. Course
+- name : "Pack complet L'Art de Transmettre — 2 masterclasses + 2 ebooks"
+- description : reprendre la description visible exacte de la page
+- url : "https://www.upgr.ch/pack-masterclasses"
+- provider : référence Organization
+- offers :
+  * name : "Pack complet — 2 masterclasses + 2 ebooks"
+  * category : Paid
+  * priceCurrency : CHF
+  * price : 405.00
+  * availability : InStock
+  * url : "https://www.upgr.ch/pack-masterclasses"
+- teaches : liste des livrables (Fiche Fondatrice, Séquenceur de Cours, 
+  Proposition de Valeur Initiale, Le Pouls de la Transmission, Les Outils 
+  de l'Impact, Le Verdict de Rentabilité)
+- inLanguage : fr-CH
+- educationalLevel : Professional
+- audience : EducationalAudience / Professional
+
+B. Organization
+- @id : "https://www.upgr.ch/#organization"
+- name : "UpGrade L&D"
+- url : "https://www.upgr.ch"
+- description : "Organisme de formation suisse dédié à la transmission des savoir-faire et à la conception de formations."
+- logo : "https://www.upgr.ch/attached_assets/0_logo_upgrade_copie_1788816221792.jpg"
+- address : Rue Peillonnex 10, Chêne-Bourg, 1225, CH
+- areaServed : CH
+- knowsLanguage : ["fr-CH", "fr"]
+
+C. BreadcrumbList
+- Accueil → L'Art de Transmettre → Pack complet 2 masterclasses + 2 ebooks
+
+D. FAQPage
+7 questions/réponses adaptées au pack complet. Utiliser le même style que 
+/masterclass1 :
+1. À qui s'adresse le Pack complet L'Art de Transmettre ?
+2. Que contient le Pack complet ?
+3. Faut-il avoir déjà transmis pour suivre ce pack ?
+4. Combien coûte le Pack complet ?
+5. Peut-on payer en plusieurs fois ?
+6. Quels sont les livrables produits pendant le programme ?
+7. Peut-on obtenir un financement ou une prise en charge ?
+
+⚠️ AUCUN mot de la liste noire dans le JSON-LD.
+
+---
+
+TÂCHE 4 — FAQ VISIBLE
+
+Ajouter une section FAQ visible (comme sur /masterclass1), AVANT le footer.
+Utiliser les mêmes 7 questions/réponses que le JSON-LD (identiques).
+
+Style : réutiliser les classes existantes de la page (comme sur /masterclass1).
+Pas de nouveau CSS global.
+
+---
+
+TÂCHE 5 — OPEN GRAPH + TWITTER CARD
+
+Ajouter dans le <head> :
+
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://www.upgr.ch/pack-masterclasses"/>
+<meta property="og:site_name" content="UpGrade L&amp;D"/>
+<meta property="og:locale" content="fr_CH"/>
+<meta property="og:title" content="[même que <title>]"/>
+<meta property="og:description" content="[même que la meta description]"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[même que <title>]"/>
+<meta name="twitter:description" content="[même que la meta description]"/>
+
+---
+
+TÂCHE 6 — LIEN VERS LE GLOSSAIRE
+
+Ajouter dans le footer (comme sur /masterclass1) :
+<a href="/glossaire-transmission">Consulter le glossaire de la transmission</a> ·
+
+---
+
+MÉTHODE DE TRAVAIL
+
+Étape 1 — AUDIT
+- Confirme le nom exact du fichier source
+- Grep complet pour mots interdits (expert, experts, expertise, accompagnement, coach, coaching, métier)
+- Présente-moi les occurrences exactes
+- Attends ma validation
+
+Étape 2 — PLAN
+Présente-moi :
+- Le diff des reformulations
+- Le nouveau title + meta description (avec longueurs exactes)
+- Le JSON-LD complet
+- Le HTML de la FAQ visible
+- Les balises OG + Twitter
+- Le lien glossaire
+Attends ma validation
+
+Étape 3 — IMPLÉMENTATION
+Étape 4 — VÉRIFICATION (grep ZÉRO + Schema.org Validator + test visuel)
+Étape 5 — COMMIT dédié + push via API GitHub (sans pousser la branche locale)
+Étape 6 — RAPPORT final
+
+⚠️ Ne déclenche PAS la publication Replit.
+
+Commence par l'Étape 1 (AUDIT).
