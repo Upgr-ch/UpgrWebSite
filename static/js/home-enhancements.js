@@ -30,6 +30,12 @@
     var menuButton = document.querySelector('button[aria-label="Menu"]');
     var nav = menuButton && menuButton.closest('nav');
     var mobileMenu = nav && nav.nextElementSibling;
+    if (!mobileMenu ||
+        !mobileMenu.classList.contains('fixed') ||
+        !mobileMenu.classList.contains('md:hidden')) {
+      return;
+    }
+
     var mobileMenuList = mobileMenu && mobileMenu.querySelector('.flex.flex-col');
 
     if (!mobileMenuList || mobileMenuList.querySelector('a[data-transmission-mobile-nav]')) {
@@ -40,7 +46,7 @@
       mobileMenuList.querySelectorAll('button')
     ).find(function (element) {
       return element.textContent.trim() === 'Solutions';
-    }) || mobileMenuList.querySelector('button');
+    });
 
     if (!referenceButton) return;
 
