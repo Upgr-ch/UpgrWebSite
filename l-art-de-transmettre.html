@@ -420,7 +420,6 @@
     .course-support{margin-top:1.5rem;padding:1.1rem 1.25rem;border-left:2px solid rgba(245,224,144,.3);background:rgba(255,255,255,.015)}
     .course-support p{color:rgba(255,255,255,.92);font-size:.92rem;font-weight:300;line-height:1.75}
     .course-support p+p{margin-top:.8rem}
-    .testimonials-title{margin-bottom:1.5rem}
     .testimonial-card{display:flex;flex-direction:column;justify-content:space-between;gap:1rem;padding:1.25rem;border:1px solid var(--line);background:rgba(255,255,255,.015)}
     .testimonial-card blockquote{color:var(--muted);font-size:.93rem;font-weight:300;line-height:1.75}
     .testimonial-card figcaption{display:flex;flex-wrap:wrap;align-items:baseline;gap:.35rem;padding-top:.8rem;border-top:1px solid var(--line)}
@@ -606,8 +605,11 @@
       </div>
     </section>
 
-    <section class="section" id="temoignages">
-      <h2 class="testimonials-title">Ce qu'en pensent ceux qui l'ont vécu</h2>
+    <div class="section-bridge" id="temoignages" aria-label="Ce qu'en pensent ceux qui l'ont vécu">
+      <h2 class="section-bridge-title" id="temoignages-heading">Ce qu'en pensent ceux qui l'ont vécu</h2>
+    </div>
+
+    <section class="section" aria-labelledby="temoignages-heading">
       <div class="two-col">
         <figure class="testimonial-card">
           <blockquote>Très enrichissant aussi bien au niveau professionnel qu'au niveau personnel. Intervenant à l'écoute, disponible et très pédagogue.</blockquote>
