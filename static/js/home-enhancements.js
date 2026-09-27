@@ -53,40 +53,9 @@
     referenceButton.insertAdjacentElement('afterend', link);
   }
 
-  function addSolutionCard() {
-    var offers = document.getElementById('offres');
-    if (!offers || offers.querySelector('[data-transmission-card]')) return;
-
-    var grid = offers.querySelector('.grid');
-    var referenceCard = grid && grid.firstElementChild;
-    if (!grid || !referenceCard) return;
-
-    var card = document.createElement('a');
-    card.href = LINK_HREF;
-    card.dataset.transmissionCard = 'true';
-    card.className = referenceCard.className;
-    card.setAttribute('aria-label', LINK_TEXT);
-    card.innerHTML =
-      '<div class="mb-8 h-24 flex items-center justify-center">' +
-        '<svg viewBox="0 0 100 100" class="w-20 h-20 svg-icon" aria-hidden="true">' +
-          '<circle cx="50" cy="50" r="34" fill="none" stroke="#F5E090" stroke-width="1.5" opacity=".72"></circle>' +
-          '<path d="M28 50c7-18 37-18 44 0M33 64c11 8 23 8 34 0M50 20v60M20 50h60" fill="none" stroke="#F5E090" stroke-width="1.5" opacity=".72"></path>' +
-          '<circle cx="50" cy="50" r="5" fill="#F5E090"></circle>' +
-        '</svg>' +
-      '</div>' +
-      '<div class="p-0 flex flex-col h-full">' +
-        '<h3 class="text-xl font-semibold mb-4 text-gold">MasterClasse : L’Art de Transmettre</h3>' +
-        '<p class="text-foreground/65 leading-relaxed font-light">Transformez votre savoir en une formation claire, vivante et transmissible.</p>' +
-        '<span class="mt-8 text-sm font-medium tracking-wider uppercase text-gold">Découvrir la masterclasse →</span>' +
-      '</div>';
-
-    grid.appendChild(card);
-  }
-
   function enhance() {
     addNavigationLinks();
     addMobileNavigationLink();
-    addSolutionCard();
   }
 
   enhance();
