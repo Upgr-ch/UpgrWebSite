@@ -503,6 +503,31 @@ http.createServer((req, res) => {
 
   // ── Liste payment links (temporaire) ──────────────────────────────────────
   if (urlPath === '/admin/payment-links' && req.method === 'GET') {
+    const adminPassword = process.env.ADMIN_PAYMENT_LINKS_PASSWORD || '';
+    if (!adminPassword) {
+      res.writeHead(503, { 'Cache-Control': 'no-store', 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ error: 'auth_non_configuree' }));
+      return;
+    }
+
+    const authorization = String(req.headers.authorization || '');
+    const basicAuth = authorization.match(/^Basic\s+([A-Za-z0-9+/]+={0,2})$/i);
+    const submittedCredentials = basicAuth ? Buffer.from(basicAuth[1], 'base64').toString('utf8') : '';
+    const crypto = require('crypto');
+    const submittedHash = crypto.createHash('sha256').update(submittedCredentials).digest();
+    const expectedHash = crypto.createHash('sha256').update(`admin:${adminPassword}`).digest();
+    const authorized = Boolean(basicAuth && crypto.timingSafeEqual(submittedHash, expectedHash));
+
+    if (!authorized) {
+      res.writeHead(401, {
+        'Cache-Control': 'no-store',
+        'WWW-Authenticate': 'Basic realm="Payment links admin", charset="UTF-8"',
+        'Content-Type': 'application/json; charset=utf-8',
+      });
+      res.end(JSON.stringify({ error: 'auth_requise' }));
+      return;
+    }
+
     (async () => {
       const https = require('https');
       const key = stripeSecretKey();
