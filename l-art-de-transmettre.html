@@ -253,6 +253,12 @@
     .powered{margin:.65rem 0 1.5rem;color:var(--gold-deep);font-size:.75rem;font-style:italic;letter-spacing:.08em}
     .hero-copy p,.section-copy p{max-width:660px;color:var(--muted);font-size:1rem;font-weight:300;line-height:1.8}
     .hero-copy p+p{margin-top:.9rem}
+    .hero-copy .hero-subtitle{margin:1.1rem 0 .9rem;color:var(--gold)!important;font-size:clamp(1.5rem,2.4vw,2rem)!important;font-weight:600!important;line-height:1.35!important}
+    .hero-copy .powered{margin:.25rem 0 1rem;color:rgba(255,255,255,.48);font-size:.62rem}
+    .hero-copy .powered a{color:inherit}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0 1.25rem}
+    .hero-actions .btn{margin-top:0}
+    .hero-actions .btn-secondary{margin-left:0}
     .hero-art{display:flex;align-items:center;justify-content:center;min-height:280px}
     .hero-art svg{width:min(100%,340px);height:auto;filter:drop-shadow(0 0 18px rgba(245,224,144,.08))}
     .section{max-width:1040px;margin:auto;padding:4rem 1.25rem}
@@ -432,7 +438,7 @@
     .payment-text{color:rgba(255,255,255,.6);font-size:.75rem}
     .note-shimmer{display:block;margin:1rem 0;color:var(--gold);font-size:.82rem;font-style:italic;font-weight:500;line-height:1.6;background:linear-gradient(90deg,#b58d26 0%,#f6dc8d 30%,#fff 50%,#f6dc8d 70%,#b58d26 100%);background-size:250% 100%;animation:shimmer-heading 8s linear infinite;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
     @media(max-width:820px){
-      .hero{grid-template-columns:1fr;gap:1.5rem;padding-top:3.5rem;padding-bottom:3.5rem}.hero-art{min-height:210px;order:-1}.hero-art svg{width:min(100%,250px)}.hero-copy{max-width:680px}.two-col,.form-wrap{grid-template-columns:1fr}.eugene-horizontal,.edouard-horizontal{grid-template-columns:100px 1fr;gap:1rem;padding:1rem}.eugene-icon,.edouard-icon{width:88px;height:88px}.course-programme.four{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}.faq{grid-template-columns:1fr}.section{padding-top:3.5rem;padding-bottom:3.5rem}
+      .hero{grid-template-columns:1fr;gap:1.5rem;padding-top:3.5rem;padding-bottom:3.5rem}.hero-art{min-height:210px;order:1}.hero-art svg{width:min(100%,250px)}.hero-copy{max-width:680px}.two-col,.form-wrap{grid-template-columns:1fr}.eugene-horizontal,.edouard-horizontal{grid-template-columns:100px 1fr;gap:1rem;padding:1rem}.eugene-icon,.edouard-icon{width:88px;height:88px}.course-programme.four{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}.faq{grid-template-columns:1fr}.section{padding-top:3.5rem;padding-bottom:3.5rem}
     }
     @media(max-width:560px){
        h1{font-size:clamp(2.35rem,13vw,4rem)}h2{font-size:clamp(1.45rem,7.5vw,2rem)}.hero{padding:2.75rem 1rem 3.25rem}.hero-art{min-height:165px}.hero-art svg{width:190px}.section{padding:2.75rem 1rem}.section-intro{margin-bottom:1.35rem}.situations{grid-template-columns:1fr}.course-programme,.course-programme.four{grid-template-columns:1fr}.masterclass-details{grid-template-columns:repeat(2,minmax(0,1fr))}.course-book{align-items:flex-start;flex-wrap:wrap;gap:.7rem}.course-book img{width:34px}.course-book-text{min-width:calc(100% - 3.25rem)}.course-book .btn{width:100%;text-align:center}.discovery-copy,.feature-card,.form-wrap,.course-support,.course-pricing{padding:1.15rem}.discovery-pricing{padding-top:1.15rem}.eugene-horizontal,.edouard-horizontal{grid-template-columns:1fr;gap:.7rem;padding:1rem;text-align:center}.eugene-visual,.edouard-visual{margin-bottom:0}.eugene-icon,.edouard-icon{width:88px;height:88px}.eugene-copy .section-label{margin-bottom:.45rem}.eugene-copy .btn,.edouard-copy .btn{margin-top:.9rem}.eugene-actions .btn,.edouard-actions .btn{margin-top:0}.payment-note{flex-wrap:wrap}.btn{width:100%}.btn-secondary{margin-left:0}.about{gap:1rem}.mobile-cta{display:block;position:fixed;z-index:30;bottom:0;left:0;width:100%;padding:.55rem;background:rgba(8,15,30,.96);border-top:1px solid rgba(245,224,144,.25);text-align:center}.mobile-cta a{display:block;margin:0;padding:.65rem;background:var(--gold);color:var(--navy);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.site-footer{padding-bottom:4.5rem}
@@ -461,10 +467,14 @@
       <div class="hero-copy">
         <span class="eyebrow">MasterClasse</span>
         <h1 class="shimmer-heading">L’Art de Transmettre</h1>
-        <p class="section-copy">Transmettre son savoir est une compétence, pas un don.</p>
+        <p class="hero-subtitle">Transmettre son savoir est une compétence, pas un don.</p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="#pack-complet">Découvrir le pack complet · 405 CHF</a>
+          <a class="btn btn-secondary" href="/extrait-masterclass2">Essayer un extrait gratuit</a>
+        </div>
         <p class="powered"><a href="https://www.upgr.ch/">Powered by UpGrade L&amp;D</a></p>
         <p>Vous maîtrisez un savoir, une pratique, une manière de faire. Vous l’avez acquis sur le terrain, par l’usage, par les années. Et un jour, vous êtes amené à le partager.</p>
-        <p>Vous l’avez fait.<br>Ou vous ne l’avez jamais fait.<br>Peut être bien. Peut être mal. Peut être les deux.</p>
+        <p>Vous l’avez fait.<br>Ou vous ne l’avez jamais fait.<br>Peut-être bien. Peut-être mal. Peut-être les deux.</p>
         <p>Vous avez senti ce moment où l’attention se pose. Et celui où elle se retire. Vous avez vu des yeux s’allumer. Et d’autres se fermer. Vous avez cherché vos mots. Vous en avez trouvé certains. D’autres sont restés hors de portée.</p>
         <p>Ce qui compte, c’est le passage. Quelque chose doit passer de vous à eux. Et ce passage, c’est à vous de le rendre possible grâce à L’Art de Transmettre.</p>
       </div>
