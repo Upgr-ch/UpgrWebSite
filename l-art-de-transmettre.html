@@ -261,6 +261,10 @@
     .hero-actions .btn-secondary{margin-left:0}
     .hero-copy .hero-reassurance{margin:.4rem 0 .75rem!important;color:rgba(255,255,255,.8)!important;font-size:.68rem!important;font-style:normal!important;font-weight:400!important;line-height:1.5!important}
     .hero-copy .hero-reassurance a{color:var(--gold);text-decoration:underline;text-underline-offset:.12em}
+    .hero-reassurance-line{display:block}
+    .hero-email-trigger{border:0;padding:0;background:transparent;color:var(--gold);font:inherit;text-decoration:underline;text-underline-offset:.12em;cursor:pointer}
+    .hero-lead-capture{margin:.55rem 0 1rem}
+    .hero-lead-capture[hidden]{display:none}
     .hero-copy > p:not(.hero-subtitle):not(.powered):not(.hero-reassurance){color:rgba(255,255,255,.82);font-weight:400}
     @media(min-width:821px){.hero-copy .hero-reassurance{white-space:nowrap}}
     .hero-art{display:flex;align-items:center;justify-content:center;min-height:280px}
@@ -477,7 +481,26 @@
           <a class="btn btn-solid" href="#pack-complet">Découvrir le pack complet · 405 CHF</a>
           <a class="btn btn-secondary" href="/extrait-masterclass2">Voir un extrait gratuit</a>
         </div>
-        <p class="hero-reassurance disclaimer">Paiement en 3 fois sans frais · Pas encore sûr ? <a href="#pack-decouverte">Commencer par la masterclasse #1 (110 CHF)</a></p>
+        <p class="hero-reassurance disclaimer">
+          <span class="hero-reassurance-line">Paiement en 3 fois sans frais disponible · soit environ 435 €</span>
+          <span class="hero-reassurance-line">Pas encore prêt à décider ? <button class="hero-email-trigger" type="button" aria-expanded="false" aria-controls="hero-lead-capture">Laissez votre e-mail</button> ou <a href="#pack-decouverte">commencer par la masterclasse #1 (110 CHF)</a></span>
+        </p>
+        <div class="hero-lead-capture" id="hero-lead-capture" hidden>
+          <form class="lead-form hero-lead-form">
+            <div class="field">
+              <label for="hero-transmission-email">Email</label>
+              <input id="hero-transmission-email" name="email" type="email" autocomplete="email" required/>
+            </div>
+            <label class="consent">
+              <input name="consent" type="checkbox" required/>
+              <span>J’accepte que mon email soit utilisé pour recevoir des informations sur la masterclass.</span>
+            </label>
+            <label class="honeypot" aria-hidden="true">Site web<input name="website" tabindex="-1" autocomplete="off"/></label>
+            <button type="submit">Rester informé</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+            <p class="form-note">Votre demande est traitée par UpGrade L&amp;D dans le respect de la <a href="/confidentialite">politique de confidentialité</a>.</p>
+          </form>
+        </div>
         <p class="powered"><a href="https://www.upgr.ch/">Powered by UpGrade L&amp;D</a></p>
         <p>Vous maîtrisez un savoir, une pratique, une manière de faire. Vous l’avez acquis sur le terrain, par l’usage, par les années. Et un jour, vous êtes amené à le partager.</p>
         <p>Vous l’avez fait.<br>Ou vous ne l’avez jamais fait.<br>Peut-être bien. Peut-être mal. Peut-être les deux.</p>
@@ -927,38 +950,51 @@
 
   <script>
     (function () {
-      var form = document.getElementById('transmission-form');
-      var status = document.getElementById('transmission-status');
-      if (!form) return;
-      form.addEventListener('submit', async function (event) {
-        event.preventDefault();
-        var email = form.elements.email;
-        var consent = form.elements.consent;
-        var button = form.querySelector('button');
-        if (!email.reportValidity() || !consent.reportValidity()) return;
-        button.disabled = true;
-        button.textContent = 'Envoi en cours…';
-        status.textContent = '';
-        try {
-          var response = await fetch('/api/l-art-de-transmettre/subscribe', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-              email: email.value,
-              consent: consent.checked,
-              website: form.elements.website.value
-            })
-          });
-          if (!response.ok) throw new Error('inscription_indisponible');
-          form.reset();
-          status.textContent = 'Merci. Votre inscription a bien été enregistrée.';
-        } catch (error) {
-          status.textContent = 'L’inscription est momentanément indisponible. Veuillez réessayer.';
-        } finally {
-          button.disabled = false;
-          button.textContent = 'Rester informé';
-        }
+      document.querySelectorAll('.lead-form').forEach(function (form) {
+        var status = form.querySelector('.form-status');
+        form.addEventListener('submit', async function (event) {
+          event.preventDefault();
+          var email = form.elements.email;
+          var consent = form.elements.consent;
+          var button = form.querySelector('button[type="submit"]');
+          if (!email.reportValidity() || !consent.reportValidity()) return;
+          button.disabled = true;
+          button.textContent = 'Envoi en cours…';
+          status.textContent = '';
+          try {
+            var response = await fetch('/api/l-art-de-transmettre/subscribe', {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({
+                email: email.value,
+                consent: consent.checked,
+                website: form.elements.website.value
+              })
+            });
+            if (!response.ok) throw new Error('inscription_indisponible');
+            form.reset();
+            status.textContent = 'Merci. Votre inscription a bien été enregistrée.';
+          } catch (error) {
+            status.textContent = 'L’inscription est momentanément indisponible. Veuillez réessayer.';
+          } finally {
+            button.disabled = false;
+            button.textContent = 'Rester informé';
+          }
+        });
       });
+      var trigger = document.querySelector('.hero-email-trigger');
+      var capture = document.getElementById('hero-lead-capture');
+      if (trigger && capture) {
+        trigger.addEventListener('click', function () {
+          var willOpen = capture.hidden;
+          capture.hidden = !willOpen;
+          trigger.setAttribute('aria-expanded', String(willOpen));
+          if (willOpen) {
+            var email = capture.querySelector('input[name="email"]');
+            if (email) email.focus({preventScroll: true});
+          }
+        });
+      }
     })();
   </script>
 </body>
