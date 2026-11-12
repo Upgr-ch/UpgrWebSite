@@ -272,6 +272,13 @@
     .hero-actions .hero-cta-card:hover .hero-card-detail,.hero-actions .hero-cta-card:focus-within .hero-card-detail,.hero-actions .hero-cta-card:active .hero-card-detail{color:rgba(8,15,30,.82)}
     .hero-card-start-link{position:relative;z-index:2;pointer-events:auto;color:var(--gold);text-decoration:underline;text-underline-offset:.12em}
     .hero-actions .hero-cta-card:hover .hero-card-start-link,.hero-actions .hero-cta-card:focus-within .hero-card-start-link,.hero-actions .hero-cta-card:active .hero-card-start-link{color:var(--navy)}
+    @media(min-width:641px){
+      .hero-actions .hero-cta-card{justify-content:flex-start;padding-top:2.8rem}
+      .hero-actions .hero-cta-card--eugene{padding-top:calc(2.8rem - 1px)}
+      .hero-actions .hero-card-badge{position:absolute;top:-1px;left:50%;z-index:2;transform:translateX(-50%) translateY(-50%);pointer-events:none}
+      .hero-actions .hero-cta-card--eugene .hero-card-title::after{top:-14px}
+    }
+    @media(min-width:641px) and (max-width:820px){.hero-actions{margin-top:1rem}}
     .hero-installment-note{display:block;margin:.25rem 0 0;color:rgba(255,255,255,.68);font-size:.9rem;font-style:normal;font-weight:400;letter-spacing:0;line-height:1.4;text-transform:none}
     .hero-copy .hero-reassurance{margin:.4rem 0 .75rem!important;color:rgba(255,255,255,.68)!important;font-size:.95rem!important;font-style:normal!important;font-weight:400!important;line-height:1.6!important}
     .hero-copy .hero-reassurance a{color:var(--gold);font-weight:400;text-decoration:underline;text-underline-offset:.12em;white-space:nowrap}
