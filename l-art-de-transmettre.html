@@ -259,6 +259,8 @@
     .hero-actions{display:flex;flex-wrap:nowrap;align-items:stretch;gap:16px;margin:1rem 0 1.25rem}
     .hero-actions .btn{display:flex;align-items:center;justify-content:center;min-height:44px;margin-top:0}
     .hero-actions .btn-secondary{margin-left:0}
+    .hero-actions .hero-primary-cta{flex-direction:column;gap:.2rem;letter-spacing:.04em}
+    .hero-installment-note{color:var(--navy);font-size:.72rem;font-weight:600;letter-spacing:0;line-height:1.35;text-transform:none}
     .hero-copy .hero-reassurance{margin:.4rem 0 .75rem!important;color:rgba(255,255,255,.8)!important;font-size:1rem!important;font-style:normal!important;font-weight:400!important;line-height:1.6!important}
     .hero-copy .hero-reassurance a{color:var(--gold);font-weight:600;text-decoration:underline;text-underline-offset:.12em;white-space:nowrap}
     .hero-reassurance-line{display:block}
@@ -452,7 +454,7 @@
        h1{font-size:clamp(2.35rem,13vw,4rem)}h2{font-size:clamp(1.45rem,7.5vw,2rem)}.hero{padding:2.75rem 1rem 3.25rem}.hero-art{min-height:165px}.hero-art svg{width:190px}.section{padding:2.75rem 1rem}.section-intro{margin-bottom:1.35rem}.situations{grid-template-columns:1fr}.course-programme,.course-programme.four{grid-template-columns:1fr}.masterclass-details{grid-template-columns:repeat(2,minmax(0,1fr))}.course-book{align-items:flex-start;flex-wrap:wrap;gap:.7rem}.course-book img{width:34px}.course-book-text{min-width:calc(100% - 3.25rem)}.course-book .btn{width:100%;text-align:center}.discovery-copy,.feature-card,.form-wrap,.course-support,.course-pricing{padding:1.15rem}.discovery-pricing{padding-top:1.15rem}.eugene-horizontal,.edouard-horizontal{grid-template-columns:1fr;gap:.7rem;padding:1rem;text-align:center}.eugene-visual,.edouard-visual{margin-bottom:0}.eugene-icon,.edouard-icon{width:88px;height:88px}.eugene-copy .section-label{margin-bottom:.45rem}.eugene-copy .btn,.edouard-copy .btn{margin-top:.9rem}.eugene-actions .btn,.edouard-actions .btn{margin-top:0}.payment-note{flex-wrap:wrap}.btn{width:100%}.btn-secondary{margin-left:0}.about{gap:1rem}.mobile-cta{display:block;position:fixed;z-index:30;bottom:0;left:0;width:100%;padding:.55rem;background:rgba(8,15,30,.96);border-top:1px solid rgba(245,224,144,.25);text-align:center}.mobile-cta a{display:block;margin:0;padding:.65rem;background:var(--gold);color:var(--navy);font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.site-footer{padding-bottom:4.5rem}
        .course-pricing>.btn-solid,.eugene-actions>.btn,.edouard-actions>.btn{min-height:44px;display:flex;align-items:center;justify-content:center}
     }
-     @media(max-width:640px){.hero-actions{flex-direction:column;align-items:stretch;gap:.65rem}.hero-actions .btn{width:100%}}
+      @media(max-width:640px){.hero-actions{flex-direction:column;align-items:stretch;gap:.65rem}.hero-actions .btn{width:100%}.hero-actions .hero-primary-cta{padding:.75rem .9rem;font-size:.72rem;letter-spacing:.06em}.hero-installment-note{font-size:.72rem}}
      @media(max-width:560px){
        .section-bridge-title{flex:0 1 auto;min-width:0;max-width:100%;overflow-wrap:anywhere}
        .section-bridge-title-stack{max-width:100%}
@@ -477,12 +479,12 @@
         <span class="eyebrow">MasterClasse</span>
         <h1 class="shimmer-heading">L’Art de Transmettre</h1>
         <p class="hero-subtitle">Transmettre son savoir est une compétence, pas un don.</p>
+        <p>Vous maîtrisez un savoir, une pratique, une manière de faire. Vous l’avez acquis sur le terrain, par l’usage, par les années. Et un jour, vous êtes amené à le partager.</p>
         <div class="hero-actions">
-          <a class="btn btn-solid" href="#masterclasses-1-2">Découvrir le pack complet · 405 CHF</a>
+          <a class="btn btn-solid hero-primary-cta" href="#masterclasses-1-2"><span>Découvrir le pack complet · 405 CHF</span><span class="hero-installment-note">Paiement en 3 fois sans frais disponible · soit environ 435 €</span></a>
           <a class="btn btn-secondary" href="/extrait-masterclass2">Voir un extrait gratuit</a>
         </div>
         <p class="hero-reassurance disclaimer">
-          <span class="hero-reassurance-line">Paiement en 3 fois sans frais disponible · soit environ 435 €</span>
           <span class="hero-reassurance-line">Pas encore prêt à décider ? <button class="hero-email-trigger" type="button" aria-expanded="false" aria-controls="hero-lead-capture">Rester informé</button> ou <a href="#masterclasse-1">commencer par la masterclasse #1 (110 CHF)</a></span>
         </p>
         <div class="hero-lead-capture" id="hero-lead-capture" hidden>
@@ -502,7 +504,6 @@
           </form>
         </div>
         <p class="powered"><a href="https://www.upgr.ch/">Powered by UpGrade L&amp;D</a></p>
-        <p>Vous maîtrisez un savoir, une pratique, une manière de faire. Vous l’avez acquis sur le terrain, par l’usage, par les années. Et un jour, vous êtes amené à le partager.</p>
         <p>Vous l’avez fait.<br>Ou vous ne l’avez jamais fait.<br>Peut-être bien. Peut-être mal. Peut-être les deux.</p>
         <p>Vous avez senti ce moment où l’attention se pose. Et celui où elle se retire. Vous avez vu des yeux s’allumer. Et d’autres se fermer. Vous avez cherché vos mots. Vous en avez trouvé certains. D’autres sont restés hors de portée.</p>
         <p>Ce qui compte, c’est le passage. Quelque chose doit passer de vous à eux. Et ce passage, c’est à vous de le rendre possible grâce à L’Art de Transmettre.</p>
