@@ -1,0 +1,94 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Hero verification</title>
+<pre id="result">running</pre>
+<script>
+  (async () => {
+    const result = document.getElementById("result");
+    const widths = [1440, 1024, 768, 390, 360, 320];
+    const measurements = [];
+    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    let frame;
+    for (const width of widths) {
+      if (frame) frame.remove();
+      frame = document.createElement("iframe");
+      frame.style.cssText = `position:absolute;left:0;top:0;width:${width}px;height:${width <= 560 ? 874 : 800}px;border:0`;
+      frame.src = "/l-art-de-transmettre.html";
+      document.body.append(frame);
+      await new Promise((resolve) => frame.addEventListener("load", resolve, { once: true }));
+      await wait(300);
+      const win = frame.contentWindow;
+      const doc = win.document;
+      const title = doc.querySelector(".hero-intro h1");
+      const subtitle = doc.querySelector(".hero-subtitle");
+      const titleRange = doc.createRange();
+      titleRange.selectNodeContents(title);
+      const titleRect = titleRange.getBoundingClientRect();
+      const introRect = doc.querySelector(".hero-intro").getBoundingClientRect();
+      const cards = [...doc.querySelectorAll(".hero-cta-card")].map((el) => el.getBoundingClientRect());
+      const artRect = doc.querySelector(".hero-art svg").getBoundingClientRect();
+      const html = doc.documentElement;
+      const external = [...doc.querySelectorAll(".hero-primary-cta, .hero-reassurance a")].map((a) => ({
+        text: a.textContent.trim(), href: a.href, target: a.target, rel: a.rel,
+      }));
+      const hit = doc.elementFromPoint(cards[1].right - 12, cards[1].bottom - 12);
+      const heroHit = hit?.closest("a");
+      const start = doc.querySelector(".hero-card-start-link");
+      const startRect = start.getBoundingClientRect();
+      const startHit = doc.elementFromPoint(startRect.left + startRect.width / 2, startRect.top + startRect.height / 2);
+      measurements.push({
+        requestedWidth: width,
+        viewportWidth: win.innerWidth,
+        titlePx: parseFloat(win.getComputedStyle(title).fontSize),
+        subtitlePx: parseFloat(win.getComputedStyle(subtitle).fontSize),
+        ratio: parseFloat(win.getComputedStyle(title).fontSize) / parseFloat(win.getComputedStyle(subtitle).fontSize),
+        titleLineCount: title.getClientRects().length,
+        titleTextWidth: Math.round(titleRect.width * 10) / 10,
+        introWidth: Math.round(introRect.width * 10) / 10,
+        titleFitsIntro: titleRect.right <= introRect.right + 1,
+        cardWidths: cards.map((r) => Math.round(r.width)),
+        cardHeights: cards.map((r) => Math.round(r.height)),
+        cardHeightDelta: Math.round(Math.abs(cards[0].height - cards[1].height) * 10) / 10,
+        artToCardsGap: Math.round((width > 820 ? cards[0].top - artRect.bottom : artRect.top - cards[1].bottom) * 10) / 10,
+        firstFoldContentVisible: width !== 1440 || Math.max(titleRect.bottom, doc.querySelector(".hero-intro>p:last-child").getBoundingClientRect().bottom, cards[0].bottom, cards[1].bottom) <= 800,
+        pageOverflow: html.scrollWidth > win.innerWidth,
+        packBlankClickHref: heroHit?.getAttribute("href") || null,
+        startLinkHit: startHit?.closest("a") === start,
+        external,
+        cardTitlesFit: [...doc.querySelectorAll(".hero-card-title")].every((a) => a.scrollWidth <= a.clientWidth + 1),
+      });
+      if (width === 1440 || width === 390) {
+        heroHit.click();
+        await wait(250);
+        const packTitle = doc.querySelector("#masterclasses-1-2 .section-bridge-title");
+        const packTitleRect = packTitle.getBoundingClientRect();
+        const packBanner = doc.querySelector(".mobile-cta").getBoundingClientRect();
+        measurements.at(-1).packClickHash = win.location.hash;
+        measurements.at(-1).packTargetTitle = {
+          text: packTitle.textContent.trim().replace(/\s+/g, " "),
+          top: Math.round(packTitleRect.top),
+          bottom: Math.round(packTitleRect.bottom),
+          obscured: packTitleRect.bottom > packBanner.top && packBanner.height > 0,
+        };
+        start.click();
+        await wait(250);
+        const discoveryTitle = doc.querySelector("#pack-decouverte h3");
+        const discoveryRect = discoveryTitle.getBoundingClientRect();
+        measurements.at(-1).startClickHash = win.location.hash;
+        measurements.at(-1).discoveryTitle = {
+          text: discoveryTitle.textContent.trim(),
+          top: Math.round(discoveryRect.top),
+          bottom: Math.round(discoveryRect.bottom),
+          obscured: discoveryRect.bottom > packBanner.top && packBanner.height > 0,
+        };
+        const inform = doc.querySelector(".hero-email-trigger");
+        inform.click();
+        measurements.at(-1).emailCaptureOpens = !doc.querySelector("#hero-lead-capture").hidden;
+        measurements.at(-1).emailButtonExpanded = inform.getAttribute("aria-expanded");
+      }
+    }
+    result.textContent = JSON.stringify(measurements, null, 2);
+  })().catch((error) => {
+    document.getElementById("result").textContent = error.stack || String(error);
+  });
+</script>
