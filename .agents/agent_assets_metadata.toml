@@ -6,3 +6,18 @@ id = "yMeUYFfOzg8ylJTk0SmQR"
 uri = "file://upgrade-design-system.zip"
 type = "unspecified"
 title = "UpGrade Design System — upgrade-design-system.css"
+logical_id = "0b22c91c-dfa0-4660-aa19-aa97709eda0a"
+
+[[outputs]]
+id = "Y6efmIM5s8YcXV5UHwSmf"
+uri = "file://generated-artifacts/hero-preview.jpg"
+type = "image"
+title = "Aperçu du hero modifié"
+description = "Capture du hero avec les deux vignettes CTA, sur ordinateur."
+logical_id = "ce18f04f-9847-4371-b859-6b1f0c56b53e"
+content_hash = "sha256:827881abbbb7a4857773b7a8d4e96168fe4b2f00573bdca910196fbe4e430096"
+size = 109862
+mtime_ms = 1794823126259
+storage_uri = "gcs://replit-rams-assets-picard/rams/assets/repl:f504ce6a-60ba-4c39-9d44-7054410c081c/ce18f04f-9847-4371-b859-6b1f0c56b53e/c15a1768-8ef8-4210-ac4e-428bb9017b77"
+storage_version_token = "1794823135528904"
+content_type = "image/jpeg"
